@@ -11,7 +11,7 @@ Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
 Depends:
     R(>= 3.0.1),
     derfinder
-Suggests:
+Imports:
     IRanges,
     GenomicRanges,
     ggplot2,
@@ -21,9 +21,10 @@ Suggests:
     knitr,
     knitrBootstrap (>= 0.8.0),
     knitcitations,
-    devtools,
     xtable,
-	RColorBrewer,
+    RColorBrewer
+Suggests:
+	devtools,
     biovizBase,
     TxDb.Hsapiens.UCSC.hg19.knownGene
 Description: Generate HTML reports for results from fast differential

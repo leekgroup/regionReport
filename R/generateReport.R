@@ -28,6 +28,18 @@
 #' @seealso \link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr}, \link[derfinder]{fullCoverage}
 #' @export
 #'
+#' @import GenomicRanges
+#' @import IRanges
+#' @import ggplot2
+#' @import gridExtra
+#' @import  rCharts
+#' @import data.table
+#' @import knitr
+#' @import knitrBootstrap
+#' @import knitcitations
+#' @import xtable
+#' @import RColorBrewer
+#'
 #' @examples
 #' \dontrun{
 #' generateReport(prefix="run1", makeBestClusters=FALSE)

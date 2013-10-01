@@ -3,7 +3,7 @@ Type: Package
 Title: Generate HTML reports for derfinder
     (https://github.com/lcolladotor/derfinder) results
 Version: 0.0.1
-Date: 2013-09-27
+Date: 2013-10-01
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhsph.edu"), person("Andrew", "Jaffe", role = "aut", email =
     "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),

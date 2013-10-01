@@ -32,7 +32,8 @@
 #' @import IRanges
 #' @import ggplot2
 #' @import gridExtra
-#' @import  rCharts
+#' @importFrom ggbio plotIdeogram
+#' @import rCharts
 #' @import data.table
 #' @import knitr
 #' @import knitrBootstrap

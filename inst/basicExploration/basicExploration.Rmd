@@ -150,7 +150,7 @@ This plot shows the density of the region areas for all regions. `r ifelse(hasSi
 p4 <- ggplot(nulls.df, aes(x=log10(width), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region lengths") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 nulls.inf <- !is.finite(nulls.df$area)
 if(sum(nulls.inf) > 0) {
-	print(paste("Dropping"), sum(nulls.inf), "due to Inf values."))
+	print(paste("Dropping", sum(nulls.inf), "due to Inf values."))
 }
 p5 <- ggplot(nulls.df[!null.inf, ], aes(x=log10(area), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 grid.arrange(p4, p5)

@@ -12,6 +12,32 @@ Most plots were made with using `ggplot2` `r mycitep(bib[["ggplot2"]])`.
 ## Code setup
 
 ```{r setup}
+#### Libraries needed
+
+## Bioconductor
+library("IRanges")
+library("GenomicRanges")
+library("biovizBase")
+
+if(hg19) {
+	library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+}
+
+## CRAN
+library("ggplot2")
+library("gridExtra")
+library("data.table")
+library("knitcitations")
+library("xtable")
+library("RColorBrewer")
+
+## GitHub	
+library("derfinder")
+library("knitrBootstrap")
+library("rCharts")
+
+#### Code setup
+
 ## For ggplot
 tmp <- fullRegions
 names(tmp) <- seq_len(length(tmp))

@@ -124,15 +124,21 @@ This plot shows the density of the region lengths for all regions. `r ifelse(has
 
 ## Region Area
 
-```{r regArea, fig.width=14, fig.height=14, dev=device, eval=hasSig, echo=hasSig}
-xrange <- range(log10(regions.df$area))
-p3a <- ggplot(regions.df, aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
-p3b <- ggplot(regions.df[idx.sig, ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas (significant only)") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
+```{r regArea, fig.width=14, fig.height=14, dev=device, eval=hasArea, echo=hasArea}
+xrange <- range(log10(regions.df$area[finite.area]))
+if(inf.area > 0) {
+	print(paste("Dropping", inf.area, "due to Inf values."))
+}
+p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
+p3b <- ggplot(regions.df[intersect(idx.sig, finite.area), ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas (significant only)") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
 grid.arrange(p3a, p3b)
 ```
 
-```{r regArea2, fig.width=10, fig.height=10, dev=device, eval=!hasSig, echo=!hasSig}
-p3a <- ggplot(regions.df, aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
+```{r regArea2, fig.width=10, fig.height=10, dev=device, eval=!hasArea, echo=!hasArea}
+if(inf.area > 0) {
+	print(paste("Dropping", inf.area, "due to Inf values."))
+}
+p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 p3a
 ```
 
@@ -142,7 +148,11 @@ This plot shows the density of the region areas for all regions. `r ifelse(hasSi
 
 ```{r nullLengthArea, fig.width=14, fig.height=14, dev=device, eval=nullExist, echo=nullExist}
 p4 <- ggplot(nulls.df, aes(x=log10(width), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region lengths") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
-p5 <- ggplot(nulls.df, aes(x=log10(area), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
+nulls.inf <- !is.finite(nulls.df$area)
+if(sum(nulls.inf) > 0) {
+	print(paste("Dropping"), sum(nulls.inf), "due to Inf values."))
+}
+p5 <- ggplot(nulls.df[!null.inf, ], aes(x=log10(area), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 grid.arrange(p4, p5)
 ```
 
@@ -280,7 +290,7 @@ replaceInf <- function(df, colsubset=seq_len(ncol(df))) {
 	}
 	return(df)
 }
-topArea <- replaceInf(topArea, grep("foldChange", colnames(topArea)))
+topArea <- replaceInf(topArea, grep("foldChange|value|area", colnames(topArea)))
 
 ## Make the table
 d <- data.table(topArea)

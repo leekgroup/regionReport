@@ -218,6 +218,16 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	## Are there significant (by q-value) regions?
 	idx.sig <- which(as.logical(fullRegions$significantQval))
 	hasSig <- length(idx.sig) > 0
+	## Are there regions with infite area?
+	finite.area <- which(is.finite(fullRegions$area))
+	if(length(intersect(idx.sig, finite.area)) > 0 ) {
+		hasArea <- TRUE
+		inf.area <- sum(!is.finite(fullRegions$area))
+	} else {
+		hasArea <- FALSE
+		inf.area <- sum(!is.finite(fullRegions$area))
+	}
+	
 	## Save the call
 	theCall <- match.call()
 	

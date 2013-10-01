@@ -178,7 +178,7 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	}
 	
 	## Write bibliography information
-	write.bibtex(c("knitcitations" = citation("knitcitations"), "derfinder" = citation("derfinder"), "knitrBootstrap" = citation("knitrBootstrap"), "ggbio" = citation("ggbio"), "ggplot2" = citation("ggplot2"), "rCharts" = citation("rCharts"), "knitr" = citation("knitr")[1]), file = file.path(prefix, outdir, "references.bib"))
+	write.bibtex(c("knitcitations" = citation("knitcitations"), "derfinder" = citation("derfinder"), "derfinderReport" = citation("derfinderReport"), "knitrBootstrap" = citation("knitrBootstrap"), "ggbio" = citation("ggbio"), "ggplot2" = citation("ggplot2"), "rCharts" = citation("rCharts"), "knitr" = citation("knitr")[1]), file = file.path(prefix, outdir, "references.bib"))
 	bib <- read.bibtex(file.path(prefix, outdir, "references.bib"))
 	
 	## Load files

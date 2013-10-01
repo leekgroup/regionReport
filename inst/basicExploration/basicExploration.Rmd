@@ -142,7 +142,7 @@ p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) + 
 p3a
 ```
 
-This plot shows the density of the region areas for all regions. `r ifelse(hasSig, paste0("The bottom panel is restricted to significant regions (q-value < ", optionsMerge$significantCut[2], ")"), "")`
+This plot shows the density of the region areas for all regions. `r ifelse(hasArea, paste0("The bottom panel is restricted to significant regions (q-value < ", optionsMerge$significantCut[2], ")"), "")`
 
 ## Null regions: width and area
 
@@ -152,7 +152,7 @@ nulls.inf <- !is.finite(nulls.df$area)
 if(sum(nulls.inf) > 0) {
 	print(paste("Dropping", sum(nulls.inf), "due to Inf values."))
 }
-p5 <- ggplot(nulls.df[!null.inf, ], aes(x=log10(area), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
+p5 <- ggplot(nulls.df[!nulls.inf, ], aes(x=log10(area), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 grid.arrange(p4, p5)
 ```
 

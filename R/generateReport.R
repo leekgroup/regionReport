@@ -157,7 +157,7 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	workingDir <- file.path(getwd(), prefix)
 	
 	## Locate Rmd
-	template <- system.file(file.path("basicExploration", "basicExploration.Rmd"), package="derfinder", mustWork=TRUE)
+	template <- system.file(file.path("basicExploration", "basicExploration.Rmd"), package="derfinderReport", mustWork=TRUE)
 	
 	## Load knitcitations with a clean bibliography
 	cleanbib()

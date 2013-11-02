@@ -126,6 +126,12 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 		}
 		library("RColorBrewer")
 	}
+	if(!suppressMessages(require("knitrBootstrap"))) {
+		if(installMissing) {
+			install.packages("knitrBootstrap")
+		}
+		library("knitrBootstrap")
+	}
 	
 	## GitHub	
 	if(!suppressMessages(require("derfinder"))) {
@@ -139,18 +145,6 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 			install_github("derfinder", "lcolladotor")
 		}
 		library("derfinder")
-	}
-	if(!suppressMessages(require("knitrBootstrap"))) {
-		if(installMissing) {
-			if(!require("devtools")) {
-				if(installMissing) {
-					install.packages("devtools")
-				}				
-				library("devtools")
-			}
-			install_github(username='jimhester', repo='knitrBootstrap')
-		}
-		library("knitrBootstrap")
 	}
 	if(!suppressMessages(require("rCharts"))) {
 		if(installMissing) {

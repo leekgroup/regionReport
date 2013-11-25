@@ -180,7 +180,7 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 		if(tooltip) {
 			res <- gsub("\\?\\?\\?\\?", year, res)
 		}
-		res <- gsub("span> ", "span>", tmp)
+		res <- gsub("span> ", "span>", res)
 		res
 	}
 	

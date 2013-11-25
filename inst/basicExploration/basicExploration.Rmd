@@ -180,12 +180,12 @@ This plot shows the density of the region mean coverage for all regions. `r ifel
 
 The following plots are [MA](http://en.wikipedia.org/wiki/MA_plot)-style plots comparing each group vs the first one. The mean coverage is calculated using only two groups at a time and is weighted according to the number of samples on each group. Note that the mean coverage and fold change as calculated here do not taking into account the library sizes.
 
-These plots are only shown when there are two or more groups. A total of `r length(grep("foldChange", colnames(values(fullRegions))))` plot(s) were made.
+These plots are only shown when there are two or more groups. A total of `r length(grep("log2FoldChange", colnames(values(fullRegions))))` plot(s) were made.
 
 ```{r MAstyle, fig.width=10, fig.height=10, dev=device}
-for(j in grep("foldChange", colnames(values(fullRegions)))) {
+for(j in grep("log2FoldChange", colnames(values(fullRegions)))) {
 	## Identify the groups
-	groups <- strsplit(gsub("foldChange", "", colnames(values(fullRegions))[j]), "vs")[[1]]
+	groups <- strsplit(gsub("log2FoldChange", "", colnames(values(fullRegions))[j]), "vs")[[1]]
 	
 	## Calculate the mean coverage only using the 2 groups in question
 	j.mean <- which(colnames(values(fullRegions)) %in% paste0("mean", groups))
@@ -194,11 +194,11 @@ for(j in grep("foldChange", colnames(values(fullRegions)))) {
 	## Weighted means
 	ma.mean <- drop(ma.mean.mat %*% groups.n) / sum(groups.n)
 	
-	ma <- data.frame(mean=ma.mean, foldChange=values(fullRegions)[, j])
-	ma2 <- ma[is.finite(ma$foldChange), ]
-	fold.mean <- data.frame(foldMean=mean(ma2$foldChange, na.rm=TRUE))
+	ma <- data.frame(mean=ma.mean, log2FoldChange=values(fullRegions)[, j])
+	ma2 <- ma[is.finite(ma$log2FoldChange), ]
+	fold.mean <- data.frame(foldMean=mean(ma2$log2FoldChange, na.rm=TRUE))
 	
-	p.ma <- ggplot(ma, aes(x=log2(mean), y=foldChange)) + geom_point(size=1.5, alpha=1/5) + ylab("Fold Change (log2)\nRed dashed line at mean; blue line is loess fit") + xlab(paste("Mean coverage (log2) using only groups", groups[1], "and", groups[2])) + labs(title=paste("MA style plot:", groups[1], "vs ", groups[2])) + geom_hline(aes(yintercept=foldMean), data=fold.mean, colour="#990000", linetype="dashed") + geom_smooth(aes(y=foldChange, x=log2(mean)), data=subset(ma2, mean > 0), method=loess)
+	p.ma <- ggplot(ma, aes(x=log2(mean), y=log2FoldChange)) + geom_point(size=1.5, alpha=1/5) + ylab("Fold Change (log2)\nRed dashed line at mean; blue line is loess fit") + xlab(paste("Mean coverage (log2) using only groups", groups[1], "and", groups[2])) + labs(title=paste("MA style plot:", groups[1], "vs ", groups[2])) + geom_hline(aes(yintercept=foldMean), data=fold.mean, colour="#990000", linetype="dashed") + geom_smooth(aes(y=log2FoldChange, x=log2(mean)), data=subset(ma2, mean > 0), method=loess)
 	print(p.ma)
 }
 ```
@@ -290,7 +290,7 @@ replaceInf <- function(df, colsubset=seq_len(ncol(df))) {
 	}
 	return(df)
 }
-topArea <- replaceInf(topArea, grep("foldChange|value|area", colnames(topArea)))
+topArea <- replaceInf(topArea, grep("log2FoldChange|value|area", colnames(topArea)))
 
 ## Make the table
 d <- data.table(topArea)

@@ -64,7 +64,7 @@ if(!is.null(fullCov) & !is.null(colsubset)) {
 
 ## Get region coverage for the top regions
 if(nBestRegions > 0) {
-	regionCoverage <- getRegionCoverage(fullCov=fullCov, regions=fullRegions[seq_len(nBestRegions)], calculateMeans=FALSE, verbose=FALSE)
+	regionCoverage <- getRegionCoverage(fullCov=fullCov, regions=fullRegions[seq_len(nBestRegions)], verbose=FALSE)
 	save(regionCoverage, file=file.path(workingDir, "regionCoverage.Rdata"))
 }
 ```
@@ -211,7 +211,7 @@ The following plots were made using `ggbio` `r mycitep(bib[["ggbio"]])` which in
 ## Q-values
 
 ```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=nullExist, echo=nullExist}
-plotOverview(regions=fullRegions, type="qval", base_size=30, areaRel=10, legend.position=c(0.97, 0.12))
+plotOverview(regions=fullRegions, type="qval", base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
 This plot shows the genomic locations of the __candidate__ regions found in the analysis. The significant regions (q-value less than `r optionsMerge$significantCut[2]`) are highlighted and the area of the regions is shown on top of each chromosome. Note that the area is in a relative scale.
@@ -220,7 +220,7 @@ This plot shows the genomic locations of the __candidate__ regions found in the 
 ## Annotation
 
 ```{r genomeOverview2, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300}
-plotOverview(regions=fullRegions, annotation=fullRegions, type="annotation", base_size=30, areaRel=10, legend.position=c(0.97, 0.12))
+plotOverview(regions=fullRegions, annotation=fullRegions, type="annotation", base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
 This genomic overview plot shows the annotation region type for the __candidate__ regions. Note that the regions are shown only if the annotation information is available. Below is a table of the actual number of results per annotation region type.
@@ -234,7 +234,7 @@ print(xtable(annoReg.df, align=rep("c", 3)), type="html", include.rownames=FALSE
 ## Annotation (significant)
 
 ```{r genomeOverview3, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=hasSig, echo=hasSig}
-plotOverview(regions=fullRegions[idx.sig], annotation=fullRegions[idx.sig], type="annotation", base_size=30, areaRel=10, legend.position=c(0.97, 0.12))
+plotOverview(regions=fullRegions[idx.sig], annotation=fullRegions[idx.sig], type="annotation", base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
 This genomic overview plot shows the annotation region type for the __candidate__ regions that have a q-value less than `r optionsMerge$significantCut[2]`. Note that the regions are shown only if the annotation information is available. `r ifelse(hasSig, "", "Plot skipped because there are no significant regions.")`
@@ -377,20 +377,20 @@ permuteInfo <- lapply(seeds, function(x) {
 	data.frame(optionsStats$groupInfo[idx])
 })
 permuteInfo <- cbind(data.frame(optionsStats$groupInfo), do.call(cbind, permuteInfo))
-colnames(permuteInfo) <- c("original", paste0("perm", 1:10))
+colnames(permuteInfo) <- c("original", paste0("perm", seq_len(optionsStats$nPermute)))
 ## The raw information
 # permuteInfo
 
 n <- names(table(permuteInfo[, 2]))
-permuteDetail <- data.frame(matrix(NA, nrow=10*length(n), ncol = 2 + length(n)))
-permuteDetail[, 1] <- rep(1:10, each=length(n))
-permuteDetail[, 2] <- rep(n, 10)
+permuteDetail <- data.frame(matrix(NA, nrow=optionsStats$nPermute * length(n), ncol = 2 + length(n)))
+permuteDetail[, 1] <- rep(seq_len(optionsStats$nPermute), each=length(n))
+permuteDetail[, 2] <- rep(n, optionsStats$nPermute)
 colnames(permuteDetail) <- c("permutation", "group", as.character(n))
 l <- 1
 m <- 3:ncol(permuteDetail)
 for(j in n) {
 	k <- which(permuteInfo[, 1] == j)
-	for(i in 2:11) {
+	for(i in 2:(optionsStats$nPermute + 1)) {
 		permuteDetail[l, m] <- table(permuteInfo[k, i])
 		l <- l + 1
 	}

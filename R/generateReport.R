@@ -21,6 +21,7 @@
 #' @param fullAnnotatedRegions Part of the output of \link[derfinder]{mergeResults}. Specify it only if you have already loaded it in memory.
 #' @param optionsStats Part of the output of \link[derfinder]{analyzeChr}. Specify it only if you have already loaded it in memory.
 #' @param optionsMerge Part of the output of \link[derfinder]{mergeResults}. Specify it only if you have already loaded it in memory.
+#' @param overviewParams A two element list with \code{base_size} and \code{areaRel} that control the text size for the genomic overview plots.
 #'
 #' @return An HTML report with a basic exploration of the results.
 #'
@@ -42,15 +43,64 @@
 #' @import RColorBrewer
 #'
 #' @examples
+#'
+#' ## The output will be saved in the 'generateReport-example' directory
+#' dir.create("generateReport-example", showWarnings = FALSE, recursive = TRUE)
+#' initialPath <- getwd()
+#' setwd(file.path(initialPath, "generateReport-example"))
+#' 
+#' ## Generate output from derfinder
+#' 
+#' ## Collapse the coverage information
+#' collapsedFull <- collapseFullCoverage(list(genomeData$coverage), verbose=TRUE)
+#' 
+#' ## Calculate library size adjustments
+#' sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE, verbose=TRUE)
+#' 
+#' ## Build the models
+#' group <- genomeInfo$pop
+#' adjustvars <- data.frame(genomeInfo$gender)
+#' models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
+#'
+#' ## Analyze chromosome 21
+#' analyzeChr(chrnum="21", coverageInfo=genomeData, models=models, cutoffFstat=1, cutoffType="manual", seeds=20140330, groupInfo=group, mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
+#' 
 #' \dontrun{
-#' generateReport(prefix="run1", makeBestClusters=FALSE)
+#' ## Create the GenomicState object for Hsapiens.UCSC.hg19.knownGene
+#' library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+#' txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+#'
+#' ## Creating this GenomicState object takes around 8 min
+#' GenomicState.Hsapiens.UCSC.hg19.knownGene <- makeGenomicState(txdb=txdb)
+#' 
+#' ## For convinience, this object is already included in derfinderReport
+#' identical(GenomicState.Hsapiens.UCSC.hg19.knownGene, genomicState)
+#' 
+#' ## Rename to match code outside the don'r run section
+#' genomicState <- GenomicState.Hsapiens.UCSC.hg19.knownGene
 #' }
+#'
+#' ## Change the directory back to the original one
+#' setwd(initialPath)
+#'
+#' ## Merge the results from the different chromosomes. In this case, there's only one: chr21
+#' mergeResults(chrnums="21", prefix="generateReport-example", genomicState=genomicState)
+#'
+#' ## Load the options used for calculating the statistics
+#' load(file.path("generateReport-example", "chr21", "optionsStats.Rdata"))
+#'
+#' ## Generate the HTML report
+#' generateReport(prefix="generateReport-example", nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
 
 
-generateReport <- function(prefix, outdir="basicExploration", output="basicExploration.html", project=prefix, browse=interactive(), nBestRegions=100, makeBestClusters=TRUE, nBestClusters=2, fullCov=NULL, hg19=TRUE, p.ideos=NULL, txdb=NULL, installMissing=TRUE, device="CairoPNG", fullRegions=NULL, fullNullSummary=NULL, fullAnnotatedRegions=NULL, optionsStats=NULL, optionsMerge=NULL) {
+
+generateReport <- function(prefix, outdir="basicExploration", output="basicExploration.html", project=prefix, browse=interactive(), nBestRegions=100, makeBestClusters=TRUE, nBestClusters=2, fullCov=NULL, hg19=TRUE, p.ideos=NULL, txdb=NULL, installMissing=TRUE, device="CairoPNG", fullRegions=NULL, fullNullSummary=NULL, fullAnnotatedRegions=NULL, optionsStats=NULL, optionsMerge=NULL, overviewParams=list(base_size=10, areaRel=5)) {
 
 	## Save start time for getting the total processing time
 	startTime <- Sys.time()
+	
+	## Check that overviewParams is correctly specified
+	stopifnot(sum(names(overviewParams) %in% c("base_size", "areaRel")) == 2)
 	
 	## Pleasing R CMD check
 	biocLite <- function(x) { NA }

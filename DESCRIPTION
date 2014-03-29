@@ -2,15 +2,15 @@ Package: derfinderReport
 Type: Package
 Title: Generate HTML reports for derfinder
     (https://github.com/lcolladotor/derfinder) results
-Version: 0.0.2
-Date: 2013-11-02
+Version: 0.0.3
+Date: 2014-03-29
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhsph.edu"), person("Andrew", "Jaffe", role = "aut", email =
     "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),
     email = "jtleek@gmail.com"))
 Depends:
-    R(>= 3.0.1),
-    derfinder
+    R(>= 3.1.0),
+    derfinder (>= 0.0.46)
 Imports:
     IRanges,
     GenomicRanges,
@@ -27,14 +27,13 @@ Imports:
 Suggests:
     devtools,
     biovizBase,
-    TxDb.Hsapiens.UCSC.hg19.knownGene
+    TxDb.Hsapiens.UCSC.hg19.knownGene,
+    Cairo
 Description: Generate HTML reports for results from fast differential
     expression analysis of RNA-seq data at base-pair resolution performed by
     derfinder
 License: Artistic-2.0
+LazyData: true
 URL: https://github.com/lcolladotor/derfinderReport
 biocViews: DifferentialExpression, HighThroughputSequencing, RNAseq,
     MultipleComparisons, Software
-Collate:
-    'generateReport.R'
-    'derfinderReport-package.R'

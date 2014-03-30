@@ -219,20 +219,6 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	## Load knitcitations with a clean bibliography
 	cleanbib()
 	cite_options(tooltip=TRUE)
-
-	## I made my own citing function since citep() doesn't work like I want to with
-	## urls that are not really pages themselves like part of a GitHub repo.
-	mycitep <- function(x, short=NULL, year=substr(date(), 21, 24), tooltip=TRUE) {
-		res <- tmp <- citep(x)
-		if(!is.null(short)) {
-			res <- gsub("></a>", paste0(">", short, "</a>"), tmp)
-		}		
-		if(tooltip) {
-			res <- gsub("\\?\\?\\?\\?", year, res)
-		}
-		res <- gsub("span> ", "span>", res)
-		res
-	}
 	
 	## Write bibliography information
 	write.bibtex(c("knitcitations" = citation("knitcitations"), "derfinder" = citation("derfinder"), "derfinderReport" = citation("derfinderReport"), "knitrBootstrap" = citation("knitrBootstrap"), "ggbio" = citation("ggbio"), "ggplot2" = citation("ggplot2"), "rCharts" = citation("rCharts"), "knitr" = citation("knitr")[1]), file = file.path(prefix, outdir, "references.bib"))

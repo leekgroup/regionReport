@@ -2,12 +2,12 @@
 =================================================================================
 
 Project: `r project`.
-
+citep
 # Introduction
 
-This report is meant to help explore the results of the `derfinder` `r mycitep(bib[["derfinder"]])` package and was generated using the `derfinderReport` `r mycitep(bib[["derfinderReport"]])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
+This report is meant to help explore the results of the `derfinder` `r citep(bib[["derfinder"]])` package and was generated using the `derfinderReport` `r citep(bib[["derfinderReport"]])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
 
-Most plots were made with using `ggplot2` `r mycitep(bib[["ggplot2"]])`.
+Most plots were made with using `ggplot2` `r citep(bib[["ggplot2"]])`.
 
 ## Code setup
 
@@ -206,7 +206,7 @@ for(j in grep("log2FoldChange", colnames(values(fullRegions)))) {
 
 # Genomic overview
 
-The following plots were made using `ggbio` `r mycitep(bib[["ggbio"]])` which in turn uses `ggplot2` `r mycitep(bib[["ggplot2"]])`. For more details check `plotOverview` in `derfinder` `r mycitep(bib[["derfinder"]])`.
+The following plots were made using `ggbio` `r citep(bib[["ggbio"]])` which in turn uses `ggplot2` `r citep(bib[["ggplot2"]])`. For more details check `plotOverview` in `derfinder` `r citep(bib[["derfinder"]])`.
 
 ## Q-values
 
@@ -270,7 +270,7 @@ print(xtable(info, align=rep("c", 4)), type="html", include.rownames=FALSE)
 
 ## Region information
 
-Below is an interactive table with the top `r min(nrow(regions.df), 2000)` regions (out of `r nrow(regions.df)`) as ranked by area. This table was generated using `rCharts` `r mycitep(bib[["rCharts"]])`. Inf and -Inf are shown as 1e100 and -1e100 respectively.
+Below is an interactive table with the top `r min(nrow(regions.df), 2000)` regions (out of `r nrow(regions.df)`) as ranked by area. This table was generated using `rCharts` `r citep(bib[["rCharts"]])`. Inf and -Inf are shown as 1e100 and -1e100 respectively.
 
 <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
@@ -303,7 +303,7 @@ t1$print("regions", cdn=TRUE)
 
 # Best region clusters
 
-The following plots were made using `ggbio` `r mycitep(bib[["ggbio"]])` which in turn uses `ggplot2` `r mycitep(bib[["ggplot2"]])`. For more details check `plotRegion` in `derfinder` `r mycitep(bib[["derfinder"]])`. 
+The following plots were made using `ggbio` `r citep(bib[["ggbio"]])` which in turn uses `ggplot2` `r citep(bib[["ggplot2"]])`. For more details check `plotRegion` in `derfinder` `r citep(bib[["derfinder"]])`. 
 
 ## Plots
 
@@ -402,7 +402,7 @@ summary(permuteDetail[, m])
 
 This table shows the summary per group of and can be used for fast detection of anomalies. `r ifelse(usedPermutations, "", "Skipped because no permutations were used.")`
 
-Note that in `derfinder` `r mycitep(bib[["derfinder"]])` the re-sampling of the samples is done without replacement. This is done in an effort to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).
+Note that in `derfinder` `r citep(bib[["derfinder"]])` the re-sampling of the samples is done without replacement. This is done in an effort to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).
 
 ## Interactive
 
@@ -419,9 +419,9 @@ t2$print("permutation")
 
 # Bibliography
 
-This report is part of `derfinder` `r mycitep(bib[["derfinder"]])` and was generated using `knitr` `r mycitep(bib[["knitr"]])` and styled via `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])`.
+This report is part of `derfinder` `r citep(bib[["derfinder"]])` and was generated using `knitr` `r citep(bib[["knitr"]])` and styled via `knitrBootstrap` `r citep(bib[["knitrBootstrap"]])`.
 
-Citations made with `knitcitations` `r mycitep(bib[["knitcitations"]])`.
+Citations made with `knitcitations` `r citep(bib[["knitcitations"]])`.
 
 ```{r bibliography, results='asis', echo=FALSE, cache=FALSE}
 ## Print bibliography

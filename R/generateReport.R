@@ -4,7 +4,7 @@
 #' 
 #' @param prefix The main data directory path where \link[derfinder]{mergeResults} was run. It should be the same as \code{mergeResults(prefix)}.
 #' @param outdir The name of output directory relative to \code{prefix}.
-#' @param output The name output HTML file.
+#' @param output The name of output HTML file (without the html extension).
 #' @param project The title of the project.
 #' @param browse If \code{TRUE} the HTML report is opened in your browser once it's completed.
 #' @param nBestRegions The number of region plots to make, ordered by area.
@@ -37,6 +37,7 @@
 #' @import rCharts
 #' @import data.table
 #' @import knitr
+#' @import rmarkdown
 #' @import knitrBootstrap
 #' @import knitcitations
 #' @import xtable
@@ -90,11 +91,16 @@
 #' load(file.path("generateReport-example", "chr21", "optionsStats.Rdata"))
 #'
 #' ## Generate the HTML report
-#' generateReport(prefix="generateReport-example", nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
+#' generateReport(prefix="generateReport-example", browse=FALSE, nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
+#'
+#' \dontrun{
+#' ## Browse the report
+#' browseURL(file.path("generateReport-example", "basicExploration", "basicExploration.html"))
+#' }
 
 
 
-generateReport <- function(prefix, outdir="basicExploration", output="basicExploration.html", project=prefix, browse=interactive(), nBestRegions=100, makeBestClusters=TRUE, nBestClusters=2, fullCov=NULL, hg19=TRUE, p.ideos=NULL, txdb=NULL, installMissing=TRUE, device="CairoPNG", fullRegions=NULL, fullNullSummary=NULL, fullAnnotatedRegions=NULL, optionsStats=NULL, optionsMerge=NULL, overviewParams=list(base_size=10, areaRel=5)) {
+generateReport <- function(prefix, outdir="basicExploration", output="basicExploration", project=prefix, browse=interactive(), nBestRegions=100, makeBestClusters=TRUE, nBestClusters=2, fullCov=NULL, hg19=TRUE, p.ideos=NULL, txdb=NULL, installMissing=TRUE, device="CairoPNG", fullRegions=NULL, fullNullSummary=NULL, fullAnnotatedRegions=NULL, optionsStats=NULL, optionsMerge=NULL, overviewParams=list(base_size=10, areaRel=5)) {
 
 	## Save start time for getting the total processing time
 	startTime <- Sys.time()
@@ -176,32 +182,42 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 		}
 		library("RColorBrewer")
 	}
-	if(!suppressMessages(require("knitrBootstrap"))) {
-		if(installMissing) {
-			install.packages("knitrBootstrap")
-		}
-		library("knitrBootstrap")
-	}
 	
 	## GitHub	
 	if(!suppressMessages(require("derfinder"))) {
 		if(installMissing) {
-			if(!require("derfinder")) {
-				if(installMissing) {
-					install.packages("derfinder")
-				}				
-				library("derfinder")
+			if(!require("devtools")) {
+				install.packages("devtools")			
+				library("devtools")	
 			}
 			install_github("derfinder", "lcolladotor")
 		}
 		library("derfinder")
 	}
+	if(!suppressMessages(require("rmarkdown"))) {
+		if(installMissing) {
+			if(!require("devtools")) {
+				install.packages("devtools")
+				library("devtools")
+			}				
+			install_github('rstudio/rmarkdown')
+		}
+		library("rmarkdown")
+	}
+	if(!suppressMessages(require("knitrBootstrap"))) {
+		if(installMissing) {
+			if(!require("devtools")) {
+				install.packages("devtools")
+				library("devtools")
+			}				
+			install_github('jimhester/knitrBootstrap')
+		}
+		library("knitrBootstrap")
+	}
 	if(!suppressMessages(require("rCharts"))) {
 		if(installMissing) {
 			if(!require("devtools")) {
-				if(installMissing) {
-					install.packages("devtools")
-				}				
+				install.packages("devtools")				
 				library("devtools")
 			}
 			install_github('rCharts', 'ramnathv', ref='dev')
@@ -220,8 +236,13 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	cleanbib()
 	cite_options(tooltip=TRUE)
 	
+	## Fix citep
+	mycitep <- function(x) {
+		gsub("  </p>", "", citep(x))
+	}
+	
 	## Write bibliography information
-	write.bibtex(c("knitcitations" = citation("knitcitations"), "derfinder" = citation("derfinder"), "derfinderReport" = citation("derfinderReport"), "knitrBootstrap" = citation("knitrBootstrap"), "ggbio" = citation("ggbio"), "ggplot2" = citation("ggplot2"), "rCharts" = citation("rCharts"), "knitr" = citation("knitr")[1]), file = file.path(prefix, outdir, "references.bib"))
+	write.bibtex(c("knitcitations" = citation("knitcitations"), "derfinder" = citation("derfinder"), "derfinderReport" = citation("derfinderReport"), "knitrBootstrap" = citation("knitrBootstrap"), "ggbio" = citation("ggbio"), "ggplot2" = citation("ggplot2"), "rCharts" = citation("rCharts"), "knitr" = citation("knitr")[3]), file = file.path(prefix, outdir, "references.bib"))
 	bib <- read.bibtex(file.path(prefix, outdir, "references.bib"))
 	
 	## Load files
@@ -264,10 +285,13 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	## Generate report
 	tmpdir <- getwd()
 	setwd(file.path(prefix, outdir))
-	res <- knit_bootstrap(input=template, output=output, code_style='Brown Paper', chooser=c('boot', 'code'), show_code=FALSE)
+	file.copy(template, to=paste0(output, ".Rmd"))
+	res <- render(paste0(output, ".Rmd"), bootstrap_document(theme.chooser=TRUE, highlight.chooser=TRUE, highlight="Brown Paper"))
+	file.remove(paste0(output, ".Rmd"))
 	
 	## Open
-	if (browse) browseURL(output)
+	#if (browse) browseURL(paste0(output, ".html"))
+	if (browse) browseURL(res)
 	setwd(tmpdir)
 		
 	## Finish

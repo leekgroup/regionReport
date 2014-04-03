@@ -151,11 +151,17 @@ mergeResults(chrnums="21", prefix="generateReport-example", genomicState=genomic
 load(file.path("generateReport-example", "chr21", "optionsStats.Rdata"))
 
 ## Generate the HTML report
-generateReport(prefix="generateReport-example", browse=FALSE, nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
+report <- generateReport(prefix="generateReport-example", browse=FALSE, nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
+
+
+if(interactive()) {
+## Browse the report
+browseURL(report)
+}
 
 \dontrun{
-## Browse the report
-browseURL(file.path("generateReport-example", "basicExploration", "basicExploration.html"))
+## Note that you can run the example using:
+example("generateReport", "derfinderReport", ask=FALSE)
 }
 }
 \author{

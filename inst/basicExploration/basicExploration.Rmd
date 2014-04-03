@@ -307,7 +307,7 @@ t1$print("regions", cdn=TRUE)
 
 # Best region clusters
 
-The following plots were made using `ggbio` `r mycitep(bib[["ggbio"]])` which in turn uses `ggplot2` `r mycitep(bib[["ggplot2"]])`. For more details check `plotRegion` in `derfinder` `r mycitep(bib[["derfinder"]])`. 
+The following plots were made using `ggbio` `r mycitep(bib[["ggbio"]])` which in turn uses `ggplot2` `r mycitep(bib[["ggplot2"]])`. For more details check `plotCluster()` in `derfinder` `r mycitep(bib[["derfinder"]])`. 
 
 ## Plots
 
@@ -423,7 +423,7 @@ t2$print("permutation")
 
 # Bibliography
 
-This report is part of `derfinder` `r mycitep(bib[["derfinder"]])` and was generated using `knitr` `r mycitep(bib[["knitr"]])` and styled via `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])`.
+This report is part of `derfinder` `r mycitep(bib[["derfinder"]])` and was generated using `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])` with `knitr` `r mycitep(bib[["knitr"]])` and `rmarkdown` `r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")` running behind the scenes.
 
 Citations made with `knitcitations` `r mycitep(bib[["knitcitations"]])`.
 

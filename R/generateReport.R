@@ -91,11 +91,17 @@
 #' load(file.path("generateReport-example", "chr21", "optionsStats.Rdata"))
 #'
 #' ## Generate the HTML report
-#' generateReport(prefix="generateReport-example", browse=FALSE, nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
+#' report <- generateReport(prefix="generateReport-example", browse=FALSE, nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
+#'
+#'
+#' if(interactive()) {
+#' ## Browse the report
+#' browseURL(report)
+#' }
 #'
 #' \dontrun{
-#' ## Browse the report
-#' browseURL(file.path("generateReport-example", "basicExploration", "basicExploration.html"))
+#' ## Note that you can run the example using:
+#' example("generateReport", "derfinderReport", ask=FALSE)
 #' }
 
 
@@ -237,12 +243,16 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	cite_options(tooltip=TRUE)
 	
 	## Fix citep
-	mycitep <- function(x) {
-		gsub("  </p>", "", citep(x))
+	mycitep <- function(x, short=NULL) {
+		res <- gsub("  </p>", "", citep(x))
+		if(!is.null(short)) {
+			res <- gsub("></a>", paste0(">", short, "</a>"), res)
+		}		
+		return(res)
 	}
 	
 	## Write bibliography information
-	write.bibtex(c("knitcitations" = citation("knitcitations"), "derfinder" = citation("derfinder"), "derfinderReport" = citation("derfinderReport"), "knitrBootstrap" = citation("knitrBootstrap"), "ggbio" = citation("ggbio"), "ggplot2" = citation("ggplot2"), "rCharts" = citation("rCharts"), "knitr" = citation("knitr")[3]), file = file.path(prefix, outdir, "references.bib"))
+	write.bibtex(c("knitcitations" = citation("knitcitations"), "derfinder" = citation("derfinder"), "derfinderReport" = citation("derfinderReport"), "knitrBootstrap" = citation("knitrBootstrap"), "ggbio" = citation("ggbio"), "ggplot2" = citation("ggplot2"), "rCharts" = citation("rCharts"), "knitr" = citation("knitr")[3], "rmarkdown" = citation("rmarkdown")), file = file.path(prefix, outdir, "references.bib"))
 	bib <- read.bibtex(file.path(prefix, outdir, "references.bib"))
 	
 	## Load files

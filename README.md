@@ -15,10 +15,15 @@ Get R 3.1.0 or newer from [CRAN](http://cran.r-project.org/).
 ## If needed
 install.packages("devtools")
 
+## Note that knitr 1.5.25 is currently not available via CRAN
+## Following https://github.com/yihui/knitr
+install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),
+                 type = 'source')
+				 
 ## Pre-requisites from CRAN
-install.packages(c("knitr", "ggplot2", "gridExtra", "data.table", "knitr", "knitcitations",
-	"xtable", "RColorBrewer"))
-
+install.packages(c("xtable", "ggplot2", "gridExtra", "data.table", "knitcitations",
+	"RColorBrewer"))
+	
 ## You might need to install the Cairo package, but that will depend on the device you use
 ## for the plots
 install.packages("Cairo")
@@ -28,9 +33,9 @@ source("http://bioconductor.org/biocLite.R")
 biocLite(c("IRanges", "GenomicRanges", "biovizBase", "ggbio", "TxDb.Hsapiens.UCSC.hg19.knownGene"))
 
 ## GitHub dependencies
-library(devtools)
-install_github('rstudio/rmarkdown')
-install_github('jimhester/knitrBootstrap')
+library("devtools")
+install_github("rstudio/rmarkdown")
+install_github("jimhester/knitrBootstrap")
 install_github("rCharts", "ramnathv", ref="dev")
 install_github("derfinder", "lcolladotor")
 

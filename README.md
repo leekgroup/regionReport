@@ -13,7 +13,7 @@ For a full example on how to use __derfinder__ and __derfinderReport__ check htt
 
 # Installation instructions
 
-Get R 3.1.0 or newer from [CRAN](http://cran.r-project.org/).
+Get R 3.1.0 or newer from [CRAN](http://cran.r-project.org/) as well as pandoc 1.12.3 or newer from [here](http://johnmacfarlane.net/pandoc/installing.html).
 
 ```S
 ## If needed

@@ -11,7 +11,7 @@ Most plots were made with using `ggplot2` `r mycitep(bib[["ggplot2"]])`.
 
 ## Code setup
 
-```{r setup, bootstrap.show.code=FALSE}
+```{r setup}
 #### Libraries needed
 
 ## Bioconductor
@@ -27,20 +27,20 @@ if(hg19) {
 library("ggplot2")
 library("gridExtra")
 library("data.table")
-library("knitcitations")
 library("xtable")
 library("RColorBrewer")
 
 ## GitHub	
 library("derfinder")
-library("rmarkdown")
-library("knitrBootstrap")
 library("rCharts")
+
+## Working behind the scenes
+# library("knitcitations")
+# library("rmarkdown")
+# library("knitrBootstrap")
 
 #### Code setup
 
-## knitrBoostrap chunk options
-opts_chunk$set(bootstrap.show.code=FALSE)
 
 ## For ggplot
 tmp <- fullRegions

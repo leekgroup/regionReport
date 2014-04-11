@@ -6,9 +6,8 @@ generateReport(prefix, outdir = "basicExploration",
   output = "basicExploration", project = prefix, browse = interactive(),
   nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
   fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
-  installMissing = TRUE, device = "CairoPNG", fullRegions = NULL,
-  fullNullSummary = NULL, fullAnnotatedRegions = NULL,
-  optionsStats = NULL, optionsMerge = NULL,
+  device = "CairoPNG", fullRegions = NULL, fullNullSummary = NULL,
+  fullAnnotatedRegions = NULL, optionsStats = NULL, optionsMerge = NULL,
   overviewParams = list(base_size = 10, areaRel = 5))
 }
 \arguments{
@@ -60,10 +59,6 @@ generateReport(prefix, outdir = "basicExploration",
   \code{NULL} and \code{hg19=TRUE} then
   TxDb.Hsapiens.UCSC.hg19.knownGene is used.}
 
-  \item{installMissing}{If \code{TRUE} all missing required
-  packages are installed. Note that some are development
-  versions hosted in GitHub.}
-
   \item{device}{The graphical device used when knitting.
   See more at http://yihui.name/knitr/options (dev
   argument).}
@@ -105,6 +100,9 @@ knitr (http://yihui.name/knitr/) behind the scenes. It
 works best after using \link[derfinder]{mergeResults}.
 }
 \examples{
+## Load derfinder
+library("derfinder")
+
 ## The output will be saved in the 'generateReport-example' directory
 dir.create("generateReport-example", showWarnings = FALSE, recursive = TRUE)
 initialPath <- getwd()

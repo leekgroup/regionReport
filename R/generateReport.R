@@ -14,7 +14,6 @@
 #' @param hg19 If \code{TRUE} then the reference is assumed to be hg19 and chromosome lengths as well as the default transcription database (TxDb.Hsapiens.UCSC.hg19.knownGene) will be used.
 #' @param p.ideos A list where each element is the result of \link[ggbio]{plotIdeogram}. If it's \code{NULL} and \code{hg19=TRUE} then they are created for the hg19 human reference.
 #' @param txdb Specify the transcription database to use for making the plots for the top regions by area. If \code{NULL} and \code{hg19=TRUE} then TxDb.Hsapiens.UCSC.hg19.knownGene is used.
-#' @param installMissing If \code{TRUE} all missing required packages are installed. Note that some are development versions hosted in GitHub.
 #' @param device The graphical device used when knitting. See more at http://yihui.name/knitr/options (dev argument).
 #' @param fullRegions Part of the output of \link[derfinder]{mergeResults}. Specify it only if you have already loaded it in memory.
 #' @param fullNullSummary Part of the output of \link[derfinder]{mergeResults}. Specify it only if you have already loaded it in memory.
@@ -29,6 +28,7 @@
 #' @seealso \link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr}, \link[derfinder]{fullCoverage}
 #' @export
 #'
+#' @import derfinder
 #' @import GenomicRanges
 #' @import IRanges
 #' @import ggplot2
@@ -44,6 +44,9 @@
 #' @import RColorBrewer
 #'
 #' @examples
+#'
+#' ## Load derfinder
+#' library("derfinder")
 #'
 #' ## The output will be saved in the 'generateReport-example' directory
 #' dir.create("generateReport-example", showWarnings = FALSE, recursive = TRUE)
@@ -106,129 +109,17 @@
 
 
 
-generateReport <- function(prefix, outdir="basicExploration", output="basicExploration", project=prefix, browse=interactive(), nBestRegions=100, makeBestClusters=TRUE, nBestClusters=2, fullCov=NULL, hg19=TRUE, p.ideos=NULL, txdb=NULL, installMissing=TRUE, device="CairoPNG", fullRegions=NULL, fullNullSummary=NULL, fullAnnotatedRegions=NULL, optionsStats=NULL, optionsMerge=NULL, overviewParams=list(base_size=10, areaRel=5)) {
+generateReport <- function(prefix, outdir="basicExploration", output="basicExploration", project=prefix, browse=interactive(), nBestRegions=100, makeBestClusters=TRUE, nBestClusters=2, fullCov=NULL, hg19=TRUE, p.ideos=NULL, txdb=NULL, device="CairoPNG", fullRegions=NULL, fullNullSummary=NULL, fullAnnotatedRegions=NULL, optionsStats=NULL, optionsMerge=NULL, overviewParams=list(base_size=10, areaRel=5)) {
 
 	## Save start time for getting the total processing time
 	startTime <- Sys.time()
 	
 	## Check that overviewParams is correctly specified
 	stopifnot(sum(names(overviewParams) %in% c("base_size", "areaRel")) == 2)
-	
-	## Pleasing R CMD check
-	biocLite <- function(x) { NA }
-	rm(biocLite)
-	
-	#### Load/install packages
-	## BioC
-	if(!suppressMessages(require("IRanges"))) {
-		if(installMissing) {
-			source("http://bioconductor.org/biocLite.R")
-			biocLite("IRanges")
-		}
-		library("IRanges")
-	}
-	if(!suppressMessages(require("GenomicRanges"))) {
-		if(installMissing) {
-			source("http://bioconductor.org/biocLite.R")
-			biocLite("GenomicRanges")
-		}
-		library("GenomicRanges")
-	}
-	if(!suppressMessages(require("biovizBase"))) {
-		if(installMissing) {
-			source("http://bioconductor.org/biocLite.R")
-			biocLite("biovizBase")
-		}
-		library("biovizBase")
-	}
+
 	if(hg19) {
-		if(!suppressMessages(require("TxDb.Hsapiens.UCSC.hg19.knownGene"))) {
-			if(installMissing) {
-				source("http://bioconductor.org/biocLite.R")
-				biocLite("TxDb.Hsapiens.UCSC.hg19.knownGene")
-			}
-			library("TxDb.Hsapiens.UCSC.hg19.knownGene")
-		}
-	}
-	
-	## CRAN
-	if(!suppressMessages(require("ggplot2"))) {
-		if(installMissing) {
-			install.packages("ggplot2")
-		}
-		library("ggplot2")
-	}
-	if(!suppressMessages(require("gridExtra"))) {
-		if(installMissing) {
-			install.packages("gridExtra")
-		}
-		library("gridExtra")
-	}
-	if(!suppressMessages(require("data.table"))) {
-		if(installMissing) {
-			install.packages("data.table")
-		}
-		library("data.table")
-	}
-	if(!suppressMessages(require("knitcitations"))) {
-		if(installMissing) {
-			install.packages("knitcitations")
-		}
-		library("knitcitations")
-	}
-	if(!suppressMessages(require("xtable"))) {
-		if(installMissing) {
-			install.packages("xtable")
-		}
-		library("xtable")
-	}
-	if(!suppressMessages(require("RColorBrewer"))) {
-		if(installMissing) {
-			install.packages("RColorBrewer")
-		}
-		library("RColorBrewer")
-	}
-	
-	## GitHub	
-	if(!suppressMessages(require("derfinder"))) {
-		if(installMissing) {
-			if(!require("devtools")) {
-				install.packages("devtools")			
-				library("devtools")	
-			}
-			install_github("derfinder", "lcolladotor")
-		}
-		library("derfinder")
-	}
-	if(!suppressMessages(require("rmarkdown"))) {
-		if(installMissing) {
-			if(!require("devtools")) {
-				install.packages("devtools")
-				library("devtools")
-			}				
-			install_github('rstudio/rmarkdown')
-		}
-		library("rmarkdown")
-	}
-	if(!suppressMessages(require("knitrBootstrap"))) {
-		if(installMissing) {
-			if(!require("devtools")) {
-				install.packages("devtools")
-				library("devtools")
-			}				
-			install_github('jimhester/knitrBootstrap')
-		}
-		library("knitrBootstrap")
-	}
-	if(!suppressMessages(require("rCharts"))) {
-		if(installMissing) {
-			if(!require("devtools")) {
-				install.packages("devtools")				
-				library("devtools")
-			}
-			install_github('rCharts', 'ramnathv', ref='dev')
-		}
-		library("rCharts")
+		library("biovizBase")
+		library("TxDb.Hsapiens.UCSC.hg19.knownGene")
 	}
 	
 	## Create outdir
@@ -292,6 +183,9 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	## Save the call
 	theCall <- match.call()
 	
+	## knitrBoostrap chunk options
+	opts_chunk$set(bootstrap.show.code=FALSE)
+	
 	## Generate report
 	tmpdir <- getwd()
 	setwd(file.path(prefix, outdir))
@@ -300,7 +194,6 @@ generateReport <- function(prefix, outdir="basicExploration", output="basicExplo
 	file.remove(paste0(output, ".Rmd"))
 	
 	## Open
-	#if (browse) browseURL(paste0(output, ".html"))
 	if (browse) browseURL(res)
 	setwd(tmpdir)
 		

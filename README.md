@@ -19,7 +19,7 @@ Get R 3.1.0 or newer from [CRAN](http://cran.r-project.org/) as well as pandoc 1
 ## If needed
 install.packages("devtools")
 
-## Note that knitr 1.5.25 is currently not available via CRAN
+## Note that knitr 1.5.27 is currently not available via CRAN
 ## Following https://github.com/yihui/knitr
 install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),
                  type = 'source')
@@ -38,11 +38,7 @@ biocLite(c("IRanges", "GenomicRanges", "biovizBase", "ggbio", "TxDb.Hsapiens.UCS
 
 ## GitHub dependencies
 library("devtools")
-#install_github("rstudio/rmarkdown")
-## With 2014-04-10's version (0.1.73) of rmarkdown, knitrBoostrap is broken
-## More details at: https://github.com/jimhester/knitrBootstrap/issues/43
-## Note that @jjallaire said that it will be fixed soon =)
-install_github('rstudio/rmarkdown', ref="73ddc8d4465ea212defb3389ae8203a0b9dcf9af")
+install_github("rstudio/rmarkdown")
 install_github("jimhester/knitrBootstrap")
 install_github("rCharts", "ramnathv", ref="dev")
 install_github("derfinder", "lcolladotor")
@@ -60,8 +56,8 @@ Below is the citation output from using `citation("derfinderReport")` in R. Plea
 
 To cite package __derfinderReport__ in publications use:
 
-Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.7. https://github.com/lcolladotor/derfinderReport
+Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.8. https://github.com/lcolladotor/derfinderReport
 
 A BibTeX entry for LaTeX users is
 
-@Manual{, title = {derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results}, author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek}, year = {2014}, note = {R package version 0.0.7}, url = {https://github.com/lcolladotor/derfinderReport}, }
+@Manual{, title = {derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results}, author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek}, year = {2014}, note = {R package version 0.0.8}, url = {https://github.com/lcolladotor/derfinderReport}, }

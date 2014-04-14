@@ -74,14 +74,14 @@
 #' library("TxDb.Hsapiens.UCSC.hg19.knownGene")
 #' txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
 #'
-#' ## Creating this GenomicState object takes around 8 min
-#' GenomicState.Hsapiens.UCSC.hg19.knownGene <- makeGenomicState(txdb=txdb)
+#' ## Creating this GenomicState object takes around 8 min for all chrs and around 30 secs for chr21
+#' GenomicState.Hsapiens.UCSC.hg19.knownGene.chr21 <- makeGenomicState(txdb=txdb, chrs="chr21")
 #' 
 #' ## For convinience, this object is already included in derfinderReport
-#' identical(GenomicState.Hsapiens.UCSC.hg19.knownGene, genomicState)
+#' identical(GenomicState.Hsapiens.UCSC.hg19.knownGene.chr21, genomicState)
 #' 
 #' ## Rename to match code outside the don'r run section
-#' genomicState <- GenomicState.Hsapiens.UCSC.hg19.knownGene
+#' genomicState <- GenomicState.Hsapiens.UCSC.hg19.knownGene.chr21
 #' }
 #'
 #' ## Change the directory back to the original one

@@ -10,7 +10,8 @@
 \description{
 Pre-computed genomic state for Hsapiens UCSC hg19 knownGene
 annotation built using \link[derfinder]{makeGenomicState}
-for TxDb.Hsapiens.UCSC.hg19.knownGene version 2.14.0.
+for TxDb.Hsapiens.UCSC.hg19.knownGene version 2.14.0. The
+object has been subset for chr21 only.
 }
 \seealso{
 \link[derfinder]{makeGenomicState}

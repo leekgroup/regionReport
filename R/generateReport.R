@@ -69,21 +69,6 @@
 #'
 #' ## Analyze chromosome 21
 #' analyzeChr(chrnum="21", coverageInfo=genomeData, models=models, cutoffFstat=1, cutoffType="manual", seeds=20140330, groupInfo=group, mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
-#' 
-#' \dontrun{
-#' ## Create the GenomicState object for Hsapiens.UCSC.hg19.knownGene
-#' library("TxDb.Hsapiens.UCSC.hg19.knownGene")
-#' txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
-#'
-#' ## Creating this GenomicState object takes around 8 min for all chrs and around 30 secs for chr21
-#' GenomicState.Hsapiens.UCSC.hg19.knownGene.chr21 <- makeGenomicState(txdb=txdb, chrs="chr21")
-#' 
-#' ## For convinience, this object is already included in derfinderReport
-#' identical(GenomicState.Hsapiens.UCSC.hg19.knownGene.chr21, genomicState)
-#' 
-#' ## Rename to match code outside the don'r run section
-#' genomicState <- GenomicState.Hsapiens.UCSC.hg19.knownGene.chr21
-#' }
 #'
 #' ## Change the directory back to the original one
 #' setwd(initialPath)

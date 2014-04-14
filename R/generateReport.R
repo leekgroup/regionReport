@@ -32,6 +32,7 @@
 #' @import GenomicRanges
 #' @import IRanges
 #' @import ggplot2
+#' @import grid
 #' @import gridExtra
 #' @importFrom ggbio plotIdeogram
 #' @import rCharts

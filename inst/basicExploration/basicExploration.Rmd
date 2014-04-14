@@ -25,8 +25,9 @@ if(hg19) {
 
 ## CRAN
 library("ggplot2")
+library("grid")
 library("gridExtra")
-library("data.table")
+suppressPackageStartupMessages(library("data.table"))
 library("xtable")
 library("RColorBrewer")
 

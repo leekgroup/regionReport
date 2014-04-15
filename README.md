@@ -66,7 +66,7 @@ To cite package __derfinderReport__ in publications use:
 
 Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). derfinderReport: 
 Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) 
-results. R package version 0.0.13. 
+results. R package version 0.0.14. 
 https://github.com/lcolladotor/derfinderReport
 
 A BibTeX entry for LaTeX users is
@@ -76,6 +76,6 @@ A BibTeX entry for LaTeX users is
         (https://github.com/lcolladotor/derfinder) results},
     author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek},
     year = {2014},
-    note = {R package version 0.0.13},
+    note = {R package version 0.0.14},
     url = {https://github.com/lcolladotor/derfinderReport},
 }

@@ -148,7 +148,7 @@ report <- generateReport(prefix='derfinderReport-vignette', browse=FALSE,
     
 ## Copy report output
 file.copy(file.path('derfinderReport-vignette', 'basicExploration',
-    'basicExploration.html'), 'basicExploration.html')
+    'basicExploration.html'), '../inst/basicExploration/basicExploration.html')
     
 ## Clean up
 file.remove('generateReport-isolated.R')
@@ -165,7 +165,7 @@ browseURL(report)
 ```
 
 You can view the pre-compiled report
-[here](basicExploration.html).
+[here](`r system.file(file.path("basicExploration", "basicExploration.html"),  package = "derfinderReport", mustWork = TRUE)`).
 
 ## Notes
 

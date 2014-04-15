@@ -1,0 +1,6 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{basicExploration}
+-->
+
+<iframe src="basicExploration.html"></iframe>

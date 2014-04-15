@@ -807,7 +807,7 @@
 -->
 
 <h1 id="html-reports-for-derfinder-results">HTML reports for <code>derfinder</code> results</h1>
-<p><code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.13."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014</a></span>) creates HTML reports styled with <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.53."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014b</a></span>) results.</p>
+<p><code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.15."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014</a></span>) creates HTML reports styled with <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.54."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014b</a></span>) results.</p>
 <p>Basically, this package includes a basic exploration analysis of <code>derfinder</code> results which we expect users to be interested in reproducing with their own data. The analysis is written in <a href="http://www.rstudio.com/ide/docs/r_markdown">R Markdown</a> format and the only function in <code>derfinderReport</code> takes the results from <code>derfinder</code>, performs a couple of setup operations, and then relies on <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>), <code>rmarkdown</code> (<span class="showtooltip" title="RStudio and Inc. (2014). rmarkdown: R Markdown Document Conversion. R package version 0.1.74."><a href="">JJ Allaire et al, 2014</a></span>), and <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for generating the report.</p>
 <p>Other goodies in the report are powered by <code>ggbio</code> (<span class="showtooltip" title="Yin T, Cook D and Lawrence M (2012). &#39;ggbio: an R package for extending the grammar of graphics for genomic data.&#39; Genome Biology, 13(8), pp. R77."><a href="">Yin et al. 2012</a></span>), <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>), and <code>rCharts</code> (<span class="showtooltip" title="Vaidyanathan R (2013). rCharts: Interactive Charts using Polycharts.js. R package version 0.4.2."><a href="">Vaidyanathan, 2013</a></span>).</p>
 <h1 id="using-derfinderreport">Using <code>derfinderReport</code></h1>
@@ -828,7 +828,13 @@
 library('derfinder')
 
 ## The output will be saved in the 'report' directory
-dir.create('report', showWarnings = FALSE, recursive = TRUE)
+dir.create('report', showWarnings = FALSE, recursive = TRUE)</code></pre></div>
+
+
+<p>The following code runs <code>derfinder</code>.</p>
+<div class="row"><button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button><pre style=""><code class="source r">## Save the current path
 initialPath <- getwd()
 setwd(file.path(initialPath, 'report'))
 
@@ -836,21 +842,13 @@ setwd(file.path(initialPath, 'report'))
 
 ## Collapse the coverage information
 collapsedFull <- collapseFullCoverage(list(genomeData$coverage), 
-verbose=TRUE)</code></pre><button class="message R toggle btn btn-xs btn-info">
-<span class="glyphicon glyphicon-chevron-down"></span> R message
-</button><pre style=""><code class="message r">## 2014-04-15 00:57:56 sampleDepth: Sorting fullCov
-## 2014-04-15 00:57:56 sampleDepth: Collapsing chromosomes information by sample
-</code></pre><button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button><pre style=""><code class="source r">## Calculate library size adjustments
+verbose=TRUE)
+
+## Calculate library size adjustments
 sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE, 
-verbose=TRUE)</code></pre><button class="message R toggle btn btn-xs btn-info">
-<span class="glyphicon glyphicon-chevron-down"></span> R message
-</button><pre style=""><code class="message r">## 2014-04-15 00:57:56 sampleDepth: Calculating sample quantiles
-## 2014-04-15 00:57:56 sampleDepth: Calculating sample adjustments
-</code></pre><button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button><pre style=""><code class="source r">## Build the models
+verbose=TRUE)
+
+## Build the models
 group <- genomeInfo$pop
 adjustvars <- data.frame(genomeInfo$gender)
 models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
@@ -858,57 +856,46 @@ models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
 ## Analyze chromosome 21
 analysis <- analyzeChr(chrnum='21', coverageInfo=genomeData, models=models, 
 cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
-mc.cores=1, writeOutput=TRUE, returnOutput=TRUE)</code></pre><button class="message R toggle btn btn-xs btn-info">
-<span class="glyphicon glyphicon-chevron-down"></span> R message
-</button><pre style=""><code class="message r">## 2014-04-15 00:57:56 analyzeChr: Pre-processing the coverage data
-## 2014-04-15 00:57:56 preprocessCoverage: using chunksize 1434
-## 2014-04-15 00:57:56 preprocessCoverage: splitting the data
-## 2014-04-15 00:57:57 analyzeChr: Calculating statistics
-## 2014-04-15 00:57:57 calculateStats: calculating the F-statistics
-## 2014-04-15 00:57:58 analyzeChr: Calculating pvalues
-## 2014-04-15 00:57:58 analyzeChr: Using the following manual cutoff for the F-statistics 1
-## 2014-04-15 00:57:58 calculatePvalues: identifying data segments
-## 2014-04-15 00:57:59 findRegions: segmenting F-stats information
-## 2014-04-15 00:57:59 getSegmentsRle: segmenting with cutoff(s) 1
-## 2014-04-15 00:57:59 findRegions: identifying candidate DERs
-## 2014-04-15 00:57:59 findRegions: identifying DER clusters
-## 2014-04-15 00:58:00 calculatePvalues: calculating F-statistics for permutation 1 and seed 20140330
-## 2014-04-15 00:58:01 findRegions: segmenting F-stats information
-## 2014-04-15 00:58:01 getSegmentsRle: segmenting with cutoff(s) 1
-## 2014-04-15 00:58:01 findRegions: identifying candidate DERs
-## 2014-04-15 00:58:01 calculatePvalues: calculating the p-values
-## 2014-04-15 00:58:01 analyzeChr: Annotating regions
-</code></pre><button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-down"></span> R output
-</button><pre style=""><code class="output r">## Matching regions to genes.
-## nearestgene: loading bumphunter hg19 transcript database
-## finding nearest transcripts...
-## AnnotatingDone.
-</code></pre><button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button><pre style=""><code class="source r">## Save the stats options for later
+mc.cores=1, writeOutput=TRUE, returnOutput=TRUE)
+
+## Save the stats options for later
 optionsStats <- analysis$optionsStats
 
 ## Change the directory back to the original one
-setwd(initialPath)
+setwd(initialPath)</code></pre></div>
 
-## Merge the results from the different chromosomes. In this case, there's 
-## only one: chr21
-mergeResults(chrnums='21', prefix='report', 
-genomicState=genomicState)</code></pre><button class="message R toggle btn btn-xs btn-info">
-<span class="glyphicon glyphicon-chevron-down"></span> R message
-</button><pre style=""><code class="message r">## 2014-04-15 00:58:06 mergeResults: Saving options used
-## 2014-04-15 00:58:06 Loading chromosome 21
-## 2014-04-15 00:58:07 mergeResults: Saving fullNullSummary
-## 2014-04-15 00:58:07 mergeResults: Re-calculating the p-values
-## 2014-04-15 00:58:07 mergeResults: Saving fullRegions
-## 2014-04-15 00:58:07 mergeResults: assigning genomic states
-## 2014-04-15 00:58:07 annotateRegions: counting
-## 2014-04-15 00:58:08 annotateRegions: annotating
-## 2014-04-15 00:58:08 mergeResults: Saving fullAnnotatedRegions
-## 2014-04-15 00:58:08 mergeResults: Saving fullFstats
-## 2014-04-15 00:58:08 mergeResults: Saving fullTime
+
+<p>For convenience, we have included the <code>derfinder</code> results as part of <code>derfinderReport</code>. Note that the above functions are routinely checked as part of <code>derfinder</code>.</p>
+<div class="row"><button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button><pre style=""><code class="source r">## Copy previous results
+file.copy(system.file(file.path("extdata", "chr21"), package="derfinder", 
+mustWork=TRUE), 'report', recursive=TRUE)</code></pre><button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-down"></span> R output
+</button><pre style=""><code class="output r">## [1] TRUE
 </code></pre></div>
+
+
+<p>Next, proceed to merging the results.</p>
+<div class="row"><button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button><pre style=""><code class="source r">## Merge the results from the different chromosomes. In this case, there's 
+## only one: chr21
+mergeResults(chrnums='21', prefix='report', genomicState=genomicState)</code></pre><button class="message R toggle btn btn-xs btn-info">
+<span class="glyphicon glyphicon-chevron-down"></span> R message
+</button><pre style=""><code class="message r">## 2014-04-15 02:14:30 mergeResults: Saving options used
+## 2014-04-15 02:14:30 Loading chromosome 21
+## 2014-04-15 02:14:30 mergeResults: Saving fullNullSummary
+## 2014-04-15 02:14:30 mergeResults: Re-calculating the p-values
+## 2014-04-15 02:14:30 mergeResults: Saving fullRegions
+## 2014-04-15 02:14:30 mergeResults: assigning genomic states
+## 2014-04-15 02:14:31 annotateRegions: counting
+## 2014-04-15 02:14:31 annotateRegions: annotating
+## 2014-04-15 02:14:31 mergeResults: Saving fullAnnotatedRegions
+## 2014-04-15 02:14:31 mergeResults: Saving fullFstats
+## 2014-04-15 02:14:31 mergeResults: Saving fullTime
+</code></pre></div>
+
 
 
 
@@ -983,7 +970,7 @@ render("derfinderReport.Rmd", bootstrap_document(theme = "default",
 ## Copy report output to be distributed with the package for comparison 
 ## purposes
 file.copy(file.path('report', 'html', 'basicExploration.html'),
-    '../inst/basicExploration/basicExploration.html')
+    '../inst/basicExploration/basicExploration.html', overwrite=TRUE)
        
 ## Clean up
 file.remove("references.bib")
@@ -994,7 +981,7 @@ unlink("report", recursive=TRUE)</code></pre></div>
 <p>Date the vignette was generated.</p>
 <div class="row"><button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
-</button><pre style=""><code class="output r">## [1] "2014-04-15 00:59:29 EDT"
+</button><pre style=""><code class="output r">## [1] "2014-04-15 02:15:34 EDT"
 </code></pre></div>
 
 
@@ -1012,7 +999,7 @@ unlink("report", recursive=TRUE)</code></pre></div>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] devtools_1.5           derfinderReport_0.0.13 derfinder_0.0.53      
+## [1] devtools_1.5           derfinderReport_0.0.15 derfinder_0.0.54      
 ## [4] knitcitations_0.5-0    bibtex_0.3-6           knitr_1.5.27          
 ## [7] rmarkdown_0.1.74       knitrBootstrap_1.0.0   colorout_1.0-2        
 ## 
@@ -1082,10 +1069,10 @@ Languages
 Type
 </li>
 <li >
-<a href="#" class="toggle-global message" type="message">message</a>
+<a href="#" class="toggle-global output" type="output">output</a>
 </li>
 <li >
-<a href="#" class="toggle-global output" type="output">output</a>
+<a href="#" class="toggle-global message" type="message">message</a>
 </li>
 <li >
 <a href="#" type="all-output" class="toggle-global">All</a>

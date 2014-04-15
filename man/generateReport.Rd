@@ -104,10 +104,15 @@ library('derfinder')
 
 ## The output will be saved in the 'generateReport-example' directory
 dir.create('generateReport-example', showWarnings = FALSE, recursive = TRUE)
+
+## For convenience, the derfinder output has been pre-computed
+file.copy(system.file(file.path("extdata", "chr21"), package="derfinder",
+mustWork=TRUE), 'generateReport-example', recursive=TRUE)
+
+\dontrun{
+## If you prefer, you can generate the output from derfinder
 initialPath <- getwd()
 setwd(file.path(initialPath, 'generateReport-example'))
-
-## Generate output from derfinder
 
 ## Collapse the coverage information
 collapsedFull <- collapseFullCoverage(list(genomeData$coverage),
@@ -129,6 +134,7 @@ mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
 
 ## Change the directory back to the original one
 setwd(initialPath)
+}
 
 ## Merge the results from the different chromosomes. In this case, there's
 ## only one: chr21
@@ -140,7 +146,7 @@ load(file.path('generateReport-example', 'chr21', 'optionsStats.Rdata'))
 
 ## Generate the HTML report
 report <- generateReport(prefix='generateReport-example', browse=FALSE,
-nBestRegions=15, makeBestClusters=TRUE,
+nBestRegions=1, makeBestClusters=FALSE,
 fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
 
 

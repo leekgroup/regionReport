@@ -68,12 +68,18 @@ logical steps are as follows:
 1. Analyze the example data for chr21
 1. Merge the results (only one chr in this case, but in practice there'll be more)
 
-```{r runDerfinder, bootstrap.show.code=TRUE}
+```{r loadDerfinder, bootstrap.show.code=TRUE}
 ## Load derfinder
 library('derfinder')
 
 ## The output will be saved in the 'report' directory
 dir.create('report', showWarnings = FALSE, recursive = TRUE)
+```
+
+The following code runs `derfinder`.
+
+```{r runDerfinderFake, eval=FALSE, bootstrap.show.code=TRUE}
+## Save the current path
 initialPath <- getwd()
 setwd(file.path(initialPath, 'report'))
 
@@ -102,12 +108,27 @@ optionsStats <- analysis$optionsStats
 
 ## Change the directory back to the original one
 setwd(initialPath)
+```
 
+For convenience, we have included the `derfinder` results as part of 
+`derfinderReport`. Note that the above functions are routinely checked as part
+of `derfinder`.
+
+
+```{r runDerfinderReal, bootstrap.show.code=TRUE}
+## Copy previous results
+file.copy(system.file(file.path("extdata", "chr21"), package="derfinder", 
+mustWork=TRUE), 'report', recursive=TRUE)
+```
+
+Next, proceed to merging the results.
+
+```{r mergeResults, bootstrap.show.code=TRUE}
 ## Merge the results from the different chromosomes. In this case, there's 
 ## only one: chr21
-mergeResults(chrnums='21', prefix='report', 
-genomicState=genomicState)
+mergeResults(chrnums='21', prefix='report', genomicState=genomicState)
 ```
+
 
 
 ## Create report
@@ -122,7 +143,7 @@ library("derfinderReport")
 ```
 
 
-```{r createReportFalse, eval=FALSE, bootstrap.show.code=TRUE}
+```{r createReportFake, eval=FALSE, bootstrap.show.code=TRUE}
 ## Generate the HTML report
 report <- generateReport(prefix='report', browse=FALSE,
     nBestRegions=15, makeBestClusters=TRUE, outdir="html",
@@ -210,7 +231,7 @@ render("derfinderReport.Rmd", bootstrap_document(theme = "default",
 ## Copy report output to be distributed with the package for comparison 
 ## purposes
 file.copy(file.path('report', 'html', 'basicExploration.html'),
-    '../inst/basicExploration/basicExploration.html')
+    '../inst/basicExploration/basicExploration.html', overwrite=TRUE)
        
 ## Clean up
 file.remove("references.bib")

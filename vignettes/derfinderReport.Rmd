@@ -161,13 +161,14 @@ browseURL(report)
 ```
 
 You can view the pre-compiled report using
+
 ```{r openIncludedReport, eval=FALSE}
 browseURL(system.file(file.path("basicExploration", "basicExploration.html"),  
     package = "derfinderReport", mustWork = TRUE))
 ```
 
-
-[here](derfinderReport-vignette/basicExploration/basicExploration.html"),  package = "derfinderReport", mustWork = TRUE)`).
+Alternatively, view the report that was compiled when you installed the package
+[here](derfinderReport-vignette/basicExploration/basicExploration.html).
 
 ## Notes
 

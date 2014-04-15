@@ -160,15 +160,13 @@ __browseURL()__ as shown below.
 browseURL(report)
 ```
 
-You can view the pre-compiled report using
+You can compare the resulting report with the pre-compiled report using the 
+following code.
 
 ```{r openIncludedReport, eval=FALSE}
 browseURL(system.file(file.path("basicExploration", "basicExploration.html"),  
     package = "derfinderReport", mustWork = TRUE))
 ```
-
-Alternatively, view the report that was compiled when you installed the package
-[here](derfinderReport-vignette/basicExploration/basicExploration.html).
 
 ## Notes
 
@@ -208,11 +206,15 @@ library("rmarkdown")
 render("derfinderReport.Rmd", bootstrap_document(theme = "default",
     highlight = "Brown Paper", theme.chooser = TRUE,
     highlight.chooser = TRUE))
-  
+
+## Copy report output
+file.copy(file.path('derfinderReport-vignette', 'basicExploration',
+    'basicExploration.html'), '../inst/basicExploration/basicExploration.html')
+       
 ## Clean up
 file.remove("references.bib")
 unlink("derfinderReport_files", recursive=TRUE)
-#unlink("derfinderReport-vignette", recursive=TRUE)
+unlink("derfinderReport-vignette", recursive=TRUE)
 ```
 
 Date the vignette was generated.

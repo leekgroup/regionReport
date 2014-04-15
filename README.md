@@ -46,8 +46,8 @@ biocLite(c("IRanges", "GenomicRanges", "biovizBase", "ggbio",
 library("devtools")
 install_github("rstudio/rmarkdown")
 install_github("jimhester/knitrBootstrap")
-install_github("rCharts", "ramnathv", ref="dev")
-install_github("derfinder", "lcolladotor")
+install_github("ramnathv/rCharts", ref="dev")
+install_github("lcolladotor/derfinder")
 
 ## derfinderReport itself
 library(devtools)

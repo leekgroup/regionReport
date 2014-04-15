@@ -1,0 +1,35 @@
+CHANGES IN VERSION 0.0.12
+------------------------
+
+BUG FIXES
+
+    o complying with BiocCheck version 1.0.0
+
+CHANGES IN VERSION 0.0.11
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o genomicState data moved to derfinder 0.0.53
+
+CHANGES IN VERSION 0.0.8
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Now requires knitrBootstrap 1.0.0
+    o Matches derfinder version 0.0.49
+
+CHANGES IN VERSION 0.0.3
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Matches derfinder version 0.0.34
+
+CHANGES IN VERSION 0.0.1
+-----------------------
+
+NEW FEATURES
+
+    o Migrated from derfinder

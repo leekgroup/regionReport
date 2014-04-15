@@ -146,10 +146,6 @@ report <- generateReport(prefix='derfinderReport-vignette', browse=FALSE,
     nBestRegions=15, makeBestClusters=TRUE,
     fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
     
-## Copy report output
-file.copy(file.path('derfinderReport-vignette', 'basicExploration',
-    'basicExploration.html'), '../inst/basicExploration/basicExploration.html')
-    
 ## Clean up
 file.remove('generateReport-isolated.R')
 ", file="generateReport-isolated.R")
@@ -164,8 +160,14 @@ __browseURL()__ as shown below.
 browseURL(report)
 ```
 
-You can view the pre-compiled report
-[here](`r system.file(file.path("basicExploration", "basicExploration.html"),  package = "derfinderReport", mustWork = TRUE)`).
+You can view the pre-compiled report using
+```{r openIncludedReport, eval=FALSE}
+browseURL(system.file(file.path("basicExploration", "basicExploration.html"),  
+    package = "derfinderReport", mustWork = TRUE))
+```
+
+
+[here](derfinderReport-vignette/basicExploration/basicExploration.html"),  package = "derfinderReport", mustWork = TRUE)`).
 
 ## Notes
 
@@ -209,7 +211,7 @@ render("derfinderReport.Rmd", bootstrap_document(theme = "default",
 ## Clean up
 file.remove("references.bib")
 unlink("derfinderReport_files", recursive=TRUE)
-unlink("derfinderReport-vignette", recursive=TRUE)
+#unlink("derfinderReport-vignette", recursive=TRUE)
 ```
 
 Date the vignette was generated.

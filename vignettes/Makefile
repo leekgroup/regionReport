@@ -3,4 +3,5 @@ all:
 clean:
 	rm -f references.bib
 	rm -fr derfinderReport_files
-	rm -fr derfinderReport-vignette
+	rm -fr derfinderReport-vignette/chr21/
+	rm -f derfinderReport-vignette/*Rdata

@@ -94,27 +94,28 @@ An HTML report with a basic exploration of the results.
 This function generates a HTML report exploring the basic
 results from derfinder
 (https://github.com/lcolladotor/derfinder). The HTML report
-itself is generated using knitrBoostrap
-(https://github.com/jimhester/knitrBootstrap) which uses
-knitr (http://yihui.name/knitr/) behind the scenes. It
-works best after using \link[derfinder]{mergeResults}.
+itself is generated using knitrBoostrap which uses knitr
+(http://yihui.name/knitr/) behind the scenes. It works best
+after using \link[derfinder]{mergeResults}.
 }
 \examples{
 ## Load derfinder
-library("derfinder")
+library('derfinder')
 
 ## The output will be saved in the 'generateReport-example' directory
-dir.create("generateReport-example", showWarnings = FALSE, recursive = TRUE)
+dir.create('generateReport-example', showWarnings = FALSE, recursive = TRUE)
 initialPath <- getwd()
-setwd(file.path(initialPath, "generateReport-example"))
+setwd(file.path(initialPath, 'generateReport-example'))
 
 ## Generate output from derfinder
 
 ## Collapse the coverage information
-collapsedFull <- collapseFullCoverage(list(genomeData$coverage), verbose=TRUE)
+collapsedFull <- collapseFullCoverage(list(genomeData$coverage),
+verbose=TRUE)
 
 ## Calculate library size adjustments
-sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE, verbose=TRUE)
+sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE,
+verbose=TRUE)
 
 ## Build the models
 group <- genomeInfo$pop
@@ -122,19 +123,25 @@ adjustvars <- data.frame(genomeInfo$gender)
 models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
 
 ## Analyze chromosome 21
-analyzeChr(chrnum="21", coverageInfo=genomeData, models=models, cutoffFstat=1, cutoffType="manual", seeds=20140330, groupInfo=group, mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
+analyzeChr(chrnum='21', coverageInfo=genomeData, models=models,
+cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group,
+mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
 
 ## Change the directory back to the original one
 setwd(initialPath)
 
-## Merge the results from the different chromosomes. In this case, there's only one: chr21
-mergeResults(chrnums="21", prefix="generateReport-example", genomicState=genomicState)
+## Merge the results from the different chromosomes. In this case, there's
+## only one: chr21
+mergeResults(chrnums='21', prefix='generateReport-example',
+genomicState=genomicState)
 
 ## Load the options used for calculating the statistics
-load(file.path("generateReport-example", "chr21", "optionsStats.Rdata"))
+load(file.path('generateReport-example', 'chr21', 'optionsStats.Rdata'))
 
 ## Generate the HTML report
-report <- generateReport(prefix="generateReport-example", browse=FALSE, nBestRegions=15, makeBestClusters=TRUE, fullCov=list("21"=genomeDataRaw$coverage), optionsStats=optionsStats)
+report <- generateReport(prefix='generateReport-example', browse=FALSE,
+nBestRegions=15, makeBestClusters=TRUE,
+fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
 
 
 if(interactive()) {
@@ -144,7 +151,7 @@ browseURL(report)
 
 \dontrun{
 ## Note that you can run the example using:
-example("generateReport", "derfinderReport", ask=FALSE)
+example('generateReport', 'derfinderReport', ask=FALSE)
 }
 }
 \author{

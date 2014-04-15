@@ -2,7 +2,7 @@ Package: derfinderReport
 Type: Package
 Title: Generate HTML reports for derfinder
     (https://github.com/lcolladotor/derfinder) results
-Version: 0.0.11
+Version: 0.0.12
 Date: 2014-04-14
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhsph.edu"), person("Andrew", "Jaffe", role = "aut", email =
@@ -14,8 +14,7 @@ Description: Generate HTML reports for results from fast differential
 License: Artistic-2.0
 LazyData: true
 URL: https://github.com/lcolladotor/derfinderReport
-biocViews: DifferentialExpression, HighThroughputSequencing, RNAseq,
-    MultipleComparisons, Software
+biocViews: DifferentialExpression, Sequencing, RNASeq, Software
 Depends:
     R(>= 3.1.0)
 Imports:

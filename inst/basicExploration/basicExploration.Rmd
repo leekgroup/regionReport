@@ -19,8 +19,8 @@ library("IRanges")
 library("GenomicRanges")
 
 if(hg19) {
-	library("biovizBase")
-	library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+    library("biovizBase")
+    library("TxDb.Hsapiens.UCSC.hg19.knownGene")
 }
 
 ## CRAN
@@ -53,8 +53,8 @@ nulls.df <- as.data.frame(fullNullSummary)
 
 ## Get chr lengths
 if(hg19) {
-	data(hg19Ideogram, package = "biovizBase")
-	seqlengths(fullRegions) <- seqlengths(hg19Ideogram)[names(seqlengths(fullRegions))]
+    data(hg19Ideogram, package = "biovizBase")
+    seqlengths(fullRegions) <- seqlengths(hg19Ideogram)[names(seqlengths(fullRegions))]
 }
 
 ## Find which chrs are present in the data set
@@ -64,13 +64,13 @@ names(chrs) <- gsub("chr", "", chrs)
 ## Subset the fullCoverage data in case that a subset was used
 colsubset <- optionsStats$colsubset
 if(!is.null(fullCov) & !is.null(colsubset)) {
-	fullCov <- lapply(fullCov, function(x) { x[, colsubset] })
+    fullCov <- lapply(fullCov, function(x) { x[, colsubset] })
 }
 
 ## Get region coverage for the top regions
 if(nBestRegions > 0) {
-	regionCoverage <- getRegionCoverage(fullCov=fullCov, regions=fullRegions[seq_len(nBestRegions)], verbose=FALSE)
-	save(regionCoverage, file=file.path(workingDir, "regionCoverage.Rdata"))
+    regionCoverage <- getRegionCoverage(fullCov=fullCov, regions=fullRegions[seq_len(nBestRegions)], verbose=FALSE)
+    save(regionCoverage, file=file.path(workingDir, "regionCoverage.Rdata"))
 }
 ```
 
@@ -103,7 +103,7 @@ This is the numerical summary of the distribution of the q-values. `r ifelse(nul
 
 ```{r qsummary, eval=nullExist, echo=nullExist, results="asis"}
 qtable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1), function(x) {
-	data.frame("Cut" = x, "Count" = sum(fullRegions$qvalues <= x))
+    data.frame("Cut" = x, "Count" = sum(fullRegions$qvalues <= x))
 })
 qtable <- do.call(rbind, qtable)
 print(xtable(qtable, digits=4, align=rep("c", 3)), type="html", include.rownames=FALSE)
@@ -132,7 +132,7 @@ This plot shows the density of the region lengths for all regions. `r ifelse(has
 ```{r regArea, fig.width=14, fig.height=14, dev=device, eval=hasArea, echo=hasArea}
 xrange <- range(log10(regions.df$area[finite.area]))
 if(inf.area > 0) {
-	print(paste("Dropping", inf.area, "due to Inf values."))
+    print(paste("Dropping", inf.area, "due to Inf values."))
 }
 p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
 p3b <- ggplot(regions.df[intersect(idx.sig, finite.area), ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas (significant only)") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
@@ -141,7 +141,7 @@ grid.arrange(p3a, p3b)
 
 ```{r regArea2, fig.width=10, fig.height=10, dev=device, eval=!hasArea, echo=!hasArea}
 if(inf.area > 0) {
-	print(paste("Dropping", inf.area, "due to Inf values."))
+    print(paste("Dropping", inf.area, "due to Inf values."))
 }
 p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 p3a
@@ -155,7 +155,7 @@ This plot shows the density of the region areas for all regions. `r ifelse(hasAr
 p4 <- ggplot(nulls.df, aes(x=log10(width), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region lengths") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 nulls.inf <- !is.finite(nulls.df$area)
 if(sum(nulls.inf) > 0) {
-	print(paste("Dropping", sum(nulls.inf), "due to Inf values."))
+    print(paste("Dropping", sum(nulls.inf), "due to Inf values."))
 }
 p5 <- ggplot(nulls.df[!nulls.inf, ], aes(x=log10(area), colour=chr)) + geom_line(stat="density") + labs(title="Density of null region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 grid.arrange(p4, p5)
@@ -189,22 +189,22 @@ These plots are only shown when there are two or more groups. A total of `r leng
 
 ```{r MAstyle, fig.width=10, fig.height=10, dev=device}
 for(j in grep("log2FoldChange", colnames(values(fullRegions)))) {
-	## Identify the groups
-	groups <- strsplit(gsub("log2FoldChange", "", colnames(values(fullRegions))[j]), "vs")[[1]]
-	
-	## Calculate the mean coverage only using the 2 groups in question
-	j.mean <- which(colnames(values(fullRegions)) %in% paste0("mean", groups))
-	groups.n <- sapply(groups, function(x) { sum(optionsStats$groupInfo == x) })
-	ma.mean.mat <- as.matrix(values(fullRegions)[, j.mean])
-	## Weighted means
-	ma.mean <- drop(ma.mean.mat %*% groups.n) / sum(groups.n)
-	
-	ma <- data.frame(mean=ma.mean, log2FoldChange=values(fullRegions)[, j])
-	ma2 <- ma[is.finite(ma$log2FoldChange), ]
-	fold.mean <- data.frame(foldMean=mean(ma2$log2FoldChange, na.rm=TRUE))
-	
-	p.ma <- ggplot(ma, aes(x=log2(mean), y=log2FoldChange)) + geom_point(size=1.5, alpha=1/5) + ylab("Fold Change (log2)\nRed dashed line at mean; blue line is loess fit") + xlab(paste("Mean coverage (log2) using only groups", groups[1], "and", groups[2])) + labs(title=paste("MA style plot:", groups[1], "vs ", groups[2])) + geom_hline(aes(yintercept=foldMean), data=fold.mean, colour="#990000", linetype="dashed") + geom_smooth(aes(y=log2FoldChange, x=log2(mean)), data=subset(ma2, mean > 0), method=loess)
-	print(p.ma)
+    ## Identify the groups
+    groups <- strsplit(gsub("log2FoldChange", "", colnames(values(fullRegions))[j]), "vs")[[1]]
+    
+    ## Calculate the mean coverage only using the 2 groups in question
+    j.mean <- which(colnames(values(fullRegions)) %in% paste0("mean", groups))
+    groups.n <- sapply(groups, function(x) { sum(optionsStats$groupInfo == x) })
+    ma.mean.mat <- as.matrix(values(fullRegions)[, j.mean])
+    ## Weighted means
+    ma.mean <- drop(ma.mean.mat %*% groups.n) / sum(groups.n)
+    
+    ma <- data.frame(mean=ma.mean, log2FoldChange=values(fullRegions)[, j])
+    ma2 <- ma[is.finite(ma$log2FoldChange), ]
+    fold.mean <- data.frame(foldMean=mean(ma2$log2FoldChange, na.rm=TRUE))
+    
+    p.ma <- ggplot(ma, aes(x=log2(mean), y=log2FoldChange)) + geom_point(size=1.5, alpha=1/5) + ylab("Fold Change (log2)\nRed dashed line at mean; blue line is loess fit") + xlab(paste("Mean coverage (log2) using only groups", groups[1], "and", groups[2])) + labs(title=paste("MA style plot:", groups[1], "vs ", groups[2])) + geom_hline(aes(yintercept=foldMean), data=fold.mean, colour="#990000", linetype="dashed") + geom_smooth(aes(y=log2FoldChange, x=log2(mean)), data=subset(ma2, mean > 0), method=loess)
+    print(p.ma)
 }
 ```
 
@@ -258,7 +258,7 @@ The annotation depends on the Genomic State used. For details on which one was u
 
 ```{r plotRegions, fig.width=10, fig.height=10, dev=device}
 if(nBestRegions > 0) {
-	plotRegionCoverage(regions=fullRegions, regionCoverage=regionCoverage, groupInfo=optionsStats$groupInfo, nearestAnnotation=regions.df, annotatedRegions=fullAnnotatedRegions, whichRegions = seq_len(min(nBestRegions, length(fullRegions))), colors=NULL, scalefac = 32, ask = FALSE, verbose = TRUE) 
+    plotRegionCoverage(regions=fullRegions, regionCoverage=regionCoverage, groupInfo=optionsStats$groupInfo, nearestAnnotation=regions.df, annotatedRegions=fullAnnotatedRegions, whichRegions = seq_len(min(nBestRegions, length(fullRegions))), colors=NULL, scalefac = 32, ask = FALSE, verbose = TRUE) 
 }
 ```
 
@@ -286,14 +286,14 @@ topArea <- data.frame("areaRank"=order(topArea$area, decreasing=TRUE), topArea)
 ## Clean up -Inf, Inf if present
 ## More details at https://github.com/ramnathv/rCharts/issues/259
 replaceInf <- function(df, colsubset=seq_len(ncol(df))) {
-	for(i in colsubset) {
-		inf.idx <- !is.finite(df[, i])
-		if(any(inf.idx)) {
-			inf.sign <- sign(df[inf.idx, i])
-			df[inf.idx, i] <- inf.sign * 1e100
-		}
-	}
-	return(df)
+    for(i in colsubset) {
+    	inf.idx <- !is.finite(df[, i])
+    	if(any(inf.idx)) {
+    		inf.sign <- sign(df[inf.idx, i])
+    		df[inf.idx, i] <- inf.sign * 1e100
+    	}
+    }
+    return(df)
 }
 topArea <- replaceInf(topArea, grep("log2FoldChange|value|area", colnames(topArea)))
 
@@ -320,38 +320,38 @@ bestArea <- sapply(names(head(sort(regionClustAreas, decreasing=TRUE), nBestClus
 
 ## Graphical setup: ideograms 
 if(hg19 & is.null(p.ideos)) {
-	## Load ideogram info
-	data(hg19IdeogramCyto, package = "biovizBase")
-	ideos.set <- as.character(unique(seqnames(fullRegions[bestArea])))
-	p.ideos <- lapply(ideos.set, function(xx) { 
-		plotIdeogram(hg19IdeogramCyto, xx)
-	})
-	names(p.ideos) <- ideos.set
+    ## Load ideogram info
+    data(hg19IdeogramCyto, package = "biovizBase")
+    ideos.set <- as.character(unique(seqnames(fullRegions[bestArea])))
+    p.ideos <- lapply(ideos.set, function(xx) { 
+    	plotIdeogram(hg19IdeogramCyto, xx)
+    })
+    names(p.ideos) <- ideos.set
 } else {
-	stopifnot(!is.null(p.ideos))
+    stopifnot(!is.null(p.ideos))
 }
 
 ## Graphical setup: transcription database
 if(hg19 & is.null(txdb)) {
-	txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+    txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
 } else {
-	stopifnot(!is.null(txdb))
+    stopifnot(!is.null(txdb))
 }
 
 ## Graphical setup: main plotting function
 regionClusterPlot <- function(idx, tUse="qval") {
-	## Chr specific selections
-	chr <- as.character(seqnames(fullRegions[idx]))
-	chrnum <- gsub("chr", "", chr)
-	p.ideo <- p.ideos[[chr]]
-	covInfo <- fullCov[[chrnum]]
-	
-	## Make the plot
-	p <- plotCluster(idx, regions=fullRegions, annotation=regions.df, coverageInfo=covInfo, groupInfo=optionsStats$groupInfo, titleUse=tUse, txdb=txdb, p.ideogram=p.ideo)
-	print(p)
-	rm(p.ideo, covInfo)
-	
-	return(invisible(TRUE))	
+    ## Chr specific selections
+    chr <- as.character(seqnames(fullRegions[idx]))
+    chrnum <- gsub("chr", "", chr)
+    p.ideo <- p.ideos[[chr]]
+    covInfo <- fullCov[[chrnum]]
+    
+    ## Make the plot
+    p <- plotCluster(idx, regions=fullRegions, annotation=regions.df, coverageInfo=covInfo, groupInfo=optionsStats$groupInfo, titleUse=tUse, txdb=txdb, p.ideogram=p.ideo)
+    print(p)
+    rm(p.ideo, covInfo)
+    
+    return(invisible(TRUE))	
 }
 ```
 
@@ -362,7 +362,7 @@ Below are the best `r nBestClusters` region clusters ordered by cluster area (su
 
 ## Genome plots
 for(idx in bestArea) {
-	regionClusterPlot(idx, ifelse(nullExist, "qval", "none"))
+    regionClusterPlot(idx, ifelse(nullExist, "qval", "none"))
 }
 ```
 
@@ -377,9 +377,9 @@ Below is the information on how the samples were permutted.
 ## Get the permutation information
 nSamples <- seq_len(length(optionsStats$groupInfo))
 permuteInfo <- lapply(seeds, function(x) {
-	set.seed(x)
-	idx <- sample(nSamples)
-	data.frame(optionsStats$groupInfo[idx])
+    set.seed(x)
+    idx <- sample(nSamples)
+    data.frame(optionsStats$groupInfo[idx])
 })
 permuteInfo <- cbind(data.frame(optionsStats$groupInfo), do.call(cbind, permuteInfo))
 colnames(permuteInfo) <- c("original", paste0("perm", seq_len(optionsStats$nPermute)))
@@ -394,11 +394,11 @@ colnames(permuteDetail) <- c("permutation", "group", as.character(n))
 l <- 1
 m <- 3:ncol(permuteDetail)
 for(j in n) {
-	k <- which(permuteInfo[, 1] == j)
-	for(i in 2:(optionsStats$nPermute + 1)) {
-		permuteDetail[l, m] <- table(permuteInfo[k, i])
-		l <- l + 1
-	}
+    k <- which(permuteInfo[, 1] == j)
+    for(i in 2:(optionsStats$nPermute + 1)) {
+    	permuteDetail[l, m] <- table(permuteInfo[k, i])
+    	l <- l + 1
+    }
 }
 
 ## Print the summary
@@ -445,9 +445,9 @@ This analysis was on each chromosome was performed with the following call to `a
 
 ```{r analysisCall, echo=FALSE}
 if("analyzeCall" %in% names(optionsStats)) {
-	optionsStats$analyzeCall
+    optionsStats$analyzeCall
 } else {
-	"Skipped since this information was not recorded prior to version 0.0.24"
+    "Skipped since this information was not recorded prior to version 0.0.24"
 }
 ```
 

@@ -1,0 +1,227 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{derfinderReport}
+-->
+
+HTML reports for `derfinder` results
+===================================
+
+```{r vignetteSetup, echo=FALSE, message=FALSE}
+library("knitcitations")
+
+## Load knitcitations with a clean bibliography
+cleanbib()
+cite_options(tooltip = TRUE)
+
+## Fix citep
+mycitep <- function(x, short = NULL) {
+    res <- gsub("  </p>", "", citep(x))
+    if (!is.null(short)) {
+        res <- gsub("></a>", paste0(">", short, "</a>"), res)
+    }
+    return(res)
+}
+
+## Write bibliography information
+write.bibtex(c(knitcitations = citation("knitcitations"), derfinder = 
+    citation("derfinder"), 
+    derfinderReport = citation("derfinderReport"), knitrBootstrap = citation("knitrBootstrap"), 
+    ggbio = citation("ggbio"), ggplot2 = citation("ggplot2"), rCharts = citation("rCharts"), 
+    knitr = citation("knitr")[3], rmarkdown = citation("rmarkdown")), file = "references.bib")
+bib <- read.bibtex("references.bib")
+```
+
+
+`derfinderReport` `r mycitep(bib[["derfinderReport"]])` creates HTML reports 
+styled with `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])` for 
+`derfinder` `r mycitep(bib[["derfinder"]])` results.
+
+Basically, this package includes a basic exploration analysis of `derfinder` 
+results which we expect users to be interested in reproducing with their own
+data. The analysis is written in [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
+format and the only function in `derfinderReport` takes the results from 
+`derfinder`, performs a couple of setup operations, and then relies on
+`knitr` `r mycitep(bib[["knitr"]])`, `rmarkdown` 
+`r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")`, and `knitrBootstrap` 
+`r mycitep(bib[["knitrBootstrap"]])` for generating the report. 
+
+Other goodies in the report are powered by `ggbio` `r mycitep(bib[["ggbio"]])`, 
+`ggplot2` `r mycitep(bib[["ggplot2"]])`, and `rCharts`
+`r mycitep(bib[["rCharts"]])`.
+
+# Using `derfinderReport`
+
+## Run `derfinder`
+
+Prior to using `derfinderReport` you must use `derfinder` to analyze a specific
+data set. While there are many ways to do so, we recommend using 
+__analyzeChr()__ with the same _prefix_ argument. Then merging the results with 
+__mergeResults()__.
+
+Below, we run `derfinder` for the example data included in the package. The
+logical steps are as follows:
+
+1. Load derfinder
+1. Create a directory where we'll store the results
+1. Generate the pre-requisites for the models to use with the example data
+1. Generate the statistical models
+1. Analyze the example data for chr21
+1. Merge the results (only one chr in this case, but in practice there'll be more)
+
+```{r runDerfinder, bootstrap.show.code=TRUE}
+## Load derfinder
+library('derfinder')
+
+## The output will be saved in the 'derfinderReport-vignette' directory
+dir.create('derfinderReport-vignette', showWarnings = FALSE, recursive = TRUE)
+initialPath <- getwd()
+setwd(file.path(initialPath, 'derfinderReport-vignette'))
+
+## Generate output from derfinder
+
+## Collapse the coverage information
+collapsedFull <- collapseFullCoverage(list(genomeData$coverage), 
+verbose=TRUE)
+
+## Calculate library size adjustments
+sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE, 
+verbose=TRUE)
+
+## Build the models
+group <- genomeInfo$pop
+adjustvars <- data.frame(genomeInfo$gender)
+models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
+
+## Analyze chromosome 21
+analysis <- analyzeChr(chrnum='21', coverageInfo=genomeData, models=models, 
+cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
+mc.cores=1, writeOutput=TRUE, returnOutput=TRUE)
+
+## Save the stats options for later
+optionsStats <- analysis$optionsStats
+
+## Change the directory back to the original one
+setwd(initialPath)
+
+## Merge the results from the different chromosomes. In this case, there's 
+## only one: chr21
+mergeResults(chrnums='21', prefix='derfinderReport-vignette', 
+genomicState=genomicState)
+```
+
+
+## Create report
+
+Once the `derfinder` output has been generated and merged, use
+__generateReport()__ to create the HTML report.
+
+
+```{r loadLib, message=FALSE, bootstrap.show.code=TRUE}
+## Load derfindeReport
+library("derfinderReport")
+```
+
+
+```{r createReportFalse, eval=FALSE, bootstrap.show.code=TRUE}
+## Generate the HTML report
+report <- generateReport(prefix='derfinderReport-vignette', browse=FALSE,
+    nBestRegions=15, makeBestClusters=TRUE,
+    fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
+```
+
+
+```{r createReportReal, echo=FALSE, message=FALSE, bootstrap.show.code=FALSE}
+## Generate the HTML report in a clean environment
+library("devtools")
+cat("## Generate the report in an isolated environment
+## This helps avoids conflicts with generating the vignette
+library(derfinder)
+library(derfinderReport)
+
+## Load optionsStats
+load(file.path('derfinderReport-vignette', 'chr21', 'optionsStats.Rdata'))
+
+## Create report
+report <- generateReport(prefix='derfinderReport-vignette', browse=FALSE,
+    nBestRegions=15, makeBestClusters=TRUE,
+    fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
+    
+## Copy report output
+file.copy(file.path('derfinderReport-vignette', 'basicExploration',
+    'basicExploration.html'), 'basicExploration.html')
+    
+## Clean up
+file.remove('generateReport-isolated.R')
+", file="generateReport-isolated.R")
+clean_source("generateReport-isolated.R", quiet=TRUE)
+```
+
+Once the output is generated, you can browse the report from `R` using 
+__browseURL()__ as shown below.
+
+```{r vignetteBrowse, eval=FALSE, bootstrap.show.code=TRUE}
+## Browse the report
+browseURL(report)
+```
+
+You can view the pre-compiled report
+[here](basicExploration.html).
+
+## Notes
+
+Note that the reports require an active Internet connection to render correctly.
+
+The report is self-explanatory and will change some of the text depending on the
+input options.
+
+If the report is taking too long to compile (say more than 3 hours), you might
+want to consider setting _nBestCluters_ to a small number or even set 
+_makeBestClusters_ to `FALSE`.
+
+
+# Bibliography
+
+This vignette was generated using `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])`
+with `knitr` `r mycitep(bib[["knitr"]])` and `rmarkdown` `r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")` running behind the scenes.
+
+Citations made with `knitcitations` `r mycitep(bib[["knitcitations"]])`.
+
+```{r vignetteBiblio, results='asis', echo=FALSE}
+## Print bibliography
+bibliography()
+```
+
+
+# Reproducibility
+
+Code for creating the vignette
+
+```{r createVignette, eval=FALSE, bootstrap.show.code=TRUE}
+## Load vignette builders
+library("knitrBootstrap")
+library("rmarkdown")
+
+## Create the vignette
+render("derfinderReport.Rmd", bootstrap_document(theme = "default",
+    highlight = "Brown Paper", theme.chooser = TRUE,
+    highlight.chooser = TRUE))
+  
+## Clean up
+file.remove("references.bib")
+unlink("derfinderReport_files", recursive=TRUE)
+unlink("derfinderReport-vignette", recursive=TRUE)
+```
+
+Date the vignette was generated.
+
+```{r vignetteReproducibility1, echo=FALSE}
+## Date the report was generated
+Sys.time()
+```
+
+`R` session information.
+
+```{r vignetteReproducibility2, echo=FALSE}
+## Session info
+sessionInfo()
+```

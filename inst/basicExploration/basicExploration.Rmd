@@ -31,7 +31,7 @@ suppressPackageStartupMessages(library("data.table"))
 library("xtable")
 library("RColorBrewer")
 
-## GitHub	
+## GitHub
 library("derfinder")
 library("rCharts")
 
@@ -287,11 +287,11 @@ topArea <- data.frame("areaRank"=order(topArea$area, decreasing=TRUE), topArea)
 ## More details at https://github.com/ramnathv/rCharts/issues/259
 replaceInf <- function(df, colsubset=seq_len(ncol(df))) {
     for(i in colsubset) {
-    	inf.idx <- !is.finite(df[, i])
-    	if(any(inf.idx)) {
-    		inf.sign <- sign(df[inf.idx, i])
-    		df[inf.idx, i] <- inf.sign * 1e100
-    	}
+        inf.idx <- !is.finite(df[, i])
+        if(any(inf.idx)) {
+            inf.sign <- sign(df[inf.idx, i])
+            df[inf.idx, i] <- inf.sign * 1e100
+        }
     }
     return(df)
 }
@@ -324,7 +324,7 @@ if(hg19 & is.null(p.ideos)) {
     data(hg19IdeogramCyto, package = "biovizBase")
     ideos.set <- as.character(unique(seqnames(fullRegions[bestArea])))
     p.ideos <- lapply(ideos.set, function(xx) { 
-    	plotIdeogram(hg19IdeogramCyto, xx)
+        plotIdeogram(hg19IdeogramCyto, xx)
     })
     names(p.ideos) <- ideos.set
 } else {
@@ -351,7 +351,7 @@ regionClusterPlot <- function(idx, tUse="qval") {
     print(p)
     rm(p.ideo, covInfo)
     
-    return(invisible(TRUE))	
+    return(invisible(TRUE))
 }
 ```
 
@@ -396,8 +396,8 @@ m <- 3:ncol(permuteDetail)
 for(j in n) {
     k <- which(permuteInfo[, 1] == j)
     for(i in 2:(optionsStats$nPermute + 1)) {
-    	permuteDetail[l, m] <- table(permuteInfo[k, i])
-    	l <- l + 1
+        permuteDetail[l, m] <- table(permuteInfo[k, i])
+        l <- l + 1
     }
 }
 
@@ -424,7 +424,7 @@ t2$print("permutation")
 
 # Bibliography
 
-This report is part of `derfinder` `r mycitep(bib[["derfinder"]])` and was generated using `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])` with `knitr` `r mycitep(bib[["knitr"]])` and `rmarkdown` `r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")` running behind the scenes.
+This report is part of `derfinderReport` `r mycitep(bib[["derfinderReport"]])` and was generated using `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])` with `knitr` `r mycitep(bib[["knitr"]])` and `rmarkdown` `r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")` running behind the scenes.
 
 Citations made with `knitcitations` `r mycitep(bib[["knitcitations"]])`.
 

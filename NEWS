@@ -1,12 +1,19 @@
+CHANGES IN VERSION 0.0.13
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Added a vignette
+
 CHANGES IN VERSION 0.0.12
-------------------------
+-------------------------
 
 BUG FIXES
 
     o complying with BiocCheck version 1.0.0
 
 CHANGES IN VERSION 0.0.11
-------------------------
+-------------------------
 
 SIGNIFICANT USER-VISIBLE CHANGES
 

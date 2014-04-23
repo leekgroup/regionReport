@@ -11,7 +11,7 @@ Most plots were made with using `ggplot2` `r mycitep(bib[["ggplot2"]])`.
 
 ## Code setup
 
-```{r setup}
+```{r setup, bootstrap.show.message=FALSE}
 #### Libraries needed
 
 ## Bioconductor
@@ -27,9 +27,10 @@ if(hg19) {
 library("ggplot2")
 library("grid")
 library("gridExtra")
-suppressPackageStartupMessages(library("data.table"))
+library("data.table")
 library("xtable")
 library("RColorBrewer")
+library("mgcv")
 
 ## GitHub
 library("derfinder")

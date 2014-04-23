@@ -34,7 +34,8 @@ Imports:
     knitrBootstrap (>= 1.0.0),
     knitcitations (>= 0.5.0),
     xtable,
-    RColorBrewer
+    RColorBrewer,
+    mgcv
 Suggests:
     biovizBase,
     TxDb.Hsapiens.UCSC.hg19.knownGene,

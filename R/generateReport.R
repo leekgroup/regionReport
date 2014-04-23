@@ -70,6 +70,7 @@
 #' @import knitcitations
 #' @import xtable
 #' @import RColorBrewer
+#' @import mgcv
 #'
 #' @examples
 #'

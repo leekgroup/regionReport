@@ -1,3 +1,12 @@
+CHANGES IN VERSION 0.0.16
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o MA-style plots now use the scaling factor.
+    o Using a GAM smoother instead of loess for MA-style plots. Helps for cases
+        with many regions.
+
 CHANGES IN VERSION 0.0.13
 -------------------------
 

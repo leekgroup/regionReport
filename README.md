@@ -31,7 +31,7 @@ install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.or
 
 ## Pre-requisites from CRAN
 install.packages(c("xtable", "ggplot2", "gridExtra", "data.table", "knitcitations",
-    "RColorBrewer"))
+    "RColorBrewer", "mgcv"))
     
 ## You might need to install the Cairo package, but that will depend on the device 
 ## you use for the plots

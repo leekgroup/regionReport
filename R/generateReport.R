@@ -199,9 +199,9 @@ generateReport <- function(prefix, outdir = "basicExploration", output = "basicE
     ## Require fullCov
     if (makeBestClusters) {
         stopifnot(!is.null(fullCov))
+        makeBestClusters <- !nBestClusters == 0
     } else {
         nBestClusters <- 0
-        nBestRegions <- 0
     }
     
     ##### Setup chunk options Are there any null regions? If not, then there 

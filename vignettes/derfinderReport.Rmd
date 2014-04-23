@@ -159,7 +159,7 @@ report <- generateReport(prefix='report', browse=FALSE,
 ```
 
 
-```{r createReportReal, echo=FALSE, message=FALSE, bootstrap.show.code=FALSE}
+```{r createReportReal, echo=FALSE, message=FALSE, bootstrap.show.code=FALSE, eval=FALSE}
 ## Generate the HTML report in a clean environment
 library("devtools")
 cat("## Generate the report in an isolated environment

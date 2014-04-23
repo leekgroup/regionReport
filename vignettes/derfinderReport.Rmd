@@ -1,5 +1,13 @@
+---
+output:
+  knitrBootstrap::bootstrap_document:
+    highlight: 'brown paper'
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
 <!--
-%\VignetteEngine{knitr::knitr}
+%\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{derfinderReport}
 -->
 

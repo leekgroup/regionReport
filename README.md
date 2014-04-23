@@ -50,8 +50,8 @@ install_github("ramnathv/rCharts", ref="dev")
 install_github("lcolladotor/derfinder")
 
 ## derfinderReport itself
-library(devtools)
-install_github("derfinderReport", "lcolladotor")
+library("devtools")
+install_github("lcolladotor/derfinderReport")
 ```
 
 # Citation
@@ -66,7 +66,7 @@ To cite package __derfinderReport__ in publications use:
 
 Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). derfinderReport: 
 Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) 
-results. R package version 0.0.15. 
+results. R package version 0.0.16. 
 https://github.com/lcolladotor/derfinderReport
 
 A BibTeX entry for LaTeX users is
@@ -76,6 +76,6 @@ A BibTeX entry for LaTeX users is
         (https://github.com/lcolladotor/derfinder) results},
     author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek},
     year = {2014},
-    note = {R package version 0.0.15},
+    note = {R package version 0.0.16},
     url = {https://github.com/lcolladotor/derfinderReport},
 }

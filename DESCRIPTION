@@ -26,7 +26,7 @@ Imports:
     ggplot2,
     grid,
     gridExtra,
-    ggbio,
+    ggbio (>= 1.12.3),
     rCharts (>= 0.4.2),
     data.table,
     knitr (>= 1.5.27),

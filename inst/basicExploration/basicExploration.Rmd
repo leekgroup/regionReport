@@ -60,14 +60,14 @@ regions.df$width <- width(tmp)
 rm(tmp)
 nulls.df <- as.data.frame(fullNullSummary)
 
-## Special subsets
-keepChr <- table(regions.df$seqnames) > 1
+## Special subsets: need at least 3 points for a density plot
+keepChr <- table(regions.df$seqnames) > 2
 regions.df.plot <- subset(regions.df, seqnames %in% names(keepChr[keepChr]))
 
 if(hasSig) {
     ## Keep only those sig
     regions.df.sig <- regions.df[idx.sig, ]
-    keepChr <- table(regions.df.sig$seqnames) > 1
+    keepChr <- table(regions.df.sig$seqnames) > 2
     regions.df.sig <- subset(regions.df.sig, seqnames %in% names(keepChr[keepChr]))
     
     if(nrow(regions.df.sig) > 0) {
@@ -76,7 +76,7 @@ if(hasSig) {
             finite.area.sig <- which(is.finite(regions.df.sig$area))
             
             regions.df.sig.area <- regions.df.sig[finite.area.sig, ]
-            keepChr <- table(regions.df.sig.area$seqnames) > 1
+            keepChr <- table(regions.df.sig.area$seqnames) > 2
             regions.df.sig.area <- subset(regions.df.sig.area, seqnames %in% names(keepChr[keepChr]))
             
             ## Save the info

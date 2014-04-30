@@ -3,6 +3,15 @@ CHANGES IN VERSION 0.0.16
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
+    o Made more robust for cases where there is a small number of significant
+        DERs: need at least 2 by chr for the chr to be included in the density
+        plots.
+
+CHANGES IN VERSION 0.0.16
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
     o MA-style plots now use the scaling factor.
     o Using a GAM smoother instead of loess for MA-style plots. Helps for cases
         with many regions.

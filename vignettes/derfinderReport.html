@@ -881,17 +881,17 @@ mustWork=TRUE), 'report', recursive=TRUE)</code></pre><button class="output R to
 ## only one: chr21
 mergeResults(chrnums='21', prefix='report', genomicState=genomicState)</code></pre><button class="message R toggle btn btn-xs btn-info">
 <span class="glyphicon glyphicon-chevron-down"></span> R message
-</button><pre style=""><code class="message r">## 2014-04-29 20:17:40 mergeResults: Saving options used
-## 2014-04-29 20:17:40 Loading chromosome 21
-## 2014-04-29 20:17:40 mergeResults: Saving fullNullSummary
-## 2014-04-29 20:17:40 mergeResults: Re-calculating the p-values
-## 2014-04-29 20:17:41 mergeResults: Saving fullRegions
-## 2014-04-29 20:17:41 mergeResults: assigning genomic states
-## 2014-04-29 20:17:41 annotateRegions: counting
-## 2014-04-29 20:17:41 annotateRegions: annotating
-## 2014-04-29 20:17:41 mergeResults: Saving fullAnnotatedRegions
-## 2014-04-29 20:17:41 mergeResults: Saving fullFstats
-## 2014-04-29 20:17:41 mergeResults: Saving fullTime
+</button><pre style=""><code class="message r">## 2014-04-30 10:59:45 mergeResults: Saving options used
+## 2014-04-30 10:59:45 Loading chromosome 21
+## 2014-04-30 10:59:46 mergeResults: Saving fullNullSummary
+## 2014-04-30 10:59:46 mergeResults: Re-calculating the p-values
+## 2014-04-30 10:59:46 mergeResults: Saving fullRegions
+## 2014-04-30 10:59:46 mergeResults: assigning genomic states
+## 2014-04-30 10:59:46 annotateRegions: counting
+## 2014-04-30 10:59:46 annotateRegions: annotating
+## 2014-04-30 10:59:47 mergeResults: Saving fullAnnotatedRegions
+## 2014-04-30 10:59:47 mergeResults: Saving fullFstats
+## 2014-04-30 10:59:47 mergeResults: Saving fullTime
 </code></pre></div>
 
 
@@ -955,9 +955,7 @@ library("knitrBootstrap")
 library("rmarkdown")
 
 ## Create the vignette
-render("derfinderReport.Rmd", bootstrap_document(theme = "default",
-    highlight = "Brown Paper", theme.chooser = TRUE,
-    highlight.chooser = TRUE))
+render("derfinderReport.Rmd")
 
 ## Copy report output to be distributed with the package for comparison 
 ## purposes
@@ -966,13 +964,13 @@ file.copy(file.path('report', 'html', 'basicExploration.html'),
        
 ## Clean up
 file.remove("references.bib")
-unlink("derfinderReport_files", recursive=TRUE)
+#unlink("derfinderReport_files", recursive=TRUE)
 unlink("report", recursive=TRUE)</code></pre></div>
 
 <p>Date the vignette was generated.</p>
 <div class="row"><button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
-</button><pre style=""><code class="output r">## [1] "2014-04-29 20:18:49 EDT"
+</button><pre style=""><code class="output r">## [1] "2014-04-30 11:00:52 EDT"
 </code></pre></div>
 
 <p><code>R</code> session information.</p>
@@ -991,7 +989,7 @@ unlink("report", recursive=TRUE)</code></pre></div>
 ## other attached packages:
 ## [1] devtools_1.5           derfinderReport_0.0.16 derfinder_0.0.57      
 ## [4] knitcitations_0.5-0    bibtex_0.3-6           knitr_1.5.32          
-## [7] rmarkdown_0.1.90       knitrBootstrap_1.0.0  
+## [7] rmarkdown_0.1.90       knitrBootstrap_1.0.0   colorout_1.0-2        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] AnnotationDbi_1.26.0     BatchJobs_1.2           

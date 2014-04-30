@@ -217,11 +217,10 @@ generateReport <- function(prefix, outdir = "basicExploration", output = "basicE
     finite.area <- which(is.finite(fullRegions$area))
     if (length(intersect(idx.sig, finite.area)) > 0) {
         hasArea <- TRUE
-        inf.area <- sum(!is.finite(fullRegions$area))
     } else {
         hasArea <- FALSE
-        inf.area <- sum(!is.finite(fullRegions$area))
     }
+    inf.area <- sum(!is.finite(fullRegions$area))
     
     ## Save the call
     theCall <- match.call()
@@ -233,8 +232,7 @@ generateReport <- function(prefix, outdir = "basicExploration", output = "basicE
     tmpdir <- getwd()
     setwd(file.path(prefix, outdir))
     file.copy(template, to = paste0(output, ".Rmd"))
-    res <- render(paste0(output, ".Rmd"), bootstrap_document(theme.chooser = TRUE, 
-        highlight.chooser = TRUE, highlight = "Brown Paper"))
+    res <- render(paste0(output, ".Rmd"))
     file.remove(paste0(output, ".Rmd"))
     
     ## Open

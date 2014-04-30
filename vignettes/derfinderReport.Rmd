@@ -232,9 +232,7 @@ library("knitrBootstrap")
 library("rmarkdown")
 
 ## Create the vignette
-render("derfinderReport.Rmd", bootstrap_document(theme = "default",
-    highlight = "Brown Paper", theme.chooser = TRUE,
-    highlight.chooser = TRUE))
+render("derfinderReport.Rmd")
 
 ## Copy report output to be distributed with the package for comparison 
 ## purposes

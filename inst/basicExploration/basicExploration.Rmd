@@ -1,5 +1,13 @@
+---
+output:
+  knitrBootstrap::bootstrap_document:
+    highlight: 'brown paper'
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
 [derfinder](https://github.com/lcolladotor/derfinder) basic results exploration
-=================================================================================
+===============================================================================
 
 Project: `r project`.
 
@@ -52,6 +60,33 @@ regions.df$width <- width(tmp)
 rm(tmp)
 nulls.df <- as.data.frame(fullNullSummary)
 
+## Special subsets
+keepChr <- table(regions.df$seqnames) > 1
+regions.df.plot <- subset(regions.df, seqnames %in% names(keepChr[keepChr]))
+
+if(hasSig) {
+    ## Keep only those sig
+    regions.df.sig <- regions.df[idx.sig, ]
+    keepChr <- table(regions.df.sig$seqnames) > 1
+    regions.df.sig <- subset(regions.df.sig, seqnames %in% names(keepChr[keepChr]))
+    
+    if(nrow(regions.df.sig) > 0) {
+        ## If there's any sig, keep those with finite areas
+        if(hasArea) {
+            finite.area.sig <- which(is.finite(regions.df.sig$area))
+            
+            regions.df.sig.area <- regions.df.sig[finite.area.sig, ]
+            keepChr <- table(regions.df.sig.area$seqnames) > 1
+            regions.df.sig.area <- subset(regions.df.sig.area, seqnames %in% names(keepChr[keepChr]))
+            
+            ## Save the info
+            hasArea <- (nrow(regions.df.sig.area) > 0)
+        }
+    } else {
+        hasSig <- hasArea <- FALSE
+    }
+}
+
 ## Get chr lengths
 if(hg19) {
     data(hg19Ideogram, package = "biovizBase")
@@ -83,7 +118,7 @@ if(nBestRegions > 0) {
 Theoretically, the p-values should be uniformly distributed between 0 and 1.
 
 ```{r pvals, fig.width=10, fig.height=10, dev=device, eval=nullExist, echo=nullExist}
-p1 <- ggplot(regions.df, aes(x=pvalues, colour=seqnames)) + geom_line(stat="density") + xlim(0, 1) + labs(title="Density of p-values") + xlab("p-values") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
+p1 <- ggplot(regions.df.plot, aes(x=pvalues, colour=seqnames)) + geom_line(stat="density") + xlim(0, 1) + labs(title="Density of p-values") + xlab("p-values") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 p1
 ```
 
@@ -115,14 +150,14 @@ This table shows the number of candidate Differentially Expressed Regions (DERs)
 ## Region width
 
 ```{r regLen, fig.width=14, fig.height=14, dev=device, eval=hasSig, echo=hasSig}
-xrange <- range(log10(regions.df$width))
-p2a <- ggplot(regions.df, aes(x=log10(width), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region lengths") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
-p2b <- ggplot(regions.df[idx.sig, ], aes(x=log10(width), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region lengths (significant only)") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
+xrange <- range(log10(regions.df.plot$width))
+p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region lengths") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
+p2b <- ggplot(regions.df.sig, aes(x=log10(width), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region lengths (significant only)") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
 grid.arrange(p2a, p2b)
 ```
 
 ```{r regLen2, fig.width=10, fig.height=10, dev=device, eval=!hasSig, echo=!hasSig}
-p2a <- ggplot(regions.df, aes(x=log10(width), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region lengths") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
+p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region lengths") + xlab("Region width (log10)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 p2a
 ```
 
@@ -131,12 +166,12 @@ This plot shows the density of the region lengths for all regions. `r ifelse(has
 ## Region Area
 
 ```{r regArea, fig.width=14, fig.height=14, dev=device, eval=hasArea, echo=hasArea}
-xrange <- range(log10(regions.df$area[finite.area]))
+xrange <- range(log10(regions.df.plot$area[finite.area]))
 if(inf.area > 0) {
     print(paste("Dropping", inf.area, "due to Inf values."))
 }
 p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
-p3b <- ggplot(regions.df[intersect(idx.sig, finite.area), ], aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas (significant only)") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
+p3b <- ggplot(regions.df.sig.area, aes(x=log10(area), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region areas (significant only)") + xlab("Region area (log10)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
 grid.arrange(p3a, p3b)
 ```
 
@@ -168,14 +203,14 @@ This plot shows the density of the null region lengths and areas. `r ifelse(null
 ## Mean coverage
 
 ```{r meanCov, fig.width=14, fig.height=14, dev=device, eval=hasSig, echo=hasSig}
-xrange <- range(log2(regions.df$meanCoverage))
-p6a <- ggplot(regions.df, aes(x=log2(meanCoverage), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region mean coverage") + xlab("Region mean coverage (log2)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
-p6b <- ggplot(regions.df[idx.sig, ], aes(x=log2(meanCoverage), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region mean coverage (significant only)") + xlab("Region mean coverage (log2)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
+xrange <- range(log2(regions.df.plot$meanCoverage))
+p6a <- ggplot(regions.df.plot, aes(x=log2(meanCoverage), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region mean coverage") + xlab("Region mean coverage (log2)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
+p6b <- ggplot(regions.df.sig, aes(x=log2(meanCoverage), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region mean coverage (significant only)") + xlab("Region mean coverage (log2)") + scale_colour_discrete(limits=chrs) + xlim(xrange) + theme(legend.title=element_blank())
 grid.arrange(p6a, p6b)
 ```
 
 ```{r meanCov2, fig.width=10, fig.height=10, dev=device, eval=!hasSig, echo=!hasSig}
-p6a <- ggplot(regions.df, aes(x=log2(meanCoverage), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region mean coverage") + xlab("Region mean coverage (log2)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
+p6a <- ggplot(regions.df.plot, aes(x=log2(meanCoverage), colour=seqnames)) + geom_line(stat="density") + labs(title="Density of region mean coverage") + xlab("Region mean coverage (log2)") + scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
 p6a
 ```
 

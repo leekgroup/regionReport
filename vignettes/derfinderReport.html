@@ -808,7 +808,7 @@
 -->
 
 <h1 id="html-reports-for-derfinder-results">HTML reports for <code>derfinder</code> results</h1>
-<p><code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.16."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014</a></span>) creates HTML reports styled with <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.57."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014b</a></span>) results.</p>
+<p><code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.17."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014</a></span>) creates HTML reports styled with <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.57."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014b</a></span>) results.</p>
 <p>Basically, this package includes a basic exploration analysis of <code>derfinder</code> results which we expect users to be interested in reproducing with their own data. The analysis is written in <a href="http://www.rstudio.com/ide/docs/r_markdown">R Markdown</a> format and the only function in <code>derfinderReport</code> takes the results from <code>derfinder</code>, performs a couple of setup operations, and then relies on <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>), <code>rmarkdown</code> (<span class="showtooltip" title="Inc. R (2014). rmarkdown: Dynamic Documents for R. R package version 0.1.90."><a href="http://rmarkdown.rstudio.com">Inc., 2014</a></span>), and <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for generating the report.</p>
 <p>Other goodies in the report are powered by <code>ggbio</code> (<span class="showtooltip" title="Yin T, Cook D and Lawrence M (2012). &#39;ggbio: an R package for extending the grammar of graphics for genomic data.&#39; Genome Biology, 13(8), pp. R77."><a href="">Yin et al. 2012</a></span>), <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>), and <code>rCharts</code> (<span class="showtooltip" title="Vaidyanathan R (2013). rCharts: Interactive Charts using Polycharts.js. R package version 0.4.2."><a href="">Vaidyanathan, 2013</a></span>).</p>
 <h1 id="using-derfinderreport">Using <code>derfinderReport</code></h1>
@@ -881,17 +881,17 @@ mustWork=TRUE), 'report', recursive=TRUE)</code></pre><button class="output R to
 ## only one: chr21
 mergeResults(chrnums='21', prefix='report', genomicState=genomicState)</code></pre><button class="message R toggle btn btn-xs btn-info">
 <span class="glyphicon glyphicon-chevron-down"></span> R message
-</button><pre style=""><code class="message r">## 2014-04-30 10:59:45 mergeResults: Saving options used
-## 2014-04-30 10:59:45 Loading chromosome 21
-## 2014-04-30 10:59:46 mergeResults: Saving fullNullSummary
-## 2014-04-30 10:59:46 mergeResults: Re-calculating the p-values
-## 2014-04-30 10:59:46 mergeResults: Saving fullRegions
-## 2014-04-30 10:59:46 mergeResults: assigning genomic states
-## 2014-04-30 10:59:46 annotateRegions: counting
-## 2014-04-30 10:59:46 annotateRegions: annotating
-## 2014-04-30 10:59:47 mergeResults: Saving fullAnnotatedRegions
-## 2014-04-30 10:59:47 mergeResults: Saving fullFstats
-## 2014-04-30 10:59:47 mergeResults: Saving fullTime
+</button><pre style=""><code class="message r">## 2014-04-30 12:42:12 mergeResults: Saving options used
+## 2014-04-30 12:42:12 Loading chromosome 21
+## 2014-04-30 12:42:13 mergeResults: Saving fullNullSummary
+## 2014-04-30 12:42:13 mergeResults: Re-calculating the p-values
+## 2014-04-30 12:42:13 mergeResults: Saving fullRegions
+## 2014-04-30 12:42:13 mergeResults: assigning genomic states
+## 2014-04-30 12:42:14 annotateRegions: counting
+## 2014-04-30 12:42:14 annotateRegions: annotating
+## 2014-04-30 12:42:14 mergeResults: Saving fullAnnotatedRegions
+## 2014-04-30 12:42:14 mergeResults: Saving fullFstats
+## 2014-04-30 12:42:14 mergeResults: Saving fullTime
 </code></pre></div>
 
 
@@ -970,7 +970,7 @@ unlink("report", recursive=TRUE)</code></pre></div>
 <p>Date the vignette was generated.</p>
 <div class="row"><button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
-</button><pre style=""><code class="output r">## [1] "2014-04-30 11:00:52 EDT"
+</button><pre style=""><code class="output r">## [1] "2014-04-30 12:43:25 EDT"
 </code></pre></div>
 
 <p><code>R</code> session information.</p>
@@ -987,7 +987,7 @@ unlink("report", recursive=TRUE)</code></pre></div>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] devtools_1.5           derfinderReport_0.0.16 derfinder_0.0.57      
+## [1] devtools_1.5           derfinderReport_0.0.17 derfinder_0.0.57      
 ## [4] knitcitations_0.5-0    bibtex_0.3-6           knitr_1.5.32          
 ## [7] rmarkdown_0.1.90       knitrBootstrap_1.0.0   colorout_1.0-2        
 ## 

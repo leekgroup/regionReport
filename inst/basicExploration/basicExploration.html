@@ -808,7 +808,7 @@
 <h1><a href="https://github.com/lcolladotor/derfinder">derfinder</a> basic results exploration</h1>
 <p>Project: report.</p>
 <h1>Introduction</h1>
-<p>This report is meant to help explore the results of the <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.57."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>) package and was generated using the <code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.17."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014b</a></span>) package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.</p>
+<p>This report is meant to help explore the results of the <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.58."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>) package and was generated using the <code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.18."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014b</a></span>) package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.</p>
 <p>Most plots were made with using <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>).</p>
 <h2>Code setup</h2>
 <div class="row">
@@ -957,7 +957,7 @@ summary(fullRegions$pvalues)</code></pre><button class="output R toggle btn btn-
 })
 qtable <- do.call(rbind, qtable)
 print(xtable(qtable, digits=4, align=rep("c", 3)), type="html", include.rownames=FALSE)</code></pre><!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Apr 30 12:42:34 2014 -->
+<!-- Fri May 30 15:04:42 2014 -->
 <TABLE border=1>
 <TR> <TH> 
 Cut
@@ -1143,7 +1143,7 @@ grid.arrange(p6a, p6b)</code></pre><div class="row"><div class="col-md-offset-3 
 
 
 <h1 id="genomic-overview">Genomic overview</h1>
-<p>The following plots were made using <code>ggbio</code> (<span class="showtooltip" title="Yin T, Cook D and Lawrence M (2012). &#39;ggbio: an R package for extending the grammar of graphics for genomic data.&#39; Genome Biology, 13(8), pp. R77."><a href="">Yin et al. 2012</a></span>) which in turn uses <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>). For more details check <code>plotOverview</code> in <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.57."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>).</p>
+<p>The following plots were made using <code>ggbio</code> (<span class="showtooltip" title="Yin T, Cook D and Lawrence M (2012). &#39;ggbio: an R package for extending the grammar of graphics for genomic data.&#39; Genome Biology, 13(8), pp. R77."><a href="">Yin et al. 2012</a></span>) which in turn uses <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>). For more details check <code>plotOverview</code> in <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.58."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>).</p>
 <h2 id="q-values-1">Q-values</h2>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -1170,7 +1170,7 @@ grid.arrange(p6a, p6b)</code></pre><div class="row"><div class="col-md-offset-3 
 </button><pre style="display:none"><code class="source r">annoReg <- table(fullRegions$region, useNA="always")
 annoReg.df <- data.frame(Region=names(annoReg), Count=as.vector(annoReg))
 print(xtable(annoReg.df, align=rep("c", 3)), type="html", include.rownames=FALSE)</code></pre><!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Apr 30 12:42:41 2014 -->
+<!-- Fri May 30 15:04:49 2014 -->
 <TABLE border=1>
 <TR> <TH> 
 Region
@@ -1289,7 +1289,7 @@ colnames(info) <- c("Number of Overlapping States", "Frequency")
 info$State <- gsub("\\..*", "", rownames(info))
 rownames(info) <- NULL
 print(xtable(info, align=rep("c", 4)), type="html", include.rownames=FALSE)</code></pre><!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Apr 30 12:42:47 2014 -->
+<!-- Fri May 30 15:04:56 2014 -->
 <TABLE border=1>
 <TR> <TH> 
 Number of Overlapping States
@@ -2661,7 +2661,7 @@ t1$print("regions", cdn=TRUE)</code></pre>
 
 
 <h1>Best region clusters</h1>
-<p>The following plots were made using <code>ggbio</code> (<span class="showtooltip" title="Yin T, Cook D and Lawrence M (2012). &#39;ggbio: an R package for extending the grammar of graphics for genomic data.&#39; Genome Biology, 13(8), pp. R77."><a href="">Yin et al. 2012</a></span>) which in turn uses <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>). For more details check <code>plotCluster()</code> in <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.57."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>).</p>
+<p>The following plots were made using <code>ggbio</code> (<span class="showtooltip" title="Yin T, Cook D and Lawrence M (2012). &#39;ggbio: an R package for extending the grammar of graphics for genomic data.&#39; Genome Biology, 13(8), pp. R77."><a href="">Yin et al. 2012</a></span>) which in turn uses <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>). For more details check <code>plotCluster()</code> in <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.58."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>).</p>
 <h2>Plots</h2>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -2769,7 +2769,7 @@ summary(permuteDetail[, m])</code></pre><button class="output R toggle btn btn-x
 </code></pre></div>
 
 <p>This table shows the summary per group of and can be used for fast detection of anomalies.</p>
-<p>Note that in <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.57."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>) the re-sampling of the samples is done without replacement. This is done in an effort to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).</p>
+<p>Note that in <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.58."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014</a></span>) the re-sampling of the samples is done without replacement. This is done in an effort to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).</p>
 <h2 id="interactive">Interactive</h2>
 <p>The following table shows how the group labels were permuted. This can be useful to detect whether a permutation in particular had too many samples of a group labeled as another group, meaning that the resulting permuted group label resulted in pretty much a name change.</p>
 <div class="row"><button class="source R toggle btn btn-xs btn-primary">
@@ -2844,7 +2844,7 @@ t2$print("permutation")</code></pre>
 
 
 <h1 id="bibliography">Bibliography</h1>
-<p>This report is part of <code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.17."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014b</a></span>) and was generated using <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) with <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>) and <code>rmarkdown</code> (<span class="showtooltip" title="Inc. R (2014). rmarkdown: Dynamic Documents for R. R package version 0.1.90."><a href="http://rmarkdown.rstudio.com">Inc., 2014</a></span>) running behind the scenes.</p>
+<p>This report is part of <code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.18."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014b</a></span>) and was generated using <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) with <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>) and <code>rmarkdown</code> (<span class="showtooltip" title="Inc. R (2014). rmarkdown: Dynamic Documents for R. R package version 0.1.90."><a href="http://rmarkdown.rstudio.com">Inc., 2014</a></span>) running behind the scenes.</p>
 <p>Citations made with <code>knitcitations</code> (<span class="showtooltip" title="Boettiger C (2014). knitcitations: Citations for knitr markdown files. R package version 0.5-0."><a href="http://CRAN.R-project.org/package=knitcitations">Boettiger, 2014</a></span>).</p>
 <div class="row">
 <ul>
@@ -2888,13 +2888,13 @@ t2$print("permutation")</code></pre>
 <p>Date the report was generated.</p>
 <div class="row"><button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
-</button><pre style=""><code class="output r">## [1] "2014-04-30 12:43:16 EDT"
+</button><pre style=""><code class="output r">## [1] "2014-05-30 15:05:28 EDT"
 </code></pre></div>
 
 <p>Wallclock time spent generating the report.</p>
 <div class="row"><button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
-</button><pre style=""><code class="output r">## Time difference of 45.23 secs
+</button><pre style=""><code class="output r">## Time difference of 48.61 secs
 </code></pre></div>
 
 <p><code>R</code> session information.</p>
@@ -2920,55 +2920,55 @@ t2$print("permutation")</code></pre>
 ##  [6] xtable_1.7-3                            
 ##  [7] data.table_1.9.2                        
 ##  [8] gridExtra_0.9.1                         
-##  [9] ggplot2_0.9.3.1                         
+##  [9] ggplot2_1.0.0                           
 ## [10] TxDb.Hsapiens.UCSC.hg19.knownGene_2.14.0
-## [11] GenomicFeatures_1.16.0                  
+## [11] GenomicFeatures_1.16.1                  
 ## [12] AnnotationDbi_1.26.0                    
 ## [13] Biobase_2.24.0                          
-## [14] GenomicRanges_1.16.2                    
+## [14] GenomicRanges_1.16.3                    
 ## [15] GenomeInfoDb_1.0.2                      
-## [16] IRanges_1.22.4                          
+## [16] IRanges_1.22.7                          
 ## [17] BiocGenerics_0.10.0                     
 ## [18] biovizBase_1.12.1                       
-## [19] derfinderReport_0.0.17                  
-## [20] derfinder_0.0.57                        
+## [19] derfinderReport_0.0.18                  
+## [20] derfinder_0.0.58                        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] BBmisc_1.6               BSgenome_1.32.0         
-##  [3] BatchJobs_1.2            BiocParallel_0.6.0      
+##  [3] BatchJobs_1.2            BiocParallel_0.6.1      
 ##  [5] Biostrings_2.32.0        Cairo_1.5-5             
 ##  [7] DBI_0.2-7                Formula_1.1-1           
-##  [9] GenomicAlignments_1.0.0  Hmisc_3.14-4            
-## [11] MASS_7.3-32              Matrix_1.1-3            
+##  [9] GenomicAlignments_1.0.1  Hmisc_3.14-4            
+## [11] MASS_7.3-33              Matrix_1.1-3            
 ## [13] R.methodsS3_1.6.1        RCurl_1.95-4.1          
-## [15] RJSONIO_1.2-0.1          RSQLite_0.11.4          
+## [15] RJSONIO_1.2-0.2          RSQLite_0.11.4          
 ## [17] Rcpp_0.11.1              Rsamtools_1.16.0        
-## [19] VariantAnnotation_1.10.0 XML_3.98-1.1            
+## [19] VariantAnnotation_1.10.1 XML_3.98-1.1            
 ## [21] bibtex_0.3-6             biomaRt_2.20.0          
 ## [23] bitops_1.0-6             brew_1.0-6              
-## [25] bumphunter_1.4.0         cluster_1.15.2          
+## [25] bumphunter_1.4.2         cluster_1.15.2          
 ## [27] codetools_0.2-8          colorspace_1.2-4        
 ## [29] dichromat_2.0-0          digest_0.6.4            
-## [31] doRNG_1.5.5              evaluate_0.5.3          
+## [31] doRNG_1.5.5              evaluate_0.5.5          
 ## [33] fail_1.2                 foreach_1.4.2           
-## [35] formatR_0.10             ggbio_1.12.3            
+## [35] formatR_0.10             ggbio_1.12.4            
 ## [37] gtable_0.1.2             httr_0.3                
 ## [39] iterators_1.0.7          knitcitations_0.5-0     
-## [41] knitr_1.5.32             knitrBootstrap_1.0.0    
+## [41] knitr_1.6                knitrBootstrap_1.0.0    
 ## [43] labeling_0.2             lattice_0.20-29         
 ## [45] latticeExtra_0.6-26      locfit_1.5-9.1          
-## [47] markdown_0.6.5           matrixStats_0.8.14      
-## [49] munsell_0.4.2            pkgmaker_0.20           
-## [51] plyr_1.8.1               proto_0.3-10            
-## [53] qvalue_1.38.0            registry_0.2            
-## [55] reshape2_1.4             rmarkdown_0.1.90        
-## [57] rngtools_1.2.4           rtracklayer_1.24.0      
-## [59] scales_0.2.4             sendmailR_1.1-2         
-## [61] splines_3.1.0            stats4_3.1.0            
-## [63] stringr_0.6.2            survival_2.37-7         
-## [65] tcltk_3.1.0              tools_3.1.0             
-## [67] whisker_0.3-2            yaml_2.1.11             
-## [69] zlibbioc_1.10.0
+## [47] markdown_0.7             matrixStats_0.8.14      
+## [49] mime_0.1.1               munsell_0.4.2           
+## [51] pkgmaker_0.22            plyr_1.8.1              
+## [53] proto_0.3-10             qvalue_1.38.0           
+## [55] registry_0.2             reshape2_1.4            
+## [57] rmarkdown_0.1.90         rngtools_1.2.4          
+## [59] rtracklayer_1.24.1       scales_0.2.4            
+## [61] sendmailR_1.1-2          splines_3.1.0           
+## [63] stats4_3.1.0             stringr_0.6.2           
+## [65] survival_2.37-7          tcltk_3.1.0             
+## [67] tools_3.1.0              whisker_0.3-2           
+## [69] yaml_2.1.11              zlibbioc_1.10.0
 </code></pre></div></div></div></div>
 <div class="navbar navbar-fixed-bottom navbar-inverse"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>

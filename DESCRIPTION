@@ -2,8 +2,8 @@ Package: derfinderReport
 Type: Package
 Title: Generate HTML reports for derfinder
     (https://github.com/lcolladotor/derfinder) results
-Version: 0.0.17
-Date: 2014-04-30
+Version: 0.0.18
+Date: 2014-05-30
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhsph.edu"), person("Andrew", "Jaffe", role = "aut", email =
     "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),
@@ -29,7 +29,7 @@ Imports:
     ggbio (>= 1.12.3),
     rCharts (>= 0.4.2),
     data.table,
-    knitr (>= 1.5.27),
+    knitr (>= 1.6),
     rmarkdown (>= 0.1.74),
     knitrBootstrap (>= 1.0.0),
     knitcitations (>= 0.5.0),

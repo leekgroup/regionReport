@@ -24,14 +24,9 @@ Get R 3.1.0 or newer from [CRAN](http://cran.r-project.org/) as well as pandoc
 ## If needed
 install.packages("devtools")
 
-## Note that knitr 1.5.27 is currently not available via CRAN
-## Following https://github.com/yihui/knitr
-install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),
-    type = 'source')
-
 ## Pre-requisites from CRAN
-install.packages(c("xtable", "ggplot2", "gridExtra", "data.table", "knitcitations",
-    "RColorBrewer", "mgcv"))
+install.packages(c("knitr", "ggplot2", "gridExtra", "data.table", "knitcitations",
+    "RColorBrewer", "mgcv", "xtable"))
     
 ## You might need to install the Cairo package, but that will depend on the device 
 ## you use for the plots
@@ -46,11 +41,15 @@ biocLite(c("IRanges", "GenomicRanges", "biovizBase", "ggbio",
 library("devtools")
 install_github("rstudio/rmarkdown")
 install_github("jimhester/knitrBootstrap")
-install_github("ramnathv/rCharts", ref="dev")
-install_github("lcolladotor/derfinder")
+install_github("ramnathv/rCharts")
+
+## For BioC-devel use:
+install_github("lcolladotor/derfinder@master")
+
+## For BioC-release use:
+install_github("lcolladotor/derfinder@release")
 
 ## derfinderReport itself
-library("devtools")
 install_github("lcolladotor/derfinderReport")
 ```
 
@@ -66,7 +65,7 @@ To cite package __derfinderReport__ in publications use:
 
 Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). derfinderReport: 
 Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) 
-results. R package version 0.0.17. 
+results. R package version 0.0.18. 
 https://github.com/lcolladotor/derfinderReport
 
 A BibTeX entry for LaTeX users is
@@ -76,6 +75,6 @@ A BibTeX entry for LaTeX users is
         (https://github.com/lcolladotor/derfinder) results},
     author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek},
     year = {2014},
-    note = {R package version 0.0.17},
+    note = {R package version 0.0.18},
     url = {https://github.com/lcolladotor/derfinderReport},
 }

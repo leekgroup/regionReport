@@ -28,7 +28,9 @@
   
   <script type="text/javascript"
     src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script><script defer="defer">// Function to generate the dynamic table of contents
+  </script>
+  <script defer="defer">
+  // Function to generate the dynamic table of contents
   jQuery.fn.generate_TOC = function () {
     var base = $(this[0]);
   
@@ -138,11 +140,11 @@
   
     function toggle_thumbnails(imgs, show){
       if(show === true){
-        imgs.parent().show();
-        imgs.show();
+        imgs.parents().show()
+        imgs.slideDown();
       }
       else {
-        img.slideUp(400, function(){ img.parent().hide(); });
+        imgs.slideUp(400, function(){ $(this).parent().hide(); });
       }
     }
   
@@ -165,9 +167,8 @@
   
     /* onclick toggle next code block */
     $('.toggle').click(function() {
-      var span = $(this).find('span')
-      console.log(span.hasClass('glyphicon-chevron-down'))
-      toggle_block($(this), !span.hasClass('glyphicon-chevron-down'))
+      var span = $(this).find('span');
+      toggle_block($(this), !span.hasClass('glyphicon-chevron-down'));
       return false
     })
   
@@ -186,6 +187,7 @@
         });
       }
       else {
+        console.log($(this));
         global_toggle($(this));
       }
       return false;
@@ -230,7 +232,10 @@
     })
   
   });
-  </script><style>/* Knitr_bootstrap styles */
+  
+  </script>
+  <style>
+  /* Knitr_bootstrap styles */
   #header {
     display: none !important;
     visibility: hidden !important;
@@ -391,8 +396,14 @@
   
   .panel pre {
     margin: 0;
+    padding: 0;
+    border: 0;
   }
-  .panel pre code {
+  button + pre {
+    margin: 0;
+    padding: 0;
+  }
+  pre code {
     border-radius: 0;
   }
   /* Magnific Popup CSS */
@@ -798,18 +809,67 @@
   }
   .mfp-figure:after {
     background: white;
-  }</style>
+  }
+  
+  /*
+   * Off Canvas navbar toggle right
+   * --------------------------------------------------
+   */
+  
+  @media screen and (max-width: 768px) {
+    .row-offcanvas .collapsing {
+    -webkit-transition: none 0;
+      -moz-transition: none 0;
+      transition: none 0;
+    }
+   .row-offcanvas .navbar {
+    position: absolute;
+    z-index: 2;
+      right:0;
+      height:100%;
+      width:55px;
+      border:0;
+      background-color:transparent;
+    }
+    .row-offcanvas .navbar-toggle {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+    .row-offcanvas {
+      position: relative;
+    }
+    .row-offcanvas-right.active .navbar {
+    position: absolute;
+    z-index: 2;
+      right: -28.4%;
+      width:40%;
+      background-color:#eee;
+      border:0 solid #ddd;
+      border-left-width:1px;
+    }
+    .row-offcanvas-right.active {
+      left: -30%;
+    }
+    .row-offcanvas-right.active .navbar-collapse {
+      position: relative;
+      width: 100%;
+    }
+    .row-offcanvas .content {
+    /*width:calc(100% - 60px);*/
+    }
+  }
+  </style>
 </head>
 <body>
-<div id="wrap"><div class="container"><div class="row"><div class="contents col-md-10">
+<div id="wrap"><div class="container"><div class="row row-offcanvas row-offcanvas-right"><div class="contents col-xs-12 col-md-10">
 <!--
 %\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{derfinderReport}
 -->
 
 <h1 id="html-reports-for-derfinder-results">HTML reports for <code>derfinder</code> results</h1>
-<p><code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.18."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014</a></span>) creates HTML reports styled with <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.58."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014b</a></span>) results.</p>
-<p>Basically, this package includes a basic exploration analysis of <code>derfinder</code> results which we expect users to be interested in reproducing with their own data. The analysis is written in <a href="http://www.rstudio.com/ide/docs/r_markdown">R Markdown</a> format and the only function in <code>derfinderReport</code> takes the results from <code>derfinder</code>, performs a couple of setup operations, and then relies on <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>), <code>rmarkdown</code> (<span class="showtooltip" title="Inc. R (2014). rmarkdown: Dynamic Documents for R. R package version 0.1.90."><a href="http://rmarkdown.rstudio.com">Inc., 2014</a></span>), and <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for generating the report.</p>
+<p><code>derfinderReport</code> (<span class="showtooltip" title="Collado-Torres L, Jaffe A and Leek J (2014). derfinderReport: Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) results. R package version 0.0.18."><a href="https://github.com/lcolladotor/derfinderReport">Collado-Torres et al. 2014</a></span>) creates HTML reports styled with <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for <code>derfinder</code> (<span class="showtooltip" title="Collado-Torres L, Frazee A, Jaffe A and Leek J (2014). derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution. R package version 0.0.60."><a href="https://github.com/lcolladotor/derfinder">Collado-Torres et al. 2014b</a></span>) results.</p>
+<p>Basically, this package includes a basic exploration analysis of <code>derfinder</code> results which we expect users to be interested in reproducing with their own data. The analysis is written in <a href="http://www.rstudio.com/ide/docs/r_markdown">R Markdown</a> format and the only function in <code>derfinderReport</code> takes the results from <code>derfinder</code>, performs a couple of setup operations, and then relies on <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>), <code>rmarkdown</code> (<span class="showtooltip" title="Inc. R (2014). rmarkdown: Dynamic Documents for R. R package version 0.2.15."><a href="http://rmarkdown.rstudio.com">Inc., 2014</a></span>), and <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) for generating the report.</p>
 <p>Other goodies in the report are powered by <code>ggbio</code> (<span class="showtooltip" title="Yin T, Cook D and Lawrence M (2012). &#39;ggbio: an R package for extending the grammar of graphics for genomic data.&#39; Genome Biology, 13(8), pp. R77."><a href="">Yin et al. 2012</a></span>), <code>ggplot2</code> (<span class="showtooltip" title="Wickham H (2009). ggplot2: elegant graphics for data analysis. Springer New York. ISBN 978-0-387-98140-6."><a href="http://had.co.nz/ggplot2/book">Wickham, 2009</a></span>), and <code>rCharts</code> (<span class="showtooltip" title="Vaidyanathan R (2013). rCharts: Interactive Charts using Polycharts.js. R package version 0.4.2."><a href="">Vaidyanathan, 2013</a></span>).</p>
 <h1 id="using-derfinderreport">Using <code>derfinderReport</code></h1>
 <h2 id="run-derfinder">Run <code>derfinder</code></h2>
@@ -826,9 +886,12 @@
 <div class="row"><button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button><pre style=""><code class="source r">## Load derfinder
-library('derfinder')
-
-## The output will be saved in the 'report' directory
+library('derfinder')</code></pre><button class="message R toggle btn btn-xs btn-info">
+<span class="glyphicon glyphicon-chevron-down"></span> R message
+</button><pre style=""><code class="message r">## Found a bug? Report it at https://github.com/lcolladotor/derfinder/issues
+</code></pre><button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button><pre style=""><code class="source r">## The output will be saved in the 'report' directory
 dir.create('report', showWarnings = FALSE, recursive = TRUE)</code></pre></div>
 
 <p>The following code runs <code>derfinder</code>.</p>
@@ -854,7 +917,7 @@ adjustvars <- data.frame(genomeInfo$gender)
 models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
 
 ## Analyze chromosome 21
-analysis <- analyzeChr(chrnum='21', coverageInfo=genomeData, models=models, 
+analysis <- analyzeChr(chr='21', coverageInfo=genomeData, models=models, 
 cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
 mc.cores=1, writeOutput=TRUE, returnOutput=TRUE)
 
@@ -879,19 +942,19 @@ mustWork=TRUE), 'report', recursive=TRUE)</code></pre><button class="output R to
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button><pre style=""><code class="source r">## Merge the results from the different chromosomes. In this case, there's 
 ## only one: chr21
-mergeResults(chrnums='21', prefix='report', genomicState=genomicState)</code></pre><button class="message R toggle btn btn-xs btn-info">
+mergeResults(chrs='21', prefix='report', genomicState=genomicState)</code></pre><button class="message R toggle btn btn-xs btn-info">
 <span class="glyphicon glyphicon-chevron-down"></span> R message
-</button><pre style=""><code class="message r">## 2014-05-30 15:04:22 mergeResults: Saving options used
-## 2014-05-30 15:04:22 Loading chromosome 21
-## 2014-05-30 15:04:23 mergeResults: Saving fullNullSummary
-## 2014-05-30 15:04:23 mergeResults: Re-calculating the p-values
-## 2014-05-30 15:04:23 mergeResults: Saving fullRegions
-## 2014-05-30 15:04:23 mergeResults: assigning genomic states
-## 2014-05-30 15:04:23 annotateRegions: counting
-## 2014-05-30 15:04:23 annotateRegions: annotating
-## 2014-05-30 15:04:23 mergeResults: Saving fullAnnotatedRegions
-## 2014-05-30 15:04:23 mergeResults: Saving fullFstats
-## 2014-05-30 15:04:23 mergeResults: Saving fullTime
+</button><pre style=""><code class="message r">## 2014-05-31 00:25:32 mergeResults: Saving options used
+## 2014-05-31 00:25:32 Loading chromosome chr21
+## 2014-05-31 00:25:32 mergeResults: Saving fullNullSummary
+## 2014-05-31 00:25:33 mergeResults: Re-calculating the p-values
+## 2014-05-31 00:25:33 mergeResults: Saving fullRegions
+## 2014-05-31 00:25:33 mergeResults: assigning genomic states
+## 2014-05-31 00:25:33 annotateRegions: counting
+## 2014-05-31 00:25:33 annotateRegions: annotating
+## 2014-05-31 00:25:33 mergeResults: Saving fullAnnotatedRegions
+## 2014-05-31 00:25:33 mergeResults: Saving fullFstats
+## 2014-05-31 00:25:33 mergeResults: Saving fullTime
 </code></pre></div>
 
 
@@ -931,7 +994,7 @@ browseURL(report)</code></pre></div>
 <p>The report is self-explanatory and will change some of the text depending on the input options.</p>
 <p>If the report is taking too long to compile (say more than 3 hours), you might want to consider setting <em>nBestCluters</em> to a small number or even set <em>makeBestClusters</em> to <code>FALSE</code>.</p>
 <h1 id="bibliography">Bibliography</h1>
-<p>This vignette was generated using <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) with <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>) and <code>rmarkdown</code> (<span class="showtooltip" title="Inc. R (2014). rmarkdown: Dynamic Documents for R. R package version 0.1.90."><a href="http://rmarkdown.rstudio.com">Inc., 2014</a></span>) running behind the scenes.</p>
+<p>This vignette was generated using <code>knitrBootstrap</code> (<span class="showtooltip" title="Hester J (2014). knitrBootstrap: Knitr Bootstrap framework.. R package version 1.0.0."><a href="https://github.com/jimhester/">Hester, 2014</a></span>) with <code>knitr</code> (<span class="showtooltip" title="Xie Y (2014). &#39;knitr: A Comprehensive Tool for Reproducible Research in R.&#39; In Stodden V, Leisch F and Peng RD (eds.), Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595."><a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a></span>) and <code>rmarkdown</code> (<span class="showtooltip" title="Inc. R (2014). rmarkdown: Dynamic Documents for R. R package version 0.2.15."><a href="http://rmarkdown.rstudio.com">Inc., 2014</a></span>) running behind the scenes.</p>
 <p>Citations made with <code>knitcitations</code> (<span class="showtooltip" title="Boettiger C (2014). knitcitations: Citations for knitr markdown files. R package version 0.5-0."><a href="http://CRAN.R-project.org/package=knitcitations">Boettiger, 2014</a></span>).</p>
 <div class="row">
 <ul>
@@ -968,9 +1031,10 @@ file.remove("references.bib")
 unlink("report", recursive=TRUE)</code></pre></div>
 
 <p>Date the vignette was generated.</p>
-<div class="row"><button class="output R toggle btn btn-xs btn-success">
+<div class="row">
+<button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
-</button><pre style=""><code class="output r">## [1] "2014-05-30 15:05:36 EDT"
+</button><pre style=""><code class="output r">## [1] "2014-05-31 00:26:31 EDT"
 </code></pre></div>
 
 <p><code>R</code> session information.</p>
@@ -987,53 +1051,56 @@ unlink("report", recursive=TRUE)</code></pre></div>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] devtools_1.5           derfinderReport_0.0.18 derfinder_0.0.58      
+## [1] devtools_1.5           derfinderReport_0.0.18 derfinder_0.0.60      
 ## [4] knitcitations_0.5-0    bibtex_0.3-6           knitr_1.6             
-## [7] rmarkdown_0.1.90       knitrBootstrap_1.0.0  
+## [7] rmarkdown_0.2.15       knitrBootstrap_1.0.0  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] AnnotationDbi_1.26.0     BatchJobs_1.2           
-##  [3] BBmisc_1.6               Biobase_2.24.0          
-##  [5] BiocGenerics_0.10.0      BiocParallel_0.6.1      
-##  [7] biomaRt_2.20.0           Biostrings_2.32.0       
-##  [9] biovizBase_1.12.1        bitops_1.0-6            
-## [11] brew_1.0-6               BSgenome_1.32.0         
-## [13] bumphunter_1.4.2         cluster_1.15.2          
+##  [1] AnnotationDbi_1.27.7     BatchJobs_1.2           
+##  [3] BBmisc_1.6               Biobase_2.25.0          
+##  [5] BiocGenerics_0.11.2      BiocParallel_0.7.2      
+##  [7] biomaRt_2.21.0           Biostrings_2.33.9       
+##  [9] biovizBase_1.13.7        bitops_1.0-6            
+## [11] brew_1.0-6               BSgenome_1.33.8         
+## [13] bumphunter_1.5.3         cluster_1.15.2          
 ## [15] codetools_0.2-8          colorspace_1.2-4        
 ## [17] data.table_1.9.2         DBI_0.2-7               
 ## [19] dichromat_2.0-0          digest_0.6.4            
-## [21] doRNG_1.5.5              evaluate_0.5.5          
+## [21] doRNG_1.6                evaluate_0.5.5          
 ## [23] fail_1.2                 foreach_1.4.2           
-## [25] formatR_0.10             Formula_1.1-1           
-## [27] GenomeInfoDb_1.0.2       GenomicAlignments_1.0.1 
-## [29] GenomicFeatures_1.16.1   GenomicRanges_1.16.3    
-## [31] ggbio_1.12.4             ggplot2_1.0.0           
-## [33] grid_3.1.0               gridExtra_0.9.1         
-## [35] gtable_0.1.2             Hmisc_3.14-4            
-## [37] httr_0.3                 IRanges_1.22.7          
-## [39] iterators_1.0.7          lattice_0.20-29         
-## [41] latticeExtra_0.6-26      locfit_1.5-9.1          
-## [43] markdown_0.7             MASS_7.3-33             
-## [45] Matrix_1.1-3             matrixStats_0.8.14      
-## [47] memoise_0.2.1            mgcv_1.7-29             
-## [49] munsell_0.4.2            nlme_3.1-117            
-## [51] parallel_3.1.0           pkgmaker_0.22           
-## [53] plyr_1.8.1               proto_0.3-10            
-## [55] qvalue_1.38.0            R.methodsS3_1.6.1       
-## [57] rCharts_0.4.2            RColorBrewer_1.0-5      
-## [59] Rcpp_0.11.1              RCurl_1.95-4.1          
-## [61] registry_0.2             reshape2_1.4            
-## [63] RJSONIO_1.2-0.2          rngtools_1.2.4          
-## [65] Rsamtools_1.16.0         RSQLite_0.11.4          
-## [67] rtracklayer_1.24.1       scales_0.2.4            
-## [69] sendmailR_1.1-2          splines_3.1.0           
-## [71] stats4_3.1.0             stringr_0.6.2           
-## [73] survival_2.37-7          tcltk_3.1.0             
-## [75] tools_3.1.0              VariantAnnotation_1.10.1
-## [77] whisker_0.3-2            XML_3.98-1.1            
-## [79] xtable_1.7-3             XVector_0.4.0           
-## [81] yaml_2.1.11              zlibbioc_1.10.0
-</code></pre></div></div></div></div>
+## [25] formatR_0.10.4           Formula_1.1-1           
+## [27] GenomeInfoDb_1.1.6       GenomicAlignments_1.1.11
+## [29] GenomicFeatures_1.17.9   GenomicRanges_1.17.17   
+## [31] GGally_0.4.6             ggbio_1.13.7            
+## [33] ggplot2_1.0.0            graph_1.43.0            
+## [35] grid_3.1.0               gridExtra_0.9.1         
+## [37] gtable_0.1.2             Hmisc_3.14-4            
+## [39] httr_0.3                 IRanges_1.99.15         
+## [41] iterators_1.0.7          lattice_0.20-29         
+## [43] latticeExtra_0.6-26      locfit_1.5-9.1          
+## [45] markdown_0.7             MASS_7.3-33             
+## [47] Matrix_1.1-3             matrixStats_0.8.14      
+## [49] memoise_0.2.1            mgcv_1.7-29             
+## [51] munsell_0.4.2            nlme_3.1-117            
+## [53] OrganismDbi_1.7.2        parallel_3.1.0          
+## [55] pkgmaker_0.22            plyr_1.8.1              
+## [57] proto_0.3-10             qvalue_1.39.1           
+## [59] R.methodsS3_1.6.1        RBGL_1.41.0             
+## [61] rCharts_0.4.2            RColorBrewer_1.0-5      
+## [63] Rcpp_0.11.1              RCurl_1.95-4.1          
+## [65] registry_0.2             reshape_0.8.5           
+## [67] reshape2_1.4             RJSONIO_1.2-0.2         
+## [69] rngtools_1.2.4           Rsamtools_1.17.16       
+## [71] RSQLite_0.11.4           rtracklayer_1.25.9      
+## [73] S4Vectors_0.0.7          scales_0.2.4            
+## [75] sendmailR_1.1-2          splines_3.1.0           
+## [77] stats4_3.1.0             stringr_0.6.2           
+## [79] survival_2.37-7          tools_3.1.0             
+## [81] VariantAnnotation_1.11.6 whisker_0.3-2           
+## [83] XML_3.98-1.1             xtable_1.7-3            
+## [85] XVector_0.5.6            yaml_2.1.11             
+## [87] zlibbioc_1.11.1
+</code></pre></div></div></div>
 <div class="navbar navbar-fixed-bottom navbar-inverse"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 </button></div>
@@ -1057,16 +1124,16 @@ Languages
 Type
 </li>
 <li >
-<a href="#" class="toggle-global output" type="output">output</a>
+<a href="#" class="toggle-global message" type="message">message</a>
 </li>
 <li >
-<a href="#" class="toggle-global message" type="message">message</a>
+<a href="#" class="toggle-global output" type="output">output</a>
 </li>
 <li >
 <a href="#" type="all-output" class="toggle-global">All</a>
 </li></ul></li>
-<li >
-<a href="#" class="toggle-figure">Figures</a>
+<li class="active">
+<a href="#" type="figure" class="toggle-global">Figures</a>
 </li></ul>
 <ul class="nav navbar-nav navbar-left"><li class="dropup">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootstrap theme <b class="caret"></b></a>
@@ -1194,6 +1261,7 @@ Type
 <div id="footer"><div class="container"><p class="text-muted" id="credit">
 Styled with <a href="https://github.com/jimhester/knitrBootstrap">knitrBootstrap</a>
 </p></div></div>
-<p><link rel="stylesheet" id="theme" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" media="screen"></link><link rel="stylesheet" id="highlight" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/brown_paper.min.css" media="screen"></link></p>
+<link rel="stylesheet" id="theme" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" media="screen"></link><link rel="stylesheet" id="highlight" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/brown_paper.min.css" media="screen"></link>
+</div>
 </body>
 </html>

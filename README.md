@@ -35,7 +35,7 @@ install.packages("Cairo")
 ## Pre-requisites from Bioconductor
 source("http://bioconductor.org/biocLite.R")
 biocLite(c("IRanges", "GenomicRanges", "biovizBase", "ggbio", 
-    "TxDb.Hsapiens.UCSC.hg19.knownGene"))
+    "TxDb.Hsapiens.UCSC.hg19.knownGene", "GenomeInfoDb"))
 
 ## GitHub dependencies
 library("devtools")

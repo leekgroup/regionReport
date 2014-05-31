@@ -20,8 +20,7 @@
 #' @param nBestClusters The number of region cluster plots to make by taking 
 #' the \code{nBestClusters} regions ranked by area of the cluster.
 #' @param fullCov A list where each element is the result from 
-#' \link[derfinder]{loadCoverage} used with \code{cutoff=NULL}. The elements of 
-#' the list should be named according to the chromosome number. Can be 
+#' \link[derfinder]{loadCoverage} used with \code{cutoff=NULL}. Can be 
 #' generated using \link{fullCoverage}.
 #' @param hg19 If \code{TRUE} then the reference is assumed to be hg19 and 
 #' chromosome lengths as well as the default transcription database 
@@ -47,6 +46,8 @@
 #' Specify it only if you have already loaded it in memory.
 #' @param overviewParams A two element list with \code{base_size} and 
 #' \code{areaRel} that control the text size for the genomic overview plots.
+#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
+#' \link[GenomeInfoDb]{seqlevelsStyle}.
 #'
 #' @return An HTML report with a basic exploration of the results.
 #'
@@ -71,6 +72,7 @@
 #' @import xtable
 #' @import RColorBrewer
 #' @import mgcv
+#' @import GenomeInfoDb
 #'
 #' @examples
 #'
@@ -103,7 +105,7 @@
 #' models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
 #'
 #' ## Analyze chromosome 21
-#' analyzeChr(chrnum='21', coverageInfo=genomeData, models=models, 
+#' analyzeChr(chr='21', coverageInfo=genomeData, models=models, 
 #' cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
 #' mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
 #'
@@ -113,7 +115,7 @@
 #'
 #' ## Merge the results from the different chromosomes. In this case, there's 
 #' ## only one: chr21
-#' mergeResults(chrnums='21', prefix='generateReport-example', 
+#' mergeResults(chrs='21', prefix='generateReport-example', 
 #' genomicState=genomicState)
 #'
 #' ## Load the options used for calculating the statistics
@@ -137,12 +139,13 @@
 
 
 
-generateReport <- function(prefix, outdir = "basicExploration", output = "basicExploration", 
-    project = prefix, browse = interactive(), nBestRegions = 100, makeBestClusters = TRUE, 
-    nBestClusters = 2, fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL, 
-    device = "CairoPNG", fullRegions = NULL, fullNullSummary = NULL, fullAnnotatedRegions = NULL, 
-    optionsStats = NULL, optionsMerge = NULL, overviewParams = list(base_size = 10, 
-    areaRel = 5)) {
+generateReport <- function(prefix, outdir = "basicExploration", 
+    output = "basicExploration", project = prefix, browse = interactive(),
+    nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2, 
+    fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL, 
+    device = "CairoPNG", fullRegions = NULL, fullNullSummary = NULL,
+    fullAnnotatedRegions = NULL, optionsStats = NULL, optionsMerge = NULL,
+    overviewParams = list(base_size = 10, areaRel = 5), chrsStyle = "UCSC") {
     
     ## Save start time for getting the total processing time
     startTime <- Sys.time()

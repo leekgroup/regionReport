@@ -134,7 +134,7 @@ Next, proceed to merging the results.
 ```{r mergeResults, bootstrap.show.code=TRUE}
 ## Merge the results from the different chromosomes. In this case, there's 
 ## only one: chr21
-mergeResults(chrs='21', prefix='report', genomicState=genomicState)
+mergeResults(chrs='chr21', prefix='report', genomicState=genomicState)
 ```
 
 

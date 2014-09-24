@@ -8,7 +8,7 @@ Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),
     email = "jtleek@gmail.com"))
 Description: Generate HTML reports to explore a set of regions such as the
-    results from annotation-agnostics expression analysis of RNA-seq data at 
+    results from annotation-agnostic expression analysis of RNA-seq data at 
     base-pair resolution performed by derfinder.
 License: Artistic-2.0
 LazyData: true

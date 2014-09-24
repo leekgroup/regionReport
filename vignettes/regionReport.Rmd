@@ -17,9 +17,12 @@ output:
 HTML reports for a set of regions
 =================================
 
-```{r vignetteSetup, echo=FALSE, message=FALSE}
+If you wish, you can view this vignette online [here](http://lcolladotor.github.io/regionReport/).
+
+
+```{r vignetteSetup, echo = FALSE, message = FALSE, warning = FALSE}
 ## Track time spent on making the vignette
-startTime <- Sys.time()
+startTimeVignette <- Sys.time()
 
 ## Bib setup
 library('knitcitations')
@@ -31,11 +34,15 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-write.bibtex(c(knitcitations = citation("knitcitations"), derfinder = 
-    citation("derfinder"), 
-    regionReport = citation("regionReport"), knitrBootstrap = citation("knitrBootstrap"), 
-    ggbio = citation("ggbio"), ggplot2 = citation("ggplot2"), rCharts = citation("rCharts"), 
-    knitr = citation("knitr")[3], rmarkdown = citation("rmarkdown")),
+write.bibtex(c(knitcitations = citation('knitcitations'), 
+    derfinder = citation('derfinder'), 
+    regionReport = citation('regionReport'),
+    knitrBootstrap = citation('knitrBootstrap'),
+    ggbio = citation('ggbio'),
+    ggplot2 = citation('ggplot2'),
+    rCharts = citation('rCharts'), 
+    knitr = citation('knitr')[3],
+    rmarkdown = citation('rmarkdown')),
     file = 'derfinderPlotRef.bib')
 bib <- read.bibtex('derfinderPlotRef.bib')
 
@@ -44,34 +51,41 @@ names(bib)[names(bib) == 'hester2013knitrbootstrap'] <- 'hester2014knitrbootstra
 ```
 
 
-`regionReport` `r mycitep(bib[["regionReport"]])` creates HTML reports 
-styled with `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])` for 
-`derfinder` `r mycitep(bib[["derfinder"]])` results.
+`regionReport` `r citep(bib[['colladotorres2014regionreport']])` creates HTML reports 
+styled with `knitrBootstrap` `r citep(bib[['hester2014knitrbootstrap']])` for 
+a set of regions such as `derfinder` `r citep(bib[['colladotorres2014derfinder']])` results.
 
-Basically, this package includes a basic exploration analysis of `derfinder` 
+
+Currently, this package includes a basic exploration analysis of `derfinder` 
 results which we expect users to be interested in reproducing with their own
 data. The analysis is written in [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
-format and the only function in `regionReport` takes the results from 
+format and `derfinderReport()` takes the results from 
 `derfinder`, performs a couple of setup operations, and then relies on
-`knitr` `r mycitep(bib[["knitr"]])`, `rmarkdown` 
-`r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")`, and `knitrBootstrap` 
-`r mycitep(bib[["knitrBootstrap"]])` for generating the report. 
+`knitr` `r citep(bib[['xie2014knitr']])`, `rmarkdown` 
+`r citep(bib[['allaire2014rmarkdown']])`, and `knitrBootstrap` 
+`r citep(bib[['hester2014knitrbootstrap']])` for generating the report. 
 
-Other goodies in the report are powered by `ggbio` `r mycitep(bib[["ggbio"]])`, 
-`ggplot2` `r mycitep(bib[["ggplot2"]])`, and `rCharts`
-`r mycitep(bib[["rCharts"]])`.
+Other goodies in the report are powered by `ggbio` `r citep(bib[['yin2012ggbio']])`, 
+`ggplot2` `r citep(bib[['wickham2009ggplot2']])`, and `rCharts`
+`r citep(bib[['vaidyanathan2013rcharts']])`.
 
 # Using `regionReport`
 
-## Run `derfinder`
+## General case
 
-Prior to using `regionReport` you must use `derfinder` to analyze a specific
+This is currently under construction.
+
+## `derfinder` case
+
+### Run `derfinder`
+
+Prior to using `regionReport::derfinderReport()` you must use `derfinder` to analyze a specific
 data set. While there are many ways to do so, we recommend using 
 __analyzeChr()__ with the same _prefix_ argument. Then merging the results with 
 __mergeResults()__.
 
 Below, we run `derfinder` for the example data included in the package. The
-logical steps are as follows:
+steps are:
 
 1. Load derfinder
 1. Create a directory where we'll store the results
@@ -129,21 +143,22 @@ of `derfinder`.
 
 ```{r runDerfinderReal, bootstrap.show.code=TRUE}
 ## Copy previous results
-file.copy(system.file(file.path("extdata", "chr21"), package="derfinder", 
+file.copy(system.file(file.path('extdata', 'chr21'), package='derfinder', 
 mustWork=TRUE), 'report', recursive=TRUE)
 ```
 
 Next, proceed to merging the results.
 
-```{r mergeResults, bootstrap.show.code=TRUE}
+```{r mergeResults, bootstrap.show.code=TRUE, bootstrap.show.message=FALSE}
 ## Merge the results from the different chromosomes. In this case, there's 
 ## only one: chr21
-mergeResults(chrs='chr21', prefix='report', genomicState=genomicState)
+mergeResults(chrs = 'chr21', prefix = 'report',
+    genomicState = genomicState$fullGenome)
 ```
 
 
 
-## Create report
+### Create report
 
 Once the `derfinder` output has been generated and merged, use
 __derfinderReport()__ to create the HTML report.
@@ -151,21 +166,21 @@ __derfinderReport()__ to create the HTML report.
 
 ```{r loadLib, message=FALSE, bootstrap.show.code=TRUE}
 ## Load derfindeReport
-library("regionReport")
+library('regionReport')
 ```
 
 
 ```{r createReportFake, eval=FALSE, bootstrap.show.code=TRUE}
 ## Generate the HTML report
 report <- derfinderReport(prefix='report', browse=FALSE,
-    nBestRegions=15, makeBestClusters=TRUE, outdir="html",
+    nBestRegions=15, makeBestClusters=TRUE, outdir='html',
     fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
 ```
 
 
 ```{r createReportReal, echo=FALSE, message=FALSE, bootstrap.show.code=FALSE}
 ## Generate the HTML report in a clean environment
-library("devtools")
+library('devtools')
 cat("## Generate the report in an isolated environment
 ## This helps avoids conflicts with generating the vignette
 library(derfinder)
@@ -181,8 +196,8 @@ report <- derfinderReport(prefix='report', browse=FALSE,
     
 ## Clean up
 file.remove('derfinderReport-isolated.R')
-", file="derfinderReport-isolated.R")
-clean_source("derfinderReport-isolated.R", quiet=TRUE)
+", file='derfinderReport-isolated.R')
+clean_source('derfinderReport-isolated.R', quiet=TRUE)
 ```
 
 Once the output is generated, you can browse the report from `R` using 
@@ -197,11 +212,11 @@ You can compare the resulting report with the pre-compiled report using the
 following code.
 
 ```{r openIncludedReport, eval=FALSE}
-browseURL(system.file(file.path("basicExploration", "basicExploration.html"),  
-    package = "regionReport", mustWork = TRUE))
+browseURL(system.file(file.path('basicExploration', 'basicExploration.html'),  
+    package = 'regionReport', mustWork = TRUE))
 ```
 
-## Notes
+### Notes
 
 Note that the reports require an active Internet connection to render correctly.
 
@@ -213,16 +228,15 @@ want to consider setting _nBestCluters_ to a small number or even set
 _makeBestClusters_ to `FALSE`.
 
 
-# Bibliography
+# Advanced arguments
 
-This vignette was generated using `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])`
-with `knitr` `r mycitep(bib[["knitr"]])` and `rmarkdown` `r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")` running behind the scenes.
+If you are interested in using the advanced arguments, use `derfinder::advancedArg()` as shown below:
 
-Citations made with `knitcitations` `r mycitep(bib[["knitcitations"]])`.
-
-```{r vignetteBiblio, results='asis', echo=FALSE}
-## Print bibliography
-bibliography()
+```{r 'advancedArg'}
+## URLs to advanced arguemtns
+derfinder::advancedArg('derfinderReport', package = 'regionReport',
+    browse = FALSE)
+## Set browse = TRUE if you want to open them in your browser
 ```
 
 
@@ -231,12 +245,27 @@ bibliography()
 Code for creating the vignette
 
 ```{r createVignette, eval=FALSE, bootstrap.show.code=TRUE}
-## Load vignette builders
-library("knitrBootstrap")
-library("rmarkdown")
-
 ## Create the vignette
-render("regionReport.Rmd")
+library('knitrBootstrap') 
+
+knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
+if(knitrBootstrapFlag) {
+    ## CRAN version
+    system.time(knit_bootstrap('regionReport.Rmd', chooser=c('boot', 'code'), show_code = TRUE))
+    unlink('regionReport.md')
+} else {
+    ## GitHub version
+    library('rmarkdown')
+    system.time(render('regionReport.Rmd',
+        'knitrBootstrap::bootstrap_document'))
+}
+## Note: if you prefer the knitr version use:
+# library('rmarkdown')
+# system.time(render('regionReport.Rmd', 'html_document'))
+
+## Extract the R code
+library('knitr')
+knit('regionReport.Rmd', tangle = TRUE)
 
 ## Copy report output to be distributed with the package for comparison 
 ## purposes
@@ -244,9 +273,9 @@ file.copy(file.path('report', 'html', 'basicExploration.html'),
     '../inst/basicExploration/basicExploration.html', overwrite=TRUE)
        
 ## Clean up
-file.remove("references.bib")
-#unlink("regionReport_files", recursive=TRUE)
-unlink("report", recursive=TRUE)
+file.remove('derfinderPlotRef.bib')
+#unlink('regionReport_files', recursive=TRUE)
+unlink('report', recursive = TRUE)
 ```
 
 Date the vignette was generated.
@@ -256,9 +285,29 @@ Date the vignette was generated.
 Sys.time()
 ```
 
+Wallclock time spent generating the vignette.
+
+```{r vignetteReproducibility2, echo=FALSE, bootstrap.show.code=FALSE}
+## Processing time in seconds
+totalTimeVignette <- diff(c(startTimeVignette, Sys.time()))
+round(totalTimeVignette, digits=3)
+```
+
 `R` session information.
 
-```{r vignetteReproducibility2, echo=FALSE}
+```{r vignetteReproducibility3, echo=FALSE}
 ## Session info
 sessionInfo()
+```
+
+# Bibliography
+
+This vignette was generated using `knitrBootstrap` `r citep(bib[['hester2014knitrbootstrap']])`
+with `knitr` `r citep(bib[['xie2014knitr']])` and `rmarkdown` `r citep(bib[['allaire2014rmarkdown']])` running behind the scenes.
+
+Citations made with `knitcitations` `r citep(bib[[1]])`.
+
+```{r vignetteBiblio, results='asis', echo=FALSE}
+## Print bibliography
+bibliography()
 ```

@@ -21,7 +21,7 @@
 #' the \code{nBestClusters} regions ranked by area of the cluster.
 #' @param fullCov A list where each element is the result from 
 #' \link[derfinder]{loadCoverage} used with \code{cutoff=NULL}. Can be 
-#' generated using \link{fullCoverage}.
+#' generated using \link[derfinder]{fullCoverage}.
 #' @param hg19 If \code{TRUE} then the reference is assumed to be hg19 and 
 #' chromosome lengths as well as the default transcription database 
 #' (TxDb.Hsapiens.UCSC.hg19.knownGene) will be used.
@@ -33,23 +33,9 @@
 #' TxDb.Hsapiens.UCSC.hg19.knownGene is used.
 #' @param device The graphical device used when knitting. See more at 
 #' http://yihui.name/knitr/options (dev argument).
-#' @param fullRegions Part of the output of \link[derfinder]{mergeResults}. 
-#' Specify it only if you have already loaded it in memory.
-#' @param fullNullSummary Part of the output of \link[derfinder]{mergeResults}. 
-#' Specify it only if you have already loaded it in memory.
-#' @param fullAnnotatedRegions Part of the output of 
-#' \link[derfinder]{mergeResults}. Specify it only if you have already loaded 
-#' it in memory.
-#' @param optionsStats Part of the output of \link[derfinder]{analyzeChr}. 
-#' Specify it only if you have already loaded it in memory.
-#' @param optionsMerge Part of the output of \link[derfinder]{mergeResults}. 
-#' Specify it only if you have already loaded it in memory.
-#' @param overviewParams A two element list with \code{base_size} and 
-#' \code{areaRel} that control the text size for the genomic overview plots.
-#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
-#' \link[GenomeInfoDb]{seqlevelsStyle}.
+#' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
-#' @return An HTML report with a basic exploration of the results.
+#' @return An HTML report with a basic exploration of the derfinder results.
 #'
 #' @author Leonardo Collado-Torres
 #' @seealso \link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr}, 
@@ -58,6 +44,7 @@
 #' @aliases derfinder_report
 #'
 #' @import derfinder
+#' @import derfinderPlot
 #' @import GenomicRanges
 #' @import IRanges
 #' @import ggplot2
@@ -74,6 +61,7 @@
 #' @import RColorBrewer
 #' @import mgcv
 #' @import GenomeInfoDb
+#' @importFrom devtools session_info
 #'
 #' @examples
 #'
@@ -84,8 +72,8 @@
 #' dir.create('derfinderReport-example', showWarnings = FALSE, recursive = TRUE)
 #' 
 #' ## For convenience, the derfinder output has been pre-computed
-#' file.copy(system.file(file.path("extdata", "chr21"), package="derfinder", 
-#' mustWork=TRUE), 'derfinderReport-example', recursive=TRUE)
+#' file.copy(system.file(file.path('extdata', 'chr21'), package='derfinder', 
+#'     mustWork=TRUE), 'derfinderReport-example', recursive = TRUE)
 #' 
 #' \dontrun{
 #' ## If you prefer, you can generate the output from derfinder
@@ -94,11 +82,11 @@
 #'
 #' ## Collapse the coverage information
 #' collapsedFull <- collapseFullCoverage(list(genomeData$coverage), 
-#' verbose=TRUE)
+#'     verbose=TRUE)
 #' 
 #' ## Calculate library size adjustments
 #' sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE, 
-#' verbose=TRUE)
+#'     verbose=TRUE)
 #' 
 #' ## Build the models
 #' group <- genomeInfo$pop
@@ -107,8 +95,8 @@
 #'
 #' ## Analyze chromosome 21
 #' analyzeChr(chr='21', coverageInfo=genomeData, models=models, 
-#' cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
-#' mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
+#'     cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
+#'     mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
 #'
 #' ## Change the directory back to the original one
 #' setwd(initialPath)
@@ -116,21 +104,21 @@
 #'
 #' ## Merge the results from the different chromosomes. In this case, there's 
 #' ## only one: chr21
-#' mergeResults(chrs='21', prefix='derfinderReport-example', 
-#' genomicState=genomicState)
+#' mergeResults(chrs = '21', prefix = 'derfinderReport-example', 
+#'     genomicState = genomicState$fullGenome)
 #'
 #' ## Load the options used for calculating the statistics
 #' load(file.path('derfinderReport-example', 'chr21', 'optionsStats.Rdata'))
 #'
 #' ## Generate the HTML report
 #' report <- derfinderReport(prefix='derfinderReport-example', browse=FALSE, 
-#' nBestRegions=1, makeBestClusters=FALSE, 
-#' fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
+#'     nBestRegions=1, makeBestClusters=FALSE, 
+#'     fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
 #'
 #'
 #' if(interactive()) {
-#' ## Browse the report
-#' browseURL(report)
+#'     ## Browse the report
+#'     browseURL(report)
 #' }
 #'
 #' \dontrun{
@@ -140,65 +128,107 @@
 
 
 
-derfinderReport <- function(prefix, outdir = "basicExploration", 
-    output = "basicExploration", project = prefix, browse = interactive(),
+derfinderReport <- function(prefix, outdir = 'basicExploration', 
+    output = 'basicExploration', project = prefix, browse = interactive(),
     nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2, 
     fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL, 
-    device = "CairoPNG", fullRegions = NULL, fullNullSummary = NULL,
-    fullAnnotatedRegions = NULL, optionsStats = NULL, optionsMerge = NULL,
-    overviewParams = list(base_size = 10, areaRel = 5), chrsStyle = "UCSC") {
+    device = 'CairoPNG', ...) {
     
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     
+    ## Advanced parameters
+#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
+#' \link[GenomeInfoDb]{seqlevelsStyle}.    
+    chrsStyle <- .advanced_argument('chrsStyle', 'UCSC', ...)
+    
+    
+#' @param fullRegions Part of the output of \link[derfinder]{mergeResults}. 
+#' Specify it only if you have already loaded it in memory.
+    fullRegions <- .advanced_argument('fullRegions', NULL, ...)
+    
+    
+#' @param fullNullSummary Part of the output of \link[derfinder]{mergeResults}. 
+#' Specify it only if you have already loaded it in memory.
+    fullNullSummary <- .advanced_argument('fullNullSummary', NULL, ...)
+    
+    
+#' @param fullAnnotatedRegions Part of the output of 
+#' \link[derfinder]{mergeResults}. Specify it only if you have already loaded 
+#' it in memory.
+    fullAnnotatedRegions <- .advanced_argument('fullAnnotatedRegions', NULL,
+        ...)
+    
+    
+#' @param optionsStats Part of the output of \link[derfinder]{analyzeChr}. 
+#' Specify it only if you have already loaded it in memory.
+    optionsStats <- .advanced_argument('optionsStats', NULL, ...)
+    
+    
+#' @param optionsMerge Part of the output of \link[derfinder]{mergeResults}. 
+#' Specify it only if you have already loaded it in memory.
+    optionsMerge <- .advanced_argument('optionsMerge', NULL, ...)
+    
+    
+#' @param overviewParams A two element list with \code{base_size} and 
+#' \code{areaRel} that control the text size for the genomic overview plots.
+    overviewParams <- .advanced_argument('overviewParam', list(base_size = 10,
+        areaRel = 5), ...)
+    
+    
     ## Check that overviewParams is correctly specified
-    stopifnot(sum(names(overviewParams) %in% c("base_size", "areaRel")) == 2)
+    stopifnot(sum(names(overviewParams) %in% c('base_size', 'areaRel')) == 2)
     
     if (hg19) {
-        library("biovizBase")
-        library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+        library('biovizBase')
+        library('TxDb.Hsapiens.UCSC.hg19.knownGene')
     }
     
     ## Create outdir
-    dir.create(file.path(prefix, outdir), showWarnings = FALSE, recursive = TRUE)
+    dir.create(file.path(prefix, outdir), showWarnings = FALSE,
+        recursive = TRUE)
     workingDir <- file.path(getwd(), prefix)
     
     ## Locate Rmd
-    template <- system.file(file.path("basicExploration", "basicExploration.Rmd"), 
-        package = "regionReport", mustWork = TRUE)
+    template <- system.file(file.path('basicExploration',
+        'basicExploration.Rmd'), package = 'regionReport', mustWork = TRUE)
     
     ## Load knitcitations with a clean bibliography
     cleanbib()
-    cite_options(tooltip = TRUE)
+    cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+    # Note links won't show for now due to the following issue
+    # https://github.com/cboettig/knitcitations/issues/63
     
-    ## Fix citep
-    mycitep <- function(x, short = NULL) {
-        res <- gsub("  </p>", "", citep(x))
-        if (!is.null(short)) {
-            res <- gsub("></a>", paste0(">", short, "</a>"), res)
-        }
-        return(res)
-    }
     
     ## Write bibliography information
-    write.bibtex(c(knitcitations = citation("knitcitations"), derfinder = citation("derfinder"), 
-        regionReport = citation("regionReport"), knitrBootstrap = citation("knitrBootstrap"), 
-        ggbio = citation("ggbio"), ggplot2 = citation("ggplot2"), rCharts = citation("rCharts"), 
-        knitr = citation("knitr")[3], rmarkdown = citation("rmarkdown")), file = file.path(prefix, 
-            outdir, "references.bib"))
-    bib <- read.bibtex(file.path(prefix, outdir, "references.bib"))
+    write.bibtex(c(
+        knitcitations = citation('knitcitations'), 
+        derfinder = citation('derfinder'), 
+        regionReport = citation('regionReport'),
+        knitrBootstrap = citation('knitrBootstrap'), 
+        ggbio = citation('ggbio'),
+        ggplot2 = citation('ggplot2'),
+        rCharts = citation('rCharts'), 
+        knitr = citation('knitr')[3],
+        rmarkdown = citation('rmarkdown')),
+        file = file.path(prefix, outdir, 'references.bib')
+    )
+    bib <- read.bibtex(file.path(prefix, outdir, 'references.bib'))
+    
+    ## Fix some names to work with CRAN and GitHub versions
+    names(bib)[names(bib) == 'hester2013knitrbootstrap'] <- 'hester2014knitrbootstrap'
     
     ## Load files
     if (is.null(fullRegions)) 
-        load(file.path(prefix, "fullRegions.Rdata"))
+        load(file.path(prefix, 'fullRegions.Rdata'))
     if (is.null(fullNullSummary)) 
-        load(file.path(prefix, "fullNullSummary.Rdata"))
+        load(file.path(prefix, 'fullNullSummary.Rdata'))
     if (is.null(fullAnnotatedRegions)) 
-        load(file.path(prefix, "fullAnnotatedRegions.Rdata"))
+        load(file.path(prefix, 'fullAnnotatedRegions.Rdata'))
     if (is.null(optionsStats)) 
-        load(file.path(prefix, dir(prefix, pattern = "chr")[1], "optionsStats.Rdata"))
+        load(file.path(prefix, dir(prefix, pattern = 'chr')[1], 'optionsStats.Rdata'))
     if (is.null(optionsMerge)) 
-        load(file.path(prefix, "optionsMerge.Rdata"))
+        load(file.path(prefix, 'optionsMerge.Rdata'))
     
     ## Require fullCov
     if (makeBestClusters) {
@@ -235,9 +265,20 @@ derfinderReport <- function(prefix, outdir = "basicExploration",
     ## Generate report
     tmpdir <- getwd()
     setwd(file.path(prefix, outdir))
-    file.copy(template, to = paste0(output, ".Rmd"))
-    res <- render(paste0(output, ".Rmd"))
-    file.remove(paste0(output, ".Rmd"))
+    file.copy(template, to = paste0(output, '.Rmd'))
+    
+    ## Check knitrBoostrap version
+    knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
+    if(knitrBootstrapFlag) {
+        ## CRAN version
+        res <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
+            'code'), show_code = TRUE)
+        unlink(paste0(output, '.md'))
+    } else {
+        res <- render(paste0(output, '.Rmd'),
+            'knitrBootstrap::bootstrap_document')
+    }
+    file.remove(paste0(output, '.Rmd'))
     
     ## Open
     if (browse) 

@@ -8,7 +8,7 @@ Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),
     email = "jtleek@gmail.com"))
 Description: Generate HTML reports to explore a set of regions such as the
-    results from annotation-agnostic expression analysis of RNA-seq data at 
+    results from annotation-agnostic expression analysis of RNA-seq data at
     base-pair resolution performed by derfinder.
 License: Artistic-2.0
 LazyData: true
@@ -21,24 +21,24 @@ Depends:
 Imports:
     data.table,
     derfinder (>= 0.0.78),
-    derfinderPlot (>= 0.99.0),    
+    derfinderPlot (>= 0.99.0),
+    devtools (>= 1.6),
     GenomeInfoDb,
     GenomicRanges,
     ggbio (>= 1.13.13),
     ggplot2,
     grid,
-    gridExtra,    
+    gridExtra,
     IRanges,
     knitcitations (>= 1.0.1),
     knitr (>= 1.6),
     knitrBootstrap (>= 0.9.0),
-    mgcv, 
+    mgcv,
     rCharts (>= 0.4.2),
-    RColorBrewer,    
+    RColorBrewer,
     rmarkdown (>= 0.3.3),
-    xtable    
+    xtable
 Suggests:
     biovizBase,
     Cairo,
-    devtools,
     TxDb.Hsapiens.UCSC.hg19.knownGene

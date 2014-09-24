@@ -12,8 +12,7 @@ results. Or use:
 example('derfinderReport', 'regionReport', ask=FALSE)
 ```
 
-For a full example on how to use __derfinder__ and __regionReport__ check 
-https://github.com/lcolladotor/derfinderExample.
+You may also want to consult the [vignette](http://lcolladotor.github.io/regionReport/) for `regionReport`.
 
 # Installation instructions
 
@@ -46,9 +45,7 @@ install_github('ramnathv/rCharts')
 
 ## For BioC-devel use:
 install_github('lcolladotor/derfinder@master')
-
-## For BioC-release use:
-#install_github('lcolladotor/derfinder@release')
+install_github('lcolladotor/derfinderPlot')
 
 ## regionReport itself
 install_github('lcolladotor/regionReport')
@@ -64,18 +61,28 @@ __regionReport__.
 
 To cite package __regionReport__ in publications use:
 
-Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). regionReport: 
-Generate HTML reports for derfinder (https://github.com/lcolladotor/derfinder) 
-results. R package version 0.0.18. 
-https://github.com/lcolladotor/regionReport
+Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). regionReport: Generate HTML reports for exploring a set of regions. R package version 0.99.0. https://github.com/lcolladotor/regionReport
 
 A BibTeX entry for LaTeX users is
 
 @Manual{,
-    title = {regionReport: Generate HTML reports for derfinder
-        (https://github.com/lcolladotor/derfinder) results},
+    title = {regionReport: Generate HTML reports for exploring a set of regions},
     author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek},
     year = {2014},
-    note = {R package version 0.0.18},
+    note = {R package version 0.99.0},
     url = {https://github.com/lcolladotor/regionReport},
 }
+
+# Travis CI
+
+This package is automatically tested thanks to [Travis CI](travis-ci.org) and [r-travis](https://github.com/craigcitro/r-travis). If you want to add this to your own package use:
+
+```R
+## Use devtools to create the .travis.yml file
+library('devtools')
+use_travis('yourPackage')
+
+## Read https://github.com/craigcitro/r-travis/wiki to configure .travis.yml appropriately
+
+## Add a status image by following the info at http://docs.travis-ci.com/user/status-images/
+```

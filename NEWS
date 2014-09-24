@@ -1,3 +1,21 @@
+CHANGES IN VERSION 0.99.0
+-------------------------
+
+NEW FEATURES
+
+    o Preparing to submit to Bioconductor.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Updated the vignette and the package to work with recent versions of
+        the packages this package depends on.
+    o Renamed the package from derfinderReport to regionReport and
+        generateReport() to derfinderReport(). In the future we will add
+        another report for a general GRanges object.
+    o Simplified derfinderReport()'s call by using advanced arguments.
+    o Added Travis integration.
+
+
 CHANGES IN VERSION 0.0.18
 -------------------------
 

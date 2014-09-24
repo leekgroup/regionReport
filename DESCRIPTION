@@ -1,44 +1,44 @@
-Package: derfinderReport
+Package: regionReport
 Type: Package
-Title: Generate HTML reports for derfinder
-    (https://github.com/lcolladotor/derfinder) results
-Version: 0.0.18
-Date: 2014-05-30
+Title: Generate HTML reports for exploring a set of regions
+Version: 0.99.0
+Date: 2014-09-23
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhsph.edu"), person("Andrew", "Jaffe", role = "aut", email =
     "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),
     email = "jtleek@gmail.com"))
-Description: Generate HTML reports for results from fast differential
-    expression analysis of RNA-seq data at base-pair resolution performed by
-    derfinder
+Description: Generate HTML reports to explore a set of regions such as the
+    results from annotation-agnostics expression analysis of RNA-seq data at 
+    base-pair resolution performed by derfinder.
 License: Artistic-2.0
 LazyData: true
-URL: https://github.com/lcolladotor/derfinderReport
-BugReports: https://github.com/lcolladotor/derfinderReport/issues
+URL: https://github.com/lcolladotor/regionReport
+BugReports: https://github.com/lcolladotor/regionReport/issues
 VignetteBuilder: knitr
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software
 Depends:
-    R(>= 3.1.0)
+    R(>= 3.1.1)
 Imports:
-    derfinder (>= 0.0.54),
-    IRanges,
+    data.table,
+    derfinder (>= 0.0.78),
+    derfinderPlot (>= 0.99.0),    
+    GenomeInfoDb,
     GenomicRanges,
+    ggbio (>= 1.13.13),
     ggplot2,
     grid,
-    gridExtra,
-    ggbio (>= 1.12.3),
-    rCharts (>= 0.4.2),
-    data.table,
+    gridExtra,    
+    IRanges,
+    knitcitations (>= 1.0.1),
     knitr (>= 1.6),
-    rmarkdown (>= 0.1.74),
-    knitrBootstrap (>= 1.0.0),
-    knitcitations (>= 0.5.0),
-    xtable,
-    RColorBrewer,
-    mgcv,
-    GenomeInfoDb
+    knitrBootstrap (>= 0.9.0),
+    mgcv, 
+    rCharts (>= 0.4.2),
+    RColorBrewer,    
+    rmarkdown (>= 0.3.3),
+    xtable    
 Suggests:
     biovizBase,
-    TxDb.Hsapiens.UCSC.hg19.knownGene,
     Cairo,
-    devtools
+    devtools,
+    TxDb.Hsapiens.UCSC.hg19.knownGene

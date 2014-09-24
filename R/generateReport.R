@@ -134,7 +134,7 @@
 #'
 #' \dontrun{
 #' ## Note that you can run the example using:
-#' example('generateReport', 'derfinderReport', ask=FALSE)
+#' example('generateReport', 'regionReport', ask=FALSE)
 #' }
 
 
@@ -164,7 +164,7 @@ generateReport <- function(prefix, outdir = "basicExploration",
     
     ## Locate Rmd
     template <- system.file(file.path("basicExploration", "basicExploration.Rmd"), 
-        package = "derfinderReport", mustWork = TRUE)
+        package = "regionReport", mustWork = TRUE)
     
     ## Load knitcitations with a clean bibliography
     cleanbib()
@@ -181,7 +181,7 @@ generateReport <- function(prefix, outdir = "basicExploration",
     
     ## Write bibliography information
     write.bibtex(c(knitcitations = citation("knitcitations"), derfinder = citation("derfinder"), 
-        derfinderReport = citation("derfinderReport"), knitrBootstrap = citation("knitrBootstrap"), 
+        regionReport = citation("regionReport"), knitrBootstrap = citation("knitrBootstrap"), 
         ggbio = citation("ggbio"), ggplot2 = citation("ggplot2"), rCharts = citation("rCharts"), 
         knitr = citation("knitr")[3], rmarkdown = citation("rmarkdown")), file = file.path(prefix, 
             outdir, "references.bib"))

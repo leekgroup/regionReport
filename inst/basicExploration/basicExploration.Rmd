@@ -1,10 +1,13 @@
 ---
 output:
+  html_document:
+    toc: true
+    theme: united
   knitrBootstrap::bootstrap_document:
-    highlight: 'brown paper'
     theme.chooser: TRUE
     highlight.chooser: TRUE
 ---
+
 
 [derfinder](https://github.com/lcolladotor/derfinder) basic results exploration
 ===============================================================================
@@ -13,7 +16,7 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore the results of the `derfinder` `r mycitep(bib[["derfinder"]])` package and was generated using the `derfinderReport` `r mycitep(bib[["derfinderReport"]])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
+This report is meant to help explore the results of the `derfinder` `r mycitep(bib[["derfinder"]])` package and was generated using the `regionReport` `r mycitep(bib[["regionReport"]])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
 
 Most plots were made with using `ggplot2` `r mycitep(bib[["ggplot2"]])`.
 
@@ -538,7 +541,7 @@ t2$print("permutation")
 
 # Bibliography
 
-This report is part of `derfinderReport` `r mycitep(bib[["derfinderReport"]])` and was generated using `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])` with `knitr` `r mycitep(bib[["knitr"]])` and `rmarkdown` `r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")` running behind the scenes.
+This report is part of `regionReport` `r mycitep(bib[["regionReport"]])` and was generated using `knitrBootstrap` `r mycitep(bib[["knitrBootstrap"]])` with `knitr` `r mycitep(bib[["knitr"]])` and `rmarkdown` `r mycitep(bib[["rmarkdown"]], "JJ Allaire et al, 2014")` running behind the scenes.
 
 Citations made with `knitcitations` `r mycitep(bib[["knitcitations"]])`.
 

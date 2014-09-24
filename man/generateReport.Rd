@@ -143,7 +143,7 @@ browseURL(report)
 
 \dontrun{
 ## Note that you can run the example using:
-example('generateReport', 'derfinderReport', ask=FALSE)
+example('generateReport', 'regionReport', ask=FALSE)
 }
 }
 \author{

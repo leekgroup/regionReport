@@ -3,11 +3,11 @@
     if (!interactive() || stats::runif(1) > 0.3) return()
         
     tips <- c(
-        "Found a bug? Report it at https://github.com/lcolladotor/derfinderReport/issues",
-        "Want to contribute a new feature? Fork derfinderReport at\n https://github.com/lcolladotor/derfinderReport/fork\nThen submit a pull request =)",
-        paste("Find out what's changed in derfinderReport with\n",
-            "news(Version == \"", utils::packageVersion("derfinderReport"),
-            "\", package = \"derfinderReport\")", sep = ""),
+        "Found a bug? Report it at https://github.com/lcolladotor/regionReport/issues",
+        "Want to contribute a new feature? Fork regionReport at\n https://github.com/lcolladotor/regionReport/fork\nThen submit a pull request =)",
+        paste("Find out what's changed in regionReport with\n",
+            "news(Version == \"", utils::packageVersion("regionReport"),
+            "\", package = \"regionReport\")", sep = ""),
         "Use suppressPackageStartupMessages to eliminate package startup messages."
     )
     

@@ -574,7 +574,7 @@ The results were merged using the following call to `mergeResults()`:
 optionsMerge$mergeCall
 ```
 
-This report was generated in path `r tmpdir` using the following call to `generateReport()`:
+This report was generated in path `r tmpdir` using the following call to `derfinderReport()`:
 
 ```{r thecall, echo=FALSE}
 theCall

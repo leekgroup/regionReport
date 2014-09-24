@@ -4,12 +4,12 @@ regionReport
 Generate HTML reports for a set of regions such as those from 
 [derfinder](https://github.com/lcolladotor/derfinder) results.
 
-Check the documentation for _generateReport()_ for an example on how to create 
+Check the documentation for _derfinderReport()_ for an example on how to create 
 the necessary input files and generating the HTML report for __derfinder__ 
 results. Or use:
 
 ```R
-example('generateReport', 'regionReport', ask=FALSE)
+example('derfinderReport', 'regionReport', ask=FALSE)
 ```
 
 For a full example on how to use __derfinder__ and __regionReport__ check 

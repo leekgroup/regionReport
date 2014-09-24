@@ -1,7 +1,7 @@
 CHANGES IN VERSION 0.0.18
 -------------------------
 
-    o Now generateReport() has a 'chrsStyle' argument to match changes in 
+    o Now derfinderReport() has a 'chrsStyle' argument to match changes in 
     derfinder version 0.0.60. 'chrsStyle' is set to 'UCSC' by default.
 
 CHANGES IN VERSION 0.0.17

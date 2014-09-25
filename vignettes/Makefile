@@ -8,5 +8,4 @@ all:
 
 clean:
 	rm -f *.bib *.md
-	rm -fr report/chr21
-	rm -f report/*Rdata
+	rm -fr report

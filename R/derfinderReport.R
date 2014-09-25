@@ -14,7 +14,7 @@
 #' @param browse If \code{TRUE} the HTML report is opened in your browser once 
 #' it's completed.
 #' @param nBestRegions The number of region plots to make, ordered by area.
-#' @param makeBestClusters If \code{TRUE}, \link[derfinder]{plotCluster} is 
+#' @param makeBestClusters If \code{TRUE}, \link[derfinderPlot]{plotCluster} is 
 #' used on the \code{nBestClusters} regions by area. Note that these plots take 
 #' some time to make.
 #' @param nBestClusters The number of region cluster plots to make by taking 

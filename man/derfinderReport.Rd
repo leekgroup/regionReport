@@ -26,7 +26,7 @@ it's completed.}
 
 \item{nBestRegions}{The number of region plots to make, ordered by area.}
 
-\item{makeBestClusters}{If \code{TRUE}, \link[derfinder]{plotCluster} is
+\item{makeBestClusters}{If \code{TRUE}, \link[derfinderPlot]{plotCluster} is
 used on the \code{nBestClusters} regions by area. Note that these plots take
 some time to make.}
 

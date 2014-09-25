@@ -15,7 +15,7 @@ LazyData: true
 URL: https://github.com/lcolladotor/regionReport
 BugReports: https://github.com/lcolladotor/regionReport/issues
 VignetteBuilder: knitr
-biocViews: DifferentialExpression, Sequencing, RNASeq, Software
+biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization
 Depends:
     R(>= 3.1.1)
 Imports:

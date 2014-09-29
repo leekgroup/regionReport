@@ -208,7 +208,6 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         knitrBootstrap = citation('knitrBootstrap'), 
         ggbio = citation('ggbio'),
         ggplot2 = citation('ggplot2'),
-        rCharts = citation('rCharts'), 
         knitr = citation('knitr')[3],
         rmarkdown = citation('rmarkdown')),
         file = file.path(prefix, outdir, 'references.bib')

@@ -40,7 +40,6 @@ write.bibtex(c(knitcitations = citation('knitcitations'),
     knitrBootstrap = citation('knitrBootstrap'),
     ggbio = citation('ggbio'),
     ggplot2 = citation('ggplot2'),
-    rCharts = citation('rCharts'), 
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown')),
     file = 'derfinderPlotRef.bib')
@@ -65,9 +64,7 @@ format and `derfinderReport()` takes the results from
 `r citep(bib[['allaire2014rmarkdown']])`, and `knitrBootstrap` 
 `r citep(bib[['hester2014knitrbootstrap']])` for generating the report. 
 
-Other goodies in the report are powered by `ggbio` `r citep(bib[['yin2012ggbio']])`, 
-`ggplot2` `r citep(bib[['wickham2009ggplot2']])`, and `rCharts`
-`r citep(bib[['vaidyanathan2013rcharts']])`.
+Other goodies in the report are powered by `ggbio` `r citep(bib[['yin2012ggbio']])` and `ggplot2` `r citep(bib[['wickham2009ggplot2']])`.
 
 # Using `regionReport`
 

@@ -40,7 +40,6 @@ write.bibtex(c(knitcitations = citation('knitcitations'),
     knitrBootstrap = citation('knitrBootstrap'),
     ggbio = citation('ggbio'),
     ggplot2 = citation('ggplot2'),
-    rCharts = citation('rCharts'), 
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown')),
     file = 'derfinderPlotRef.bib')

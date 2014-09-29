@@ -24,9 +24,8 @@ Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/) as well as pandoc
 install.packages('devtools')
 
 ## Pre-requisites from CRAN
-install.packages(c('knitr', 'ggplot2', 'gridExtra', 'data.table',
-    'knitcitations', 'RColorBrewer', 'mgcv', 'rmarkdown', 'xtable',
-    'knitrBootstrap'))
+install.packages(c('knitr', 'ggplot2', 'gridExtra', 'knitrBootstrap',
+    'knitcitations', 'RColorBrewer', 'mgcv', 'rmarkdown', 'xtable'))
     
 ## You might need to install the Cairo package, but that will depend on the device 
 ## you use for the plots
@@ -39,7 +38,6 @@ biocLite(c('IRanges', 'GenomicRanges', 'biovizBase', 'ggbio',
 
 ## GitHub dependencies
 library('devtools')
-install_github('ramnathv/rCharts')
 ## If you use the GitHub version of knitrBoostrap you get better looking reports
 # install_github('jimhester/knitrBootstrap')
 

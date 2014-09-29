@@ -51,13 +51,10 @@
 #' @import grid
 #' @import gridExtra
 #' @importFrom ggbio plotIdeogram
-#' @import rCharts
-#' @import data.table
 #' @import knitr
 #' @import rmarkdown
 #' @import knitrBootstrap
 #' @import knitcitations
-#' @import xtable
 #' @import RColorBrewer
 #' @import mgcv
 #' @import GenomeInfoDb
@@ -214,8 +211,9 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     )
     bib <- read.bibtex(file.path(prefix, outdir, 'references.bib'))
     
-    ## Fix some names to work with CRAN and GitHub versions
-    names(bib)[names(bib) == 'hester2013knitrbootstrap'] <- 'hester2014knitrbootstrap'
+    ## Assign short names
+    names(bib) <- c('knitcitations', 'derfinder', 'regionReport',
+        'knitrBootstrap', 'ggbio', 'ggplot2', 'knitr', 'rmarkdown')
     
     ## Load files
     if (is.null(fullRegions)) 

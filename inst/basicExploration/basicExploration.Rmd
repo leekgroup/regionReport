@@ -16,9 +16,9 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore the results of the `derfinder` `r citep(bib[['colladotorres2014derfinder']])` package and was generated using `regionReport` `r citep(bib[['colladotorres2014regionreport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
+This report is meant to help explore the results of the `derfinder` `r citep(bib[['derfinder']])` package and was generated using `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
 
-Most plots were made with using `ggplot2` `r citep(bib[['wickham2009ggplot2']])`.
+Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 
 ## Code setup
 
@@ -40,7 +40,6 @@ library('ggplot2')
 library('grid')
 library('gridExtra')
 library('knitr')
-library('xtable')
 library('RColorBrewer')
 library('mgcv')
 
@@ -170,7 +169,7 @@ qtable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
     data.frame('Cut' = x, 'Count' = sum(fullRegions$qvalues <= x))
 })
 qtable <- do.call(rbind, qtable)
-print(xtable(qtable, digits = 4), type = 'html', include.rownames = FALSE)
+kable(qtable, format = 'html', align = c('c', 'c'))
 ```
 
 This table shows the number of candidate Differentially Expressed Regions (DERs) with q-value less or equal than some commonly used cutoff values. `r ifelse(nullExist, '', 'Skipped because there are no null regions.')`
@@ -322,7 +321,7 @@ for(j in grep('log2FoldChange', colnames(values(fullRegions)))) {
 
 # Genomic overview
 
-The following plots were made using `ggbio` `r citep(bib[['yin2012ggbio']])` which in turn uses `ggplot2` `r citep(bib[['wickham2009ggplot2']])`. For more details check `plotOverview` in `derfinder` `r citep(bib[['colladotorres2014derfinder']])`.
+The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotOverview` in `derfinder` `r citep(bib[['derfinder']])`.
 
 ## Q-values
 
@@ -344,7 +343,7 @@ This genomic overview plot shows the annotation region type for the __candidate_
 ```{r annoReg, results='asis'}
 annoReg <- table(fullRegions$region, useNA='always')
 annoReg.df <- data.frame(Region=names(annoReg), Count=as.vector(annoReg))
-print(xtable(annoReg.df, align=rep('c', 3)), type='html', include.rownames=FALSE)
+kable(annoReg.df, format = 'html', align=rep('c', 3))
 ```
 
 ## Annotation (significant)
@@ -385,7 +384,7 @@ info <- do.call(rbind, lapply(fullAnnotatedRegions$countTable, function(x) { dat
 colnames(info) <- c('Number of Overlapping States', 'Frequency')
 info$State <- gsub('\\..*', '', rownames(info))
 rownames(info) <- NULL
-print(xtable(info, align=rep('c', 4)), type='html', include.rownames=FALSE)
+kable(info, format = 'html', align=rep('c', 4))
 ```
 
 
@@ -416,23 +415,23 @@ topArea <- replaceInf(topArea, grep('log2FoldChange|value|area',
     colnames(topArea)))
 
 ## Make the table
-kable(topArea, 'html', table.attr='id="regions_table"')
+kable(topArea, format = 'html', table.attr='id="regions_table"')
 ```
 
 <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-		$('#regions_table').dataTable({
-		    "pagingType": "full_numbers",
-            "scrollX": "100%"
-		});
-	});
+$(document).ready(function() {
+    $('#regions_table').dataTable({
+        "sPaginationType": "full_numbers",
+        "sScrollX": "100%"
+    });
+});
 </script>
 
 
     
 # Best region clusters
 
-The following plots were made using `ggbio` `r citep(bib[['yin2012ggbio']])` which in turn uses `ggplot2` `r citep(bib[['wickham2009ggplot2']])`. For more details check `plotCluster()` in `derfinder` `r citep(bib[['colladotorres2014derfinder']])`. 
+The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotCluster()` in `derfinder` `r citep(bib[['derfinder']])`. 
 
 ## Plots
 
@@ -529,23 +528,23 @@ summary(permuteDetail[, m])
 
 This table shows the summary per group of and can be used for fast detection of anomalies. `r ifelse(usedPermutations, '', 'Skipped because no permutations were used.')`
 
-Note that in `derfinder` `r citep(bib[['colladotorres2014derfinder']])` the re-sampling of the samples is done without replacement. This is done in an effort to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).
+Note that in `derfinder` `r citep(bib[['derfinder']])` the re-sampling of the samples is done without replacement. This is done in an effort to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).
 
 ## Interactive
 
 The following table shows how the group labels were permuted. `r ifelse(usedPermutations, '', 'Skipped because no permutations were used.')` This can be useful to detect whether a permutation in particular had too many samples of a group labeled as another group, meaning that the resulting permuted group label resulted in pretty much a name change.
 
 ```{r permuteTable, results='asis', eval=usedPermutations, echo=usedPermutations}
-kable(permuteDetail, 'html', table.attr='id="permutation_table"')
+kable(permuteDetail, format = 'html', table.attr='id="permutation_table"')
 ```
 
 <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-		$('#permutation_table').dataTable({
-		    "pagingType": "full_numbers",
-            "scrollX": "100%"
-		});
-	});
+$(document).ready(function() {
+    $('#permutation_table').dataTable({
+        "sPaginationType": "full_numbers",
+        "sScrollX": "100%"
+    });
+});
 </script>
 
 
@@ -605,10 +604,10 @@ session_info()
 
 # Bibliography
 
-This report was created with `regionReport` `r citep(bib[['colladotorres2014regionreport']])` using `knitrBootstrap` `r citep(bib[['hester2014knitrbootstrap']])`
-to format the html while `knitr` `r citep(bib[['xie2014knitr']])` and `rmarkdown` `r citep(bib[['allaire2014rmarkdown']])` were running behind the scenes.
+This report was created with `regionReport` `r citep(bib[['regionReport']])` using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
+to format the html while `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` were running behind the scenes.
 
-Citations made with `knitcitations` `r citep(bib[[1]])`.
+Citations made with `knitcitations` `r citep(bib[['knitcitations']])`.
 
 ```{r bibliography, results='asis', echo=FALSE}
 ## Print bibliography

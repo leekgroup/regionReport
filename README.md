@@ -25,7 +25,7 @@ install.packages('devtools')
 
 ## Pre-requisites from CRAN
 install.packages(c('knitr', 'ggplot2', 'gridExtra', 'knitrBootstrap',
-    'knitcitations', 'RColorBrewer', 'mgcv', 'rmarkdown', 'xtable'))
+    'knitcitations', 'RColorBrewer', 'mgcv', 'rmarkdown'))
     
 ## You might need to install the Cairo package, but that will depend on the device 
 ## you use for the plots

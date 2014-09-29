@@ -868,8 +868,8 @@
 <h1 id="derfinder-basic-results-exploration"><a href="https://github.com/lcolladotor/derfinder">derfinder</a> basic results exploration</h1>
 <p>Project: report.</p>
 <h1 id="introduction">Introduction</h1>
-<p>This report is meant to help explore the results of the <code>derfinder</code> <a id='cite-colladotorres2014derfinder'></a>(<a href='https://github.com/lcolladotor/derfinder'>Collado-Torres, Frazee, Jaffe, and Leek, 2014</a>) package and was generated using <code>regionReport</code> <a id='cite-colladotorres2014regionreport'></a>(<a href='https://github.com/lcolladotor/regionReport'>Collado-Torres, Jaffe, and Leek, 2014</a>) package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.</p>
-<p>Most plots were made with using <code>ggplot2</code> <a id='cite-wickham2009ggplot2'></a>(<a href='http://had.co.nz/ggplot2/book'>Wickham, 2009</a>).</p>
+<p>This report is meant to help explore the results of the <code>derfinder</code> <a id='cite-derfinder'></a>(<a href='https://github.com/lcolladotor/derfinder'>Collado-Torres, Frazee, Jaffe, and Leek, 2014</a>) package and was generated using <code>regionReport</code> <a id='cite-regionReport'></a>(<a href='https://github.com/lcolladotor/regionReport'>Collado-Torres, Jaffe, and Leek, 2014</a>) package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.</p>
+<p>Most plots were made with using <code>ggplot2</code> <a id='cite-ggplot2'></a>(<a href='http://had.co.nz/ggplot2/book'>Wickham, 2009</a>).</p>
 <h2 id="code-setup">Code setup</h2>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -891,8 +891,7 @@ if(hg19) {
 library('ggplot2')
 library('grid')
 library('gridExtra')
-library('data.table')
-library('xtable')
+library('knitr')
 library('RColorBrewer')
 library('mgcv')</code></pre>
 <button class="message R toggle btn btn-xs btn-info">
@@ -1055,109 +1054,140 @@ summary(fullRegions$pvalues)</code></pre>
     data.frame('Cut' = x, 'Count' = sum(fullRegions$qvalues <= x))
 })
 qtable <- do.call(rbind, qtable)
-print(xtable(qtable, digits=4, align=rep('c', 3)), type='html',
-    include.rownames=FALSE)</code></pre>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Thu Sep 25 04:53:03 2014 -->
-<table border=1>
+kable(qtable, format = 'html', align = c('c', 'c'))</code></pre>
+<table>
+<thead>
 <tr>
-<th>
+<th align="center">
 Cut
 </th>
-<th>
+<th align="center">
 Count
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td align="center">
 0.0001
 </td>
 <td align="center">
-<pre><code> 0 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+0
+</td>
+</tr>
 <tr>
 <td align="center">
 0.0010
 </td>
 <td align="center">
-<pre><code> 0 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+0
+</td>
+</tr>
 <tr>
 <td align="center">
 0.0100
 </td>
 <td align="center">
-<pre><code> 0 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+0
+</td>
+</tr>
 <tr>
 <td align="center">
 0.0250
 </td>
 <td align="center">
-<pre><code>12 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+12
+</td>
+</tr>
 <tr>
 <td align="center">
 0.0500
 </td>
 <td align="center">
-<pre><code>12 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+12
+</td>
+</tr>
 <tr>
 <td align="center">
 0.1000
 </td>
 <td align="center">
-<pre><code>12 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+12
+</td>
+</tr>
 <tr>
 <td align="center">
 0.2000
 </td>
 <td align="center">
-<pre><code>15 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+15
+</td>
+</tr>
 <tr>
 <td align="center">
 0.3000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
 <tr>
 <td align="center">
 0.4000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
 <tr>
 <td align="center">
 0.5000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
 <tr>
 <td align="center">
 0.6000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
 <tr>
 <td align="center">
 0.7000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
 <tr>
 <td align="center">
 0.8000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
 <tr>
 <td align="center">
 0.9000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
 <tr>
 <td align="center">
 1.0000
 </td>
 <td align="center">
-<pre><code>33 &lt;/td&gt; &lt;/tr&gt;</code></pre>
+33
+</td>
+</tr>
+</tbody>
 </table>
 </div>
 <p>This table shows the number of candidate Differentially Expressed Regions (DERs) with q-value less or equal than some commonly used cutoff values.</p>
@@ -1301,7 +1331,7 @@ grid.arrange(p6a, p6b)</code></pre>
 </div>
 </div>
 <h1 id="genomic-overview">Genomic overview</h1>
-<p>The following plots were made using <code>ggbio</code> <a id='cite-yin2012ggbio'></a>(<a href='#bib-yin2012ggbio'>Yin, Cook, and Lawrence, 2012</a>) which in turn uses <code>ggplot2</code> (<a href='http://had.co.nz/ggplot2/book'>Wickham, 2009</a>). For more details check <code>plotOverview</code> in <code>derfinder</code> (<a href='https://github.com/lcolladotor/derfinder'>Collado-Torres, Frazee, Jaffe, and Leek, 2014</a>).</p>
+<p>The following plots were made using <code>ggbio</code> <a id='cite-ggbio'></a>(<a href='#bib-ggbio'>Yin, Cook, and Lawrence, 2012</a>) which in turn uses <code>ggplot2</code> (<a href='http://had.co.nz/ggplot2/book'>Wickham, 2009</a>). For more details check <code>plotOverview</code> in <code>derfinder</code> (<a href='https://github.com/lcolladotor/derfinder'>Collado-Torres, Frazee, Jaffe, and Leek, 2014</a>).</p>
 <h2 id="q-values-1">Q-values</h2>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -1334,18 +1364,19 @@ grid.arrange(p6a, p6b)</code></pre>
 </button>
 <pre style="display:none"><code class="source r">annoReg <- table(fullRegions$region, useNA='always')
 annoReg.df <- data.frame(Region=names(annoReg), Count=as.vector(annoReg))
-print(xtable(annoReg.df, align=rep('c', 3)), type='html', include.rownames=FALSE)</code></pre>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Thu Sep 25 04:53:08 2014 -->
-<table border="1">
+kable(annoReg.df, format = 'html', align=rep('c', 3))</code></pre>
+<table>
+<thead>
 <tr>
-<th>
+<th align="center">
 Region
 </th>
-<th>
+<th align="center">
 Count
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td align="center">
 upstream
@@ -1412,11 +1443,13 @@ covers
 </tr>
 <tr>
 <td align="center">
+NA
 </td>
 <td align="center">
 0
 </td>
 </tr>
+</tbody>
 </table>
 </div>
 <h2 id="annotation-significant">Annotation (significant)</h2>
@@ -1451,8 +1484,8 @@ covers
 <button class="message R toggle btn btn-xs btn-info">
 <span class="glyphicon glyphicon-chevron-up"></span> R message
 </button>
-<pre style="display:none"><code class="message r">## 2014-09-25 04:53:09 plotRegionCoverage: extracting Tx info
-## 2014-09-25 04:53:17 plotRegionCoverage: getting Tx plot info
+<pre style="display:none"><code class="message r">## 2014-09-29 14:11:54 plotRegionCoverage: extracting Tx info
+## 2014-09-29 14:12:01 plotRegionCoverage: getting Tx plot info
 </code></pre>
 <div class="row">
 <div class="col-md-offset-3 col-md-6">
@@ -1549,21 +1582,22 @@ covers
 colnames(info) <- c('Number of Overlapping States', 'Frequency')
 info$State <- gsub('\\..*', '', rownames(info))
 rownames(info) <- NULL
-print(xtable(info, align=rep('c', 4)), type='html', include.rownames=FALSE)</code></pre>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Thu Sep 25 04:53:21 2014 -->
-<table border="1">
+kable(info, format = 'html', align=rep('c', 4))</code></pre>
+<table>
+<thead>
 <tr>
-<th>
+<th align="center">
 Number of Overlapping States
 </th>
-<th>
+<th align="center">
 Frequency
 </th>
-<th>
+<th align="center">
 State
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td align="center">
 0
@@ -1619,10 +1653,11 @@ intron
 intron
 </td>
 </tr>
+</tbody>
 </table>
 </div>
 <h2 id="region-information">Region information</h2>
-<p>Below is an interactive table with the top 33 regions (out of 33) as ranked by area. This table was generated using <code>rCharts</code> <a id='cite-vaidyanathan2013rcharts'></a>(<a href='#bib-vaidyanathan2013rcharts'>Vaidyanathan, 2013</a>). Inf and -Inf are shown as 1e100 and -1e100 respectively.</p>
+<p>Below is an interactive table with the top 33 regions (out of 33) as ranked by area. Inf and -Inf are shown as 1e100 and -1e100 respectively.</p>
 <link rel='stylesheet' href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css' />
 <script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'></script>
 <div class="row">
@@ -1647,1305 +1682,3524 @@ topArea <- replaceInf(topArea, grep('log2FoldChange|value|area',
     colnames(topArea)))
 
 ## Make the table
-d <- data.table(topArea)
-t1 <- dTable(d, sPaginationType=  'full_numbers', iDisplayLength=10,
-    sScrollX='100%')
-t1$print('regions', cdn=TRUE)</code></pre>
-<table id="regions" class="rChart datatables">
+kable(topArea, format = 'html', table.attr='id="regions_table"')</code></pre>
+<table id="regions_table">
+<thead>
+<tr>
+<th align="right">
+areaRank
+</th>
+<th align="left">
+seqnames
+</th>
+<th align="right">
+start
+</th>
+<th align="right">
+end
+</th>
+<th align="right">
+width
+</th>
+<th align="left">
+strand
+</th>
+<th align="right">
+value
+</th>
+<th align="right">
+area
+</th>
+<th align="right">
+indexStart
+</th>
+<th align="right">
+indexEnd
+</th>
+<th align="right">
+cluster
+</th>
+<th align="right">
+clusterL
+</th>
+<th align="right">
+meanCoverage
+</th>
+<th align="right">
+meanCEU
+</th>
+<th align="right">
+meanYRI
+</th>
+<th align="right">
+log2FoldChangeYRIvsCEU
+</th>
+<th align="right">
+pvalues
+</th>
+<th align="left">
+significant
+</th>
+<th align="right">
+qvalues
+</th>
+<th align="left">
+significantQval
+</th>
+<th align="left">
+name
+</th>
+<th align="left">
+annotation
+</th>
+<th align="left">
+description
+</th>
+<th align="left">
+region
+</th>
+<th align="right">
+distance
+</th>
+<th align="left">
+subregion
+</th>
+<th align="right">
+insidedistance
+</th>
+<th align="right">
+exonnumber
+</th>
+<th align="right">
+nexons
+</th>
+<th align="left">
+UTR
+</th>
+<th align="left">
+annoStrand
+</th>
+<th align="right">
+geneL
+</th>
+<th align="right">
+codingL
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">
+1
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47409522
+</td>
+<td align="right">
+47409560
+</td>
+<td align="right">
+39
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+15.054
+</td>
+<td align="right">
+587.092
+</td>
+<td align="right">
+128
+</td>
+<td align="right">
+166
+</td>
+<td align="right">
+3
+</td>
+<td align="right">
+167
+</td>
+<td align="right">
+0.4152
+</td>
+<td align="right">
+0.6129
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+7859
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+10
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+2
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47411924
+</td>
+<td align="right">
+47411986
+</td>
+<td align="right">
+63
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+7.097
+</td>
+<td align="right">
+447.092
+</td>
+<td align="right">
+618
+</td>
+<td align="right">
+680
+</td>
+<td align="right">
+6
+</td>
+<td align="right">
+389
+</td>
+<td align="right">
+0.5847
+</td>
+<td align="right">
+0.8375
+</td>
+<td align="right">
+0.0540
+</td>
+<td align="right">
+-3.956e+00
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+10261
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+16
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+3
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47417352
+</td>
+<td align="right">
+47417397
+</td>
+<td align="right">
+46
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+8.778
+</td>
+<td align="right">
+403.808
+</td>
+<td align="right">
+1292
+</td>
+<td align="right">
+1337
+</td>
+<td align="right">
+10
+</td>
+<td align="right">
+338
+</td>
+<td align="right">
+0.3647
+</td>
+<td align="right">
+0.5331
+</td>
+<td align="right">
+0.0109
+</td>
+<td align="right">
+-5.616e+00
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+15689
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+21
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+4
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47412662
+</td>
+<td align="right">
+47412724
+</td>
+<td align="right">
+63
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+5.671
+</td>
+<td align="right">
+357.287
+</td>
+<td align="right">
+843
+</td>
+<td align="right">
+905
+</td>
+<td align="right">
+7
+</td>
+<td align="right">
+63
+</td>
+<td align="right">
+0.5013
+</td>
+<td align="right">
+0.7400
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+10999
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+19
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+5
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47408998
+</td>
+<td align="right">
+47409026
+</td>
+<td align="right">
+29
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+10.685
+</td>
+<td align="right">
+309.872
+</td>
+<td align="right">
+69
+</td>
+<td align="right">
+97
+</td>
+<td align="right">
+2
+</td>
+<td align="right">
+232
+</td>
+<td align="right">
+0.1958
+</td>
+<td align="right">
+0.2890
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+7335
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+9
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+6
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47414081
+</td>
+<td align="right">
+47414143
+</td>
+<td align="right">
+63
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+3.308
+</td>
+<td align="right">
+208.430
+</td>
+<td align="right">
+994
+</td>
+<td align="right">
+1056
+</td>
+<td align="right">
+8
+</td>
+<td align="right">
+63
+</td>
+<td align="right">
+0.3646
+</td>
+<td align="right">
+0.5382
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+12418
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+20
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+7
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410893
+</td>
+<td align="right">
+47410930
+</td>
+<td align="right">
+38
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+5.453
+</td>
+<td align="right">
+207.198
+</td>
+<td align="right">
+407
+</td>
+<td align="right">
+444
+</td>
+<td align="right">
+5
+</td>
+<td align="right">
+269
+</td>
+<td align="right">
+0.4151
+</td>
+<td align="right">
+0.6128
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+9230
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+15
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+8
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47416094
+</td>
+<td align="right">
+47416131
+</td>
+<td align="right">
+38
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+5.109
+</td>
+<td align="right">
+194.160
+</td>
+<td align="right">
+1165
+</td>
+<td align="right">
+1202
+</td>
+<td align="right">
+9
+</td>
+<td align="right">
+222
+</td>
+<td align="right">
+0.0323
+</td>
+<td align="right">
+0.0476
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside intron
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+14431
+</td>
+<td align="left">
+inside intron
+</td>
+<td align="right">
+1204
+</td>
+<td align="right">
+21
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+9
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47415910
+</td>
+<td align="right">
+47415945
+</td>
+<td align="right">
+36
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+5.109
+</td>
+<td align="right">
+183.941
+</td>
+<td align="right">
+1129
+</td>
+<td align="right">
+1164
+</td>
+<td align="right">
+9
+</td>
+<td align="right">
+222
+</td>
+<td align="right">
+0.0323
+</td>
+<td align="right">
+0.0476
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside intron
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+14247
+</td>
+<td align="left">
+inside intron
+</td>
+<td align="right">
+1390
+</td>
+<td align="right">
+21
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+10
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47412088
+</td>
+<td align="right">
+47412131
+</td>
+<td align="right">
+44
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+3.344
+</td>
+<td align="right">
+147.148
+</td>
+<td align="right">
+691
+</td>
+<td align="right">
+734
+</td>
+<td align="right">
+6
+</td>
+<td align="right">
+389
+</td>
+<td align="right">
+0.4465
+</td>
+<td align="right">
+0.6591
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+10425
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+17
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+11
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47412277
+</td>
+<td align="right">
+47412312
+</td>
+<td align="right">
+36
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+3.575
+</td>
+<td align="right">
+128.717
+</td>
+<td align="right">
+735
+</td>
+<td align="right">
+770
+</td>
+<td align="right">
+6
+</td>
+<td align="right">
+389
+</td>
+<td align="right">
+0.5054
+</td>
+<td align="right">
+0.7460
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+10614
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+18
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+12
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47409034
+</td>
+<td align="right">
+47409056
+</td>
+<td align="right">
+23
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+5.557
+</td>
+<td align="right">
+127.814
+</td>
+<td align="right">
+105
+</td>
+<td align="right">
+127
+</td>
+<td align="right">
+2
+</td>
+<td align="right">
+232
+</td>
+<td align="right">
+0.1403
+</td>
+<td align="right">
+0.2070
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.0189
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="right">
+0.0134
+</td>
+<td align="left">
+TRUE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+overlaps exon downstream
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+7371
+</td>
+<td align="left">
+overlaps exon downstream
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+9
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+13
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47417614
+</td>
+<td align="right">
+47417650
+</td>
+<td align="right">
+37
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+2.849
+</td>
+<td align="right">
+105.427
+</td>
+<td align="right">
+1338
+</td>
+<td align="right">
+1374
+</td>
+<td align="right">
+10
+</td>
+<td align="right">
+338
+</td>
+<td align="right">
+0.4028
+</td>
+<td align="right">
+0.5470
+</td>
+<td align="right">
+0.1000
+</td>
+<td align="right">
+-2.451e+00
+</td>
+<td align="right">
+0.2453
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.1605
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+15951
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+22
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+14
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410934
+</td>
+<td align="right">
+47410955
+</td>
+<td align="right">
+22
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+3.652
+</td>
+<td align="right">
+80.353
+</td>
+<td align="right">
+448
+</td>
+<td align="right">
+469
+</td>
+<td align="right">
+5
+</td>
+<td align="right">
+269
+</td>
+<td align="right">
+0.3079
+</td>
+<td align="right">
+0.4545
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.3208
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.1819
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+9271
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+15
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+15
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47407554
+</td>
+<td align="right">
+47407568
+</td>
+<td align="right">
+15
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+4.704
+</td>
+<td align="right">
+70.563
+</td>
+<td align="right">
+18
+</td>
+<td align="right">
+32
+</td>
+<td align="right">
+1
+</td>
+<td align="right">
+32
+</td>
+<td align="right">
+0.2688
+</td>
+<td align="right">
+0.3968
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.3208
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.1819
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+5891
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+8
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+16
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47408825
+</td>
+<td align="right">
+47408860
+</td>
+<td align="right">
+36
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.162
+</td>
+<td align="right">
+41.823
+</td>
+<td align="right">
+33
+</td>
+<td align="right">
+68
+</td>
+<td align="right">
+2
+</td>
+<td align="right">
+232
+</td>
+<td align="right">
+0.0323
+</td>
+<td align="right">
+0.0476
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.5849
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside intron
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+7162
+</td>
+<td align="left">
+inside intron
+</td>
+<td align="right">
+138
+</td>
+<td align="right">
+9
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+17
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410702
+</td>
+<td align="right">
+47410714
+</td>
+<td align="right">
+13
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+2.378
+</td>
+<td align="right">
+30.920
+</td>
+<td align="right">
+368
+</td>
+<td align="right">
+380
+</td>
+<td align="right">
+5
+</td>
+<td align="right">
+269
+</td>
+<td align="right">
+0.5831
+</td>
+<td align="right">
+0.8608
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+9039
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+14
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+18
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410292
+</td>
+<td align="right">
+47410305
+</td>
+<td align="right">
+14
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+2.167
+</td>
+<td align="right">
+30.332
+</td>
+<td align="right">
+227
+</td>
+<td align="right">
+240
+</td>
+<td align="right">
+4
+</td>
+<td align="right">
+159
+</td>
+<td align="right">
+0.7673
+</td>
+<td align="right">
+1.1156
+</td>
+<td align="right">
+0.0357
+</td>
+<td align="right">
+-4.965e+00
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+8629
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+13
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+19
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410188
+</td>
+<td align="right">
+47410198
+</td>
+<td align="right">
+11
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+2.569
+</td>
+<td align="right">
+28.259
+</td>
+<td align="right">
+216
+</td>
+<td align="right">
+226
+</td>
+<td align="right">
+4
+</td>
+<td align="right">
+159
+</td>
+<td align="right">
+0.7947
+</td>
+<td align="right">
+1.1255
+</td>
+<td align="right">
+0.1000
+</td>
+<td align="right">
+-3.493e+00
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+8525
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+12
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+20
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410731
+</td>
+<td align="right">
+47410740
+</td>
+<td align="right">
+10
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+2.698
+</td>
+<td align="right">
+26.982
+</td>
+<td align="right">
+397
+</td>
+<td align="right">
+406
+</td>
+<td align="right">
+5
+</td>
+<td align="right">
+269
+</td>
+<td align="right">
+0.5065
+</td>
+<td align="right">
+0.7476
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+9068
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+14
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+21
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47407537
+</td>
+<td align="right">
+47407542
+</td>
+<td align="right">
+6
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+4.062
+</td>
+<td align="right">
+24.371
+</td>
+<td align="right">
+1
+</td>
+<td align="right">
+6
+</td>
+<td align="right">
+1
+</td>
+<td align="right">
+32
+</td>
+<td align="right">
+0.0591
+</td>
+<td align="right">
+0.0873
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+5874
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+8
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+22
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410687
+</td>
+<td align="right">
+47410698
+</td>
+<td align="right">
+12
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.774
+</td>
+<td align="right">
+21.285
+</td>
+<td align="right">
+353
+</td>
+<td align="right">
+364
+</td>
+<td align="right">
+5
+</td>
+<td align="right">
+269
+</td>
+<td align="right">
+0.6801
+</td>
+<td align="right">
+1.0040
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+9024
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+14
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+23
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410175
+</td>
+<td align="right">
+47410184
+</td>
+<td align="right">
+10
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.858
+</td>
+<td align="right">
+18.580
+</td>
+<td align="right">
+203
+</td>
+<td align="right">
+212
+</td>
+<td align="right">
+4
+</td>
+<td align="right">
+159
+</td>
+<td align="right">
+0.7355
+</td>
+<td align="right">
+1.0381
+</td>
+<td align="right">
+0.1000
+</td>
+<td align="right">
+-3.376e+00
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+8512
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+12
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+24
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410314
+</td>
+<td align="right">
+47410322
+</td>
+<td align="right">
+9
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+2.063
+</td>
+<td align="right">
+18.567
+</td>
+<td align="right">
+249
+</td>
+<td align="right">
+257
+</td>
+<td align="right">
+4
+</td>
+<td align="right">
+159
+</td>
+<td align="right">
+0.6487
+</td>
+<td align="right">
+0.9577
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+8651
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+13
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+25
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410716
+</td>
+<td align="right">
+47410726
+</td>
+<td align="right">
+11
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.631
+</td>
+<td align="right">
+17.947
+</td>
+<td align="right">
+382
+</td>
+<td align="right">
+392
+</td>
+<td align="right">
+5
+</td>
+<td align="right">
+269
+</td>
+<td align="right">
+0.5630
+</td>
+<td align="right">
+0.8312
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6226
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+9053
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+14
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+26
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47412078
+</td>
+<td align="right">
+47412083
+</td>
+<td align="right">
+6
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+2.294
+</td>
+<td align="right">
+13.763
+</td>
+<td align="right">
+681
+</td>
+<td align="right">
+686
+</td>
+<td align="right">
+6
+</td>
+<td align="right">
+389
+</td>
+<td align="right">
+0.4140
+</td>
+<td align="right">
+0.6032
+</td>
+<td align="right">
+0.0167
+</td>
+<td align="right">
+-5.178e+00
+</td>
+<td align="right">
+0.6981
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+10415
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+17
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+27
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47417655
+</td>
+<td align="right">
+47417662
+</td>
+<td align="right">
+8
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.570
+</td>
+<td align="right">
+12.562
+</td>
+<td align="right">
+1379
+</td>
+<td align="right">
+1386
+</td>
+<td align="right">
+10
+</td>
+<td align="right">
+338
+</td>
+<td align="right">
+0.2823
+</td>
+<td align="right">
+0.4167
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6981
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+15992
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+22
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+28
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410327
+</td>
+<td align="right">
+47410333
+</td>
+<td align="right">
+7
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.521
+</td>
+<td align="right">
+10.649
+</td>
+<td align="right">
+262
+</td>
+<td align="right">
+268
+</td>
+<td align="right">
+4
+</td>
+<td align="right">
+159
+</td>
+<td align="right">
+0.7558
+</td>
+<td align="right">
+1.1156
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.6981
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+8664
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+13
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+29
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47417666
+</td>
+<td align="right">
+47417672
+</td>
+<td align="right">
+7
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.216
+</td>
+<td align="right">
+8.509
+</td>
+<td align="right">
+1390
+</td>
+<td align="right">
+1396
+</td>
+<td align="right">
+10
+</td>
+<td align="right">
+338
+</td>
+<td align="right">
+0.2258
+</td>
+<td align="right">
+0.3333
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.7358
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+16003
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+22
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+30
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47409685
+</td>
+<td align="right">
+47409688
+</td>
+<td align="right">
+4
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.216
+</td>
+<td align="right">
+4.863
+</td>
+<td align="right">
+192
+</td>
+<td align="right">
+195
+</td>
+<td align="right">
+3
+</td>
+<td align="right">
+167
+</td>
+<td align="right">
+0.4758
+</td>
+<td align="right">
+0.6548
+</td>
+<td align="right">
+0.1000
+</td>
+<td align="right">
+-2.711e+00
+</td>
+<td align="right">
+0.7736
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+8022
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+11
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+31
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47417335
+</td>
+<td align="right">
+47417337
+</td>
+<td align="right">
+3
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.592
+</td>
+<td align="right">
+4.775
+</td>
+<td align="right">
+1275
+</td>
+<td align="right">
+1277
+</td>
+<td align="right">
+10
+</td>
+<td align="right">
+338
+</td>
+<td align="right">
+0.1290
+</td>
+<td align="right">
+0.1905
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.7736
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+15672
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+21
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+32
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47418068
+</td>
+<td align="right">
+47418068
+</td>
+<td align="right">
+1
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+3.998
+</td>
+<td align="right">
+3.998
+</td>
+<td align="right">
+1434
+</td>
+<td align="right">
+1434
+</td>
+<td align="right">
+11
+</td>
+<td align="right">
+1
+</td>
+<td align="right">
+0.0323
+</td>
+<td align="right">
+0.0476
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.7736
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2057
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+16405
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+23
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+<tr>
+<td align="right">
+33
+</td>
+<td align="left">
+chr21
+</td>
+<td align="right">
+47410311
+</td>
+<td align="right">
+47410312
+</td>
+<td align="right">
+2
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+1.144
+</td>
+<td align="right">
+2.287
+</td>
+<td align="right">
+246
+</td>
+<td align="right">
+247
+</td>
+<td align="right">
+4
+</td>
+<td align="right">
+159
+</td>
+<td align="right">
+0.7258
+</td>
+<td align="right">
+1.0714
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-1.000e+100
+</td>
+<td align="right">
+0.9623
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="right">
+0.2481
+</td>
+<td align="left">
+FALSE
+</td>
+<td align="left">
+COL6A1
+</td>
+<td align="left">
+NM_001848 NP_001839
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="left">
+inside
+</td>
+<td align="right">
+8648
+</td>
+<td align="left">
+inside exon
+</td>
+<td align="right">
+0
+</td>
+<td align="right">
+13
+</td>
+<td align="right">
+35
+</td>
+<td align="left">
+inside transcription region
+</td>
+<td align="left">
+<ul>
+<li></td>
+<td align="right">
+23300
+</td>
+<td align="right">
+22162
+</td>
+</tr>
+</tbody>
 </table>
+</div></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 <script type="text/javascript" charset="utf-8">
-  var chartParamsregions = {
- "dom": "regions",
-"width":    800,
-"height":    400,
-"table": {
- "aaData": [
- [
- 1,
-"chr21",
-47409522,
-47409560,
-39,
-"*",
-15.054,
-587.09,
-128,
-166,
-3,
-   167,
-0.41522,
-0.61294,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  7859,
-"inside exon",
-     0,
-10,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 2,
-"chr21",
-47411924,
-47411986,
-63,
-"*",
-7.0967,
-447.09,
-618,
-680,
-6,
-   389,
-0.58474,
-0.83749,
-0.053968,
--3.9559,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 10261,
-"inside exon",
-     0,
-16,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 3,
-"chr21",
-47417352,
-47417397,
-46,
-"*",
-8.7784,
-403.81,
-1292,
-1337,
-10,
-   338,
-0.36466,
-0.53313,
-0.01087,
--5.6161,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 15689,
-"inside exon",
-     0,
-21,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 4,
-"chr21",
-47412662,
-47412724,
-63,
-"*",
-5.6712,
-357.29,
-843,
-905,
-7,
-    63,
-0.50128,
-0.73998,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 10999,
-"inside exon",
-     0,
-19,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 5,
-"chr21",
-47408998,
-47409026,
-29,
-"*",
-10.685,
-309.87,
-69,
-97,
-2,
-   232,
-0.19577,
- 0.289,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  7335,
-"inside exon",
-     0,
-9,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 6,
-"chr21",
-47414081,
-47414143,
-63,
-"*",
-3.3084,
-208.43,
-994,
-1056,
-8,
-    63,
-0.36457,
-0.53817,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 12418,
-"inside exon",
-     0,
-20,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 7,
-"chr21",
-47410893,
-47410930,
-38,
-"*",
-5.4526,
- 207.2,
-407,
-444,
-5,
-   269,
-0.41511,
-0.61278,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  9230,
-"inside exon",
-     0,
-15,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 8,
-"chr21",
-47416094,
-47416131,
-38,
-"*",
-5.1095,
-194.16,
-1165,
-1202,
-9,
-   222,
-0.032258,
-0.047619,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside intron",
-"inside",
- 14431,
-"inside intron",
-  1204,
-21,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 9,
-"chr21",
-47415910,
-47415945,
-36,
-"*",
-5.1095,
-183.94,
-1129,
-1164,
-9,
-   222,
-0.032258,
-0.047619,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside intron",
-"inside",
- 14247,
-"inside intron",
-  1390,
-21,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 10,
-"chr21",
-47412088,
-47412131,
-44,
-"*",
-3.3443,
-147.15,
-691,
-734,
-6,
-   389,
-0.44648,
-0.65909,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 10425,
-"inside exon",
-     0,
-17,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 11,
-"chr21",
-47412277,
-47412312,
-36,
-"*",
-3.5755,
-128.72,
-735,
-770,
-6,
-   389,
-0.50538,
-0.74603,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 10614,
-"inside exon",
-     0,
-18,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 12,
-"chr21",
-47409034,
-47409056,
-23,
-"*",
-5.5571,
-127.81,
-105,
-127,
-2,
-   232,
-0.14025,
-0.20704,
-     0,
--1e+100,
-0.018868,
-"TRUE",
-0.013377,
-"TRUE",
-"COL6A1",
-"NM_001848 NP_001839",
-"overlaps exon downstream",
-"inside",
-  7371,
-"overlaps exon downstream",
-     0,
-9,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 13,
-"chr21",
-47417614,
-47417650,
-37,
-"*",
-2.8494,
-105.43,
-1338,
-1374,
-10,
-   338,
-0.40279,
-0.54698,
-   0.1,
--2.4515,
-0.24528,
-"FALSE",
-0.16052,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 15951,
-"inside exon",
-     0,
-22,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 14,
-"chr21",
-47410934,
-47410955,
-22,
-"*",
-3.6524,
-80.353,
-448,
-469,
-5,
-   269,
-0.30792,
-0.45455,
-     0,
--1e+100,
-0.32075,
-"FALSE",
-0.18193,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  9271,
-"inside exon",
-     0,
-15,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 15,
-"chr21",
-47407554,
-47407568,
-15,
-"*",
-4.7042,
-70.563,
-18,
-32,
-1,
-    32,
-0.26882,
-0.39683,
-     0,
--1e+100,
-0.32075,
-"FALSE",
-0.18193,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  5891,
-"inside exon",
-     0,
-8,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 16,
-"chr21",
-47408825,
-47408860,
-36,
-"*",
-1.1617,
-41.823,
-33,
-68,
-2,
-   232,
-0.032258,
-0.047619,
-     0,
--1e+100,
-0.58491,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside intron",
-"inside",
-  7162,
-"inside intron",
-   138,
-9,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 17,
-"chr21",
-47410702,
-47410714,
-13,
-"*",
-2.3785,
- 30.92,
-368,
-380,
-5,
-   269,
-0.58313,
-0.86081,
-     0,
--1e+100,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  9039,
-"inside exon",
-     0,
-14,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 18,
-"chr21",
-47410292,
-47410305,
-14,
-"*",
-2.1666,
-30.332,
-227,
-240,
-4,
-   159,
-0.76728,
-1.1156,
-0.035714,
--4.9652,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  8629,
-"inside exon",
-     0,
-13,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 19,
-"chr21",
-47410188,
-47410198,
-11,
-"*",
- 2.569,
- 28.26,
-216,
-226,
-4,
-   159,
-0.79472,
-1.1255,
-   0.1,
--3.4925,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  8525,
-"inside exon",
-     0,
-12,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 20,
-"chr21",
-47410731,
-47410740,
-10,
-"*",
-2.6982,
-26.982,
-397,
-406,
-5,
-   269,
-0.50645,
-0.74762,
-     0,
--1e+100,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  9068,
-"inside exon",
-     0,
-14,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 21,
-"chr21",
-47407537,
-47407542,
-6,
-"*",
-4.0618,
-24.371,
-1,
-6,
-1,
-    32,
-0.05914,
-0.087302,
-     0,
--1e+100,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  5874,
-"inside exon",
-     0,
-8,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 22,
-"chr21",
-47410687,
-47410698,
-12,
-"*",
-1.7737,
-21.285,
-353,
-364,
-5,
-   269,
-0.68011,
- 1.004,
-     0,
--1e+100,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  9024,
-"inside exon",
-     0,
-14,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 23,
-"chr21",
-47410175,
-47410184,
-10,
-"*",
- 1.858,
- 18.58,
-203,
-212,
-4,
-   159,
-0.73548,
-1.0381,
-   0.1,
--3.3759,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  8512,
-"inside exon",
-     0,
-12,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 24,
-"chr21",
-47410314,
-47410322,
-9,
-"*",
- 2.063,
-18.567,
-249,
-257,
-4,
-   159,
-0.64875,
-0.95767,
-     0,
--1e+100,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  8651,
-"inside exon",
-     0,
-13,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 25,
-"chr21",
-47410716,
-47410726,
-11,
-"*",
-1.6315,
-17.947,
-382,
-392,
-5,
-   269,
-0.56305,
-0.83117,
-     0,
--1e+100,
-0.62264,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  9053,
-"inside exon",
-     0,
-14,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 26,
-"chr21",
-47412078,
-47412083,
-6,
-"*",
-2.2938,
-13.763,
-681,
-686,
-6,
-   389,
-0.41398,
-0.60317,
-0.016667,
--5.1775,
-0.69811,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 10415,
-"inside exon",
-     0,
-17,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 27,
-"chr21",
-47417655,
-47417662,
-8,
-"*",
-1.5703,
-12.562,
-1379,
-1386,
-10,
-   338,
-0.28226,
-0.41667,
-     0,
--1e+100,
-0.69811,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 15992,
-"inside exon",
-     0,
-22,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 28,
-"chr21",
-47410327,
-47410333,
-7,
-"*",
-1.5212,
-10.649,
-262,
-268,
-4,
-   159,
-0.75576,
-1.1156,
-     0,
--1e+100,
-0.69811,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  8664,
-"inside exon",
-     0,
-13,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 29,
-"chr21",
-47417666,
-47417672,
-7,
-"*",
-1.2155,
-8.5086,
-1390,
-1396,
-10,
-   338,
-0.22581,
-0.33333,
-     0,
--1e+100,
-0.73585,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 16003,
-"inside exon",
-     0,
-22,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 30,
-"chr21",
-47409685,
-47409688,
-4,
-"*",
-1.2159,
-4.8634,
-192,
-195,
-3,
-   167,
-0.47581,
-0.65476,
-   0.1,
--2.711,
-0.77358,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  8022,
-"inside exon",
-     0,
-11,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 31,
-"chr21",
-47417335,
-47417337,
-3,
-"*",
-1.5916,
-4.7749,
-1275,
-1277,
-10,
-   338,
-0.12903,
-0.19048,
-     0,
--1e+100,
-0.77358,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 15672,
-"inside exon",
-     0,
-21,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 32,
-"chr21",
-47418068,
-47418068,
-1,
-"*",
-3.9977,
-3.9977,
-1434,
-1434,
-11,
-     1,
-0.032258,
-0.047619,
-     0,
--1e+100,
-0.77358,
-"FALSE",
-0.20567,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
- 16405,
-"inside exon",
-     0,
-23,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-],
-[
- 33,
-"chr21",
-47410311,
-47410312,
-2,
-"*",
-1.1436,
-2.2873,
-246,
-247,
-4,
-   159,
-0.72581,
-1.0714,
-     0,
--1e+100,
-0.96226,
-"FALSE",
-0.24808,
-"FALSE",
-"COL6A1",
-"NM_001848 NP_001839",
-"inside exon",
-"inside",
-  8648,
-"inside exon",
-     0,
-13,
-35,
-"inside transcription region",
-"+",
- 23300,
- 22162 
-] 
-],
-"aoColumns": [
- {
- "sTitle": "areaRank" 
-},
-{
- "sTitle": "seqnames" 
-},
-{
- "sTitle": "start" 
-},
-{
- "sTitle": "end" 
-},
-{
- "sTitle": "width" 
-},
-{
- "sTitle": "strand" 
-},
-{
- "sTitle": "value" 
-},
-{
- "sTitle": "area" 
-},
-{
- "sTitle": "indexStart" 
-},
-{
- "sTitle": "indexEnd" 
-},
-{
- "sTitle": "cluster" 
-},
-{
- "sTitle": "clusterL" 
-},
-{
- "sTitle": "meanCoverage" 
-},
-{
- "sTitle": "meanCEU" 
-},
-{
- "sTitle": "meanYRI" 
-},
-{
- "sTitle": "log2FoldChangeYRIvsCEU" 
-},
-{
- "sTitle": "pvalues" 
-},
-{
- "sTitle": "significant" 
-},
-{
- "sTitle": "qvalues" 
-},
-{
- "sTitle": "significantQval" 
-},
-{
- "sTitle": "name" 
-},
-{
- "sTitle": "annotation" 
-},
-{
- "sTitle": "description" 
-},
-{
- "sTitle": "region" 
-},
-{
- "sTitle": "distance" 
-},
-{
- "sTitle": "subregion" 
-},
-{
- "sTitle": "insidedistance" 
-},
-{
- "sTitle": "exonnumber" 
-},
-{
- "sTitle": "nexons" 
-},
-{
- "sTitle": "UTR" 
-},
-{
- "sTitle": "annoStrand" 
-},
-{
- "sTitle": "geneL" 
-},
-{
- "sTitle": "codingL" 
-} 
-],
-"sPaginationType": "full_numbers",
-"iDisplayLength":     10,
-"sScrollX": "100%" 
-},
-"id": "regions" 
-}
-  $('#' + chartParamsregions.id).removeClass("rChart")
-
-  $(document).ready(function() {
-        drawDataTable(chartParamsregions)
+$(document).ready(function() {
+    $('#regions_table').dataTable({
+        "sPaginationType": "full_numbers",
+        "sScrollX": "100%"
     });
-  function drawDataTable(chartParams){
-    var dTable = $('#' + chartParams.dom).dataTable(
-      chartParams.table
-    );
-    //first use rCharts width
-    $('#'+chartParams.id+"_wrapper").css("width",chartParams.width)  
-        $('#'+chartParams.id+"_wrapper").css("width",chartParams.table.width)
-    
-    //then if specified change to table width
-    $('#'+chartParams.id+"_wrapper").css("margin-left", "auto");
-    $('#'+chartParams.id+"_wrapper").css("margin-right", "auto");
-        dTable.fnAdjustColumnSizing();
-  }
-        
+});
 </script>
-</div>
 <h1 id="best-region-clusters">Best region clusters</h1>
-<p>The following plots were made using <code>ggbio</code> (<a href='#bib-yin2012ggbio'>Yin, Cook, and Lawrence, 2012</a>) which in turn uses <code>ggplot2</code> (<a href='http://had.co.nz/ggplot2/book'>Wickham, 2009</a>). For more details check <code>plotCluster()</code> in <code>derfinder</code> (<a href='https://github.com/lcolladotor/derfinder'>Collado-Torres, Frazee, Jaffe, and Leek, 2014</a>).</p>
+<p>The following plots were made using <code>ggbio</code> (<a href='#bib-ggbio'>Yin, Cook, and Lawrence, 2012</a>) which in turn uses <code>ggplot2</code> (<a href='http://had.co.nz/ggplot2/book'>Wickham, 2009</a>). For more details check <code>plotCluster()</code> in <code>derfinder</code> (<a href='https://github.com/lcolladotor/derfinder'>Collado-Torres, Frazee, Jaffe, and Leek, 2014</a>).</p>
 <h2 id="plots-1">Plots</h2>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -3066,73 +5320,64 @@ summary(permuteDetail[, m])</code></pre>
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
 </button>
-<pre style="display:none"><code class="source r">d2 <- data.table(permuteDetail)
-t2 <- dTable(d2, sPaginationType = 'full_numbers', iDisplayLength=10, 
-    sScrollX='100%')
-t2$print('permutation')</code></pre>
-<table id="permutation" class="rChart datatables">
+<pre style="display:none"><code class="source r">kable(permuteDetail, format = 'html', table.attr='id="permutation_table"')</code></pre>
+<table id="permutation_table">
+<thead>
+<tr>
+<th align="right">
+permutation
+</th>
+<th align="left">
+group
+</th>
+<th align="right">
+CEU
+</th>
+<th align="right">
+YRI
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">
+1
+</td>
+<td align="left">
+CEU
+</td>
+<td align="right">
+15
+</td>
+<td align="right">
+6
+</td>
+</tr>
+<tr>
+<td align="right">
+1
+</td>
+<td align="left">
+YRI
+</td>
+<td align="right">
+6
+</td>
+<td align="right">
+4
+</td>
+</tr>
+</tbody>
 </table>
-<script type="text/javascript" charset="utf-8">
-  var chartParamspermutation = {
- "dom": "permutation",
-"width":    800,
-"height":    400,
-"table": {
- "aaData": [
- [
- 1,
-"CEU",
-15,
-6 
-],
-[
- 1,
-"YRI",
-6,
-4 
-] 
-],
-"aoColumns": [
- {
- "sTitle": "permutation" 
-},
-{
- "sTitle": "group" 
-},
-{
- "sTitle": "CEU" 
-},
-{
- "sTitle": "YRI" 
-} 
-],
-"sPaginationType": "full_numbers",
-"iDisplayLength":     10,
-"sScrollX": "100%" 
-},
-"id": "permutation" 
-}
-  $('#' + chartParamspermutation.id).removeClass("rChart")
-
-  $(document).ready(function() {
-        drawDataTable(chartParamspermutation)
-    });
-  function drawDataTable(chartParams){
-    var dTable = $('#' + chartParams.dom).dataTable(
-      chartParams.table
-    );
-    //first use rCharts width
-    $('#'+chartParams.id+"_wrapper").css("width",chartParams.width)  
-        $('#'+chartParams.id+"_wrapper").css("width",chartParams.table.width)
-    
-    //then if specified change to table width
-    $('#'+chartParams.id+"_wrapper").css("margin-left", "auto");
-    $('#'+chartParams.id+"_wrapper").css("margin-right", "auto");
-        dTable.fnAdjustColumnSizing();
-  }
-        
-</script>
 </div>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+    $('#permutation_table').dataTable({
+        "sPaginationType": "full_numbers",
+        "sScrollX": "100%"
+    });
+});
+</script>
 <h1 id="reproducibility">Reproducibility</h1>
 <h2 id="general-information">General information</h2>
 <p>The F-statistic cutoff used was 1 and type of cutoff used was manual. Furthermore, the maximum region (data) gap was set to 0 and the maximum cluster gap was set to 300.</p>
@@ -3155,7 +5400,7 @@ t2$print('permutation')</code></pre>
 <pre style=""><code class="output r">## mergeResults(chrs = "chr21", prefix = "report", genomicState = genomicState$fullGenome)
 </code></pre>
 </div>
-<p>This report was generated in path /Users/lcollado/enigma2/regionReport/vignettes using the following call to <code>derfinderReport()</code>:</p>
+<p>This report was generated in path /Users/lcollado/Dropbox/JHSPH/Code/regionReport/vignettes/realVignettes using the following call to <code>derfinderReport()</code>:</p>
 <div class="row">
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
@@ -3170,7 +5415,7 @@ t2$print('permutation')</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] "2014-09-25 04:53:43 EDT"
+<pre style=""><code class="output r">## [1] "2014-09-29 14:12:26 EDT"
 </code></pre>
 </div>
 <p>Wallclock time spent generating the report.</p>
@@ -3178,7 +5423,7 @@ t2$print('permutation')</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## Time difference of 42.83 secs
+<pre style=""><code class="output r">## Time difference of 42.86 secs
 </code></pre>
 </div>
 <p><code>R</code> session information.</p>
@@ -3210,6 +5455,7 @@ t2$print('permutation')</code></pre>
 <pre style=""><code class="output r">##  package                           * version  date      
 ##  acepack                             1.3.3.3  2013-05-03
 ##  AnnotationDbi                     * 1.27.15  2014-09-24
+##  base64enc                           0.1.2    2014-06-26
 ##  BatchJobs                           1.3      2014-07-10
 ##  BBmisc                              1.7      2014-06-21
 ##  bibtex                              0.3.6    2013-07-29
@@ -3228,8 +5474,7 @@ t2$print('permutation')</code></pre>
 ##  cluster                             1.15.3   2014-09-04
 ##  codetools                           0.2.9    2014-08-21
 ##  colorspace                          1.2.4    2013-09-30
-##  data.table                        * 1.9.2    2014-02-27
-##  DBI                                 0.3.0    2014-09-03
+##  DBI                                 0.3.1    2014-09-24
 ##  derfinder                         * 0.99.0   2014-09-25
 ##  derfinderHelper                     0.99.0   2014-09-25
 ##  derfinderPlot                       0.99.0   2014-09-25
@@ -3262,7 +5507,7 @@ t2$print('permutation')</code></pre>
 ##  IRanges                           * 1.99.28  2014-09-10
 ##  iterators                           1.0.7    2014-04-11
 ##  knitcitations                       1.0.2    2014-09-23
-##  knitr                               1.6      2014-05-25
+##  knitr                             * 1.6      2014-05-25
 ##  knitrBootstrap                      1.0.0    2014-09-23
 ##  labeling                            0.3      2014-08-23
 ##  lambda.r                            1.1.6    2014-01-23
@@ -3292,7 +5537,7 @@ t2$print('permutation')</code></pre>
 ##  Rcpp                                0.11.2   2014-06-08
 ##  RCurl                               1.95.4.3 2014-07-29
 ##  RefManageR                          0.8.34   2014-08-19
-##  regionReport                      * 0.99.0   2014-09-25
+##  regionReport                      * 0.99.2   2014-09-29
 ##  registry                            0.2      2012-01-24
 ##  reshape                             0.8.5    2014-04-23
 ##  reshape2                            1.4      2014-04-23
@@ -3306,43 +5551,43 @@ t2$print('permutation')</code></pre>
 ##  rtracklayer                         1.25.16  2014-09-10
 ##  S4Vectors                         * 0.2.4    2014-09-14
 ##  scales                              0.2.4    2014-04-22
-##  sendmailR                           1.1.2    2012-11-15
+##  sendmailR                           1.2.1    2014-09-21
 ##  stringr                             0.6.2    2012-12-06
 ##  survival                            2.37.7   2014-01-22
 ##  TxDb.Hsapiens.UCSC.hg19.knownGene * 2.14.0   2014-03-20
 ##  VariantAnnotation                   1.11.35  2014-09-18
 ##  whisker                             0.3.2    2013-04-28
 ##  XML                                 3.98.1.1 2013-06-20
-##  xtable                            * 1.7.4    2014-09-12
+##  xtable                              1.7.4    2014-09-12
 ##  XVector                           * 0.5.8    2014-09-07
 ##  yaml                                2.1.13   2014-06-12
 ##  zlibbioc                            1.11.1   2014-04-19
 ##  source                                      
 ##  CRAN (R 3.1.0)                              
 ##  Bioconductor                                
-##  CRAN (R 3.1.1)                              
-##  CRAN (R 3.1.0)                              
-##  CRAN (R 3.1.0)                              
-##  Bioconductor                                
-##  Bioconductor                                
-##  Bioconductor                                
-##  Bioconductor                                
-##  Bioconductor                                
-##  Bioconductor                                
-##  CRAN (R 3.1.0)                              
-##  CRAN (R 3.1.0)                              
-##  Bioconductor                                
-##  Bioconductor                                
 ##  CRAN (R 3.1.0)                              
 ##  CRAN (R 3.1.1)                              
-##  CRAN (R 3.1.1)                              
-##  CRAN (R 3.1.1)                              
 ##  CRAN (R 3.1.0)                              
+##  CRAN (R 3.1.0)                              
+##  Bioconductor                                
+##  Bioconductor                                
+##  Bioconductor                                
+##  Bioconductor                                
+##  Bioconductor                                
+##  Bioconductor                                
+##  CRAN (R 3.1.0)                              
+##  CRAN (R 3.1.0)                              
+##  Bioconductor                                
+##  Bioconductor                                
+##  CRAN (R 3.1.0)                              
+##  CRAN (R 3.1.1)                              
+##  CRAN (R 3.1.1)                              
+##  CRAN (R 3.1.1)                              
 ##  CRAN (R 3.1.0)                              
 ##  CRAN (R 3.1.1)                              
 ##  Github (lcolladotor/derfinder@5e07a12)      
 ##  Github (lcolladotor/derfinderHelper@5a7fb10)
-##  Github (lcolladotor/derfinderPlot@cfcc1e4)  
+##  Github (lcolladotor/derfinderPlot@ca2c4de)  
 ##  CRAN (R 3.1.1)                              
 ##  CRAN (R 3.1.0)                              
 ##  CRAN (R 3.1.0)                              
@@ -3402,7 +5647,7 @@ t2$print('permutation')</code></pre>
 ##  CRAN (R 3.1.0)                              
 ##  CRAN (R 3.1.1)                              
 ##  CRAN (R 3.1.1)                              
-##  Github (lcolladotor/regionReport@b56e84e)   
+##  Bioconductor                                
 ##  CRAN (R 3.1.0)                              
 ##  CRAN (R 3.1.0)                              
 ##  CRAN (R 3.1.0)                              
@@ -3416,7 +5661,7 @@ t2$print('permutation')</code></pre>
 ##  Bioconductor                                
 ##  Bioconductor                                
 ##  CRAN (R 3.1.0)                              
-##  CRAN (R 3.1.0)                              
+##  CRAN (R 3.1.1)                              
 ##  CRAN (R 3.1.0)                              
 ##  CRAN (R 3.1.0)                              
 ##  Bioconductor                                
@@ -3430,35 +5675,32 @@ t2$print('permutation')</code></pre>
 </code></pre>
 </div>
 <h1 id="bibliography">Bibliography</h1>
-<p>This report was created with <code>regionReport</code> (<a href='https://github.com/lcolladotor/regionReport'>Collado-Torres, Jaffe, and Leek, 2014</a>) using <code>knitrBootstrap</code> <a id='cite-hester2014knitrbootstrap'></a>(<a href='https://github.com/jimhester/'>Hester, 2014</a>) to format the html while <code>knitr</code> <a id='cite-xie2014knitr'></a>(<a href='http://www.crcpress.com/product/isbn/9781466561595'>Xie, 2014</a>) and <code>rmarkdown</code> <a id='cite-allaire2014rmarkdown'></a>(<a href='http://CRAN.R-project.org/package=rmarkdown'>Allaire, McPherson, Xie, Wickham, et al., 2014</a>) were running behind the scenes.</p>
-<p>Citations made with <code>knitcitations</code> <a id='cite-boettigerknitcitations'></a>(<a href='https://github.com/cboettig/knitcitations'>Boettiger, 2014</a>).</p>
+<p>This report was created with <code>regionReport</code> (<a href='https://github.com/lcolladotor/regionReport'>Collado-Torres, Jaffe, and Leek, 2014</a>) using <code>knitrBootstrap</code> <a id='cite-knitrBootstrap'></a>(<a href='https://github.com/jimhester/'>Hester, 2014</a>) to format the html while <code>knitr</code> <a id='cite-knitr'></a>(<a href='http://www.crcpress.com/product/isbn/9781466561595'>Xie, 2014</a>) and <code>rmarkdown</code> <a id='cite-rmarkdown'></a>(<a href='http://CRAN.R-project.org/package=rmarkdown'>Allaire, McPherson, Xie, Wickham, et al., 2014</a>) were running behind the scenes.</p>
+<p>Citations made with <code>knitcitations</code> <a id='cite-knitcitations'></a>(<a href='https://github.com/cboettig/knitcitations'>Boettiger, 2014</a>).</p>
 <div class="row">
 <p>
-<a id='bib-allaire2014rmarkdown'></a><a href="#cite-allaire2014rmarkdown">[1]</a><cite> J. Allaire, J. McPherson, Y. Xie, H. Wickham, et al. <EM>rmarkdown: Dynamic Documents for R</EM>. R package version 0.3.3. 2014. URL: <a href="http://CRAN.R-project.org/package=rmarkdown">http://CRAN.R-project.org/package=rmarkdown</a>.</cite>
+<a id='bib-rmarkdown'></a><a href="#cite-rmarkdown">[1]</a><cite> J. Allaire, J. McPherson, Y. Xie, H. Wickham, et al. <EM>rmarkdown: Dynamic Documents for R</EM>. R package version 0.3.3. 2014. URL: <a href="http://CRAN.R-project.org/package=rmarkdown">http://CRAN.R-project.org/package=rmarkdown</a>.</cite>
 </p>
 <p>
-<a id='bib-boettigerknitcitations'></a><a href="#cite-boettigerknitcitations">[2]</a><cite> C. Boettiger. <EM>knitcitations: Citations for knitr markdown files</EM>. R package version 1.0.2. 2014. URL: <a href="https://github.com/cboettig/knitcitations">https://github.com/cboettig/knitcitations</a>.</cite>
+<a id='bib-knitcitations'></a><a href="#cite-knitcitations">[2]</a><cite> C. Boettiger. <EM>knitcitations: Citations for knitr markdown files</EM>. R package version 1.0.2. 2014. URL: <a href="https://github.com/cboettig/knitcitations">https://github.com/cboettig/knitcitations</a>.</cite>
 </p>
 <p>
-<a id='bib-colladotorres2014derfinder'></a><a href="#cite-colladotorres2014derfinder">[3]</a><cite> L. Collado-Torres, A. Frazee, A. Jaffe and J. Leek. <EM>derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution</EM>. R package version 0.99.0. 2014. URL: <a href="https://github.com/lcolladotor/derfinder">https://github.com/lcolladotor/derfinder</a>.</cite>
+<a id='bib-derfinder'></a><a href="#cite-derfinder">[3]</a><cite> L. Collado-Torres, A. Frazee, A. Jaffe and J. Leek. <EM>derfinder: Fast differential expression analysis of RNA-seq data at base-pair resolution</EM>. R package version 0.99.0. 2014. URL: <a href="https://github.com/lcolladotor/derfinder">https://github.com/lcolladotor/derfinder</a>.</cite>
 </p>
 <p>
-<a id='bib-colladotorres2014regionreport'></a><a href="#cite-colladotorres2014regionreport">[4]</a><cite> L. Collado-Torres, A. Jaffe and J. Leek. <EM>regionReport: Generate HTML reports for exploring a set of regions</EM>. R package version 0.99.0. 2014. URL: <a href="https://github.com/lcolladotor/regionReport">https://github.com/lcolladotor/regionReport</a>.</cite>
+<a id='bib-regionReport'></a><a href="#cite-regionReport">[4]</a><cite> L. Collado-Torres, A. Jaffe and J. Leek. <EM>regionReport: Generate HTML reports for exploring a set of regions</EM>. R package version 0.99.2. 2014. URL: <a href="https://github.com/lcolladotor/regionReport">https://github.com/lcolladotor/regionReport</a>.</cite>
 </p>
 <p>
-<a id='bib-hester2014knitrbootstrap'></a><a href="#cite-hester2014knitrbootstrap">[5]</a><cite> J. Hester. <EM>knitrBootstrap: Knitr Bootstrap framework.</EM> R package version 1.0.0. 2014. URL: <a href="https://github.com/jimhester/">https://github.com/jimhester/</a>.</cite>
+<a id='bib-knitrBootstrap'></a><a href="#cite-knitrBootstrap">[5]</a><cite> J. Hester. <EM>knitrBootstrap: Knitr Bootstrap framework.</EM> R package version 1.0.0. 2014. URL: <a href="https://github.com/jimhester/">https://github.com/jimhester/</a>.</cite>
 </p>
 <p>
-<a id='bib-vaidyanathan2013rcharts'></a><a href="#cite-vaidyanathan2013rcharts">[6]</a><cite> R. Vaidyanathan. <EM>rCharts: Interactive Charts using Polycharts.js</EM>. R package version 0.4.2. 2013.</cite>
+<a id='bib-ggplot2'></a><a href="#cite-ggplot2">[6]</a><cite> H. Wickham. <EM>ggplot2: elegant graphics for data analysis</EM>. Springer New York, 2009. ISBN: 978-0-387-98140-6. URL: <a href="http://had.co.nz/ggplot2/book">http://had.co.nz/ggplot2/book</a>.</cite>
 </p>
 <p>
-<a id='bib-wickham2009ggplot2'></a><a href="#cite-wickham2009ggplot2">[7]</a><cite> H. Wickham. <EM>ggplot2: elegant graphics for data analysis</EM>. Springer New York, 2009. ISBN: 978-0-387-98140-6. URL: <a href="http://had.co.nz/ggplot2/book">http://had.co.nz/ggplot2/book</a>.</cite>
+<a id='bib-knitr'></a><a href="#cite-knitr">[7]</a><cite> Y. Xie. “knitr: A Comprehensive Tool for Reproducible Research in R”. In: <EM>Implementing Reproducible Computational Research</EM>. Ed. by V. Stodden, F. Leisch and R. D. Peng. ISBN 978-1466561595. Chapman and Hall/CRC, 2014. URL: <a href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>.</cite>
 </p>
 <p>
-<a id='bib-xie2014knitr'></a><a href="#cite-xie2014knitr">[8]</a><cite> Y. Xie. “knitr: A Comprehensive Tool for Reproducible Research in R”. In: <EM>Implementing Reproducible Computational Research</EM>. Ed. by V. Stodden, F. Leisch and R. D. Peng. ISBN 978-1466561595. Chapman and Hall/CRC, 2014. URL: <a href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>.</cite>
-</p>
-<p>
-<a id='bib-yin2012ggbio'></a><a href="#cite-yin2012ggbio">[9]</a><cite> T. Yin, D. Cook and M. Lawrence. “ggbio: an R package for extending the grammar of graphics for genomic data”. In: <EM>Genome Biology</EM> 13.8 (2012), p. R77.</cite>
+<a id='bib-ggbio'></a><a href="#cite-ggbio">[8]</a><cite> T. Yin, D. Cook and M. Lawrence. “ggbio: an R package for extending the grammar of graphics for genomic data”. In: <EM>Genome Biology</EM> 13.8 (2012), p. R77.</cite>
 </p>
 </div>
 </div>

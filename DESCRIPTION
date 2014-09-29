@@ -35,8 +35,7 @@ Imports:
     knitrBootstrap (>= 0.9.0),
     mgcv,
     RColorBrewer,
-    rmarkdown (>= 0.3.3),
-    xtable
+    rmarkdown (>= 0.3.3)
 Suggests:
     biovizBase,
     Cairo,

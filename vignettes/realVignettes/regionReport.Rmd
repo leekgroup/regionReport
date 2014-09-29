@@ -45,14 +45,15 @@ write.bibtex(c(knitcitations = citation('knitcitations'),
     file = 'derfinderPlotRef.bib')
 bib <- read.bibtex('derfinderPlotRef.bib')
 
-## Fix some names to work with CRAN and GitHub versions
-names(bib)[names(bib) == 'hester2013knitrbootstrap'] <- 'hester2014knitrbootstrap'
+## Assign short names
+names(bib) <- c('knitcitations', 'derfinder', 'regionReport', 'knitrBootstrap',
+    'ggbio', 'ggplot2', 'knitr', 'rmarkdown')
 ```
 
 
-`regionReport` `r citep(bib[['colladotorres2014regionreport']])` creates HTML reports 
-styled with `knitrBootstrap` `r citep(bib[['hester2014knitrbootstrap']])` for 
-a set of regions such as `derfinder` `r citep(bib[['colladotorres2014derfinder']])` results.
+`regionReport` `r citep(bib[['regionReport']])` creates HTML reports 
+styled with `knitrBootstrap` `r citep(bib[['knitrBootstrap']])` for 
+a set of regions such as `derfinder` `r citep(bib[['derfinder']])` results.
 
 
 Currently, this package includes a basic exploration analysis of `derfinder` 
@@ -60,11 +61,10 @@ results which we expect users to be interested in reproducing with their own
 data. The analysis is written in [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
 format and `derfinderReport()` takes the results from 
 `derfinder`, performs a couple of setup operations, and then relies on
-`knitr` `r citep(bib[['xie2014knitr']])`, `rmarkdown` 
-`r citep(bib[['allaire2014rmarkdown']])`, and `knitrBootstrap` 
-`r citep(bib[['hester2014knitrbootstrap']])` for generating the report. 
+`knitr` `r citep(bib[['knitr']])`, `rmarkdown` 
+`r citep(bib[['rmarkdown']])`, and `knitrBootstrap` 
+`r citep(bib[['knitrBootstrap']])` for generating the report. 
 
-Other goodies in the report are powered by `ggbio` `r citep(bib[['yin2012ggbio']])` and `ggplot2` `r citep(bib[['wickham2009ggplot2']])`.
 
 # Using `regionReport`
 
@@ -73,6 +73,8 @@ Other goodies in the report are powered by `ggbio` `r citep(bib[['yin2012ggbio']
 This is currently under construction.
 
 ## `derfinder` case
+
+Goodies in this report are powered by `ggbio` `r citep(bib[['ggbio']])` and `ggplot2` `r citep(bib[['ggplot2']])`.
 
 ### Run `derfinder`
 
@@ -269,7 +271,7 @@ knit('regionReport.Rmd', tangle = TRUE)
 ## Copy report output to be distributed with the package for comparison 
 ## purposes
 file.copy(file.path('report', 'html', 'basicExploration.html'),
-    '../inst/basicExploration/basicExploration.html', overwrite=TRUE)
+    '../../inst/basicExploration/basicExploration.html', overwrite=TRUE)
        
 ## Clean up
 file.remove('derfinderPlotRef.bib')
@@ -302,8 +304,8 @@ session_info()
 
 # Bibliography
 
-This vignette was generated using `knitrBootstrap` `r citep(bib[['hester2014knitrbootstrap']])`
-with `knitr` `r citep(bib[['xie2014knitr']])` and `rmarkdown` `r citep(bib[['allaire2014rmarkdown']])` running behind the scenes.
+This vignette was generated using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
+with `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` running behind the scenes.
 
 Citations made with `knitcitations` `r citep(bib[[1]])`.
 

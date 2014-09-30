@@ -1,10 +1,10 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML reports for exploring a set of regions
-Version: 0.99.2
+Version: 0.99.3
 Date: 2014-09-29
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
-    = "lcollado@jhsph.edu"), person("Andrew", "Jaffe", role = "aut", email =
+    = "lcollado@jhu.edu"), person("Andrew", "Jaffe", role = "aut", email =
     "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),
     email = "jtleek@gmail.com"))
 Description: Generate HTML reports to explore a set of regions such as the

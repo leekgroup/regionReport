@@ -45,7 +45,6 @@ library('mgcv')
 
 ## GitHub
 library('derfinder')
-library('rCharts')
 
 ## Working behind the scenes
 # library('knitcitations')
@@ -609,7 +608,7 @@ to format the html while `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r ci
 
 Citations made with `knitcitations` `r citep(bib[['knitcitations']])`.
 
-```{r bibliography, results='asis', echo=FALSE}
+```{r bibliography, results='asis', echo=FALSE, warning = FALSE}
 ## Print bibliography
 bibliography()
 ```

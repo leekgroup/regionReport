@@ -309,8 +309,14 @@ knit('regionReport.Rmd', tangle = TRUE)
 
 ## Copy report output to be distributed with the package for comparison 
 ## purposes
-file.copy(file.path('report', 'html', 'basicExploration.html'),
-    '../../inst/basicExploration/basicExploration.html', overwrite=TRUE)
+if(gsub('.*/', '', getwd()) == 'realVignettes') {
+    file.copy(file.path('report', 'html', 'basicExploration.html'),
+        '../../inst/basicExploration/basicExploration.html', overwrite=TRUE)
+} else {
+    file.copy(file.path('report', 'html', 'basicExploration.html'),
+        '../inst/basicExploration/basicExploration.html', overwrite=TRUE)
+}
+
        
 ## Clean up
 file.remove('regionReportRef.bib')
@@ -348,7 +354,7 @@ with `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown'
 
 Citations made with `knitcitations` `r citep(bib[[1]])`.
 
-```{r vignetteBiblio, results='asis', echo=FALSE}
+```{r vignetteBiblio, results='asis', echo=FALSE, warning = FALSE}
 ## Print bibliography
 bibliography()
 ```

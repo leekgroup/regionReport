@@ -67,7 +67,7 @@ A BibTeX entry for LaTeX users is
     title = {regionReport: Generate HTML reports for exploring a set of regions},
     author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek},
     year = {2014},
-    note = {R package version 0.99.1},
+    note = {R package version 0.99.2},
     url = {https://github.com/lcolladotor/regionReport},
 }
 

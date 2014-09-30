@@ -34,20 +34,36 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-write.bibtex(c(knitcitations = citation('knitcitations'), 
+bibs <- c(knitcitations = citation('knitcitations'), 
     derfinder = citation('derfinder'), 
     regionReport = citation('regionReport'),
     knitrBootstrap = citation('knitrBootstrap'),
     ggbio = citation('ggbio'),
     ggplot2 = citation('ggplot2'),
     knitr = citation('knitr')[3],
-    rmarkdown = citation('rmarkdown')),
-    file = 'derfinderPlotRef.bib')
-bib <- read.bibtex('derfinderPlotRef.bib')
+    rmarkdown = citation('rmarkdown'),
+    R = citation(),
+    IRanges = citation('IRanges'),
+    devtools = citation('devtools'),
+    GenomeInfoDb = citation('GenomeInfoDb'),
+    GenomicRanges = citation('GenomicRanges'),
+    biovizBase = citation('biovizBase'),
+    bumphunter = citation('bumphunter'),
+    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
+    derfinderPlot = citation('derfinderPlot'),
+    grid = citation('grid'),
+    gridExtra = citation('gridExtra'),
+    mgcv = citation('mgcv'),
+    RColorBrewer = citation('RColorBrewer'),
+    Cairo = citation('Cairo')
+)
+
+write.bibtex(bibs,
+    file = 'regionReportRef.bib')
+bib <- read.bibtex('regionReportRef.bib')
 
 ## Assign short names
-names(bib) <- c('knitcitations', 'derfinder', 'regionReport', 'knitrBootstrap',
-    'ggbio', 'ggplot2', 'knitr', 'rmarkdown')
+names(bib) <- names(bibs)
 ```
 
 
@@ -243,6 +259,29 @@ derfinder::advancedArg('derfinderReport', package = 'regionReport',
 
 # Reproducibility
 
+This package was made possible thanks to:
+
+* R `r citep(bib[['R']])`
+* derfinder `r citep(bib[['derfinder']])`
+* derfinderPlot `r citep(bib[['derfinderPlot']])`
+* devtools `r citep(bib[['devtools']])`
+* GenomeInfoDb `r citep(bib[['GenomeInfoDb']])`
+* GenomicRanges `r citep(bib[['GenomicRanges']])`
+* ggbio `r citep(bib[['ggbio']])`
+* ggplot2 `r citep(bib[['ggplot2']])`
+* grid `r citep(bib[['grid']])`
+* gridExtra `r citep(bib[['gridExtra']])`
+* IRanges `r citep(bib[['IRanges']])`
+* knitcitations `r citep(bib[['knitcitations']])`
+* knitr `r citep(bib[['knitr']])`
+* knitrBootstrap `r citep(bib[['knitrBootstrap']])`
+* mgcv `r citep(bib[['mgcv']])`
+* RColorBrewer `r citep(bib[['RColorBrewer']])`
+* rmarkdown `r citep(bib[['rmarkdown']])`
+* biovizBase `r citep(bib[['biovizBase']])`
+* Cairo `r citep(bib[['Cairo']])`
+* TxDb.Hsapiens.UCSC.hg19.knownGene `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
+
 Code for creating the vignette
 
 ```{r createVignette, eval=FALSE, bootstrap.show.code=TRUE}
@@ -274,7 +313,7 @@ file.copy(file.path('report', 'html', 'basicExploration.html'),
     '../../inst/basicExploration/basicExploration.html', overwrite=TRUE)
        
 ## Clean up
-file.remove('derfinderPlotRef.bib')
+file.remove('regionReportRef.bib')
 #unlink('regionReport_files', recursive=TRUE)
 unlink('report', recursive = TRUE)
 ```

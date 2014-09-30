@@ -20,8 +20,8 @@ biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization,
 Depends:
     R(>= 3.1.1)
 Imports:
-    derfinder (>= 0.99.0),
-    derfinderPlot (>= 0.99.0),
+    derfinder (>= 0.99.2),
+    derfinderPlot (>= 0.99.2),
     devtools (>= 1.6),
     GenomeInfoDb,
     GenomicRanges,

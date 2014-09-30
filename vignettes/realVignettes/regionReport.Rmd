@@ -311,10 +311,12 @@ knit('regionReport.Rmd', tangle = TRUE)
 ## purposes
 if(gsub('.*/', '', getwd()) == 'realVignettes') {
     file.copy(file.path('report', 'html', 'basicExploration.html'),
-        '../../inst/basicExploration/basicExploration.html', overwrite=TRUE)
+        file.path('..', '..', 'inst', 'basicExploration',
+            'basicExploration.html'), overwrite=TRUE)
 } else {
     file.copy(file.path('report', 'html', 'basicExploration.html'),
-        '../inst/basicExploration/basicExploration.html', overwrite=TRUE)
+        file.path('..', 'inst', 'basicExploration', 'basicExploration.html'),
+            overwrite=TRUE)
 }
 
        

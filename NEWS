@@ -1,0 +1,84 @@
+CHANGES IN VERSION 0.99.0
+-------------------------
+
+NEW FEATURES
+
+    o Preparing to submit to Bioconductor.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Updated the vignette and the package to work with recent versions of
+        the packages this package depends on.
+    o Renamed the package from derfinderReport to regionReport and
+        generateReport() to derfinderReport(). In the future we will add
+        another report for a general GRanges object.
+    o Simplified derfinderReport()'s call by using advanced arguments.
+    o Added Travis integration.
+
+
+CHANGES IN VERSION 0.0.18
+-------------------------
+
+    o Now derfinderReport() has a 'chrsStyle' argument to match changes in 
+    derfinder version 0.0.60. 'chrsStyle' is set to 'UCSC' by default.
+
+CHANGES IN VERSION 0.0.17
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Made more robust for cases where there is a small number of significant
+        DERs: need at least 3 observations by chr for the chr to be included in
+        the density plots.
+
+CHANGES IN VERSION 0.0.16
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o MA-style plots now use the scaling factor.
+    o Using a GAM smoother instead of loess for MA-style plots. Helps for cases
+        with many regions.
+
+CHANGES IN VERSION 0.0.13
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Added a vignette
+
+CHANGES IN VERSION 0.0.12
+-------------------------
+
+BUG FIXES
+
+    o complying with BiocCheck version 1.0.0
+
+CHANGES IN VERSION 0.0.11
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o genomicState data moved to derfinder 0.0.53
+
+CHANGES IN VERSION 0.0.8
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Now requires knitrBootstrap 1.0.0
+    o Matches derfinder version 0.0.49
+
+CHANGES IN VERSION 0.0.3
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Matches derfinder version 0.0.34
+
+CHANGES IN VERSION 0.0.1
+-----------------------
+
+NEW FEATURES
+
+    o Migrated from derfinder

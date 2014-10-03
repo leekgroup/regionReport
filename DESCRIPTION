@@ -1,0 +1,30 @@
+Package: regionReport
+Type: Package
+Title: Generate HTML reports for exploring a set of regions
+Version: 0.99.3
+Date: 2014-09-29
+Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut",
+        "cre"), email = "lcollado@jhu.edu"), person("Andrew", "Jaffe",
+        role = "aut", email = "andrew.jaffe@libd.org"),
+        person("Jeffrey", "Leek", role = c("aut", "ths"), email =
+        "jtleek@gmail.com"))
+Description: Generate HTML reports to explore a set of regions such as
+        the results from annotation-agnostic expression analysis of
+        RNA-seq data at base-pair resolution performed by derfinder.
+License: Artistic-2.0
+LazyData: true
+URL: https://github.com/lcolladotor/regionReport
+BugReports: https://github.com/lcolladotor/regionReport/issues
+VignetteBuilder: knitr
+biocViews: DifferentialExpression, Sequencing, RNASeq, Software,
+        Visualization, Transcription, Coverage
+Depends: R(>= 3.1.1)
+Imports: derfinder (>= 0.99.2), derfinderPlot (>= 0.99.2), devtools (>=
+        1.6), GenomeInfoDb, GenomicRanges, ggbio (>= 1.13.13), ggplot2,
+        grid, gridExtra, IRanges, knitcitations (>= 1.0.1), knitr (>=
+        1.6), knitrBootstrap (>= 0.9.0), mgcv, RColorBrewer, rmarkdown
+        (>= 0.3.3)
+Suggests: biovizBase, Cairo, TxDb.Hsapiens.UCSC.hg19.knownGene
+Author: Leonardo Collado-Torres [aut, cre], Andrew Jaffe [aut], Jeffrey
+        Leek [aut, ths]
+Maintainer: Leonardo Collado-Torres <lcollado@jhu.edu>

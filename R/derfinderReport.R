@@ -238,6 +238,8 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ##### Setup chunk options Are there any null regions? If not, then there 
     ##### won't be any p-values either.
     nullExist <- length(fullNullSummary) > 0
+    fwerExist <- all(c('fwer', 'significantFWER') %in% colnames(mcols(fullRegions)))
+    
     ## Were permutations used?
     seeds <- optionsStats$seeds
     usedPermutations <- length(optionsStats$nPermute) > 0 & !is.null(seeds)
@@ -246,11 +248,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     hasSig <- length(idx.sig) > 0
     ## Are there regions with infite area?
     finite.area <- which(is.finite(fullRegions$area))
-    if (length(intersect(idx.sig, finite.area)) > 0) {
-        hasArea <- TRUE
-    } else {
-        hasArea <- FALSE
-    }
+    hasArea <- length(intersect(idx.sig, finite.area)) > 0
     inf.area <- sum(!is.finite(fullRegions$area))
     
     ## Save the call

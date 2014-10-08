@@ -173,6 +173,25 @@ kable(qtable, format = 'html', align = c('c', 'c'))
 
 This table shows the number of candidate Differentially Expressed Regions (DERs) with q-value less or equal than some commonly used cutoff values. `r ifelse(nullExist, '', 'Skipped because there are no null regions.')`
 
+## FWER adjusted P-values
+
+```{r summFwer, eval=fwerExist, echo=fwerExist}
+summary(fullRegions$fwer)
+```
+
+This is the numerical summary of the distribution of the q-values. `r ifelse(fwerExist, '', 'Skipped because there are no FWER-adjusted P-values.')`
+
+```{r FWERsummary, eval=fwerExist, echo=fwerExist, results='asis'}
+fwertable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
+    0.6, 0.7, 0.8, 0.9, 1), function(x) {
+    data.frame('Cut' = x, 'Count' = sum(fullRegions$fwer <= x))
+})
+fwertable <- do.call(rbind, fwertable)
+kable(fwertable, format = 'html', align = c('c', 'c'))
+```
+
+This table shows the number of candidate Differentially Expressed Regions (DERs) with FWER adjusted p-values less or equal than some commonly used cutoff values. `r ifelse(fwerExist, '', 'Skipped because there are no FWER-adjusted P-values.')`
+
 ## Region width
 
 ```{r regLen, fig.width=14, fig.height=14, dev=device, eval=hasSig, echo=hasSig}
@@ -481,7 +500,7 @@ Below are the best `r nBestClusters` region clusters ordered by cluster area (su
 
 ## Genome plots
 for(idx in bestArea) {
-    regionClusterPlot(idx, ifelse(nullExist, 'qval', 'none'))
+    regionClusterPlot(idx, ifelse(nullExist, ifelse(fwerExist, 'fwer', 'qval'), 'none'))
 }
 ```
 

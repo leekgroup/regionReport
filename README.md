@@ -20,33 +20,9 @@ Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/) as well as pandoc
 1.12.3 or newer from [here](http://johnmacfarlane.net/pandoc/installing.html).
 
 ```R
-## If needed
-install.packages('devtools')
-
-## Pre-requisites from CRAN
-install.packages(c('knitr', 'ggplot2', 'gridExtra', 'knitrBootstrap',
-    'knitcitations', 'RColorBrewer', 'mgcv', 'rmarkdown'))
-    
-## You might need to install the Cairo package, but that will depend on the device 
-## you use for the plots
-install.packages('Cairo')
-
-## Pre-requisites from Bioconductor
+## From Bioconductor
 source('http://bioconductor.org/biocLite.R')
-biocLite(c('IRanges', 'GenomicRanges', 'biovizBase', 'ggbio', 
-    'TxDb.Hsapiens.UCSC.hg19.knownGene', 'GenomeInfoDb'))
-
-## GitHub dependencies
-library('devtools')
-## If you use the GitHub version of knitrBoostrap you get better looking reports
-# install_github('jimhester/knitrBootstrap')
-
-## For BioC-devel use:
-install_github('lcolladotor/derfinder@master')
-install_github('lcolladotor/derfinderPlot')
-
-## regionReport itself
-install_github('lcolladotor/regionReport')
+biocLite('regionReport')
 ```
 
 # Citation
@@ -59,15 +35,16 @@ __regionReport__.
 
 To cite package __regionReport__ in publications use:
 
-Leonardo Collado-Torres, Andrew Jaffe and Jeffrey Leek (2014). regionReport: Generate HTML reports for exploring a set of regions. R package version 0.99.0. https://github.com/lcolladotor/regionReport
+Leonardo Collado-Torres, Andrew E. Jaffe and Jeffrey T. Leek (2014). regionReport: Generate HTML reports for exploring a set of regions. R package version 1.1.1. https://github.com/lcolladotor/regionReport
+
 
 A BibTeX entry for LaTeX users is
 
 @Manual{,
     title = {regionReport: Generate HTML reports for exploring a set of regions},
-    author = {Leonardo Collado-Torres and Andrew Jaffe and Jeffrey Leek},
+    author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
     year = {2014},
-    note = {R package version 0.99.2},
+    note = {R package version 1.1.1},
     url = {https://github.com/lcolladotor/regionReport},
 }
 

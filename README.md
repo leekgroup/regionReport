@@ -25,6 +25,11 @@ source('http://bioconductor.org/biocLite.R')
 biocLite('regionReport')
 ```
 
+# Vignette
+
+The vignette for this package can be viewed [here](http://lcolladotor.github.io/regionReport/) or via [Bioconductor's website](http://www.bioconductor.org/packages/devel/bioc/html/regionReport.html).
+
+
 # Citation
 
 Below is the citation output from using `citation('regionReport')` in R. 

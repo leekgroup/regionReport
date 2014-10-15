@@ -541,7 +541,10 @@ for(j in n) {
 }
 
 ## How many permutations resulted in the original grouping rearrangement
-obs <- diag(length(m)) * 2
+obs <- diag(length(m)) * sapply(
+    permuteDetail$group[ permuteDetail$permutation == 1], function(n) {
+  sum(optionsStats$groupInfo == n)
+})
 sameAsObs <- sapply(seq_len(length(seeds)), function(i) {
     p <- as.matrix(permuteDetail[permuteDetail$permutation == i, m])
     all((p - obs) == 0)

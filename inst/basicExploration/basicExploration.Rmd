@@ -53,10 +53,6 @@ library('derfinder')
 
 #### Code setup
 
-## Use UCSC names by default
-seqlevelsStyle(fullRegions) <- chrsStyle
-names(fullCov) <- mapSeqlevels(names(fullCov), chrsStyle)
-
 ## For ggplot
 tmp <- fullRegions
 names(tmp) <- seq_len(length(tmp))
@@ -114,7 +110,8 @@ if(nBestRegions > 0) {
     if(packageVersion('derfinder') >= '0.0.60') {
         regionCoverage <- getRegionCoverage(fullCov = fullCov, 
             regions = fullRegions[seq_len(nBestRegions)],
-            chrsStyle = chrsStyle, verbose = FALSE)
+            chrsStyle = chrsStyle, species = species,
+            currentStyle = currentStyle, verbose = FALSE)
     } else {
         regionCoverage <- getRegionCoverage(fullCov = fullCov, 
             regions = fullRegions[seq_len(nBestRegions)],

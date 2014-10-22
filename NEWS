@@ -1,3 +1,11 @@
+CHANGES IN VERSION 1.1.3
+------------------------
+
+BUG FIXES
+
+    o Adapted derfinderReport() to derfinder 1.1.5
+
+
 CHANGES IN VERSION 0.99.0
 -------------------------
 

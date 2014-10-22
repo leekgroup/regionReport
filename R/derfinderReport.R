@@ -139,6 +139,14 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
 #' \link[GenomeInfoDb]{seqlevelsStyle}.    
     chrsStyle <- .advanced_argument('chrsStyle', 'UCSC', ...)
     
+#' @param species Species name. See \link[derfinder]{extendedMapSeqlevels}  for 
+#' more information.
+    species <- .advanced_argument('species', getOption('species', 'homo_sapiens'), ...)
+
+#' @param currentStyle Current naming style used. See 
+#' \link[derfinder]{extendedMapSeqlevels} for more information.
+    currentStyle <- .advanced_argument('currentStyle', 'UCSC', ...)
+    
     
 #' @param fullRegions Part of the output of \link[derfinder]{mergeResults}. 
 #' Specify it only if you have already loaded it in memory.
@@ -234,6 +242,10 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     } else {
         nBestClusters <- 0
     }
+    
+    ## Use UCSC names for homo_sapiens by default
+    fullRegions <- renameSeqlevels(fullRegions, extendedMapSeqlevels(seqlevels(fullRegions), ...))
+    names(fullCov) <- extendedMapSeqlevels(names(fullCov), ...)
     
     ##### Setup chunk options Are there any null regions? If not, then there 
     ##### won't be any p-values either.

@@ -1,6 +1,6 @@
 c(
     bibentry(bibtype="manual",
-        title = "Generate HTML reports for exploring a set of regions",
+        title = "regionReport: Generate HTML reports for exploring a set of regions",
         author = personList(
             as.person("Leonardo Collado-Torres"),
             as.person("Andrew E. Jaffe"),

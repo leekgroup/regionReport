@@ -405,14 +405,14 @@ kable(info, format = 'html', align=rep('c', 4))
 
 ## Region information
 
-Below is an interactive table with the top `r min(nrow(regions.df), 2000)` regions (out of `r nrow(regions.df)`) as ranked by area. Inf and -Inf are shown as 1e100 and -1e100 respectively.
+Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions * 5)` regions (out of `r nrow(regions.df)`) as ranked by area. Inf and -Inf are shown as 1e100 and -1e100 respectively.
 
 <link rel='stylesheet' href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css' />
 <script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'></script>
 
 
 ```{r bestAreaInfo, results='asis'}
-topArea <- head(regions.df, 2000)
+topArea <- head(regions.df, nBestRegions * 5)
 topArea <- data.frame('areaRank'=order(topArea$area, decreasing=TRUE), topArea)
 ## Clean up -Inf, Inf if present
 ## More details at https://github.com/ramnathv/rCharts/issues/259

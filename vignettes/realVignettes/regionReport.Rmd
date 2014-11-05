@@ -346,6 +346,7 @@ round(totalTimeVignette, digits=3)
 ```{r vignetteReproducibility3, echo=FALSE}
 ## Session info
 library('devtools')
+options(width = 100)
 session_info()
 ```
 

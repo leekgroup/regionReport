@@ -624,6 +624,7 @@ round(totalTime, digits=3)
 
 ```{r reproducibility3, echo=FALSE}
 ## Session info
+options(width = 100)
 session_info()
 ```
 

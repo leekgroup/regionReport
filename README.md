@@ -36,7 +36,6 @@ Below is the citation output from using `citation('regionReport')` in R.
 Please run this yourself to check for any updates on how to cite 
 __regionReport__.
 
----
 
 To cite package __regionReport__ in publications use:
 
@@ -52,7 +51,7 @@ A BibTeX entry for LaTeX users is
     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
     year = {2014},
     url = {http://www.bioconductor.org/packages/release/bioc/html/regionReport.html},
-    note = {https://github.com/lcolladotor/regionReport - R package version 1.1.5},
+    note = {https://github.com/lcolladotor/regionReport - R package version 1.1.6},
 }
 
 # Travis CI

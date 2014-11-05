@@ -208,8 +208,8 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Write bibliography information
     write.bibtex(c(
         knitcitations = citation('knitcitations'), 
-        derfinder = citation('derfinder'), 
-        regionReport = citation('regionReport'),
+        derfinder = citation('derfinder')[1], 
+        regionReport = citation('regionReport')[1],
         knitrBootstrap = citation('knitrBootstrap'), 
         ggbio = citation('ggbio'),
         ggplot2 = citation('ggplot2'),

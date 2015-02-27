@@ -1,3 +1,12 @@
+CHANGES IN VERSION 1.1.7
+------------------------
+
+NEW FEATURES
+
+    o Users can now control 'output_format' and 'clean' options from
+        rmarkdown::render() when running derfinderReport()
+
+
 CHANGES IN VERSION 1.1.3
 ------------------------
 

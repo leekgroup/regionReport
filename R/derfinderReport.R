@@ -283,7 +283,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         unlink(paste0(output, '.md'))
     } else {
         res <- render(paste0(output, '.Rmd'),
-            'knitrBootstrap::bootstrap_document')
+            .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...), clean = .advanced_argument('clean', FALSE, ...))
     }
     file.remove(paste0(output, '.Rmd'))
     

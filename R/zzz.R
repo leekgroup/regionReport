@@ -1,6 +1,6 @@
 ## Based on https://github.com/hadley/ggplot2/blob/master/R/zzz.r
 .onAttach <- function(...) {
-    if (!interactive() || stats::runif(1) > 0.3) return()
+    if (!interactive() || stats::runif(1) > 0.9) return()
         
     tips <- c(
         "Found a bug? Report it at https://github.com/lcolladotor/regionReport/issues",

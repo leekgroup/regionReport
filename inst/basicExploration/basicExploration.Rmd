@@ -3,6 +3,8 @@ output:
   html_document:
     toc: true
     theme: united
+  pdf_document:
+      toc: true
   knitrBootstrap::bootstrap_document:
     theme.chooser: TRUE
     highlight.chooser: TRUE
@@ -29,6 +31,7 @@ Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 library('IRanges')
 library('GenomicRanges')
 library('GenomeInfoDb')
+library('derfinder')
 
 if(hg19) {
     library('biovizBase')
@@ -42,9 +45,6 @@ library('gridExtra')
 library('knitr')
 library('RColorBrewer')
 library('mgcv')
-
-## GitHub
-library('derfinder')
 
 ## Working behind the scenes
 # library('knitcitations')
@@ -407,9 +407,10 @@ kable(info, format = 'html', align=rep('c', 4))
 
 Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions * 5)` regions (out of `r nrow(regions.df)`) as ranked by area. Inf and -Inf are shown as 1e100 and -1e100 respectively.
 
-<link rel='stylesheet' href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css' />
-<script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'></script>
-
+```{r jsInfo, results='asis', eval = outputIsHTML, echo = FALSE}
+cat("<link rel='stylesheet' href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css' />
+<script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'></script>")
+```
 
 ```{r bestAreaInfo, results='asis'}
 topArea <- head(regions.df, nBestRegions * 5)
@@ -430,17 +431,26 @@ topArea <- replaceInf(topArea, grep('log2FoldChange|value|area',
     colnames(topArea)))
 
 ## Make the table
-kable(topArea, format = 'html', table.attr='id="regions_table"')
+if(outputIsHTML) {
+    kable(topArea, format = 'html', table.attr='id="regions_table"')
+} else {
+    ## Only print the top part if your output is a PDF file
+    kable(head(topArea, 20))
+}
 ```
 
-<script type="text/javascript" charset="utf-8">
+```{r jsTable, results='asis', eval = outputIsHTML, echo = FALSE}
+cat('<script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
-    $('#regions_table').dataTable({
+    $("#regions_table").dataTable({
         "sPaginationType": "full_numbers",
         "sScrollX": "100%"
     });
 });
 </script>
+')
+```
+
 
 
     
@@ -560,18 +570,26 @@ Note that in `derfinder` the re-sampling of the samples is done without replacem
 The following table shows how the group labels were permuted. `r ifelse(usedPermutations, '', 'Skipped because no permutations were used.')` This can be useful to detect whether a permutation in particular had too many samples of a group labeled as another group, meaning that the resulting permuted group label resulted in pretty much a name change.
 
 ```{r permuteTable, results='asis', eval=usedPermutations, echo=usedPermutations}
-kable(permuteDetail, format = 'html', table.attr='id="permutation_table"')
+if(outputIsHTML) {
+    kable(permuteDetail, format = 'html', table.attr='id="permutation_table"')
+} else {
+    ## Only print the top part if your output is a PDF file
+    kable(head(permuteDetail, 20))
+}
+
 ```
 
-<script type="text/javascript" charset="utf-8">
+```{r jsTablePermute, results='asis', eval = outputIsHTML, echo = FALSE}
+cat('<script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
-    $('#permutation_table').dataTable({
+    $("#permutation_table").dataTable({
         "sPaginationType": "full_numbers",
         "sScrollX": "100%"
     });
 });
 </script>
-
+')
+```
 
 
 

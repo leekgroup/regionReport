@@ -18,7 +18,7 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore the results of the `derfinder` `r citep(bib[['derfinder']])` package and was generated using `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
+This report is meant to help explore the results of the `derfinder` `r citep(bib[['derfinder']])` package and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
 
 Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 
@@ -32,6 +32,7 @@ library('IRanges')
 library('GenomicRanges')
 library('GenomeInfoDb')
 library('derfinder')
+library('derfinderPlot')
 
 if(hg19) {
     library('biovizBase')
@@ -165,7 +166,11 @@ qtable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
     data.frame('Cut' = x, 'Count' = sum(fullRegions$qvalues <= x))
 })
 qtable <- do.call(rbind, qtable)
-kable(qtable, format = 'html', align = c('c', 'c'))
+if(outputIsHTML) {
+    kable(qtable, format = 'html', align = c('c', 'c'))
+} else {
+    kable(qtable)
+}
 ```
 
 This table shows the number of candidate Differentially Expressed Regions (DERs) with q-value less or equal than some commonly used cutoff values. `r ifelse(nullExist, '', 'Skipped because there are no null regions.')`
@@ -184,7 +189,11 @@ fwertable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
     data.frame('Cut' = x, 'Count' = sum(fullRegions$fwer <= x))
 })
 fwertable <- do.call(rbind, fwertable)
-kable(fwertable, format = 'html', align = c('c', 'c'))
+if(outputIsHTML) {
+    kable(fwertable, format = 'html', align = c('c', 'c'))
+} else {
+    kable(fwertable)
+}
 ```
 
 This table shows the number of candidate Differentially Expressed Regions (DERs) with FWER adjusted p-values less or equal than some commonly used cutoff values. `r ifelse(fwerExist, '', 'Skipped because there are no FWER-adjusted P-values.')`
@@ -358,7 +367,11 @@ This genomic overview plot shows the annotation region type for the __candidate_
 ```{r annoReg, results='asis'}
 annoReg <- table(fullRegions$region, useNA='always')
 annoReg.df <- data.frame(Region=names(annoReg), Count=as.vector(annoReg))
-kable(annoReg.df, format = 'html', align=rep('c', 3))
+if(outputIsHTML) {
+    kable(annoReg.df, format = 'html', align=rep('c', 3))
+} else {
+    kable(annoReg.df)
+}
 ```
 
 ## Annotation (significant)
@@ -399,7 +412,11 @@ info <- do.call(rbind, lapply(fullAnnotatedRegions$countTable, function(x) { dat
 colnames(info) <- c('Number of Overlapping States', 'Frequency')
 info$State <- gsub('\\..*', '', rownames(info))
 rownames(info) <- NULL
-kable(info, format = 'html', align=rep('c', 4))
+if(outputIsHTML) {
+    kable(info, format = 'html', align=rep('c', 4))
+} else {
+    kable(info)
+}
 ```
 
 

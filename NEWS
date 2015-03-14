@@ -1,3 +1,24 @@
+CHANGES IN VERSION 1.1.9
+------------------------
+
+NEW FEATURES
+
+    o Introduced renderReport() which creates a simple exploratory report for
+        any set of genomic regions. It allows the user to further customize the
+        report by using a child file.
+    o You can now use the 'output_format' advanced parameter on both 
+        renderReport() and derfinderReport() to output a PDF file instead
+        of an HTML file. The interactive tables are lost and only the top 20
+        rows are shown.
+
+CHANGES IN VERSION 1.1.8
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Adapted to work with bumphunter >= 1.7.6
+
+
 CHANGES IN VERSION 1.1.7
 ------------------------
 

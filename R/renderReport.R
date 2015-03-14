@@ -19,6 +19,9 @@
 #' @param significantVar A \code{logical} variable differentiating statistically
 #' significant regions from the rest. When provided, both types of regions
 #' are compared against each other to see differences in width, location, etc.
+#' @param annotation The output from \link[bumphunter]{matchGenes} used on
+#' \code{regions}. Note that this can take time for a large set of regions
+#' so it's better to pre-compute this information and save it.
 #' @param nBestRegions The number of regions to include in the interactive 
 #' table.
 #' @param customCode An absolute path to a child R Markdown file with code to be
@@ -91,7 +94,11 @@
 #' }
 
 
-renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'), densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05, nBestRegions = 500, customCode = NULL, outdir = 'regionExploration', output = 'regionExploration', browse = interactive(), txdb = NULL, device = 'CairoPNG', ...) {
+renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
+    densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
+    annotation = NULL, nBestRegions = 500, customCode = NULL,
+    outdir = 'regionExploration', output = 'regionExploration',
+    browse = interactive(), txdb = NULL, device = 'CairoPNG', ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     
@@ -101,6 +108,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'), 
     stopifnot(!any(is.na(seqlengths(regions))))
     hasCustomCode <- !is.null(customCode)
     if(hasCustomCode) stopifnot(length(customCode) == 1)
+    if(!is.null(annotation)) stopifnot(nrow(annotation) == length(regions))
     
     #' @param overviewParams A two element list with \code{base_size} and 
     #' \code{areaRel} that control the text size for the genomic overview plots.
@@ -143,9 +151,11 @@ p1{{{varName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)
 p1{{{varName}}}
 ```
 
-```{r summary-{{{varName}}}}
+
+```{r 'summary-{{{varName}}}'}
 summary(mcols(regions)[['{{{varName}}}']])
 ```
+
 
 This is the numerical summary of the distribution of the {{{densityVarName}}}.
 

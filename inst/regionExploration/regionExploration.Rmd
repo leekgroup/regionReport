@@ -137,7 +137,7 @@ The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in t
 ```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=hasSignificant, echo=hasSignificant}
 ## Choose what variable to show on the top
 tmp <- regions
-tmp$pval <- factor(significantVar, levels = c('TRUE', 'FALSE'))
+tmp$significant <- factor(significantVar, levels = c('TRUE', 'FALSE'))
 if(!'area' %in% colnames(mcols(tmp))) {
     if(hasDensityVars) {
         tmp$area <- mcols(tmp)[[densityVars[1]]]
@@ -161,8 +161,11 @@ This plot shows the genomic locations of the regions found in the analysis. The 
 
 ```{r genomeOverview2, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300}
 ## Annotate regions with bumphunter
-genes <- annotateTranscripts(txdb = txdb)
-annotation <- matchGenes(x = regions, subject = genes)
+if(is.null(annotation)) {
+    genes <- annotateTranscripts(txdb = txdb)
+    annotation <- matchGenes(x = regions, subject = genes)
+}
+
 
 ## Make the plot
 plotOverview(regions=regions, annotation=annotation, type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
@@ -229,8 +232,8 @@ regions.df <- cbind(regions.df, annotation)
 
 ## Rank by p-value (first pvalue variable supplied)
 if(hasPvalueVars){
-    topRegions <- head(regions.df[order(regions.df[pvalueVars[1]], 
-        decreasing = FALSE)], nBestRegions)
+    topRegions <- head(regions.df[order(regions.df[, pvalueVars[1]], 
+        decreasing = FALSE), ], nBestRegions)
     topRegions <- cbind(data.frame('pvalueRank' = seq_len(nrow(topRegions))), 
         topRegions)
 } else {

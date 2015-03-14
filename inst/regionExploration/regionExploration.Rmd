@@ -115,7 +115,7 @@ p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) +
 p2a
 ```
 
-This plot shows the density of the region lengths for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.')`
+This plot shows the density of the region lengths for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.', '')`
 
 
 

@@ -50,7 +50,7 @@ for the top regions by area. If \code{NULL} and \code{hg19=TRUE} then
 TxDb.Hsapiens.UCSC.hg19.knownGene is used.}
 
 \item{device}{The graphical device used when knitting. See more at
-http://yihui.name/knitr/options (dev argument).}
+http://yihui.name/knitr/options (\code{dev} argument).}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
 }

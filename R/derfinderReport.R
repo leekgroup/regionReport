@@ -32,7 +32,7 @@
 #' for the top regions by area. If \code{NULL} and \code{hg19=TRUE} then 
 #' TxDb.Hsapiens.UCSC.hg19.knownGene is used.
 #' @param device The graphical device used when knitting. See more at 
-#' http://yihui.name/knitr/options (dev argument).
+#' http://yihui.name/knitr/options (\code{dev} argument).
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return An HTML report with a basic exploration of the derfinder results.
@@ -208,7 +208,8 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Write bibliography information
     write.bibtex(c(
         knitcitations = citation('knitcitations'), 
-        derfinder = citation('derfinder')[1], 
+        derfinder = citation('derfinder')[1],
+        derfinderPlot = citation('derfinderPlot')[1],
         regionReport = citation('regionReport')[1],
         knitrBootstrap = citation('knitrBootstrap'), 
         ggbio = citation('ggbio'),
@@ -220,8 +221,9 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     bib <- read.bibtex(file.path(prefix, outdir, 'references.bib'))
     
     ## Assign short names
-    names(bib) <- c('knitcitations', 'derfinder', 'regionReport',
-        'knitrBootstrap', 'ggbio', 'ggplot2', 'knitr', 'rmarkdown')
+    names(bib) <- c('knitcitations', 'derfinder', 'derfinderPlot', 
+        'regionReport', 'knitrBootstrap', 'ggbio', 'ggplot2', 'knitr',
+        'rmarkdown')
     
     ## Load files
     if (is.null(fullRegions)) 
@@ -274,16 +276,20 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     setwd(file.path(prefix, outdir))
     file.copy(template, to = paste0(output, '.Rmd'))
     
+    ## Output format
+    output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
+    outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+    
     ## Check knitrBoostrap version
     knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
-    if(knitrBootstrapFlag) {
+    if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
         ## CRAN version
         res <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
             'code'), show_code = TRUE)
         unlink(paste0(output, '.md'))
     } else {
-        res <- render(paste0(output, '.Rmd'),
-            .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...), clean = .advanced_argument('clean', TRUE, ...))
+        res <- render(paste0(output, '.Rmd'), output_format,
+            clean = .advanced_argument('clean', TRUE, ...))
     }
     file.remove(paste0(output, '.Rmd'))
     

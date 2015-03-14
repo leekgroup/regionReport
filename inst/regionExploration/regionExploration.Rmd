@@ -1,0 +1,324 @@
+---
+output:
+  html_document:
+    toc: true
+    theme: united
+  pdf_document:
+      toc: true
+  knitrBootstrap::bootstrap_document:
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+
+Basic genomic regions exploration
+=================================
+
+Project: `r project`.
+
+# Introduction
+
+This report is meant to help explore a set of genomic regions and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
+
+Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
+
+## Code setup
+
+```{r setup, bootstrap.show.message=FALSE}
+#### Libraries needed
+
+## Bioconductor
+library('bumphunter')
+library('derfinder')
+library('derfinderPlot')
+library('GenomeInfoDb')
+library('GenomicRanges')
+
+## Transcription database to use by default
+if(is.null(txdb)) {
+    library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+    txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+}
+
+## CRAN
+library('ggplot2')
+library('grid')
+library('gridExtra')
+library('knitr')
+library('RColorBrewer')
+library('mgcv')
+library('whisker')
+
+## Working behind the scenes
+# library('knitcitations')
+# library('rmarkdown')
+# library('knitrBootstrap')
+
+#### Code setup
+
+## For ggplot
+tmp <- regions
+names(tmp) <- seq_len(length(tmp))
+regions.df <- as.data.frame(tmp)
+regions.df$width <- width(tmp)
+rm(tmp)
+
+## Special subsets: need at least 3 points for a density plot
+keepChr <- table(regions.df$seqnames) > 2
+regions.df.plot <- subset(regions.df, seqnames %in% names(keepChr[keepChr]))
+
+if(hasSignificant) {
+    ## Keep only those sig
+    regions.df.sig <- regions.df[significantVar, ]
+    keepChr <- table(regions.df.sig$seqnames) > 2
+    regions.df.sig <- subset(regions.df.sig, seqnames %in% names(keepChr[keepChr]))
+}
+
+## Find which chrs are present in the data set
+chrs <- levels(seqnames(regions))
+```
+
+
+# Quality checks
+
+
+```{r pvaluePlots, echo=FALSE, results='asis', eval=hasPvalueVars, echo=hasPvalueVars}
+for(i in seq_len(length(pvalueVars))) {
+    densityVarName <- names(pvalueVars[i])
+    densityVarName <- ifelse(is.null(densityVarName), pvalueVars[i], densityVarName)
+   cat(knit_child(text = whisker.render(templatePvalueDensity, list(varName = pvalueVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
+}
+```
+
+
+## Region width
+
+```{r regLen, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
+xrange <- range(log10(regions.df.plot$width))
+p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) + 
+    geom_line(stat='density') + labs(title='Density of region lengths') +
+    xlab('Region width (log10)') + scale_colour_discrete(limits=chrs) +
+    xlim(xrange) + theme(legend.title=element_blank())
+p2b <- ggplot(regions.df.sig, aes(x=log10(width), colour=seqnames)) +
+    geom_line(stat='density') +
+    labs(title='Density of region lengths (significant only)') +
+    xlab('Region width (log10)') + scale_colour_discrete(limits=chrs) +
+    xlim(xrange) + theme(legend.title=element_blank())
+grid.arrange(p2a, p2b)
+```
+
+```{r regLen2, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
+p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) +
+    geom_line(stat='density') + labs(title='Density of region lengths') +
+    xlab('Region width (log10)') + scale_colour_discrete(limits=chrs) +
+    theme(legend.title=element_blank())
+p2a
+```
+
+This plot shows the density of the region lengths for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.')`
+
+
+
+```{r densityPlots, echo=FALSE, results='asis', eval=hasDensityVars, echo=hasDensityVars}
+for(i in seq_len(length(densityVars))) {
+    densityVarName <- names(densityVars[i])
+    densityVarName <- ifelse(is.null(densityVarName), densityVars[i], densityVarName)
+   cat(knit_child(text = whisker.render(templateDensity, list(varName = densityVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
+}
+```
+
+
+# Genomic overview
+
+The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotOverview` in `derfinderPlot` `r citep(bib[['derfinderPlot']])`.
+
+## P-values
+
+```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=hasSignificant, echo=hasSignificant}
+## Choose what variable to show on the top
+tmp <- regions
+tmp$pval <- factor(significantVar, levels = c('TRUE', 'FALSE'))
+if(!'area' %in% colnames(mcols(tmp))) {
+    if(hasDensityVars) {
+        tmp$area <- mcols(tmp)[[densityVars[1]]]
+        areaVar <- densityVars[1]
+        areaVar <- ifelse(is.null(names(areaVar)), densityVars[1], names(areaVar))
+    } else {
+        tmp$area <- 0
+        areaVar <- NULL
+    }
+} else {
+    areaVar <- 'area'
+}
+plotOverview(regions=tmp, type='pval', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
+rm(tmp)
+```
+
+This plot shows the genomic locations of the regions found in the analysis. The significant regions are highlighted and the `r areaVar` of the regions is shown on top of each chromosome `r ifelse(is.null(areaVar), '(skipped because there was no applicable variable)', '(shown in a relative scale)')`.
+
+
+## Annotation
+
+```{r genomeOverview2, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300}
+## Annotate regions with bumphunter
+genes <- annotateTranscripts(txdb = txdb)
+annotation <- matchGenes(x = regions, subject = genes)
+
+## Make the plot
+plotOverview(regions=regions, annotation=annotation, type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
+```
+
+This genomic overview plot shows the annotation region type for the regions as determined using `bumphunter` `r citep(bib[['bumphunter']])`. Note that the regions are shown only if the annotation information is available. Below is a table of the actual number of results per annotation region type.
+
+```{r annoReg, results='asis'}
+annoReg <- table(annotation$region, useNA='always')
+annoReg.df <- data.frame(Region=names(annoReg), Count=as.vector(annoReg))
+if(outputIsHTML) {
+    kable(annoReg.df, format = 'html', align=rep('c', 3))
+} else {
+    kable(annoReg.df)
+}
+```
+
+## Annotation (significant)
+
+```{r genomeOverview3, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=hasSignificant, echo=hasSignificant}
+plotOverview(regions=regions[significantVar, ], annotation=annotation[significantVar, ], type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
+```
+
+This genomic overview plot shows the annotation region type for the statistically significant regions. Note that the regions are shown only if the annotation information is available. `r ifelse(hasSignificant, '', 'Plot skipped because there are no significant regions.')`
+
+
+# Best regions
+
+## Genomic states
+
+Below is a table summarizing the number of genomic states per region as determined using `derfinder` `r citep(bib[['derfinder']])`.
+
+```{r countTable, results='asis'}
+## Construct genomic state object
+genomicState <- makeGenomicState(txdb = txdb, chrs = chrs, verbose = FALSE)
+
+## Annotate regions by genomic state
+annotatedRegions <- annotateRegions(regions, genomicState$fullGenome, verbose = FALSE)
+
+## Genomic states table
+info <- do.call(rbind, lapply(annotatedRegions$countTable, function(x) { data.frame(table(x)) }))
+colnames(info) <- c('Number of Overlapping States', 'Frequency')
+info$State <- gsub('\\..*', '', rownames(info))
+rownames(info) <- NULL
+if(outputIsHTML) {
+    kable(info, format = 'html', align=rep('c', 4))
+} else {
+    kable(info)
+}
+```
+
+## Region information
+
+Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions)` regions (out of `r nrow(regions.df)`) as ranked by p-value `r ifelse(hasPvalueVars, '', 'without ranking because no p-value information was provided')`. Inf and -Inf are shown as 1e100 and -1e100 respectively.
+
+```{r jsInfo, results='asis', eval = outputIsHTML, echo = FALSE}
+cat("<link rel='stylesheet' href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css' />
+<script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'></script>")
+```
+
+```{r bestRegionInfo, results='asis'}
+## Add annotation information
+regions.df <- cbind(regions.df, annotation)
+
+## Rank by p-value (first pvalue variable supplied)
+if(hasPvalueVars){
+    topRegions <- head(regions.df[order(regions.df[pvalueVars[1]], 
+        decreasing = FALSE)], nBestRegions)
+    topRegions <- cbind(data.frame('pvalueRank' = seq_len(nrow(topRegions))), 
+        topRegions)
+} else {
+    topRegions <- head(regions.df, nBestRegions)
+}
+
+## Clean up -Inf, Inf if present
+## More details at https://github.com/ramnathv/rCharts/issues/259
+replaceInf <- function(df, colsubset=seq_len(ncol(df))) {
+    for(i in colsubset) {
+        inf.idx <- !is.finite(df[, i])
+        if(any(inf.idx)) {
+            inf.sign <- sign(df[inf.idx, i])
+            df[inf.idx, i] <- inf.sign * 1e100
+        }
+    }
+    return(df)
+}
+topRegions <- replaceInf(topRegions, which(sapply(topRegions, function(x) {
+    class(x) %in% c('numeric', 'integer')})))
+
+## Make the table
+if(outputIsHTML) {
+    kable(topRegions, format = 'html', table.attr='id="regions_table"')
+} else {
+    ## Only print the top part if your output is a PDF file
+    kable(head(topRegions, 20))
+}
+```
+
+```{r jsTable, results='asis', eval = outputIsHTML, echo = FALSE}
+cat('<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+    $("#regions_table").dataTable({
+        "sPaginationType": "full_numbers",
+        "sScrollX": "100%"
+    });
+});
+</script>
+')
+```
+
+
+```{r child = customCode, eval = hasCustomCode}
+```
+
+
+
+# Reproducibility
+
+This report was generated in path `r tmpdir` using the following call to `renderReport()`:
+
+```{r thecall, echo=FALSE}
+theCall
+```
+
+Date the report was generated.
+
+```{r reproducibility1, echo=FALSE}
+## Date the report was generated
+Sys.time()
+```
+
+Wallclock time spent generating the report.
+
+```{r reproducibility2, echo=FALSE}
+## Processing time in seconds
+totalTime <- diff(c(startTime, Sys.time()))
+round(totalTime, digits=3)
+```
+
+`R` session information.
+
+```{r reproducibility3, echo=FALSE}
+## Session info
+options(width = 120)
+session_info()
+```
+
+# Bibliography
+
+This report was created with `regionReport` `r citep(bib[['regionReport']])` using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
+to format the html while `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` were running behind the scenes. `whisker` `r citep(bib[['whisker']])` was used for creating templates for the `pvalueVars` and `densityVars`.
+
+Citations made with `knitcitations` `r citep(bib[['knitcitations']])`.
+
+```{r bibliography, results='asis', echo=FALSE, warning = FALSE}
+## Print bibliography
+bibliography()
+```
+

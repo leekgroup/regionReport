@@ -6,9 +6,9 @@
 \usage{
 renderReport(regions, project, pvalueVars = c(`P-values` = "pval"),
   densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
-  nBestRegions = 500, customCode = NULL, outdir = "regionExploration",
-  output = "regionExploration", browse = interactive(), txdb = NULL,
-  device = "CairoPNG", ...)
+  annotation = NULL, nBestRegions = 500, customCode = NULL,
+  outdir = "regionExploration", output = "regionExploration",
+  browse = interactive(), txdb = NULL, device = "CairoPNG", ...)
 }
 \arguments{
 \item{regions}{The set of genomic regions of interest as a \code{GRanges}
@@ -29,6 +29,10 @@ the plot titles.}
 \item{significantVar}{A \code{logical} variable differentiating statistically
 significant regions from the rest. When provided, both types of regions
 are compared against each other to see differences in width, location, etc.}
+
+\item{annotation}{The output from \link[bumphunter]{matchGenes} used on
+\code{regions}. Note that this can take time for a large set of regions
+so it's better to pre-compute this information and save it.}
 
 \item{nBestRegions}{The number of regions to include in the interactive
 table.}

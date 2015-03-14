@@ -1,8 +1,8 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML reports for exploring a set of regions
-Version: 1.1.8
-Date: 2015-03-12
+Version: 1.1.9
+Date: 2015-03-13
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -20,6 +20,7 @@ biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization,
 Depends:
     R(>= 3.2)
 Imports:
+    bumphunter (>= 1.7.6),
     derfinder (>= 1.1.0),
     derfinderPlot (>= 1.1.0),
     devtools (>= 1.6),
@@ -35,7 +36,8 @@ Imports:
     knitrBootstrap (>= 0.9.0),
     mgcv,
     RColorBrewer,
-    rmarkdown (>= 0.3.3)
+    rmarkdown (>= 0.3.3),
+    whisker
 Suggests:
     biovizBase,
     Cairo,

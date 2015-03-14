@@ -208,7 +208,8 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Write bibliography information
     write.bibtex(c(
         knitcitations = citation('knitcitations'), 
-        derfinder = citation('derfinder')[1], 
+        derfinder = citation('derfinder')[1],
+        derfinderPlot = citation('derfinderPlot')[1],
         regionReport = citation('regionReport')[1],
         knitrBootstrap = citation('knitrBootstrap'), 
         ggbio = citation('ggbio'),
@@ -220,8 +221,9 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     bib <- read.bibtex(file.path(prefix, outdir, 'references.bib'))
     
     ## Assign short names
-    names(bib) <- c('knitcitations', 'derfinder', 'regionReport',
-        'knitrBootstrap', 'ggbio', 'ggplot2', 'knitr', 'rmarkdown')
+    names(bib) <- c('knitcitations', 'derfinder', 'derfinderPlot', 
+        'regionReport', 'knitrBootstrap', 'ggbio', 'ggplot2', 'knitr',
+        'rmarkdown')
     
     ## Load files
     if (is.null(fullRegions)) 

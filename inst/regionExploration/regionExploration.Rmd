@@ -76,6 +76,9 @@ if(hasSignificant) {
 
 ## Find which chrs are present in the data set
 chrs <- levels(seqnames(regions))
+
+## areaVar initialize
+areaVar <- NULL
 ```
 
 

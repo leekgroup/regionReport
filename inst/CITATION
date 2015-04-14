@@ -1,7 +1,7 @@
 pkgVer <- function(pkg, default) { 
     x <- packageDescription(pkg, fields = 'Version')
     ver <- ifelse(is.na(x), default, x)
-    paste0('https://github.com/lcolladotor/', pkg, ' - R package version ', ver)
+    paste0('https://github.com/leekgroup/', pkg, ' - R package version ', ver)
 }
 c(
     bibentry(bibtype="manual",

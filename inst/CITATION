@@ -1,7 +1,7 @@
 pkgVer <- function(pkg, default) { 
     x <- packageDescription(pkg, fields = 'Version')
     ver <- ifelse(is.na(x), default, x)
-    paste0('https://github.com/lcolladotor/', pkg, ' - R package version ', ver)
+    paste0('https://github.com/leekgroup/', pkg, ' - R package version ', ver)
 }
 c(
     bibentry(bibtype="manual",
@@ -13,7 +13,7 @@ c(
         ),
         year = 2015,
         url = "http://www.bioconductor.org/packages/release/bioc/html/regionReport.html",
-        note = pkgVer('regionReport', '1.1.9')
+        note = pkgVer('regionReport', '1.3.0')
     ),
     bibentry(bibtype="article",
             title = "derfinder: Software for annotation-agnostic RNA-seq differential expression analysis",

@@ -1,3 +1,13 @@
+CHANGES IN VERSION 1.3.1
+------------------------
+
+BUG FIXES
+
+    o Fixed renderReport() and derfinderReport() so they'll open the correct URL
+        when interactive() == TRUE and the user has knitrBootstrap version 0.9.0
+        installed instead of the latest GitHub version.
+
+
 CHANGES IN VERSION 1.1.9
 ------------------------
 

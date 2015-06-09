@@ -267,8 +267,9 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
     knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
     if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
         ## CRAN version
-        res <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
+        tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
             'code'), show_code = TRUE)
+        res <- paste0(output, '.html')
         unlink(paste0(output, '.md'))
     } else {
         res <- render(paste0(output, '.Rmd'), output_format,

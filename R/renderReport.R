@@ -269,7 +269,7 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
         ## CRAN version
         tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
             'code'), show_code = TRUE)
-        res <- file.path(outdir, paste0(output, '.html'))
+        res <- file.path(tmpdir, outdir, paste0(output, '.html'))
         unlink(paste0(output, '.md'))
     } else {
         res <- render(paste0(output, '.Rmd'), output_format,
@@ -280,7 +280,7 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
     ## Open
     if (browse) 
         browseURL(res)
-    setwd(tmpdir)
+    
     
     ## Finish
     return(invisible(res))

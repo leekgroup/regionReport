@@ -23,7 +23,7 @@ You may also want to consult the [vignette](http://leekgroup.github.io/regionRep
 
 # Installation instructions
 
-Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/) as well as pandoc 
+Get R 3.2.0 from [CRAN](http://cran.r-project.org/) as well as pandoc 
 1.12.3 or newer from [here](http://johnmacfarlane.net/pandoc/installing.html).
 
 ```R

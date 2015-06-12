@@ -17,7 +17,7 @@ output:
 HTML reports for a set of regions
 =================================
 
-If you wish, you can view this vignette online [here](http://lcolladotor.github.io/regionReport/).
+If you wish, you can view this vignette online [here](http://leekgroup.github.io/regionReport/).
 
 
 ```{r vignetteSetup, echo = FALSE, message = FALSE, warning = FALSE}
@@ -88,7 +88,7 @@ The plots in `regionReport` are powered by `derfinderPlot` `r citep(bib[['derfin
 
 ## Examples
 
-The `regionReport` supplementary website [regionReportSupp](http://lcolladotor.github.io/regionReportSupp/) has examples of using `regionReport` with results from `DiffBind`, `bumphunter`, and `derfinder`. These represent different uses of `regionReport` for results from ChIP-seq, methylation, and RNA-seq data. In particular, the `DiffBind` example illustrates how to expand a basic report created with `renderReport()`.
+The `regionReport` supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/) has examples of using `regionReport` with results from `DiffBind`, `bumphunter`, and `derfinder`. These represent different uses of `regionReport` for results from ChIP-seq, methylation, and RNA-seq data. In particular, the `DiffBind` example illustrates how to expand a basic report created with `renderReport()`.
 
 ## General case
 

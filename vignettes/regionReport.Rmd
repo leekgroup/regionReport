@@ -17,7 +17,7 @@ output:
 HTML reports for a set of regions
 =================================
 
-If you wish, you can view this vignette online [here](http://lcolladotor.github.io/regionReport/).
+If you wish, you can view this vignette online [here](http://leekgroup.github.io/regionReport/).
 
 
 ```{r vignetteSetup, echo = FALSE, message = FALSE, warning = FALSE}

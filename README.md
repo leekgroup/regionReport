@@ -1,8 +1,8 @@
-regionReport [![Build Status](https://travis-ci.org/leekgroup/regionReport.svg?branch=master)](https://travis-ci.org/leekgroup/regionReport)
+regionReport [![Build Status](https://travis-ci.org/leekgroup/regionReport.svg?branch=master)](https://travis-ci.org/leekgroup/regionReport) <a href="http://bioconductor.org/checkResults/release/bioc-LATEST/regionReport/"><img border="0" src="http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg" title="build results; click for full report"></a> <a href="http://www.bioconductor.org/packages/release/bioc/html/regionReport.html#archives"><img border="0" src="http://www.bioconductor.org/shields/availability/release/regionReport.svg" title="Whether the package is available on all platforms; click for details."></a> <a href="http://www.bioconductor.org/packages/release/bioc/html/regionReport.html#since"><img border="0" src="http://www.bioconductor.org/shields/years-in-bioc/regionReport.svg" title="How long since the package was first in a released Bioconductor version (or is it in devel only)."></a> <a href="http://bioconductor.org/packages/stats/bioc/regionReport.html"><img border="0" src="http://www.bioconductor.org/shields/downloads/regionReport.svg" title="Percentile (top 5/20/50% or 'available') of downloads over last 6 full months. Comparison is done across all package categories (software, annotation, experiment)."></a> <a href="https://support.bioconductor.org/t/regionReport/"><img border="0" src="http://www.bioconductor.org/shields/posts/regionReport.svg" title="Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts."></a> <a href="http://www.bioconductor.org/packages/release/bioc/html/regionReport.html#svn_source"><img border="0" src="http://www.bioconductor.org/shields/commits/bioc/regionReport.svg" title="average Subversion commits (to the devel branch) per month for the last 6 months"></a>
 ===============
 
 Generate HTML reports for a set of regions such as those from 
-[derfinder](https://github.com/lcolladotor/derfinder) results or any other pipeline that defines a set of genomic regions.
+[derfinder](http://www.bioconductor.org/packages/derfinder) results or any other pipeline that defines a set of genomic regions.
 
 Check the documentation for _derfinderReport()_ for an example on how to create 
 the necessary input files and generating the HTML report for __derfinder__ 
@@ -34,7 +34,7 @@ biocLite('regionReport')
 
 # Vignette
 
-The vignette for this package can be viewed [here](http://leekgroup.github.io/regionReport/) or via [Bioconductor's website](http://www.bioconductor.org/packages/devel/bioc/html/regionReport.html).
+The vignette for this package can be viewed [here](http://leekgroup.github.io/regionReport/) or via [Bioconductor's website](http://www.bioconductor.org/packages/regionReport).
 
 
 # Citation
@@ -61,18 +61,6 @@ A BibTeX entry for LaTeX users is
     note = {https://github.com/leekgroup/regionReport - R package version 1.3.1},
 }
 
-# Travis CI
+# Testing
 
-This package is automatically tested thanks to [Travis CI](travis-ci.org) and [r-travis](https://github.com/craigcitro/r-travis). If you want to add this to your own package use:
-
-```R
-## Use devtools to create the .travis.yml file
-library('devtools')
-use_travis('yourPackage')
-
-## Read https://github.com/craigcitro/r-travis/wiki to configure .travis.yml appropriately
-
-## Add a status image by following the info at http://docs.travis-ci.com/user/status-images/
-```
-
-Testing on R-devel for Bioc-devel is feasible thanks to [r-builder](https://github.com/metacran/r-builder).
+Testing on Bioc-devel is feasible thanks to [r-builder](https://github.com/metacran/r-builder) as well as Bioconductor's nightly build.

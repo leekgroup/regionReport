@@ -3,6 +3,7 @@
 export(derfinderReport)
 export(derfinder_report)
 export(renderReport)
+export(render_report)
 import(GenomeInfoDb)
 import(GenomicRanges)
 import(IRanges)

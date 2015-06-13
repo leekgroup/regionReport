@@ -41,7 +41,6 @@
 #' @seealso \link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr}, 
 #' \link[derfinder]{fullCoverage}
 #' @export
-#' @aliases derfinder_report
 #'
 #' @import derfinder
 #' @import derfinderPlot
@@ -301,7 +300,4 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     
     ## Finish
     return(invisible(res))
-} 
-
-#' @export
-derfinder_report <- derfinderReport
+}

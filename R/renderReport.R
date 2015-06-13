@@ -44,7 +44,6 @@
 #'
 #' @author Leonardo Collado-Torres
 #' @export
-#' @aliases render_report
 #'
 #' @import derfinder
 #' @import derfinderPlot

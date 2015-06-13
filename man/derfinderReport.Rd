@@ -2,7 +2,6 @@
 % Please edit documentation in R/derfinderReport.R
 \name{derfinderReport}
 \alias{derfinderReport}
-\alias{derfinder_report}
 \title{Generate a HTML report exploring the basic results from derfinder}
 \usage{
 derfinderReport(prefix, outdir = "basicExploration",

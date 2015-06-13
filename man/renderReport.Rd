@@ -2,7 +2,6 @@
 % Please edit documentation in R/renderReport.R
 \name{renderReport}
 \alias{renderReport}
-\alias{render_report}
 \title{Generate a HTML report exploring a set of genomic regions}
 \usage{
 renderReport(regions, project, pvalueVars = c(`P-values` = "pval"),

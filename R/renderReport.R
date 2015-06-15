@@ -238,9 +238,9 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
         whisker = citation('whisker'),
         bumphunter = citation('bumphunter')[1],
         derfinder = citation('derfinder')[1]),
-        file = file.path(outdir, 'references.bib')
+        file = file.path(outdir, paste0(output, '.bib'))
     )
-    bib <- read.bibtex(file.path(outdir, 'references.bib'))
+    bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))
     
     ## Assign short names
     names(bib) <- c('knitcitations', 'regionReport', 'derfinderPlot', 

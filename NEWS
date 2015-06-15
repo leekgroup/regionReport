@@ -1,10 +1,19 @@
+CHANGES IN VERSION 1.3.4
+------------------------
+
+NEW FEATURES
+
+    o Reports now have a link to the BibTeX file used for the references. This
+        addresses http://f1000research.com/articles/4-105/v1#reflist Karthik
+        Ram's bullet point number 4.
+
 CHANGES IN VERSION 1.3.3
 ------------------------
 
 NEW FEATURES
 
     o Now uses derfinderPlot::vennRegions() to show venn diagram of genomic
-        states.
+        states. Requires derfinderPlot version 1.3.2 or greater.
     o derfinderReport() now has a 'significantVar' argument that allows users to
         choose between determining significant regions by P-values, FDR adjusted
         P-values, or FWER adjusted P-values (if FWER adjusted P-values are

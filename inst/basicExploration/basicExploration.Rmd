@@ -690,7 +690,7 @@ session_info()
 This report was created with `regionReport` `r citep(bib[['regionReport']])` using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
 to format the html while `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` were running behind the scenes.
 
-Citations made with `knitcitations` `r citep(bib[['knitcitations']])`.
+Citations made with `knitcitations` `r citep(bib[['knitcitations']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
 
 ```{r bibliography, results='asis', echo=FALSE, warning = FALSE}
 ## Print bibliography

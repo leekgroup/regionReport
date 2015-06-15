@@ -434,7 +434,7 @@ venn <- vennRegions(fullAnnotatedRegions, counts.col = 'blue',
 ```{r vennDiagramSignificant, eval = hasSig, echo = hasSig, dev = device}
 ## Venn diagram for all regions
 vennSig <- vennRegions(fullAnnotatedRegions, counts.col = 'blue', 
-    main = 'Regions overlapping genomic states\nSignificant regions only',
+    main = 'Significant regions overlapping genomic states',
     subsetIndex = idx.sig)
 ```
 

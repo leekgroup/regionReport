@@ -8,7 +8,7 @@ derfinderReport(prefix, outdir = "basicExploration",
   output = "basicExploration", project = prefix, browse = interactive(),
   nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
   fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
-  device = "CairoPNG", ...)
+  device = "CairoPNG", significantVar = "qvalue", ...)
 }
 \arguments{
 \item{prefix}{The main data directory path where
@@ -51,6 +51,11 @@ TxDb.Hsapiens.UCSC.hg19.knownGene is used.}
 
 \item{device}{The graphical device used when knitting. See more at
 http://yihui.name/knitr/options (\code{dev} argument).}
+
+\item{significantVar}{A character variable specifying whether to use the
+p-values, the FDR adjusted p-values or the FWER adjusted p-values to
+determine significance. Has to be either \code{'pvalue'}, \code{'qvalue'}
+or \code{'fwer'}.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
 }

@@ -33,6 +33,10 @@
 #' TxDb.Hsapiens.UCSC.hg19.knownGene is used.
 #' @param device The graphical device used when knitting. See more at 
 #' http://yihui.name/knitr/options (\code{dev} argument).
+#' @param significantVar A character variable specifying whether to use the
+#' p-values, the FDR adjusted p-values or the FWER adjusted p-values to
+#' determine significance. Has to be either \code{'pvalue'}, \code{'qvalue'}
+#' or \code{'fwer'}.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return An HTML report with a basic exploration of the derfinder results.
@@ -128,7 +132,10 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     output = 'basicExploration', project = prefix, browse = interactive(),
     nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2, 
     fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL, 
-    device = 'CairoPNG', ...) {
+    device = 'CairoPNG', significantVar = 'qvalue', ...) {
+    
+    stopifnot(length(significantVar) == 1)
+    stopifnot(significantVar %in% c('pvalue', 'qvalue', 'fwer'))
     
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
@@ -256,8 +263,15 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Were permutations used?
     seeds <- optionsStats$seeds
     usedPermutations <- length(optionsStats$nPermute) > 0 & !is.null(seeds)
-    ## Are there significant (by q-value) regions?
-    idx.sig <- which(as.logical(fullRegions$significantQval))
+    ## Are there significant regions?
+    sigVar <- switch(significantVar, pvalue = 'significant', qvalue = 'significantQval', fwer = 'significantFWER')
+    if(significantVar == 'fwer' & !fwerExist) {
+        warning('There are no FWER adjusted P-values, will use FDR adjsuted p-values instead.')
+        significantVar <- 'significantQval'
+    }
+    pvalText <- switch(sigVar, significant = 'P-value', significantQval = 'FDR adjusted P-value', significantFWER = 'FWER adjusted P-value')
+    idx.sig <- which(as.logical(fullRegions[[sigVar]]))
+    sigCut <- optionsMerge$significantCut[ifelse(sigVar == 'significantQval', 2, 1)]
     hasSig <- length(idx.sig) > 0
     ## Are there regions with infite area?
     finite.area <- which(is.finite(fullRegions$area))

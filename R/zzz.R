@@ -1,6 +1,6 @@
 ## Based on https://github.com/hadley/ggplot2/blob/master/R/zzz.r
 .onAttach <- function(...) {
-    if (!interactive() || stats::runif(1) > 0.99) return()
+    if (!interactive() || stats::runif(1) <= 0.99) return()
         
     tips <- c(
         "Want to contribute a new feature? Fork regionReport at\n https://github.com/lcolladotor/regionReport/fork\nThen submit a pull request =)",

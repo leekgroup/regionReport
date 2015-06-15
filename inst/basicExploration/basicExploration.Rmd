@@ -11,7 +11,7 @@ output:
 ---
 
 
-[derfinder](https://github.com/lcolladotor/derfinder) basic results exploration
+[derfinder](http://www.bioconductor.org/packages/derfinder) basic results exploration
 ===============================================================================
 
 Project: `r project`.

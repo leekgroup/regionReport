@@ -553,7 +553,7 @@ for(idx in bestArea) {
 
 # Permutations
 
-Below is the information on how the samples were permutted. 
+Below is the information on how the samples were permuted. 
 
 ## Summary
 

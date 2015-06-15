@@ -270,7 +270,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         significantVar <- 'significantQval'
     }
     pvalText <- switch(sigVar, significant = 'P-value', significantQval = 'FDR adjusted P-value', significantFWER = 'FWER adjusted P-value')
-    idx.sig <- which(as.logical(fullRegions[[sigVar]]))
+    idx.sig <- which(as.logical(mcols(fullRegions)[[sigVar]]))
     sigCut <- optionsMerge$significantCut[ifelse(sigVar == 'significantQval', 2, 1)]
     hasSig <- length(idx.sig) > 0
     ## Are there regions with infite area?

@@ -75,7 +75,7 @@ a set of regions such as `derfinder` `r citep(bib[['derfinder']])` results.
 
 
 This package includes a basic exploration for a general set of genomic regions which can be easily customized to include the appropriate conclusions and/or further exploration of the results. Such a report can be generated using `renderReport()`. `regionReport` has a separate template for running a basic exploration analysis of `derfinder` 
-results by using `derfinderReport()`. Both reports are written in [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
+results by using `derfinderReport()`. Both reports are written in [R Markdown](http://rmarkdown.rstudio.com/)
 format and include all the code for making the plots and explorations in the report itself. For both reports, `regionReport` relies on
 `knitr` `r citep(bib[['knitr']])`, `rmarkdown` 
 `r citep(bib[['rmarkdown']])`, and `knitrBootstrap` 
@@ -336,7 +336,7 @@ if(knitrBootstrapFlag) {
     system.time(render('regionReport.Rmd',
         'knitrBootstrap::bootstrap_document'))
 }
-## Note: if you prefer the knitr version use:
+## Note: if you prefer the simple html version use:
 # library('rmarkdown')
 # system.time(render('regionReport.Rmd', 'html_document'))
 

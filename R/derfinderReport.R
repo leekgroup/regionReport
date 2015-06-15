@@ -222,9 +222,9 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         ggplot2 = citation('ggplot2'),
         knitr = citation('knitr')[3],
         rmarkdown = citation('rmarkdown')),
-        file = file.path(prefix, outdir, 'references.bib')
+        file = file.path(prefix, outdir, paste0(output, '.bib'))
     )
-    bib <- read.bibtex(file.path(prefix, outdir, 'references.bib'))
+    bib <- read.bibtex(file.path(prefix, outdir, paste0(output, '.bib')))
     
     ## Assign short names
     names(bib) <- c('knitcitations', 'derfinder', 'derfinderPlot', 

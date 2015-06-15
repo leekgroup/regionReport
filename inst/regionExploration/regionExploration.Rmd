@@ -220,6 +220,23 @@ if(outputIsHTML) {
 }
 ```
 
+The following is a venn diagram showing how many regions overlap known exons, introns, and intergenic segments, none of them, or multiple of these groups.
+
+```{r vennDiagram, dev = device}
+## Venn diagram for all regions
+venn <- vennRegions(annotatedRegions, counts.col = 'blue', 
+    main = 'Regions overlapping genomic states')
+```
+
+`r ifelse(hasSignificant, 'The following plot is the genomic states venn diagram only for the significant regions.', '')`
+
+```{r vennDiagramSignificant, eval = hasSignificant, echo = hasSignificant, dev = device}
+## Venn diagram for all regions
+vennSig <- vennRegions(annotatedRegions, counts.col = 'blue', 
+    main = 'Regions overlapping genomic states\nSignificant regions only',
+    subsetIndex = significantVar)
+```
+
 ## Region information
 
 Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions)` regions (out of `r nrow(regions.df)`) as ranked by p-value `r ifelse(hasPvalueVars, '', 'without ranking because no p-value information was provided')`. Inf and -Inf are shown as 1e100 and -1e100 respectively.

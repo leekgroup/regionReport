@@ -222,7 +222,7 @@ p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) +
 p2a
 ```
 
-This plot shows the density of the region lengths for all regions. `r ifelse(hasSig, paste0('The bottom panel is restricted to significant regions (q-value < ', optionsMerge$significantCut[2], ')'), '')`
+This plot shows the density of the region lengths for all regions. `r ifelse(hasSig, paste0('The bottom panel is restricted to significant regions (', pvalText, ' < ', sigCut, ')'), '')`
 
 ## Region Area
 
@@ -254,7 +254,7 @@ p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) +
 p3a
 ```
 
-This plot shows the density of the region areas for all regions. `r ifelse(hasArea, paste0('The bottom panel is restricted to significant regions (q-value < ', optionsMerge$significantCut[2], ')'), '')`
+This plot shows the density of the region areas for all regions. `r ifelse(hasArea, paste0('The bottom panel is restricted to significant regions (', pvalText, ' < ', sigCut, ')'), '')`
 
 ## Null regions: width and area
 
@@ -301,7 +301,7 @@ p6a <- ggplot(regions.df.plot, aes(x=log2(meanCoverage), colour=seqnames)) +
 p6a
 ```
 
-This plot shows the density of the region mean coverage for all regions. `r ifelse(hasSig, paste0('The bottom panel is restricted to significant regions (q-value < ', optionsMerge$significantCut[2], ')'), '')`
+This plot shows the density of the region mean coverage for all regions. `r ifelse(hasSig, paste0('The bottom panel is restricted to significant regions (', pvalText, ' < ', sigCut, ')'), '')`
 
 
 ## Mean coverage vs fold change
@@ -353,7 +353,7 @@ The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in t
 plotOverview(regions=fullRegions, type='qval', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
-This plot shows the genomic locations of the __candidate__ regions found in the analysis. The significant regions (q-value less than `r optionsMerge$significantCut[2]`) are highlighted and the area of the regions is shown on top of each chromosome. Note that the area is in a relative scale.
+This plot shows the genomic locations of the __candidate__ regions found in the analysis. The significant regions (`r pvalText` less than `r sigCut`) are highlighted and the area of the regions is shown on top of each chromosome. Note that the area is in a relative scale.
 
 
 ## Annotation
@@ -380,7 +380,7 @@ if(outputIsHTML) {
 plotOverview(regions=fullRegions[idx.sig], annotation=fullRegions[idx.sig], type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
-This genomic overview plot shows the annotation region type for the __candidate__ regions that have a q-value less than `r optionsMerge$significantCut[2]`. Note that the regions are shown only if the annotation information is available. `r ifelse(hasSig, '', 'Plot skipped because there are no significant regions.')`
+This genomic overview plot shows the annotation region type for the __candidate__ regions that have a `r pvalText` less than `r sigCut`. Note that the regions are shown only if the annotation information is available. `r ifelse(hasSig, '', 'Plot skipped because there are no significant regions.')`
 
 
 # Best regions
@@ -405,6 +405,8 @@ if(nBestRegions > 0) {
 }
 ```
 
+## Genomic states
+
 Below is a table summarizing the number of genomic states per region.
 
 ```{r countTable, results='asis'}
@@ -418,6 +420,26 @@ if(outputIsHTML) {
     kable(info)
 }
 ```
+
+The following is a venn diagram showing how many regions overlap known exons, introns, and intergenic segments, none of them, or multiple of these groups.
+
+```{r vennDiagram, dev = device}
+## Venn diagram for all regions
+venn <- vennRegions(fullAnnotatedRegions, counts.col = 'blue', 
+    main = 'Regions overlapping genomic states')
+```
+
+`r ifelse(hasSig, 'The following plot is the genomic states venn diagram only for the significant regions.', '')`
+
+```{r vennDiagramSignificant, eval = hasSig, echo = hasSig, dev = device}
+## Venn diagram for all regions
+vennSig <- vennRegions(fullAnnotatedRegions, counts.col = 'blue', 
+    main = 'Regions overlapping genomic states\nSignificant regions only',
+    subsetIndex = idx.sig)
+```
+
+
+
 
 
 ## Region information

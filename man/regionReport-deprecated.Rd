@@ -3,9 +3,12 @@
 \name{regionReport-deprecated}
 \alias{derfinder_report}
 \alias{regionReport-deprecated}
+\alias{render_report}
 \title{Deprecated functions in package \sQuote{regionReport}}
 \usage{
 derfinder_report()
+
+render_report()
 }
 \description{
 These functions are provided for compatibility with older versions

@@ -2,8 +2,10 @@
 #'
 #' This function generates a HTML report with quality checks, genome location
 #' exploration, and an interactive table with the results. Other output formats
-#' are possible such as PDF but lose the interactivity. The report can easily
-#' be customized by providing a R Markdown file to \code{customCode}.
+#' are possible such as PDF but lose the interactivity. Users can easily append
+#' to the report by providing a R Markdown file to \code{customCode}, or can
+#' customize the entire template by providing an R Markdown file to
+#' \code{template}.
 #'
 #' @param regions The set of genomic regions of interest as a \code{GRanges}
 #' object. All sequence lengths must be provided.
@@ -37,6 +39,9 @@
 #' use TxDb.Hsapiens.UCSC.hg19.knownGene by default.
 #' @param device The graphical device used when knitting. See more at 
 #' http://yihui.name/knitr/options (\code{dev} argument).
+#' @param template Template file to use for the report. If not provided, will
+#' use the default file found in regionExploration/regionExploration.Rmd
+#' within the package source.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return An HTML report with a basic exploration for the given set of
@@ -97,7 +102,8 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
     annotation = NULL, nBestRegions = 500, customCode = NULL,
     outdir = 'regionExploration', output = 'regionExploration',
-    browse = interactive(), txdb = NULL, device = 'CairoPNG', ...) {
+    browse = interactive(), txdb = NULL, device = 'CairoPNG',
+    template = NULL, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     
@@ -214,9 +220,12 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
         recursive = TRUE)
     workingDir <- getwd()
     
-    ## Locate Rmd
-    template <- system.file(file.path('regionExploration',
-        'regionExploration.Rmd'), package = 'regionReport', mustWork = TRUE)
+    ## Locate Rmd if one is not provided
+    if (is.null(template)) {
+        template <- system.file(file.path('regionExploration',
+                                          'regionExploration.Rmd'),
+                                package = 'regionReport', mustWork = TRUE)
+    }
     
     ## Load knitcitations with a clean bibliography
     cleanbib()
@@ -254,8 +263,11 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
     opts_chunk$set(bootstrap.show.code = FALSE)
     
     ## Generate report
+    ## Perform code within the output directory. (The contents of {} are not
+    ## indented, to minimize the footprint of the pull request, though they
+    ## probably should be)
     tmpdir <- getwd()
-    setwd(outdir)
+    with_wd(outdir, {
     file.copy(template, to = paste0(output, '.Rmd'))
     
     ## Output format
@@ -279,7 +291,7 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
     ## Open
     if (browse) 
         browseURL(res)
-    
+    })
     
     ## Finish
     return(invisible(res))

@@ -286,7 +286,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     
     ## Generate report
     tmpdir <- getwd()
-    setwd(file.path(prefix, outdir))
+    with_wd(file.path(prefix, outdir), {
     file.copy(template, to = paste0(output, '.Rmd'))
     
     ## Output format
@@ -310,7 +310,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Open
     if (browse) 
         browseURL(res)
-    setwd(tmpdir)
+    })
     
     ## Finish
     return(invisible(res))

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{with_wd}
 \alias{with_wd}
-\title{temporarily evaluate an expression in a directory}
+\title{Temporarily evaluate an expression in a directory}
 \usage{
 with_wd(dir, expr)
 }
@@ -17,5 +17,9 @@ back to the original.
 }
 \details{
 See here: http://plantarum.ca/code/setwd-part2/
+}
+\author{
+Tyler Smith, contributed to regionReport by David Robinson
+https://github.com/dgrtwo
 }
 

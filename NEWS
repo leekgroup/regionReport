@@ -1,3 +1,15 @@
+CHANGES IN VERSION 1.3.5
+------------------------
+
+    o Merged pull request https://github.com/leekgroup/regionReport/pull/7
+    o Added "template" argument to renderReport and derfinderReport to
+        customize the knitr template used
+    o Wrapped code that works in a temporary directory in with_wd function, 
+        which evaluates in the directory but returns to the original directory 
+        in the case of a user interrupt or error (with on.exit)
+    
+
+
 CHANGES IN VERSION 1.3.4
 ------------------------
 

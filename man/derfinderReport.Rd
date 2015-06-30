@@ -8,7 +8,8 @@ derfinderReport(prefix, outdir = "basicExploration",
   output = "basicExploration", project = prefix, browse = interactive(),
   nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
   fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
-  device = "CairoPNG", significantVar = "qvalue", ...)
+  device = "CairoPNG", significantVar = "qvalue", customCode = NULL,
+  template = NULL, ...)
 }
 \arguments{
 \item{prefix}{The main data directory path where
@@ -56,6 +57,15 @@ http://yihui.name/knitr/options (\code{dev} argument).}
 p-values, the FDR adjusted p-values or the FWER adjusted p-values to
 determine significance. Has to be either \code{'pvalue'}, \code{'qvalue'}
 or \code{'fwer'}.}
+
+\item{customCode}{An absolute path to a child R Markdown file with code to be
+evaluated before the reproducibility section. Its useful for users who want
+to customize the report by adding conclusions derived from the data and/or
+further quality checks and plots.}
+
+\item{template}{Template file to use for the report. If not provided, will
+use the default file found in basicExploration/basicExploration.Rmd
+within the package source.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
 }

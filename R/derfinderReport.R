@@ -37,6 +37,13 @@
 #' p-values, the FDR adjusted p-values or the FWER adjusted p-values to
 #' determine significance. Has to be either \code{'pvalue'}, \code{'qvalue'}
 #' or \code{'fwer'}.
+#' @param customCode An absolute path to a child R Markdown file with code to be
+#' evaluated before the reproducibility section. Its useful for users who want
+#' to customize the report by adding conclusions derived from the data and/or
+#' further quality checks and plots.
+#' @param template Template file to use for the report. If not provided, will
+#' use the default file found in basicExploration/basicExploration.Rmd
+#' within the package source.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return An HTML report with a basic exploration of the derfinder results.
@@ -132,10 +139,14 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     output = 'basicExploration', project = prefix, browse = interactive(),
     nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2, 
     fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL, 
-    device = 'CairoPNG', significantVar = 'qvalue', ...) {
+    device = 'CairoPNG', significantVar = 'qvalue', customCode = NULL,
+    template = NULL, ...) {
     
     stopifnot(length(significantVar) == 1)
     stopifnot(significantVar %in% c('pvalue', 'qvalue', 'fwer'))
+    
+    hasCustomCode <- !is.null(customCode)
+    if(hasCustomCode) stopifnot(length(customCode) == 1)
     
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
@@ -200,9 +211,13 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         recursive = TRUE)
     workingDir <- file.path(getwd(), prefix)
     
-    ## Locate Rmd
-    template <- system.file(file.path('basicExploration',
-        'basicExploration.Rmd'), package = 'regionReport', mustWork = TRUE)
+    ## Locate Rmd if one is not provided
+    if (is.null(template)) {
+        template <- system.file(
+            file.path('basicExploration', 'basicExploration.Rmd'),
+            package = 'regionReport', mustWork = TRUE
+        )
+    }
     
     ## Load knitcitations with a clean bibliography
     cleanbib()
@@ -283,33 +298,33 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     
     ## knitrBoostrap chunk options
     opts_chunk$set(bootstrap.show.code = FALSE)
-    
+
     ## Generate report
+    ## Perform code within the output directory.
     tmpdir <- getwd()
-    with_wd(file.path(prefix, outdir), {
-    file.copy(template, to = paste0(output, '.Rmd'))
+    with_wd(outdir, {
+        file.copy(template, to = paste0(output, '.Rmd'))
     
-    ## Output format
-    output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
-    outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+        ## Output format
+            output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
+        outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
     
-    ## Check knitrBoostrap version
-    knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
-    if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
-        ## CRAN version
-        tmp <- res <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
-            'code'), show_code = TRUE)
-        res <- file.path(tmpdir, outdir, paste0(output, '.html'))
-        unlink(paste0(output, '.md'))
-    } else {
-        res <- render(paste0(output, '.Rmd'), output_format,
-            clean = .advanced_argument('clean', TRUE, ...))
-    }
-    file.remove(paste0(output, '.Rmd'))
+        ## Check knitrBoostrap version
+        knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
+            if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
+            ## CRAN version
+            tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
+                'code'), show_code = TRUE)
+            res <- file.path(tmpdir, outdir, paste0(output, '.html'))
+            unlink(paste0(output, '.md'))
+        } else {
+            res <- render(paste0(output, '.Rmd'), output_format,
+                clean = .advanced_argument('clean', TRUE, ...))
+        }
+        file.remove(paste0(output, '.Rmd'))
     
-    ## Open
-    if (browse) 
-        browseURL(res)
+        ## Open
+        if (browse) browseURL(res)
     })
     
     ## Finish

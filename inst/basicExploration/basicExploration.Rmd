@@ -630,7 +630,8 @@ $(document).ready(function() {
 ')
 ```
 
-
+```{r child = customCode, eval = hasCustomCode}
+```
 
 # Reproducibility
 

@@ -11,3 +11,20 @@
         return(args[[name]])
     }
 }
+
+
+#' temporarily evaluate an expression in a directory
+#'
+#' Temporarily evaluate an expression in a directory, then set the directory
+#' back to the original.
+#'
+#' @param dir a directory to perform an expression within
+#' @param expr expression to evaluate
+#'
+#' @details See here: http://plantarum.ca/code/setwd-part2/
+with_wd <- function(dir, expr) {
+    wd <- getwd()
+    on.exit(setwd(wd))
+    setwd(dir)
+    eval(expr, envir = parent.frame())
+}

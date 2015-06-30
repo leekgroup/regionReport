@@ -8,7 +8,8 @@ renderReport(regions, project, pvalueVars = c(`P-values` = "pval"),
   densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
   annotation = NULL, nBestRegions = 500, customCode = NULL,
   outdir = "regionExploration", output = "regionExploration",
-  browse = interactive(), txdb = NULL, device = "CairoPNG", ...)
+  browse = interactive(), txdb = NULL, device = "CairoPNG",
+  template = NULL, ...)
 }
 \arguments{
 \item{regions}{The set of genomic regions of interest as a \code{GRanges}
@@ -56,6 +57,10 @@ use TxDb.Hsapiens.UCSC.hg19.knownGene by default.}
 \item{device}{The graphical device used when knitting. See more at
 http://yihui.name/knitr/options (\code{dev} argument).}
 
+\item{template}{Template file to use for the report. If not provided, will
+use the default file found in regionExploration/regionExploration.Rmd
+within the package source.}
+
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
 }
 \value{
@@ -65,8 +70,10 @@ genomic regions.
 \description{
 This function generates a HTML report with quality checks, genome location
 exploration, and an interactive table with the results. Other output formats
-are possible such as PDF but lose the interactivity. The report can easily
-be customized by providing a R Markdown file to \code{customCode}.
+are possible such as PDF but lose the interactivity. Users can easily append
+to the report by providing a R Markdown file to \code{customCode}, or can
+customize the entire template by providing an R Markdown file to
+\code{template}.
 }
 \examples{
 ## Load derfinder for an example set of regions

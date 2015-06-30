@@ -13,7 +13,7 @@
 }
 
 
-#' temporarily evaluate an expression in a directory
+#' Temporarily evaluate an expression in a directory
 #'
 #' Temporarily evaluate an expression in a directory, then set the directory
 #' back to the original.
@@ -22,6 +22,8 @@
 #' @param expr expression to evaluate
 #'
 #' @details See here: http://plantarum.ca/code/setwd-part2/
+#' @author Tyler Smith, contributed to regionReport by David Robinson 
+#' https://github.com/dgrtwo
 with_wd <- function(dir, expr) {
     wd <- getwd()
     on.exit(setwd(wd))

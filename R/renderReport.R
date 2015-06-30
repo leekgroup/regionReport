@@ -222,9 +222,10 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
     
     ## Locate Rmd if one is not provided
     if (is.null(template)) {
-        template <- system.file(file.path('regionExploration',
-                                          'regionExploration.Rmd'),
-                                package = 'regionReport', mustWork = TRUE)
+        template <- system.file(
+            file.path('regionExploration', 'regionExploration.Rmd'),
+            package = 'regionReport', mustWork = TRUE
+        )
     }
     
     ## Load knitcitations with a clean bibliography
@@ -263,34 +264,31 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
     opts_chunk$set(bootstrap.show.code = FALSE)
     
     ## Generate report
-    ## Perform code within the output directory. (The contents of {} are not
-    ## indented, to minimize the footprint of the pull request, though they
-    ## probably should be)
+    ## Perform code within the output directory.
     tmpdir <- getwd()
     with_wd(outdir, {
-    file.copy(template, to = paste0(output, '.Rmd'))
+        file.copy(template, to = paste0(output, '.Rmd'))
     
-    ## Output format
-    output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
-    outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+        ## Output format
+            output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
+        outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
     
-    ## Check knitrBoostrap version
-    knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
-    if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
-        ## CRAN version
-        tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
-            'code'), show_code = TRUE)
-        res <- file.path(tmpdir, outdir, paste0(output, '.html'))
-        unlink(paste0(output, '.md'))
-    } else {
-        res <- render(paste0(output, '.Rmd'), output_format,
-            clean = .advanced_argument('clean', TRUE, ...))
-    }
-    file.remove(paste0(output, '.Rmd'))
+        ## Check knitrBoostrap version
+        knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
+            if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
+            ## CRAN version
+            tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
+                'code'), show_code = TRUE)
+            res <- file.path(tmpdir, outdir, paste0(output, '.html'))
+            unlink(paste0(output, '.md'))
+        } else {
+            res <- render(paste0(output, '.Rmd'), output_format,
+                clean = .advanced_argument('clean', TRUE, ...))
+        }
+        file.remove(paste0(output, '.Rmd'))
     
-    ## Open
-    if (browse) 
-        browseURL(res)
+        ## Open
+        if (browse) browseURL(res)
     })
     
     ## Finish

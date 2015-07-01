@@ -119,7 +119,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     outdir = 'regionExploration', output = 'regionExploration',
     browse = interactive(), txdb = NULL, device = 'CairoPNG',
     densityTemplates = list(Pvalue = templatePvalueDensity,
-        Common = templatesDensity), template = NULL, ...) {
+        Common = templateDensity), template = NULL, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     

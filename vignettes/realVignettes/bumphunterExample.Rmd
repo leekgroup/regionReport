@@ -76,14 +76,43 @@ regions
 
 Now that we have identified a set of differentially methylated regions we can proceed to creating the HTML report. Note that this report has less information than the [DiffBind example](leekgroup.github.io/regionReportSupp/DiffBind.html) because we don't have a p-value variable.
 
-```{r 'createReport'}
+
+```{r 'loadLib'}
 ## Load regionReport
 library('regionReport')
+```
 
+```{r 'createReport', eval = FALSE}
 report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
     output = 'bumphunterExampleOutput')
+```
+
+
+```{r 'createReportReal', echo = FALSE}
+save(regions, 'regionsTemp.Rdata')
+## Generate the HTML report in a clean environment
+library('devtools')
+
+cat("## Generate the report in an isolated environment
+## This helps avoids https://github.com/rstudio/rmarkdown/issues/248
+
+## Load library and data
+library(regionReport)
+load('regionsTemp.Rdata')
+
+## Create report
+report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
+    densityVars = c('Area' = 'area', 'Value' = 'value',
+    'Cluster Length' = 'clusterL'), significantVar = NULL,
+    output = 'bumphunterExampleOutput')
+    
+## Clean up
+file.remove('regionsTemp.Rdata')
+", file = 'bumphunterReport-isolated.R')
+clean_source('bumphunterReport-isolated.R', quiet=TRUE)
+
 ```
 
 

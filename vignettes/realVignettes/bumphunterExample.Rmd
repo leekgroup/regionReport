@@ -95,6 +95,13 @@ save(regions, file = 'regionsTemp.Rdata')
 ## Generate the HTML report in a clean environment
 library('devtools')
 
+cat("
+<!--
+%\\VignetteEngine{knitr::rmarkdown}
+%\\VignetteIndexEntry{Output from example with data from bumphunter}
+-->
+", file = 'vignetteInfo.Rmd')
+
 cat("## Generate the report in an isolated environment
 ## This helps avoids https://github.com/rstudio/rmarkdown/issues/248
 
@@ -106,15 +113,12 @@ load('regionsTemp.Rdata')
 report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
-    output = 'bumphunterExampleOutput', outdir = '.', customCode = '
-    <!--
-    %\\\\VignetteEngine{knitr::rmarkdown}
-    %\\\\VignetteIndexEntry{Output from example with data from bumphunter}
-    -->
-    ')
+    output = 'bumphunterExampleOutput', outdir = '.', 
+    customCode = 'vignetteInfo.Rmd')
     
 ## Clean up
 file.remove('regionsTemp.Rdata')
+file.remove('vignetteInfo.Rmd')
 ", file = 'bumphunterReport-isolated.R')
 clean_source('bumphunterReport-isolated.R', quiet=TRUE)
 

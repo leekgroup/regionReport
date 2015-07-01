@@ -91,7 +91,7 @@ report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
 
 
 ```{r 'createReportReal', echo = FALSE}
-save(regions, 'regionsTemp.Rdata')
+save(regions, file = 'regionsTemp.Rdata')
 ## Generate the HTML report in a clean environment
 library('devtools')
 

@@ -39,6 +39,13 @@
 #' use TxDb.Hsapiens.UCSC.hg19.knownGene by default.
 #' @param device The graphical device used when knitting. See more at 
 #' http://yihui.name/knitr/options (\code{dev} argument).
+#' @param densityTemplates A list of length 2 with templates for the p-value 
+#' density plots (variables from \code{pvalueVars}) and the continuous 
+#' variables density plots (variables from \code{densityVars}). This templates 
+#' are processed by \link[whisker]{whisker.render}. Check the default templates 
+#' for more information. The \code{densityTemplates} argument is available for 
+#' those users interested in customizing these plots. For example, to show 
+#' histograms instead of density plots.
 #' @param template Template file to use for the report. If not provided, will
 #' use the default file found in regionExploration/regionExploration.Rmd
 #' within the package source.
@@ -96,6 +103,14 @@
 #' ## Note that you can run the example using:
 #' example('renderReport', 'regionReport', ask=FALSE)
 #' }
+#'
+#' ## Check the default templates. For users interested in customizing these 
+#' ## plots.
+#' ## For p-value variables:
+#' templatePvalueDensity
+#'
+#' ## For continous variables:
+#' templateDensity
 
 
 renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
@@ -103,7 +118,8 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     annotation = NULL, nBestRegions = 500, customCode = NULL,
     outdir = 'regionExploration', output = 'regionExploration',
     browse = interactive(), txdb = NULL, device = 'CairoPNG',
-    template = NULL, ...) {
+    densityTemplates = list(Pvalue = templatePvalueDensity,
+        Common = templatesDensity), template = NULL, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     
@@ -111,6 +127,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     ## Check inputs
     stopifnot(is(regions, 'GRanges'))
     stopifnot(!any(is.na(seqlengths(regions))))
+    stopifnot(is.list(densityTemplates) & length(densityTemplates) == 2 & all(c('Pvalue', 'Common') %in% names(densityTemplates)))
     hasCustomCode <- !is.null(customCode)
     if(hasCustomCode) stopifnot(length(customCode) == 1)
     if(!is.null(annotation)) stopifnot(nrow(annotation) == length(regions))
@@ -141,78 +158,11 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
         if(!hasSignificant) warning("There are no statistically significant regions in this set.")
     }   
     
-    
-    
     ## Template for pvalueVars
-    if(hasPvalueVars) {
-        templatePvalueDensity <- "
-## {{{densityVarName}}}
-
-```{r density-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
-p1{{{varName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
-    geom_line(stat='density') + xlim(0, 1) +
-    labs(title='Density of {{{densityVarName}}}') + xlab('{{{densityVarName}}}') +
-    scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
-p1{{{varName}}}
-```
-
-
-```{r 'summary-{{{varName}}}'}
-summary(mcols(regions)[['{{{varName}}}']])
-```
-
-
-This is the numerical summary of the distribution of the {{{densityVarName}}}.
-
-```{r tableSummary-{{{varName}}}, results='asis'}
-{{{varName}}}table <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
-    0.6, 0.7, 0.8, 0.9, 1), function(x) {
-    data.frame('Cut' = x, 'Count' = sum(mcols(regions)[['{{{varName}}}']] <= x))
-})
-{{{varName}}}table <- do.call(rbind, {{{varName}}}table)
-if(outputIsHTML) {
-    kable({{{varName}}}table, format = 'html', align = c('c', 'c'))
-} else {
-    kable({{{varName}}}table)
-}
-```
-
-This table shows the number of regions with {{{densityVarName}}} less or equal than some commonly used cutoff values. 
-
-"
-    }
+    if(hasPvalueVars) templatePvalueDensityInUse <- densityTemplates$Pvalue
     
     ## Template for densityVars
-    if(hasDensityVars) {
-        templateDensity <- "
-## {{{densityVarName}}}
-
-```{r density-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
-xrange <- range(regions.df.plot[, '{{{varName}}}'])
-p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
-    geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
-    xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
-    xlim(xrange) + theme(legend.title=element_blank())
-p3b{{{varName}}} <- ggplot(regions.df.sig[is.finite(regions.df.sig[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
-    geom_line(stat='density') +
-    labs(title='Density of {{{densityVarName}}} (significant only)') +
-    xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
-    xlim(xrange) + theme(legend.title=element_blank())
-grid.arrange(p3a{{{varName}}}, p3b{{{varName}}})
-```
-
-```{r density-solo-{{{varName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
-p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
-    geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
-    xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
-    theme(legend.title=element_blank())
-p3a{{{varName}}}
-```
-
-This plot shows the density of the {{{densityVarName}}} for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.', '')`
-
-"
-    }
+    if(hasDensityVars) templateDensityInUse <- densityTemplates$Common
     
     
     ## Create outdir
@@ -294,3 +244,73 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
     ## Finish
     return(invisible(res))
 }
+
+
+#' @rdname renderReport
+#' @export
+templatePvalueDensity <- "
+## {{{densityVarName}}}
+
+```{r density-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
+p1{{{varName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
+    geom_line(stat='density') + xlim(0, 1) +
+    labs(title='Density of {{{densityVarName}}}') + xlab('{{{densityVarName}}}') +
+    scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
+p1{{{varName}}}
+```
+
+
+```{r 'summary-{{{varName}}}'}
+summary(mcols(regions)[['{{{varName}}}']])
+```
+
+
+This is the numerical summary of the distribution of the {{{densityVarName}}}.
+
+```{r tableSummary-{{{varName}}}, results='asis'}
+{{{varName}}}table <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
+    0.6, 0.7, 0.8, 0.9, 1), function(x) {
+    data.frame('Cut' = x, 'Count' = sum(mcols(regions)[['{{{varName}}}']] <= x))
+})
+{{{varName}}}table <- do.call(rbind, {{{varName}}}table)
+if(outputIsHTML) {
+    kable({{{varName}}}table, format = 'html', align = c('c', 'c'))
+} else {
+    kable({{{varName}}}table)
+}
+```
+
+This table shows the number of regions with {{{densityVarName}}} less or equal than some commonly used cutoff values. 
+
+"
+
+#' @rdname renderReport
+#' @export
+templateDensity <- "
+## {{{densityVarName}}}
+
+```{r density-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
+xrange <- range(regions.df.plot[, '{{{varName}}}'])
+p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
+    geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
+    xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
+    xlim(xrange) + theme(legend.title=element_blank())
+p3b{{{varName}}} <- ggplot(regions.df.sig[is.finite(regions.df.sig[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
+    geom_line(stat='density') +
+    labs(title='Density of {{{densityVarName}}} (significant only)') +
+    xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
+    xlim(xrange) + theme(legend.title=element_blank())
+grid.arrange(p3a{{{varName}}}, p3b{{{varName}}})
+```
+
+```{r density-solo-{{{varName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
+p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
+    geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
+    xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
+    theme(legend.title=element_blank())
+p3a{{{varName}}}
+```
+
+This plot shows the density of the {{{densityVarName}}} for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.', '')`
+
+"

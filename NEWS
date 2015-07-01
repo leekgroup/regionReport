@@ -1,7 +1,19 @@
+CHANGES IN VERSION 1.3.7
+------------------------
+
+NEW FEATURES
+
+    o renderReport() now has the 'densityTemplates' argument via which users can
+        customize the density plots for the p-value variables and the continuous
+        variables. This addresses one of David Robinson's requests at
+        http://f1000research.com/articles/4-105/v1
+
+
+
 CHANGES IN VERSION 1.3.6
 ------------------------
 
-SIGNIFICANT USER-VISIBLE CHANGES
+NEW FEATURES
 
     o Added a vignette with an example report from bumphunter results.
 

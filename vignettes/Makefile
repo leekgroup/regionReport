@@ -5,7 +5,7 @@
 
 all:
 	cp realVignettes/*.Rmd .
-	"$(R_HOME)/bin$(R_ARCH_BIN)/Rscript" -e "library(methods); library(knitrBootstrap); knitrBoostrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'; if(knitrBoostrapFlag) knit_bootstrap('regionReport.Rmd', chooser=c('boot', 'code'), show_code=TRUE) else {library(rmarkdown); render('regionReport.Rmd', bootstrap_document(theme.chooser=TRUE, highlight.chooser=TRUE))}"
+	"$(R_HOME)/bin$(R_ARCH_BIN)/Rscript" -e "library(methods); library(rmarkdown); library(knitrBootstrap); knitrBoostrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'; if(knitrBoostrapFlag) knit_bootstrap('regionReport.Rmd', chooser=c('boot', 'code'), show_code=TRUE) else { render('regionReport.Rmd', bootstrap_document(theme.chooser=TRUE, highlight.chooser=TRUE))}; render('bumphunterExample.Rmd')"
 
 clean:
 	rm -f *.bib *.md

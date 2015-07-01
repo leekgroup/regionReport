@@ -88,7 +88,7 @@ The plots in `regionReport` are powered by `derfinderPlot` `r citep(bib[['derfin
 
 ## Examples
 
-The `regionReport` supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/) has examples of using `regionReport` with results from `DiffBind`, `bumphunter`, and `derfinder`. These represent different uses of `regionReport` for results from ChIP-seq, methylation, and RNA-seq data. In particular, the `DiffBind` example illustrates how to expand a basic report created with `renderReport()`.
+The `regionReport` supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/) has examples of using `regionReport` with results from `DiffBind` and `derfinder`. Included as a vignette, this package also has an example using a small data set derived from `bumphunter`. These represent different uses of `regionReport` for results from ChIP-seq, methylation, and RNA-seq data. In particular, the `DiffBind` example illustrates how to expand a basic report created with `renderReport()`.
 
 ## General case
 

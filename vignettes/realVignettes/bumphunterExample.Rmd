@@ -74,7 +74,7 @@ seqlengths(regions) <- seqlengths(hg19Ideogram)[names(seqlengths(regions))]
 regions
 ```
 
-Now that we have identified a set of differentially methylated regions we can proceed to creating the HTML report. Note that this report has less information than the [DiffBind example](leekgroup.github.io/regionReportSupp/DiffBind.html) because we don't have a p-value variable.
+Now that we have identified a set of differentially methylated regions we can proceed to creating the HTML report. Note that this report has less information than the [DiffBind example](http://leekgroup.github.io/regionReportSupp/DiffBind.html) because we don't have a p-value variable.
 
 
 ```{r 'loadLib'}
@@ -86,7 +86,7 @@ library('regionReport')
 report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
-    output = 'bumphunterExampleOutput', outdir = '.')
+    output = 'bumphunterExampleOutput', outdir = '.', device = 'png')
 ```
 
 
@@ -114,7 +114,7 @@ report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
     output = 'bumphunterExampleOutput', outdir = '.', 
-    customCode = 'vignetteInfo.Rmd')
+    customCode = 'vignetteInfo.Rmd', device = 'png')
     
 ## Clean up
 file.remove('regionsTemp.Rdata')

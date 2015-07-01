@@ -8,7 +8,7 @@ derfinderReport(prefix, outdir = "basicExploration",
   output = "basicExploration", project = prefix, browse = interactive(),
   nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
   fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
-  device = "CairoPNG", significantVar = "qvalue", customCode = NULL,
+  device = "png", significantVar = "qvalue", customCode = NULL,
   template = NULL, ...)
 }
 \arguments{

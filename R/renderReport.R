@@ -39,9 +39,10 @@
 #' use TxDb.Hsapiens.UCSC.hg19.knownGene by default.
 #' @param device The graphical device used when knitting. See more at 
 #' http://yihui.name/knitr/options (\code{dev} argument).
-#' @param densityTemplates A list of length 2 with templates for the p-value 
-#' density plots (variables from \code{pvalueVars}) and the continuous 
-#' variables density plots (variables from \code{densityVars}). This templates 
+#' @param densityTemplates A list of length 3 with templates for the p-value 
+#' density plots (variables from \code{pvalueVars}), the continuous 
+#' variables density plots (variables from \code{densityVars}), and Manhattan 
+#' plots for the p-value variables (\code{pvalueVars}). These templates 
 #' are processed by \link[whisker]{whisker.render}. Check the default templates 
 #' for more information. The \code{densityTemplates} argument is available for 
 #' those users interested in customizing these plots. For example, to show 
@@ -127,7 +128,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     ## Check inputs
     stopifnot(is(regions, 'GRanges'))
     stopifnot(!any(is.na(seqlengths(regions))))
-    stopifnot(is.list(densityTemplates) & length(densityTemplates) == 2 & all(c('Pvalue', 'Common') %in% names(densityTemplates)))
+    stopifnot(is.list(densityTemplates) & length(densityTemplates) == 3 & all(c('Pvalue', 'Common', 'Manhattan') %in% names(densityTemplates)))
     hasCustomCode <- !is.null(customCode)
     if(hasCustomCode) stopifnot(length(customCode) == 1)
     if(!is.null(annotation)) stopifnot(nrow(annotation) == length(regions))
@@ -159,7 +160,10 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     }   
     
     ## Template for pvalueVars
-    if(hasPvalueVars) templatePvalueDensityInUse <- densityTemplates$Pvalue
+    if(hasPvalueVars) {
+        templatePvalueDensityInUse <- densityTemplates$Pvalue
+        templateManhattanInUse <- densityTemplates$Manhattan
+    }
     
     ## Template for densityVars
     if(hasDensityVars) templateDensityInUse <- densityTemplates$Common
@@ -312,5 +316,23 @@ p3a{{{varName}}}
 ```
 
 This plot shows the density of the {{{densityVarName}}} for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.', '')`
+
+"
+
+#' @rdname renderReport
+#' @export
+templateManhattan <- "
+## {{{densityVarName}}}
+
+```{r manhattan-{{{varName}}}, fig.width=14, fig.height=14, dev=device}
+
+regions.manhattan <- regions
+mcols(regions.manhattan)[[{{{varName}}}]] <- - log(mcols(regions.manhattan)[[{{{varName}}}]], base = 10)
+pMan{{{varName}}} <- plotGrandLinear(regions.manhattan, aes(y = {{{varName}}}, colour = seqnames)) + theme(axis.text.x=element_text(angle=-90, hjust=0)) + ylab('-log10 {{{densityVarName}}}')
+pMan{{{varName}}}
+rm(regions.manhattan)
+```
+
+This is a Manhattan plot for the {{{densityVarName}}} for all regions. A single dot is shown for each region, where higher values in the y-axis mean that the {{{densityVarName}}} are closer to zero.
 
 "

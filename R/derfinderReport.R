@@ -285,6 +285,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         significantVar <- 'significantQval'
     }
     pvalText <- switch(sigVar, significant = 'P-value', significantQval = 'FDR adjusted P-value', significantFWER = 'FWER adjusted P-value')
+    pvalVar <- switch(sigVar, significant = 'pval', significantQval = 'qval', significantFWER = 'fwer')
     idx.sig <- which(as.logical(mcols(fullRegions)[[sigVar]]))
     sigCut <- optionsMerge$significantCut[ifelse(sigVar == 'significantQval', 2, 1)]
     hasSig <- length(idx.sig) > 0

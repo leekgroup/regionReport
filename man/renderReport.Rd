@@ -4,6 +4,7 @@
 \name{renderReport}
 \alias{renderReport}
 \alias{templateDensity}
+\alias{templateManhattan}
 \alias{templatePvalueDensity}
 \title{Generate a HTML report exploring a set of genomic regions}
 \format{\preformatted{ chr "\\n## \{\{\{densityVarName\}\}\}\\n\\n```\{r density-\{\{\{varName\}\}\}, fig.width=10, fig.height=10, dev=device\}\\np1\{\{\{varName\}\}\} <- ggplot(r"| __truncated__
@@ -13,13 +14,15 @@ renderReport(regions, project, pvalueVars = c(`P-values` = "pval"),
   densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
   annotation = NULL, nBestRegions = 500, customCode = NULL,
   outdir = "regionExploration", output = "regionExploration",
-  browse = interactive(), txdb = NULL, device = "CairoPNG",
+  browse = interactive(), txdb = NULL, device = "png",
   densityTemplates = list(Pvalue = templatePvalueDensity, Common =
   templateDensity), template = NULL, ...)
 
 templatePvalueDensity
 
 templateDensity
+
+templateManhattan
 }
 \arguments{
 \item{regions}{The set of genomic regions of interest as a \code{GRanges}
@@ -67,9 +70,10 @@ use TxDb.Hsapiens.UCSC.hg19.knownGene by default.}
 \item{device}{The graphical device used when knitting. See more at
 http://yihui.name/knitr/options (\code{dev} argument).}
 
-\item{densityTemplates}{A list of length 2 with templates for the p-value
-density plots (variables from \code{pvalueVars}) and the continuous
-variables density plots (variables from \code{densityVars}). This templates
+\item{densityTemplates}{A list of length 3 with templates for the p-value
+density plots (variables from \code{pvalueVars}), the continuous
+variables density plots (variables from \code{densityVars}), and Manhattan
+plots for the p-value variables (\code{pvalueVars}). These templates
 are processed by \link[whisker]{whisker.render}. Check the default templates
 for more information. The \code{densityTemplates} argument is available for
 those users interested in customizing these plots. For example, to show

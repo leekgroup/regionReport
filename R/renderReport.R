@@ -120,7 +120,8 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     outdir = 'regionExploration', output = 'regionExploration',
     browse = interactive(), txdb = NULL, device = 'png',
     densityTemplates = list(Pvalue = templatePvalueDensity,
-        Common = templateDensity), template = NULL, ...) {
+        Common = templateDensity, Manhattan = templateManhattan),
+    template = NULL, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     

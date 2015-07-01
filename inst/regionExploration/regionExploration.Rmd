@@ -232,7 +232,7 @@ if(outputIsHTML) {
 
 The following is a venn diagram showing how many regions overlap known exons, introns, and intergenic segments, none of them, or multiple of these groups.
 
-```{r vennDiagram, dev = device, fig.width=7, fig.height=9}
+```{r vennDiagram, dev = device, fig.width=7, fig.height=7}
 ## Venn diagram for all regions
 venn <- vennRegions(annotatedRegions, counts.col = 'blue', 
     main = 'Regions overlapping genomic states')
@@ -240,7 +240,7 @@ venn <- vennRegions(annotatedRegions, counts.col = 'blue',
 
 `r ifelse(hasSignificant, 'The following plot is the genomic states venn diagram only for the significant regions.', '')`
 
-```{r vennDiagramSignificant, eval = hasSignificant, echo = hasSignificant, dev = device, fig.width=7, fig.height=9}
+```{r vennDiagramSignificant, eval = hasSignificant, echo = hasSignificant, dev = device, fig.width=7, fig.height=7}
 ## Venn diagram for all regions
 vennSig <- vennRegions(annotatedRegions, counts.col = 'blue', 
     main = 'Significant regions overlapping genomic states',

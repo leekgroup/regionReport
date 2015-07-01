@@ -322,7 +322,7 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
 #' @rdname renderReport
 #' @export
 templateManhattan <- "
-## {{{densityVarName}}}
+## Manhattan {{{densityVarName}}}
 
 ```{r manhattan-{{{varName}}}, fig.width=14, fig.height=14, dev=device}
 

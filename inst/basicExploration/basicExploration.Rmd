@@ -350,7 +350,6 @@ The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in t
 ## `r pvalText`
 
 ```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=nullExist, echo=nullExist}
-plot.type <- switch()
 plotOverview(regions=fullRegions, type=pvalVar, base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 

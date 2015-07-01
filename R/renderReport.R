@@ -325,7 +325,7 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
 templateManhattan <- "
 ## Manhattan {{{densityVarName}}}
 
-```{r manhattan-{{{varName}}}, fig.width=14, fig.height=14, dev=device}
+```{r manhattan-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
 
 regions.manhattan <- regions
 mcols(regions.manhattan)[['{{{varName}}}']] <- - log(mcols(regions.manhattan)[['{{{varName}}}']], base = 10)

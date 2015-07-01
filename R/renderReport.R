@@ -328,7 +328,7 @@ templateManhattan <- "
 ```{r manhattan-{{{varName}}}, fig.width=14, fig.height=14, dev=device}
 
 regions.manhattan <- regions
-mcols(regions.manhattan)[[{{{varName}}}]] <- - log(mcols(regions.manhattan)[[{{{varName}}}]], base = 10)
+mcols(regions.manhattan)[['{{{varName}}}']] <- - log(mcols(regions.manhattan)[['{{{varName}}}']], base = 10)
 pMan{{{varName}}} <- plotGrandLinear(regions.manhattan, aes(y = {{{varName}}}, colour = seqnames)) + theme(axis.text.x=element_text(angle=-90, hjust=0)) + ylab('-log10 {{{densityVarName}}}')
 pMan{{{varName}}}
 rm(regions.manhattan)

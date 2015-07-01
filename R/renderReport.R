@@ -117,7 +117,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
     annotation = NULL, nBestRegions = 500, customCode = NULL,
     outdir = 'regionExploration', output = 'regionExploration',
-    browse = interactive(), txdb = NULL, device = 'CairoPNG',
+    browse = interactive(), txdb = NULL, device = 'png',
     densityTemplates = list(Pvalue = templatePvalueDensity,
         Common = templateDensity), template = NULL, ...) {
     ## Save start time for getting the total processing time

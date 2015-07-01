@@ -347,13 +347,27 @@ for(j in grep('log2FoldChange', colnames(values(fullRegions)))) {
 
 The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotOverview` in `derfinder` `r citep(bib[['derfinder']])`.
 
-## Q-values
+## `r pvalText`
 
 ```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=nullExist, echo=nullExist}
-plotOverview(regions=fullRegions, type='qval', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
+plot.type <- switch()
+plotOverview(regions=fullRegions, type=pvalVar, base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
 This plot shows the genomic locations of the __candidate__ regions found in the analysis. The significant regions (`r pvalText` less than `r sigCut`) are highlighted and the area of the regions is shown on top of each chromosome. Note that the area is in a relative scale.
+
+
+```{r manhattanPlots, echo=FALSE, results='asis'}
+pvalueVars <- c('P-values' = 'pvalue', 'FDR adj. P-values' = 'qvalue', 'FWER adj. P-values' = 'FWER')
+regions <- fullRegions
+pvalueVars <- pvalueVars[pvalueVars %in% colnames(mcols(regions))]
+for(i in seq_len(length(pvalueVars))) {
+    densityVarName <- names(pvalueVars[i])
+    densityVarName <- ifelse(is.null(densityVarName), pvalueVars[i], densityVarName)
+   cat(knit_child(text = whisker.render(templateManhattan, list(varName = pvalueVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
+}
+rm(regions)
+```
 
 
 ## Annotation

@@ -33,6 +33,7 @@ library('derfinder')
 library('derfinderPlot')
 library('GenomeInfoDb')
 library('GenomicRanges')
+library('ggbio')
 
 ## Transcription database to use by default
 if(is.null(txdb)) {
@@ -158,6 +159,15 @@ rm(tmp)
 ```
 
 This plot shows the genomic locations of the regions found in the analysis. The significant regions are highlighted and the `r areaVar` of the regions is shown on top of each chromosome `r ifelse(is.null(areaVar), '(skipped because there was no applicable variable)', '(shown in a relative scale)')`.
+
+
+```{r manhattanPlots, echo=FALSE, results='asis', eval=hasPvalueVars, echo=hasPvalueVars}
+for(i in seq_len(length(pvalueVars))) {
+    densityVarName <- names(pvalueVars[i])
+    densityVarName <- ifelse(is.null(densityVarName), pvalueVars[i], densityVarName)
+   cat(knit_child(text = whisker.render(templateManhattanInUse, list(varName = pvalueVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
+}
+```
 
 
 ## Annotation

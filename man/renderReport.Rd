@@ -15,7 +15,7 @@ renderReport(regions, project, pvalueVars = c(`P-values` = "pval"),
   outdir = "regionExploration", output = "regionExploration",
   browse = interactive(), txdb = NULL, device = "CairoPNG",
   densityTemplates = list(Pvalue = templatePvalueDensity, Common =
-  templatesDensity), template = NULL, ...)
+  templateDensity), template = NULL, ...)
 
 templatePvalueDensity
 

@@ -302,11 +302,11 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Generate report
     ## Perform code within the output directory.
     tmpdir <- getwd()
-    with_wd(outdir, {
+    with_wd(file.path(prefix, outdir), {
         file.copy(template, to = paste0(output, '.Rmd'))
     
         ## Output format
-            output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
+        output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
         outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
     
         ## Check knitrBoostrap version

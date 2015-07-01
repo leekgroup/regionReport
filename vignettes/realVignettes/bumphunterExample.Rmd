@@ -86,7 +86,7 @@ library('regionReport')
 report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
-    output = 'bumphunterExampleOutput')
+    output = 'bumphunterExampleOutput', outdir = '.')
 ```
 
 
@@ -106,7 +106,12 @@ load('regionsTemp.Rdata')
 report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
-    output = 'bumphunterExampleOutput')
+    output = 'bumphunterExampleOutput', outdir = '.', customCode = '
+    <!--
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteIndexEntry{Output from example with data from bumphunter}
+    -->
+    ')
     
 ## Clean up
 file.remove('regionsTemp.Rdata')

@@ -89,7 +89,7 @@ areaVar <- NULL
 for(i in seq_len(length(pvalueVars))) {
     densityVarName <- names(pvalueVars[i])
     densityVarName <- ifelse(is.null(densityVarName), pvalueVars[i], densityVarName)
-   cat(knit_child(text = whisker.render(templatePvalueDensity, list(varName = pvalueVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
+   cat(knit_child(text = whisker.render(templatePvalueDensityInUse, list(varName = pvalueVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
 }
 ```
 
@@ -126,7 +126,7 @@ This plot shows the density of the region lengths for all regions. `r ifelse(has
 for(i in seq_len(length(densityVars))) {
     densityVarName <- names(densityVars[i])
     densityVarName <- ifelse(is.null(densityVarName), densityVars[i], densityVarName)
-   cat(knit_child(text = whisker.render(templateDensity, list(varName = densityVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
+   cat(knit_child(text = whisker.render(templateDensityInUse, list(varName = densityVars[i], densityVarName = densityVarName)), quiet = TRUE), sep = '\n')
 }
 ```
 

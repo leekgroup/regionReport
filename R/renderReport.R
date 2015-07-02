@@ -108,10 +108,14 @@
 #' ## Check the default templates. For users interested in customizing these 
 #' ## plots.
 #' ## For p-value variables:
-#' templatePvalueDensity
+#' cat(templatePvalueDensity)
 #'
 #' ## For continous variables:
-#' templateDensity
+#' cat(templateDensity)
+#'
+#' ## For Manhattan plots
+#' cat(templateManhattan)
+#'
 
 
 renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),

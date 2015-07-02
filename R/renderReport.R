@@ -63,6 +63,7 @@
 #' @importFrom bumphunter annotateTranscripts matchGenes
 #' @import GenomicRanges
 #' @import ggplot2
+#' @importFrom ggbio plotGrandLinear
 #' @import grid
 #' @import gridExtra
 #' @import knitr

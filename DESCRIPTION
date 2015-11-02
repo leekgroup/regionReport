@@ -1,8 +1,8 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML reports for exploring a set of regions
-Version: 1.3.8
-Date: 2015-07-01
+Version: 1.5.1
+Date: 2015-11-02
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -39,6 +39,7 @@ Imports:
     rmarkdown (>= 0.3.3),
     whisker
 Suggests:
+    BiocStyle,
     biovizBase,
     Cairo,
     TxDb.Hsapiens.UCSC.hg19.knownGene

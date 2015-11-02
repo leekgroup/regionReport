@@ -21,7 +21,6 @@ install:
   - pandoc --version
   # Install bioc deps
   - ./pkg-build.sh install_bioc_deps
-  - ./pkg-build.sh install_github leekgroup/derfinderPlot
  
 script:
 #  - ./travis-tool.sh run_tests
@@ -47,10 +46,9 @@ notifications:
 
 env:
   global:
-    - RVERSION=3.2.0
+    - RVERSION=3.2.2
     - R_BUILD_ARGS="--no-manual --no-resave-data"
     - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings"
 #    - R_CHECK_TIME="TRUE"
-    - R_CHECK_TESTS="TRUE"
     - _R_CHECK_TIMINGS_="0"
 

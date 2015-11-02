@@ -1,35 +1,131 @@
 ---
-output:
-  html_document:
-    theme: spacelab
-  knitrBootstrap::bootstrap_document:
-    theme.chooser: TRUE
-    highlight.chooser: TRUE
+title: "Example with data from bumphunter"
+author: "L Collado-Torres"
+date: "`r doc_date()`"
+package: "`r pkg_ver('regionReport')`"
+output: 
+  BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Example with data from bumphunter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}  
 ---
 
-<!--
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Example with data from bumphunter}
--->
-
-`bumphunter` example
+`r Biocpkg('bumphunter')` example
 ====================
 
-Empty vignette, place holder for the real one.
+The `r Biocpkg('bumphunter')` package can be used for methylation analyses where you are interested in identifying differentially methylated regions. The [vignette](http://bioconductor.org/packages/release/bioc/vignettes/bumphunter/inst/doc/bumphunter.pdf) explains in greater detail the data set we are using in this example.
 
 ```{r 'findRegions'}
 ## Load bumphunter
 library('bumphunter')
+
+## Create data from the vignette
+pos <- list(pos1=seq(1, 1000, 35),
+            pos2=seq(2001, 3000, 35),
+            pos3=seq(1, 1000, 50))
+chr <- rep(paste0('chr', c(1, 1, 2)), times = sapply(pos, length))
+pos <- unlist(pos, use.names = FALSE)
+
+## Find clusters
+cl <- clusterMaker(chr, pos, maxGap = 300)
+
+## Build simulated bumps
+Indexes <- split(seq_along(cl), cl)
+beta1 <- rep(0, length(pos))
+for(i in seq(along=Indexes)){
+    ind <- Indexes[[i]]
+    x <- pos[ind]
+    z <- scale(x, median(x), max(x)/12)
+    beta1[ind] <- i*(-1)^(i+1)*pmax(1-abs(z)^3,0)^3 ##multiply by i to vary size
+}
+
+## Build data
+beta0 <- 3 * sin(2 * pi * pos / 720)
+X <- cbind(rep(1, 20), rep(c(0, 1), each = 10))
+set.seed(23852577)
+error <- matrix(rnorm(20 * length(beta1), 0, 1), ncol = 20)
+y <- t(X[, 1]) %x% beta0 + t(X[, 2]) %x% beta1 + error
+
+## Perform bumphunting
+tab <- bumphunter(y, X, chr, pos, cl, cutoff=.5)
+
+## Explore data
+lapply(tab, head)
 ```
+
+Once we have the regions we can proceed to build the required `GRanges` object.
 
 ```{r 'buildGRanges'}
 library('GenomicRanges')
+
+## Build GRanges with sequence lengths
+regions <- GRanges(seqnames = tab$table$chr, 
+    IRanges(start = tab$table$start, end = tab$table$end),
+    strand = '*', value = tab$table$value, area = tab$table$area, 
+    cluster = tab$table$cluster, L = tab$table$L, clusterL = tab$table$clusterL)
+
+## Assign chr lengths
+data(hg19Ideogram, package = 'biovizBase')
+seqlengths(regions) <- seqlengths(hg19Ideogram)[names(seqlengths(regions))]
+
+## Explore the regions
+regions
 ```
 
-```{r 'createReport'}
+Now that we have identified a set of differentially methylated regions we can proceed to creating the HTML report. Note that this report has less information than the [DiffBind example](http://leekgroup.github.io/regionReportSupp/DiffBind.html) because we don't have a p-value variable.
+
+
+```{r 'loadLib'}
 ## Load regionReport
 library('regionReport')
 ```
+
+```{r 'createReport', eval = FALSE}
+report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
+    densityVars = c('Area' = 'area', 'Value' = 'value',
+    'Cluster Length' = 'clusterL'), significantVar = NULL,
+    output = 'bumphunterExampleOutput', outdir = '.', device = 'png')
+```
+
+
+```{r 'createReportReal', echo = FALSE, results = 'hide'}
+save(regions, file = 'regionsTemp.Rdata')
+## Generate the HTML report in a clean environment
+library('devtools')
+
+cat("
+<!--
+%\\VignetteEngine{knitr::rmarkdown}
+%\\VignetteIndexEntry{Output from example with data from bumphunter}
+-->
+", file = 'vignetteInfo.Rmd')
+
+cat("## Generate the report in an isolated environment
+## This helps avoids https://github.com/rstudio/rmarkdown/issues/248
+
+## Load library and data
+library(regionReport)
+load('regionsTemp.Rdata')
+
+## Create report
+report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
+    densityVars = c('Area' = 'area', 'Value' = 'value',
+    'Cluster Length' = 'clusterL'), significantVar = NULL,
+    output = 'bumphunterExampleOutput', outdir = '.', 
+    customCode = 'vignetteInfo.Rmd', device = 'png')
+    
+## Clean up
+file.remove('regionsTemp.Rdata')
+file.remove('vignetteInfo.Rmd')
+", file = 'bumphunterReport-isolated.R')
+clean_source('bumphunterReport-isolated.R', quiet=TRUE)
+
+```
+
+
+
+You can view the final report [here](bumphunterExampleOutput.html).
 
 # Reproducibility
 
@@ -42,8 +138,7 @@ proc.time()
 
 ## R and packages info:
 options(width = 120)
-library('devtools')
-session_info()
+devtools::session_info()
 ```
 
 

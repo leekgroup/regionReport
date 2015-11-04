@@ -66,7 +66,7 @@ A BibTeX entry for LaTeX users is
     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
     year = {2015},
     url = {http://www.bioconductor.org/packages/release/bioc/html/regionReport.html},
-    note = {https://github.com/leekgroup/regionReport - R package version 1.5.2},
+    note = {https://github.com/leekgroup/regionReport - R package version 1.5.3},
 }
 
 # Testing

@@ -285,7 +285,7 @@ This is the numerical summary of the distribution of the {{{densityVarName}}}.
 })
 {{{varName}}}table <- do.call(rbind, {{{varName}}}table)
 if(outputIsHTML) {
-    kable({{{varName}}}table, format = 'html', align = c('c', 'c'))
+    kable({{{varName}}}table, format = 'markdown', align = c('c', 'c'))
 } else {
     kable({{{varName}}}table)
 }

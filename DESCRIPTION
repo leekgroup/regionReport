@@ -1,7 +1,7 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML reports for exploring a set of regions
-Version: 1.5.5
+Version: 1.5.6
 Date: 2016-03-21
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
@@ -24,6 +24,7 @@ Imports:
     derfinder (>= 1.1.0),
     derfinderPlot (>= 1.3.2),
     devtools (>= 1.6),
+    DT,
     GenomeInfoDb,
     GenomicRanges,
     ggbio (>= 1.13.13),
@@ -36,10 +37,11 @@ Imports:
     knitrBootstrap (>= 0.9.0),
     mgcv,
     RColorBrewer,
-    rmarkdown (>= 0.3.3),
+    rmarkdown (>= 0.9.5),
     whisker
 Suggests:
     BiocStyle,
     biovizBase,
     Cairo,
     TxDb.Hsapiens.UCSC.hg19.knownGene
+RoxygenNote: 5.0.1

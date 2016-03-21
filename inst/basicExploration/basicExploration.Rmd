@@ -2,7 +2,9 @@
 output:
   html_document:
     toc: true
-    theme: united
+    toc_float: true
+    code_folding: hide
+    theme: spacelab
   pdf_document:
       toc: true
   knitrBootstrap::bootstrap_document:
@@ -46,10 +48,12 @@ library('gridExtra')
 library('knitr')
 library('RColorBrewer')
 library('mgcv')
+library('DT')
 
 ## Working behind the scenes
 # library('knitcitations')
 # library('rmarkdown')
+## Optionally
 # library('knitrBootstrap')
 
 #### Code setup
@@ -167,7 +171,7 @@ qtable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
 })
 qtable <- do.call(rbind, qtable)
 if(outputIsHTML) {
-    kable(qtable, format = 'html', align = c('c', 'c'))
+    kable(qtable, format = 'markdown', align = c('c', 'c'))
 } else {
     kable(qtable)
 }
@@ -190,7 +194,7 @@ fwertable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
 })
 fwertable <- do.call(rbind, fwertable)
 if(outputIsHTML) {
-    kable(fwertable, format = 'html', align = c('c', 'c'))
+    kable(fwertable, format = 'markdown', align = c('c', 'c'))
 } else {
     kable(fwertable)
 }
@@ -381,7 +385,7 @@ This genomic overview plot shows the annotation region type for the __candidate_
 annoReg <- table(fullRegions$region, useNA='always')
 annoReg.df <- data.frame(Region=names(annoReg), Count=as.vector(annoReg))
 if(outputIsHTML) {
-    kable(annoReg.df, format = 'html', align=rep('c', 3))
+    datatable(annoReg.df, format = 'markdown', align=rep('c', 3))
 } else {
     kable(annoReg.df)
 }
@@ -428,7 +432,7 @@ colnames(info) <- c('Number of Overlapping States', 'Frequency')
 info$State <- gsub('\\..*', '', rownames(info))
 rownames(info) <- NULL
 if(outputIsHTML) {
-    kable(info, format = 'html', align=rep('c', 4))
+    kable(info, format = 'markdown', align=rep('c', 4))
 } else {
     kable(info)
 }
@@ -459,10 +463,6 @@ vennSig <- vennRegions(fullAnnotatedRegions, counts.col = 'blue',
 
 Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions * 5)` regions (out of `r nrow(regions.df)`) as ranked by area. Inf and -Inf are shown as 1e100 and -1e100 respectively.
 
-```{r jsInfo, results='asis', eval = outputIsHTML, echo = FALSE}
-cat("<link rel='stylesheet' href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css' />
-<script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'></script>")
-```
 
 ```{r bestAreaInfo, results='asis'}
 topArea <- head(regions.df, nBestRegions * 5)
@@ -484,28 +484,14 @@ topArea <- replaceInf(topArea, grep('log2FoldChange|value|area',
 
 ## Make the table
 if(outputIsHTML) {
-    kable(topArea, format = 'html', table.attr='id="regions_table"')
+    datatable(topArea, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'))
 } else {
     ## Only print the top part if your output is a PDF file
     kable(head(topArea, 20))
 }
 ```
 
-```{r jsTable, results='asis', eval = outputIsHTML, echo = FALSE}
-cat('<script type="text/javascript" charset="utf-8">
-$(document).ready(function() {
-    $("#regions_table").dataTable({
-        "sPaginationType": "full_numbers",
-        "sScrollX": "100%"
-    });
-});
-</script>
-')
-```
-
-
-
-    
+ 
 # Best region clusters
 
 The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotCluster()` in `derfinder` `r citep(bib[['derfinder']])`. 
@@ -623,24 +609,12 @@ The following table shows how the group labels were permuted. `r ifelse(usedPerm
 
 ```{r permuteTable, results='asis', eval=usedPermutations, echo=usedPermutations}
 if(outputIsHTML) {
-    kable(permuteDetail, format = 'html', table.attr='id="permutation_table"')
+    datatable(permuteDetail, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'))
 } else {
     ## Only print the top part if your output is a PDF file
     kable(head(permuteDetail, 20))
 }
 
-```
-
-```{r jsTablePermute, results='asis', eval = outputIsHTML, echo = FALSE}
-cat('<script type="text/javascript" charset="utf-8">
-$(document).ready(function() {
-    $("#permutation_table").dataTable({
-        "sPaginationType": "full_numbers",
-        "sScrollX": "100%"
-    });
-});
-</script>
-')
 ```
 
 ```{r child = customCode, eval = hasCustomCode}
@@ -701,8 +675,7 @@ session_info()
 
 # Bibliography
 
-This report was created with `regionReport` `r citep(bib[['regionReport']])` using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
-to format the html while `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` were running behind the scenes.
+This report was created with `regionReport` `r citep(bib[['regionReport']])` using `rmarkdown` `r citep(bib[['rmarkdown']])` while `knitr` `r citep(bib[['knitr']])` and  `DT` `r citep(bib[['DT']])` were running behind the scenes.
 
 Citations made with `knitcitations` `r citep(bib[['knitcitations']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
 

@@ -39,6 +39,7 @@ bibs <- c(knitcitations = citation('knitcitations'),
     ggplot2 = citation('ggplot2'),
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown'),
+    DT = citation('DT'),
     R = citation(),
     IRanges = citation('IRanges'),
     devtools = citation('devtools'),
@@ -77,7 +78,7 @@ This package includes a basic exploration for a general set of genomic regions w
 results by using `derfinderReport()`. Both reports are written in [R Markdown](http://rmarkdown.rstudio.com/)
 format and include all the code for making the plots and explorations in the report itself. For both reports, `r Biocpkg('regionReport')` relies on
 `r CRANpkg('knitr')` `r citep(bib[['knitr']])`, `r CRANpkg('rmarkdown')` 
-`r citep(bib[['rmarkdown']])`, and `r CRANpkg('knitrBootstrap')` 
+`r citep(bib[['rmarkdown']])`, `DT` `r citep(bib[['DT']])` and optionally `r CRANpkg('knitrBootstrap')` 
 `r citep(bib[['knitrBootstrap']])` for generating the report. 
 
 
@@ -296,6 +297,7 @@ This package was made possible thanks to:
 * `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])`
 * `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`
 * `r CRANpkg('devtools')` `r citep(bib[['devtools']])`
+* `r CRANpkg('DT')` `r citep(bib[['DT']])`
 * `r Biocpkg('GenomeInfoDb')` `r citep(bib[['GenomeInfoDb']])`
 * `r Biocpkg('GenomicRanges')` `r citep(bib[['GenomicRanges']])`
 * `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`
@@ -328,15 +330,9 @@ knit('regionReport.Rmd', tangle = TRUE)
 
 ## Copy report output to be distributed with the package for comparison 
 ## purposes
-if(gsub('.*/', '', getwd()) == 'realVignettes') {
-    file.copy(file.path('report', 'html', 'basicExploration.html'),
-        file.path('..', '..', 'inst', 'basicExploration',
-            'basicExploration.html'), overwrite=TRUE)
-} else {
-    file.copy(file.path('report', 'html', 'basicExploration.html'),
-        file.path('..', 'inst', 'basicExploration', 'basicExploration.html'),
-            overwrite=TRUE)
-}
+file.copy(file.path('report', 'html', 'basicExploration.html'),
+    file.path('..', 'inst', 'basicExploration', 'basicExploration.html'),
+    overwrite=TRUE)
 ```
 
 ```{r createVignette2}

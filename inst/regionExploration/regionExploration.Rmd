@@ -2,7 +2,9 @@
 output:
   html_document:
     toc: true
-    theme: united
+    toc_float: true
+    code_folding: hide
+    theme: spacelab
   pdf_document:
       toc: true
   knitrBootstrap::bootstrap_document:
@@ -49,10 +51,12 @@ library('knitr')
 library('RColorBrewer')
 library('mgcv')
 library('whisker')
+library('DT')
 
 ## Working behind the scenes
 # library('knitcitations')
 # library('rmarkdown')
+## Optionally
 # library('knitrBootstrap')
 
 #### Code setup
@@ -190,7 +194,7 @@ This genomic overview plot shows the annotation region type for the regions as d
 annoReg <- table(annotation$region, useNA='always')
 annoReg.df <- data.frame(Region=names(annoReg), Count=as.vector(annoReg))
 if(outputIsHTML) {
-    kable(annoReg.df, format = 'html', align=rep('c', 3))
+    kable(annoReg.df, format = 'markdown', align=rep('c', 3))
 } else {
     kable(annoReg.df)
 }
@@ -224,7 +228,7 @@ colnames(info) <- c('Number of Overlapping States', 'Frequency')
 info$State <- gsub('\\..*', '', rownames(info))
 rownames(info) <- NULL
 if(outputIsHTML) {
-    kable(info, format = 'html', align=rep('c', 4))
+    kable(info, format = 'markdown', align=rep('c', 4))
 } else {
     kable(info)
 }
@@ -251,10 +255,6 @@ vennSig <- vennRegions(annotatedRegions, counts.col = 'blue',
 
 Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions)` regions (out of `r nrow(regions.df)`) as ranked by p-value `r ifelse(hasPvalueVars, '', 'without ranking because no p-value information was provided')`. Inf and -Inf are shown as 1e100 and -1e100 respectively.
 
-```{r jsInfo, results='asis', eval = outputIsHTML, echo = FALSE}
-cat("<link rel='stylesheet' href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css' />
-<script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js'></script>")
-```
 
 ```{r bestRegionInfo, results='asis'}
 ## Add annotation information
@@ -287,23 +287,11 @@ topRegions <- replaceInf(topRegions, which(sapply(topRegions, function(x) {
 
 ## Make the table
 if(outputIsHTML) {
-    kable(topRegions, format = 'html', table.attr='id="regions_table"')
+    datatable(topRegions, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'))
 } else {
     ## Only print the top part if your output is a PDF file
     kable(head(topRegions, 20))
 }
-```
-
-```{r jsTable, results='asis', eval = outputIsHTML, echo = FALSE}
-cat('<script type="text/javascript" charset="utf-8">
-$(document).ready(function() {
-    $("#regions_table").dataTable({
-        "sPaginationType": "full_numbers",
-        "sScrollX": "100%"
-    });
-});
-</script>
-')
 ```
 
 
@@ -345,8 +333,7 @@ session_info()
 
 # Bibliography
 
-This report was created with `regionReport` `r citep(bib[['regionReport']])` using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
-to format the html while `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` were running behind the scenes. `whisker` `r citep(bib[['whisker']])` was used for creating templates for the `pvalueVars` and `densityVars`.
+This report was created with `regionReport` `r citep(bib[['regionReport']])` using `rmarkdown` `r citep(bib[['rmarkdown']])` while `knitr` `r citep(bib[['knitr']])` and  `DT` `r citep(bib[['DT']])` were running behind the scenes. `whisker` `r citep(bib[['whisker']])` was used for creating templates for the `pvalueVars` and `densityVars`.
 
 Citations made with `knitcitations` `r citep(bib[['knitcitations']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
 

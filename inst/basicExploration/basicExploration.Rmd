@@ -484,7 +484,7 @@ topArea <- replaceInf(topArea, grep('log2FoldChange|value|area',
 
 ## Make the table
 if(outputIsHTML) {
-    datatable(topArea, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl('value|area|mean|log2FoldChange|pvalues|qvalues|fwer', colnames(topArea))), 3)
+    datatable(topArea, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl('value$|area$|mean|log2FoldChange|pvalues$|qvalues$|fwer$', colnames(topArea))), 3)
 } else {
     ## Only print the top part if your output is a PDF file
     kable(head(topArea, 20))

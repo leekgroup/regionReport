@@ -1,7 +1,8 @@
 #' Generate a HTML report exploring the basic results from derfinder
 #'
-#' This function generates a HTML report exploring the basic results from
-#' derfinder (https://github.com/lcolladotor/derfinder). The HTML report itself 
+#' This function generates a HTML report exploring the basic results from 
+#' single base-level approach derfinder analysis results 
+#' (www.bioconductor.org/packages/derfinder). The HTML report itself 
 #' is generated using knitrBoostrap which uses knitr (http://yihui.name/knitr/) 
 #' behind the scenes. It works best after using \link[derfinder]{mergeResults}.
 #' 

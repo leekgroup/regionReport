@@ -74,6 +74,7 @@
 #' @import mgcv
 #' @import GenomeInfoDb
 #' @import whisker
+#' @import DT
 #' @importFrom devtools session_info
 #'
 #' @examples
@@ -139,8 +140,8 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     if(hasCustomCode) stopifnot(length(customCode) == 1)
     if(!is.null(annotation)) stopifnot(nrow(annotation) == length(regions))
     
-    #' @param overviewParams A two element list with \code{base_size} and 
-    #' \code{areaRel} that control the text size for the genomic overview plots.
+    # @param overviewParams A two element list with \code{base_size} and 
+    # \code{areaRel} that control the text size for the genomic overview plots.
     overviewParams <- .advanced_argument('overviewParam', list(base_size = 10,
             areaRel = 5), ...)
     
@@ -200,7 +201,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
         knitcitations = citation('knitcitations'), 
         regionReport = citation('regionReport')[1],
         derfinderPlot = citation('derfinderPlot')[1],
-        knitrBootstrap = citation('knitrBootstrap'), 
+        DT = citation('DT'), 
         ggbio = citation('ggbio'),
         ggplot2 = citation('ggplot2'),
         knitr = citation('knitr')[3],
@@ -214,7 +215,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     
     ## Assign short names
     names(bib) <- c('knitcitations', 'regionReport', 'derfinderPlot', 
-        'knitrBootstrap', 'ggbio', 'ggplot2', 'knitr', 'rmarkdown', 'whisker',
+        'DT', 'ggbio', 'ggplot2', 'knitr', 'rmarkdown', 'whisker',
         'bumphunter', 'derfinder') 
     
     ## Save the call
@@ -230,7 +231,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
         file.copy(template, to = paste0(output, '.Rmd'))
     
         ## Output format
-        output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
+        output_format <- .advanced_argument('output_format', 'html_document', ...)
         outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
     
         ## Check knitrBoostrap version

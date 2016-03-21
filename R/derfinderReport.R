@@ -3,8 +3,8 @@
 #' This function generates a HTML report exploring the basic results from 
 #' single base-level approach derfinder analysis results 
 #' (www.bioconductor.org/packages/derfinder). The HTML report itself 
-#' is generated using knitrBoostrap which uses knitr (http://yihui.name/knitr/) 
-#' behind the scenes. It works best after using \link[derfinder]{mergeResults}.
+#' is generated using rmarkdown (http://rmarkdown.rstudio.com/). It works best 
+#' after using \link[derfinder]{mergeResults}.
 #' 
 #' @param prefix The main data directory path where 
 #' \link[derfinder]{mergeResults} was run. It should be the same as 
@@ -68,6 +68,7 @@
 #' @import knitcitations
 #' @import RColorBrewer
 #' @import mgcv
+#' @import DT
 #' @import GenomeInfoDb
 #' @importFrom devtools session_info
 #'
@@ -153,48 +154,48 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     startTime <- Sys.time()
     
     ## Advanced parameters
-#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
-#' \link[GenomeInfoDb]{seqlevelsStyle}.    
+# @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
+# \link[GenomeInfoDb]{seqlevelsStyle}.    
     chrsStyle <- .advanced_argument('chrsStyle', 'UCSC', ...)
     
-#' @param species Species name. See \link[derfinder]{extendedMapSeqlevels}  for 
-#' more information.
+# @param species Species name. See \link[derfinder]{extendedMapSeqlevels}  for 
+# more information.
     species <- .advanced_argument('species', getOption('species', 'homo_sapiens'), ...)
 
-#' @param currentStyle Current naming style used. See 
-#' \link[derfinder]{extendedMapSeqlevels} for more information.
+# @param currentStyle Current naming style used. See 
+# \link[derfinder]{extendedMapSeqlevels} for more information.
     currentStyle <- .advanced_argument('currentStyle', 'UCSC', ...)
     
     
-#' @param fullRegions Part of the output of \link[derfinder]{mergeResults}. 
-#' Specify it only if you have already loaded it in memory.
+# @param fullRegions Part of the output of \link[derfinder]{mergeResults}. 
+# Specify it only if you have already loaded it in memory.
     fullRegions <- .advanced_argument('fullRegions', NULL, ...)
     
     
-#' @param fullNullSummary Part of the output of \link[derfinder]{mergeResults}. 
-#' Specify it only if you have already loaded it in memory.
+# @param fullNullSummary Part of the output of \link[derfinder]{mergeResults}. 
+# Specify it only if you have already loaded it in memory.
     fullNullSummary <- .advanced_argument('fullNullSummary', NULL, ...)
     
     
-#' @param fullAnnotatedRegions Part of the output of 
-#' \link[derfinder]{mergeResults}. Specify it only if you have already loaded 
-#' it in memory.
+# @param fullAnnotatedRegions Part of the output of 
+# \link[derfinder]{mergeResults}. Specify it only if you have already loaded 
+# it in memory.
     fullAnnotatedRegions <- .advanced_argument('fullAnnotatedRegions', NULL,
         ...)
     
     
-#' @param optionsStats Part of the output of \link[derfinder]{analyzeChr}. 
-#' Specify it only if you have already loaded it in memory.
+# @param optionsStats Part of the output of \link[derfinder]{analyzeChr}. 
+# Specify it only if you have already loaded it in memory.
     optionsStats <- .advanced_argument('optionsStats', NULL, ...)
     
     
-#' @param optionsMerge Part of the output of \link[derfinder]{mergeResults}. 
-#' Specify it only if you have already loaded it in memory.
+# @param optionsMerge Part of the output of \link[derfinder]{mergeResults}. 
+# Specify it only if you have already loaded it in memory.
     optionsMerge <- .advanced_argument('optionsMerge', NULL, ...)
     
     
-#' @param overviewParams A two element list with \code{base_size} and 
-#' \code{areaRel} that control the text size for the genomic overview plots.
+# @param overviewParams A two element list with \code{base_size} and 
+# \code{areaRel} that control the text size for the genomic overview plots.
     overviewParams <- .advanced_argument('overviewParam', list(base_size = 10,
         areaRel = 5), ...)
     
@@ -233,7 +234,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         derfinder = citation('derfinder')[1],
         derfinderPlot = citation('derfinderPlot')[1],
         regionReport = citation('regionReport')[1],
-        knitrBootstrap = citation('knitrBootstrap'), 
+        DT = citation('DT'), 
         ggbio = citation('ggbio'),
         ggplot2 = citation('ggplot2'),
         knitr = citation('knitr')[3],
@@ -244,7 +245,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     
     ## Assign short names
     names(bib) <- c('knitcitations', 'derfinder', 'derfinderPlot', 
-        'regionReport', 'knitrBootstrap', 'ggbio', 'ggplot2', 'knitr',
+        'regionReport', 'DT', 'ggbio', 'ggplot2', 'knitr',
         'rmarkdown')
     
     ## Load files
@@ -282,7 +283,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Are there significant regions?
     sigVar <- switch(significantVar, pvalue = 'significant', qvalue = 'significantQval', fwer = 'significantFWER')
     if(significantVar == 'fwer' & !fwerExist) {
-        warning('There are no FWER adjusted P-values, will use FDR adjsuted p-values instead.')
+        warning('There are no FWER adjusted P-values, will use FDR adjusted p-values instead.')
         significantVar <- 'significantQval'
     }
     pvalText <- switch(sigVar, significant = 'P-value', significantQval = 'FDR adjusted P-value', significantFWER = 'FWER adjusted P-value')
@@ -308,7 +309,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         file.copy(template, to = paste0(output, '.Rmd'))
     
         ## Output format
-        output_format <- .advanced_argument('output_format', 'knitrBootstrap::bootstrap_document', ...)
+        output_format <- .advanced_argument('output_format', 'html_document', ...)
         outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
     
         ## Check knitrBoostrap version

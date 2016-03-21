@@ -262,7 +262,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
 templatePvalueDensity <- "
 ## {{{densityVarName}}}
 
-```{r density-{{{varFixedName}}}, fig.width=10, fig.height=10, dev=device}
+```{r pval-density-{{{varFixedName}}}, fig.width=10, fig.height=10, dev=device}
 p1{{{varFixedName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + xlim(0, 1) +
     labs(title='Density of {{{densityVarName}}}') + xlab('{{{densityVarName}}}') +
@@ -271,14 +271,14 @@ p1{{{varFixedName}}}
 ```
 
 
-```{r 'summary-{{{varFixedName}}}'}
+```{r 'pval-summary-{{{varFixedName}}}'}
 summary(mcols(regions)[['{{{varName}}}']])
 ```
 
 
 This is the numerical summary of the distribution of the {{{densityVarName}}}.
 
-```{r tableSummary-{{{varFixedName}}}, results='asis'}
+```{r pval-tableSummary-{{{varFixedName}}}, results='asis'}
 {{{varFixedName}}}table <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
     0.6, 0.7, 0.8, 0.9, 1), function(x) {
     data.frame('Cut' = x, 'Count' = sum(mcols(regions)[['{{{varName}}}']] <= x))

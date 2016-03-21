@@ -94,7 +94,7 @@ areaVar <- NULL
 for(i in seq_len(length(pvalueVars))) {
     densityVarName <- names(pvalueVars[i])
     densityVarName <- ifelse(is.null(densityVarName), pvalueVars[i], densityVarName)
-   cat(knit_child(text = whisker.render(templatePvalueDensityInUse, list(varName = pvalueVars[i], densityVarName = densityVarName, varFixedName = pvalueVars[i])), quiet = TRUE), sep = '\n')
+   cat(knit_child(text = whisker.render(templatePvalueDensityInUse, list(varName = pvalueVars[i], densityVarName = densityVarName, varFixedName = make.names(pvalueVars[i]))), quiet = TRUE), sep = '\n')
 }
 ```
 
@@ -131,7 +131,7 @@ This plot shows the density of the region lengths for all regions. `r ifelse(has
 for(i in seq_len(length(densityVars))) {
     densityVarName <- names(densityVars[i])
     densityVarName <- ifelse(is.null(densityVarName), densityVars[i], densityVarName)
-   cat(knit_child(text = whisker.render(templateDensityInUse, list(varName = densityVars[i], densityVarName = densityVarName, varFixedName = pvalueVars[i])), quiet = TRUE), sep = '\n')
+   cat(knit_child(text = whisker.render(templateDensityInUse, list(varName = densityVars[i], densityVarName = densityVarName, varFixedName = make.names(densityVars[i]))), quiet = TRUE), sep = '\n')
 }
 ```
 
@@ -169,7 +169,7 @@ This plot shows the genomic locations of the regions found in the analysis. The 
 for(i in seq_len(length(pvalueVars))) {
     densityVarName <- names(pvalueVars[i])
     densityVarName <- ifelse(is.null(densityVarName), pvalueVars[i], densityVarName)
-   cat(knit_child(text = whisker.render(templateManhattanInUse, list(varName = pvalueVars[i], densityVarName = densityVarName, varFixedName = pvalueVars[i])), quiet = TRUE), sep = '\n')
+   cat(knit_child(text = whisker.render(templateManhattanInUse, list(varName = pvalueVars[i], densityVarName = densityVarName, varFixedName = make.names(pvalueVars[i]))), quiet = TRUE), sep = '\n')
 }
 ```
 
@@ -290,6 +290,9 @@ if(outputIsHTML) {
     greptext <- 'value$|area$|mean|log2FoldChange|pvalues$|qvalues$|fwer$'
     if(hasPvalueVars) {
         greptext <- paste0(paste(pvalueVars, collapse = '$|'), '$|', greptext)
+    }
+    if(hasDensityVars) {
+        greptext <- paste0(paste(densityVars, collapse = '$|'), '$|', greptext)
     }
     datatable(topRegions, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl(greptext, colnames(topRegions))), 3)
 } else {

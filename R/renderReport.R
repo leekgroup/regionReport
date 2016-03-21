@@ -262,32 +262,32 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
 templatePvalueDensity <- "
 ## {{{densityVarName}}}
 
-```{r density-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
-p1{{{varName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
+```{r density-{{{varFixedName}}}, fig.width=10, fig.height=10, dev=device}
+p1{{{varFixedName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + xlim(0, 1) +
     labs(title='Density of {{{densityVarName}}}') + xlab('{{{densityVarName}}}') +
     scale_colour_discrete(limits=chrs) + theme(legend.title=element_blank())
-p1{{{varName}}}
+p1{{{varFixedName}}}
 ```
 
 
-```{r 'summary-{{{varName}}}'}
+```{r 'summary-{{{varFixedName}}}'}
 summary(mcols(regions)[['{{{varName}}}']])
 ```
 
 
 This is the numerical summary of the distribution of the {{{densityVarName}}}.
 
-```{r tableSummary-{{{varName}}}, results='asis'}
-{{{varName}}}table <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
+```{r tableSummary-{{{varFixedName}}}, results='asis'}
+{{{varFixedName}}}table <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
     0.6, 0.7, 0.8, 0.9, 1), function(x) {
     data.frame('Cut' = x, 'Count' = sum(mcols(regions)[['{{{varName}}}']] <= x))
 })
-{{{varName}}}table <- do.call(rbind, {{{varName}}}table)
+{{{varFixedName}}}table <- do.call(rbind, {{{varFixedName}}}table)
 if(outputIsHTML) {
-    kable({{{varName}}}table, format = 'markdown', align = c('c', 'c'))
+    kable({{{varFixedName}}}table, format = 'markdown', align = c('c', 'c'))
 } else {
-    kable({{{varName}}}table)
+    kable({{{varFixedName}}}table)
 }
 ```
 
@@ -300,26 +300,26 @@ This table shows the number of regions with {{{densityVarName}}} less or equal t
 templateDensity <- "
 ## {{{densityVarName}}}
 
-```{r density-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
+```{r density-{{{varFixedName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
 xrange <- range(regions.df.plot[, '{{{varName}}}'])
-p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
+p3a{{{varFixedName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
     xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
     xlim(xrange) + theme(legend.title=element_blank())
-p3b{{{varName}}} <- ggplot(regions.df.sig[is.finite(regions.df.sig[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
+p3b{{{varFixedName}}} <- ggplot(regions.df.sig[is.finite(regions.df.sig[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') +
     labs(title='Density of {{{densityVarName}}} (significant only)') +
     xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
     xlim(xrange) + theme(legend.title=element_blank())
-grid.arrange(p3a{{{varName}}}, p3b{{{varName}}})
+grid.arrange(p3a{{{varFixedName}}}, p3b{{{varFixedName}}})
 ```
 
-```{r density-solo-{{{varName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
-p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
+```{r density-solo-{{{varFixedName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
+p3a{{{varFixedName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
     xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
     theme(legend.title=element_blank())
-p3a{{{varName}}}
+p3a{{{varFixedName}}}
 ```
 
 This plot shows the density of the {{{densityVarName}}} for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.', '')`
@@ -331,12 +331,12 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
 templateManhattan <- "
 ## Manhattan {{{densityVarName}}}
 
-```{r manhattan-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
+```{r manhattan-{{{varFixedName}}}, fig.width=10, fig.height=10, dev=device}
 
 regions.manhattan <- regions
 mcols(regions.manhattan)[['{{{varName}}}']] <- - log(mcols(regions.manhattan)[['{{{varName}}}']], base = 10)
-pMan{{{varName}}} <- plotGrandLinear(regions.manhattan, aes(y = {{{varName}}}, colour = seqnames)) + theme(axis.text.x=element_text(angle=-90, hjust=0)) + ylab('-log10 {{{densityVarName}}}')
-pMan{{{varName}}}
+pMan{{{varFixedName}}} <- plotGrandLinear(regions.manhattan, aes(y = {{{varName}}}, colour = seqnames)) + theme(axis.text.x=element_text(angle=-90, hjust=0)) + ylab('-log10 {{{densityVarName}}}')
+pMan{{{varFixedName}}}
 rm(regions.manhattan)
 ```
 

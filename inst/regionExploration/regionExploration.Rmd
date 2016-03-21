@@ -287,7 +287,7 @@ topRegions <- replaceInf(topRegions, which(sapply(topRegions, function(x) {
 
 ## Make the table
 if(outputIsHTML) {
-    datatable(topRegions, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'))
+    datatable(topRegions, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%')) %>% formatRound(which(grepl('value|area|mean|log2FoldChange|pvalues|qvalues|fwer', colnames(topRegions))), 3)
 } else {
     ## Only print the top part if your output is a PDF file
     kable(head(topRegions, 20))

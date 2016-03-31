@@ -12,8 +12,8 @@ vignette: >
 ---
 
 
-HTML reports for a set of regions
-=================================
+HTML reports for a set of regions or DESeq2 results
+===================================================
 
 ```{r vignetteSetup, echo = FALSE, message = FALSE, warning = FALSE}
 ## Track time spent on making the vignette
@@ -57,7 +57,9 @@ bibs <- c(knitcitations = citation('knitcitations'),
     RColorBrewer = citation('RColorBrewer'),
     Cairo = citation('Cairo'),
     whikser = citation('whisker'),
-    bumphunter = citation('bumphunter')[1]
+    bumphunter = citation('bumphunter')[1],
+    pheatmap = citation('pheatmap'),
+    DESeq2 = citation('DESeq2')
 )
 
 write.bibtex(bibs,
@@ -75,16 +77,34 @@ a set of regions such as `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])` 
 
 
 This package includes a basic exploration for a general set of genomic regions which can be easily customized to include the appropriate conclusions and/or further exploration of the results. Such a report can be generated using `renderReport()`. `r Biocpkg('regionReport')` has a separate template for running a basic exploration analysis of `r Biocpkg('derfinder')` 
-results by using `derfinderReport()`. Both reports are written in [R Markdown](http://rmarkdown.rstudio.com/)
-format and include all the code for making the plots and explorations in the report itself. For both reports, `r Biocpkg('regionReport')` relies on
+results by using `derfinderReport()`. `derfinderReport()` is specific to single base-level approach `r Biocpkg('derfinder')` results. A third template is included for exploring `r Biocpkg('DESeq2')` differential expression results.
+
+All reports are written in [R Markdown](http://rmarkdown.rstudio.com/)
+format and include all the code for making the plots and explorations in the report itself. For all templates, `r Biocpkg('regionReport')` relies on
 `r CRANpkg('knitr')` `r citep(bib[['knitr']])`, `r CRANpkg('rmarkdown')` 
 `r citep(bib[['rmarkdown']])`, `DT` `r citep(bib[['DT']])` and optionally `r CRANpkg('knitrBootstrap')` 
-`r citep(bib[['knitrBootstrap']])` for generating the report. 
+`r citep(bib[['knitrBootstrap']])` for generating the report. The reports can be either in HTML or PDF format and can be easily customized.
+
+# Using `r Biocpkg('regionReport')` for `r Biocpkg('DESeq2')` results
+
+The plots in `r Biocpkg('regionReport')` for exploring `r Biocpkg('DESeq2')` are powered by `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])` and `r CRANpkg('pheatmap')` `r citep(bib[['pheatmap']])`.
 
 
-# Using `r Biocpkg('regionReport')`
+## Examples
 
-The plots in `r Biocpkg('regionReport')` are powered by `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`, `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`, and `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])`.
+The `r Biocpkg('regionReport')` supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/) has examples of using `r Biocpkg('regionReport')` with `r Biocpkg('DESeq2')` results. In particular, please look at [DESeq2.html](http://leekgroup.github.io/regionReportSupp/DESeq2.html) which has the code for generating some `r Biocpkg('DESeq2')` results based on the `r Biocpkg('DESeq2')` vignette. Then it uses those results to create HTML and PDF versions of the same report. The resulting reports are available in the following locations:
+
+* [HTML version](http://leekgroup.github.io/regionReportSupp/DESeq2-example/index.html)
+* [PDF version](http://leekgroup.github.io/regionReportSupp/DESeq2-example/DESeq2Report.pdf)
+
+Note that in both examples we changed the `r CRANpkg('ggplot2')` theme to `theme_bw()`. Also, in the PDF version we used the option `device = 'pdf'` instead of the default `device = 'png'` in `DESeq2Report()` since PDF figures are more appropriate for PDF reports: they look better than PNG figures.
+
+If you want to create a similar HTML report as the one linked in this section, simply run `example('DESeq2Report', 'regionReport', ask=FALSE)`. The only difference will be the `r CRANpkg('ggplot2')` theme for the plots.
+
+
+# Using `r Biocpkg('regionReport')` for region results
+
+The plots in `r Biocpkg('regionReport')` for region reports are powered by `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`, `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`, and `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])`.
 
 ## Examples
 
@@ -123,11 +143,11 @@ report <- renderReport(regions, 'Example run', pvalueVars = c(
 ```
 
 
-## `r Biocpkg('derfinder')` case
+## `r Biocpkg('derfinder')` single base-level case
 
 ### Run `r Biocpkg('derfinder')`
 
-Prior to using `regionReport::derfinderReport()` you must use `r Biocpkg('derfinder')` to analyze a specific data set. While there are many ways to do so, we recommend using __analyzeChr()__ with the same _prefix_ argument. Then merging the results with __mergeResults()__.
+Prior to using `regionReport::derfinderReport()` you must use `r Biocpkg('derfinder')` to analyze a specific data set. While there are many ways to do so, we recommend using __analyzeChr()__ with the same _prefix_ argument. Then merging the results with __mergeResults()__. This is the recommended pipeline for the single base-level approach.
 
 Below, we run `r Biocpkg('derfinder')` for the example data included in the package. The steps are:
 
@@ -296,6 +316,7 @@ This package was made possible thanks to:
 * `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
 * `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])`
 * `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`
+* `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])`
 * `r CRANpkg('devtools')` `r citep(bib[['devtools']])`
 * `r CRANpkg('DT')` `r citep(bib[['DT']])`
 * `r Biocpkg('GenomeInfoDb')` `r citep(bib[['GenomeInfoDb']])`
@@ -309,6 +330,7 @@ This package was made possible thanks to:
 * `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
 * `r CRANpkg('knitrBootstrap')` `r citep(bib[['knitrBootstrap']])`
 * `r CRANpkg('mgcv')` `r citep(bib[['mgcv']])`
+* `r CRANpkg('pheatmap')` `r citep(bib[['pheatmap']])`
 * `r CRANpkg('RColorBrewer')` `r citep(bib[['RColorBrewer']])`
 * `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
 * `r Biocpkg('biovizBase')` `r citep(bib[['biovizBase']])`

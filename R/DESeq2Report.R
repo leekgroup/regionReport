@@ -62,11 +62,13 @@
 #' @import pheatmap
 #' @import DESeq2
 #' @importFrom devtools session_info
+#' @importFrom utils browseURL citation packageVersion
 #'
 #' @examples
 #'
 #' ## Load example data from the pasilla package
 #' library('pasilla')
+#' library('DESeq')
 #' library('DESeq2')
 #'
 #' ## Create DESeqDataSet object from the pasilla package

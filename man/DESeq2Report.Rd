@@ -83,6 +83,7 @@ customize the entire template by providing an R Markdown file to
 
 ## Load example data from the pasilla package
 library('pasilla')
+library('DESeq')
 library('DESeq2')
 
 ## Create DESeqDataSet object from the pasilla package

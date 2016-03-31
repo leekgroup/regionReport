@@ -63,7 +63,6 @@
 #' @import DESeq2
 #' @importFrom devtools session_info
 #' @importFrom utils browseURL citation packageVersion
-#' @import Biobase
 #'
 #' @examples
 #'

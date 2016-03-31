@@ -142,6 +142,8 @@ report <- renderReport(regions, 'Example run', pvalueVars = c(
     outdir = 'renderReport-example')
 ```
 
+For `r Biocpkg('derfinder')` results created via the expressed regions-level approach you can use `renderReport()` to explore the results. If you use `r Biocpkg('DESeq2')` to perform the differential expression analysis of the expressed regions you can then use `DESeq2Report()`.
+
 
 ## `r Biocpkg('derfinder')` single base-level case
 

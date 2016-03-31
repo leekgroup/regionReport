@@ -9,13 +9,14 @@
 \title{Generate a HTML report exploring a set of genomic regions}
 \format{An object of class \code{character} of length 1.}
 \usage{
-renderReport(regions, project, pvalueVars = c(`P-values` = "pval"),
+renderReport(regions, project = "", pvalueVars = c(`P-values` = "pval"),
   densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
   annotation = NULL, nBestRegions = 500, customCode = NULL,
   outdir = "regionExploration", output = "regionExploration",
   browse = interactive(), txdb = NULL, device = "png",
   densityTemplates = list(Pvalue = templatePvalueDensity, Common =
-  templateDensity, Manhattan = templateManhattan), template = NULL, ...)
+  templateDensity, Manhattan = templateManhattan), template = NULL,
+  theme = NULL, digits = 2, ...)
 
 templatePvalueDensity
 
@@ -82,6 +83,13 @@ histograms instead of density plots.}
 use the default file found in regionExploration/regionExploration.Rmd
 within the package source.}
 
+\item{theme}{A ggplot2 \link[ggplot2]{theme} to use for the plots made with
+ggplot2.}
+
+\item{digits}{The number of digits to round to in the interactive table of
+the top \code{nBestRegions}. Note that p-values and adjusted p-values won't 
+be rounded.}
+
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
 }
 \value{
@@ -106,7 +114,7 @@ regions <- genomeRegions$regions
 library('GenomicRanges')
 seqlengths(regions) <- c('chr21' = 48129895)
 
-## The output will be saved in the 'derfinderReport-example' directory
+## The output will be saved in the 'renderReport-example' directory
 dir.create('renderReport-example', showWarnings = FALSE, recursive = TRUE)
 
 ## Generate the HTML report

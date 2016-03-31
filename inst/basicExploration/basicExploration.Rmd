@@ -20,7 +20,7 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore the results of the `derfinder` `r citep(bib[['derfinder']])` package using the single base-level approach and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
+This report is meant to help explore the results of the `derfinder` `r citep(bib[['derfinder']])` package using the single base-level approach and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument.
 
 Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 
@@ -43,6 +43,7 @@ if(hg19) {
 
 ## CRAN
 library('ggplot2')
+if(!is.null(theme)) theme_set(theme)
 library('grid')
 library('gridExtra')
 library('knitr')
@@ -461,7 +462,7 @@ vennSig <- vennRegions(fullAnnotatedRegions, counts.col = 'blue',
 
 ## Region information
 
-Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions * 5)` regions (out of `r nrow(regions.df)`) as ranked by area. Inf and -Inf are shown as 1e100 and -1e100 respectively.
+Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions * 5)` regions (out of `r nrow(regions.df)`) as ranked by area. Inf and -Inf are shown as 1e100 and -1e100 respectively. `r ifelse(outputIsHTML, 'Use the search function to find your region of interest or sort by one of the columns.', 'Since the report is in PDF format, only the top 20 regions are shown.')`
 
 
 ```{r bestAreaInfo, results='asis'}
@@ -482,12 +483,17 @@ replaceInf <- function(df, colsubset=seq_len(ncol(df))) {
 topArea <- replaceInf(topArea, grep('log2FoldChange|value|area',
     colnames(topArea)))
 
+## Format p-values in scientific notation
+for(i in which(grepl('pvalues$|qvalues$|fwer$', colnames(topArea)))) topArea[, i] <- format(topArea[, i], scientific = TRUE)
+
 ## Make the table
 if(outputIsHTML) {
-    datatable(topArea, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl('value$|area$|mean|log2FoldChange|pvalues$|qvalues$|fwer$', colnames(topArea))), 3)
+    datatable(topArea, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl('value$|area$|mean|log2FoldChange', colnames(topArea))), digits)
 } else {
     ## Only print the top part if your output is a PDF file
-    kable(head(topArea, 20))
+    df_top <- head(topArea, 20)
+    for(i in which(grepl('value$|area$|mean|log2FoldChange', colnames(topArea)))) df_top[, i] <- round(df_top[, i], digits)
+    kable(df_top)
 }
 ```
 
@@ -617,7 +623,7 @@ if(outputIsHTML) {
 
 ```
 
-```{r child = customCode, eval = hasCustomCode}
+```{r child = customCode, eval = hasCustomCode, dev = device}
 ```
 
 # Reproducibility

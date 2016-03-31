@@ -45,6 +45,11 @@
 #' @param template Template file to use for the report. If not provided, will
 #' use the default file found in basicExploration/basicExploration.Rmd
 #' within the package source.
+#' @param theme A ggplot2 \link[ggplot2]{theme} to use for the plots made with
+#' ggplot2.
+#' @param digits The number of digits to round to in the interactive table of
+#' the top \code{nBestRegions}. Note that p-values and adjusted p-values won't 
+#' be rounded.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return An HTML report with a basic exploration of the derfinder results.
@@ -142,10 +147,11 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2, 
     fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL, 
     device = 'png', significantVar = 'qvalue', customCode = NULL,
-    template = NULL, ...) {
+    template = NULL, theme = NULL, digits = 2, ...) {
     
     stopifnot(length(significantVar) == 1)
     stopifnot(significantVar %in% c('pvalue', 'qvalue', 'fwer'))
+    if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
     
     hasCustomCode <- !is.null(customCode)
     if(hasCustomCode) stopifnot(length(customCode) == 1)
@@ -311,6 +317,10 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         ## Output format
         output_format <- .advanced_argument('output_format', 'html_document', ...)
         outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+        if(!outputIsHTML) {
+            opts_chunk$set(echo = FALSE)
+            if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
+        }
     
         ## Check knitrBoostrap version
         knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'

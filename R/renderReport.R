@@ -50,6 +50,11 @@
 #' @param template Template file to use for the report. If not provided, will
 #' use the default file found in regionExploration/regionExploration.Rmd
 #' within the package source.
+#' @param theme A ggplot2 \link[ggplot2]{theme} to use for the plots made with
+#' ggplot2.
+#' @param digits The number of digits to round to in the interactive table of
+#' the top \code{nBestRegions}. Note that p-values and adjusted p-values won't 
+#' be rounded.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return An HTML report with a basic exploration for the given set of
@@ -87,7 +92,7 @@
 #' library('GenomicRanges')
 #' seqlengths(regions) <- c('chr21' = 48129895)
 #'
-#' ## The output will be saved in the 'derfinderReport-example' directory
+#' ## The output will be saved in the 'renderReport-example' directory
 #' dir.create('renderReport-example', showWarnings = FALSE, recursive = TRUE)
 #'
 #' ## Generate the HTML report
@@ -120,14 +125,15 @@
 #'
 
 
-renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
+renderReport <- function(regions, project = "", 
+    pvalueVars = c('P-values' = 'pval'),
     densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
     annotation = NULL, nBestRegions = 500, customCode = NULL,
     outdir = 'regionExploration', output = 'regionExploration',
     browse = interactive(), txdb = NULL, device = 'png',
     densityTemplates = list(Pvalue = templatePvalueDensity,
         Common = templateDensity, Manhattan = templateManhattan),
-    template = NULL, ...) {
+    template = NULL, theme = NULL, digits = 2, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     
@@ -139,6 +145,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     hasCustomCode <- !is.null(customCode)
     if(hasCustomCode) stopifnot(length(customCode) == 1)
     if(!is.null(annotation)) stopifnot(nrow(annotation) == length(regions))
+    if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
     
     # @param overviewParams A two element list with \code{base_size} and 
     # \code{areaRel} that control the text size for the genomic overview plots.
@@ -183,8 +190,7 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
     
     
     ## Create outdir
-    dir.create(outdir, showWarnings = FALSE,
-        recursive = TRUE)
+    dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
     workingDir <- getwd()
     
     ## Locate Rmd if one is not provided
@@ -239,6 +245,10 @@ renderReport <- function(regions, project, pvalueVars = c('P-values' = 'pval'),
         ## Output format
         output_format <- .advanced_argument('output_format', 'html_document', ...)
         outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+        if(!outputIsHTML) {
+            opts_chunk$set(echo = FALSE)
+            if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
+        }
     
         ## Check knitrBoostrap version
         knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'

@@ -9,7 +9,7 @@ derfinderReport(prefix, outdir = "basicExploration",
   nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
   fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
   device = "png", significantVar = "qvalue", customCode = NULL,
-  template = NULL, ...)
+  template = NULL, theme = NULL, digits = 2, ...)
 }
 \arguments{
 \item{prefix}{The main data directory path where 
@@ -66,6 +66,13 @@ further quality checks and plots.}
 \item{template}{Template file to use for the report. If not provided, will
 use the default file found in basicExploration/basicExploration.Rmd
 within the package source.}
+
+\item{theme}{A ggplot2 \link[ggplot2]{theme} to use for the plots made with
+ggplot2.}
+
+\item{digits}{The number of digits to round to in the interactive table of
+the top \code{nBestRegions}. Note that p-values and adjusted p-values won't 
+be rounded.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
 }

@@ -211,8 +211,8 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     stopifnot(sum(names(overviewParams) %in% c('base_size', 'areaRel')) == 2)
     
     if (hg19) {
-        library('biovizBase')
-        library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+        requireNamespace('biovizBase')
+        requireNamespace('TxDb.Hsapiens.UCSC.hg19.knownGene')
     }
     
     ## Create outdir

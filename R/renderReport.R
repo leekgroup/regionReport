@@ -81,6 +81,7 @@
 #' @import whisker
 #' @import DT
 #' @importFrom devtools session_info
+#' @importFrom utils browseURL citation packageVersion
 #'
 #' @examples
 #'

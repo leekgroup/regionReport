@@ -76,6 +76,7 @@
 #' @import DT
 #' @import GenomeInfoDb
 #' @importFrom devtools session_info
+#' @importFrom utils browseURL citation packageVersion
 #'
 #' @examples
 #'

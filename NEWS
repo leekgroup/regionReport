@@ -1,3 +1,24 @@
+CHANGES IN VERSION 1.5.12
+-------------------------
+
+NEW FEATURES
+
+    o Added the function DESeq2Report() for creating HTML or PDF reports based
+        on DESeq2 results. This should also be useful to explore derfinder
+        results created from the expressed regions-level approach.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Added a 'digits' argument to control how to round some numerical variables
+        in all type of reports.
+    o Added a 'theme' argument to allow setting the ggplot2 theme for the plots.
+    
+BUG FIXES
+
+    o Improved the PDF versions of all reports by hiding code and shortening
+        tables. Also added a warning to switch the device to 'pdf' for PDF
+        output since it looks better than the default 'png'.
+
 CHANGES IN VERSION 1.5.6
 ------------------------
 

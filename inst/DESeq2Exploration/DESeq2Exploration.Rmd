@@ -1,0 +1,312 @@
+---
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    theme: spacelab
+  pdf_document:
+      toc: true
+  knitrBootstrap::bootstrap_document:
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+
+Basic DESeq2 results exploration
+================================
+
+Project: `r project`.
+
+# Introduction
+
+This report is meant to help explore `DESeq2` `r citep(bib[['DESeq2']])` results and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument. This report is based on the vignette of the `DESeq2` `r citep(bib[['DESeq2']])` package which you can find [here](http://www.bioconductor.org/packages/DESeq2).
+
+## Code setup
+
+This section contains the code for setting up the rest of the report.
+
+```{r setup, bootstrap.show.message=FALSE, warning=FALSE}
+#### Libraries needed
+
+## Bioconductor
+library('DESeq2')
+
+## CRAN
+library('ggplot2')
+if(!is.null(theme)) theme_set(theme)
+library('knitr')
+if(is.null(colors)) {
+    library('RColorBrewer')
+}
+library('pheatmap')
+library('DT')
+
+## Working behind the scenes
+# library('knitcitations')
+# library('rmarkdown')
+## Optionally
+# library('knitrBootstrap')
+
+#### Code setup
+
+## For ggplot
+res.df <- as.data.frame(res)
+
+## Sort results by adjusted p-values
+ord <- order(res.df$padj, decreasing = FALSE)
+res.df <- res.df[ord, ]
+res.df <- cbind(data.frame(Feature = rownames(res.df)), res.df)
+rownames(res.df) <- NULL
+```
+
+# PCA
+
+```{r 'PCA', dev = device}
+## Transform count data
+rld <- rlog(dds)
+
+## Perform PCA analysis and make plot
+plotPCA(rld, intgroup = intgroup)
+
+## Get percent of variance explained
+data_pca <- plotPCA(rld, intgroup = intgroup, returnData = TRUE)
+percentVar <- round(100 * attr(data_pca, "percentVar"))
+```
+
+The above plot shows the first two principal components that explain the variability in the data using the regularized log count data. If you are unfamiliar with principal component analysis, you might want to check the [Wikipedia entry](https://en.wikipedia.org/wiki/Principal_component_analysis) or this [interactive explanation](http://setosa.io/ev/principal-component-analysis/). In this case, the first and second principal component explain `r percentVar[1]` and `r percentVar[2]` percent of the variance respectively.
+
+# Sample-to-sample distances
+
+```{r 'sampleDist', dev = device}
+## Obtain the sample euclidean distances
+sampleDists <- dist(t(assay(rld)))
+sampleDistMatrix <- as.matrix(sampleDists)
+## Add names based on intgroup
+rownames(sampleDistMatrix) <- apply(as.data.frame(colData(rld)[, intgroup]), 1, paste, collapse = ' : ')
+colnames(sampleDistMatrix) <- NULL
+
+## Define colors to use for the heatmap if none were supplied
+if(is.null(colors)) {
+    colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+}
+
+## Make the heatmap
+pheatmap(sampleDistMatrix, clustering_distance_rows = sampleDists,
+    clustering_distance_cols = sampleDists, color = colors)
+```
+
+This plot shows how samples are clustered based on their euclidean distance using the regularized log transformed count data. This figure gives an overview of how the samples are hierarchically clustered. It is a complementary figure to the PCA plot.
+
+# MA plots
+
+This section contains three MA plots (see [Wikipedia](https://en.wikipedia.org/wiki/MA_plot)) that compare the mean of the normalized counts against the log fold change. They show one point per feature. The points are shown in red if the feature has an adjusted p-value less than `alpha`, that is, the statistically significant features are shown in red.
+
+```{r 'MAplotalpha', dev = device}
+## MA plot with alpha used in DESeq2::results()
+plotMA(res, alpha = metadata(res)$alpha, main = paste('MA plot with alpha =', metadata(res)$alpha))
+```
+
+This first plot shows uses `alpha` = `r metadata(res)$alpha`, which is the `alpha` value used to determine which resulting features were significant when running the function `DESeq2::results()`.
+
+
+```{r 'MAplotalphaHalf', dev = device}
+## MA plot with alpha = 1/2 of the alpha used in DESeq2::results()
+plotMA(res, alpha = metadata(res)$alpha / 2, main = paste('MA plot with alpha =', metadata(res)$alpha / 2))
+```
+
+This second MA plot uses `alpha` = `r metadata(res)$alpha / 2` and can be used agains the first MA plot to identify which features have adjusted p-values between `r metadata(res)$alpha / 2` and `r metadata(res)$alpha`.
+
+```{r 'MAplotalpha-nBest', dev = device}
+## MA plot with alpha corresponding to the one that gives the nBest features
+nBest.actual <- min(nBest, nrow(head(res.df, n = nBest)))
+nBest.alpha <- head(res.df, n = nBest)$padj[nBest.actual]
+plotMA(res, alpha = nBest.alpha * 1.00000000000001, main = paste('MA plot for top', nBest.actual, 'features'))
+```
+
+The third and final MA plot uses an alpha such that the top `r nBest.actual` features are shown in the plot. These are the features that whose details are included in the _top features_ interactive table.
+
+# P-values distribution
+
+
+```{r pvalueHistogram, dev = device}
+## P-value histogram plot
+ggplot(res.df[!is.na(res.df$pvalue), ], aes(x = pvalue)) +
+    geom_histogram(alpha=.5, position='identity', bins = 50) +
+    labs(title='Histogram of unadjusted p-values') +
+    xlab('Unadjusted p-values') +
+    xlim(c(0, 1.0005))
+```
+
+This plot shows a histogram of the unadjusted p-values. It might be skewed right or left, or flat as shown in the [Wikipedia examples](https://en.wikipedia.org/wiki/Histogram#Examples). The shape depends on the percent of features that are differentially expressed. For further information on how to interpret a histogram of p-values check [David Robinson's post on this topic](http://varianceexplained.org/statistics/interpreting-pvalue-histogram/).
+
+```{r pvalueSumm}
+## P-value distribution summary
+summary(res.df$pvalue)
+```
+
+This is the numerical summary of the distribution of the p-values.
+
+
+```{r pvalueTable, results = 'asis'}
+## Split features by different p-value cutoffs
+pval_table <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
+    0.6, 0.7, 0.8, 0.9, 1), function(x) {
+    data.frame('Cut' = x, 'Count' = sum(res.df$pvalue <= x, na.rm = TRUE))
+})
+pval_table <- do.call(rbind, pval_table)
+if(outputIsHTML) {
+    kable(pval_table, format = 'markdown', align = c('c', 'c'))
+} else {
+    kable(pval_table)
+}
+```
+
+This table shows the number of features with p-values less or equal than some commonly used cutoff values. 
+
+
+# Adjusted p-values distribution
+
+```{r padjHistogram, dev = device}
+## Adjusted p-values histogram plot
+ggplot(res.df[!is.na(res.df$padj), ], aes(x = padj)) +
+    geom_histogram(alpha=.5, position='identity', bins = 50) +
+    labs(title=paste('Histogram of', elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)])) +
+    xlab('Adjusted p-values') +
+    xlim(c(0, 1.0005))
+```
+
+This plot shows a histogram of the `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]`. It might be skewed right or left, or flat as shown in the [Wikipedia examples](https://en.wikipedia.org/wiki/Histogram#Examples). 
+
+```{r padjSumm}
+## Adjusted p-values distribution summary
+summary(res.df$padj)
+```
+
+This is the numerical summary of the distribution of the `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]`.
+
+
+```{r padjTable, results = 'asis'}
+## Split features by different adjusted p-value cutoffs
+padj_table <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,
+    0.6, 0.7, 0.8, 0.9, 1), function(x) {
+    data.frame('Cut' = x, 'Count' = sum(res.df$padj <= x, na.rm = TRUE))
+})
+padj_table <- do.call(rbind, padj_table)
+if(outputIsHTML) {
+    kable(padj_table, format = 'markdown', align = c('c', 'c'))
+} else {
+    kable(padj_table)
+}
+```
+
+This table shows the number of features with `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]` less or equal than some commonly used cutoff values. 
+
+
+
+# Top features
+
+This `r ifelse(outputIsHTML, 'interactive', '')` table shows the top `r nBest.actual` features ordered by their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]`. `r ifelse(outputIsHTML, 'Use the search function to find your feature of interest or sort by one of the columns.', 'Since the report is in PDF format, only the top 20 features are shown.')`
+
+```{r 'topFeatures', results = 'asis'}
+## Add search url if appropriate
+if(!is.null(searchURL) & outputIsHTML) {
+    res.df$Feature <- paste0('<a href="', searchURL, res.df$Feature, '">',
+        res.df$Feature, '</a>')
+}
+
+for(i in which(colnames(res.df) %in% c('pvalue', 'padj'))) res.df[, i] <- format(res.df[, i], scientific = TRUE)
+
+if(outputIsHTML) {
+    datatable(head(res.df, n = nBest), options = list(pagingType='full_numbers', pageLength=10, scrollX='100%'), escape = FALSE, rownames = FALSE) %>% formatRound(which(!colnames(res.df) %in% c('pvalue', 'padj', 'Feature')), digits)
+} else {
+    res.df_top <- head(res.df, n = 20)
+    for(i in which(!colnames(res.df) %in% c('pvalue', 'padj', 'Feature'))) res.df_top[, i] <- round(res.df_top[, i], digits)
+    kable(res.df_top)
+}
+```
+
+
+
+
+# Count plots top features
+
+
+This section contains plots showing the normalized counts per sample for each group of interest. Only the best `r nBestFeatures` features are shown, ranked by their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]`. The Y axis is on the log10 scale and the feature name is shown in the title of each plot.
+
+
+```{r 'plotCounts', dev = device}
+plotCounts_gg <- function(i, dds, intgroup) {
+    group <- if (length(intgroup) == 1) {
+        colData(dds)[[intgroup]]
+    } else if (length(intgroup) == 2) {
+        lvls <- as.vector(t(outer(levels(colData(dds)[[intgroup[1]]]), 
+            levels(colData(dds)[[intgroup[2]]]), function(x, 
+                y) paste(x, y, sep = " : "))))
+        droplevels(factor(apply(as.data.frame(colData(dds)[, 
+            intgroup, drop = FALSE]), 1, paste, collapse = " : "), 
+            levels = lvls))
+    } else {
+        factor(apply(as.data.frame(colData(dds)[, intgroup, drop = FALSE]), 
+            1, paste, collapse = " : "))
+    }
+    data <- plotCounts(dds, gene=i, intgroup=intgroup, returnData = TRUE)
+    data <- cbind(data, data.frame('group' = group))
+    main <- rownames(dds)[i]
+
+    ggplot(data, aes(x = group, y = count)) + geom_point() + ylab('Normalized count') + ggtitle(main) + coord_trans(y = "log10")
+}
+for(i in head(ord, nBestFeatures)) {
+    print(plotCounts_gg(i, dds = dds, intgroup = intgroup))
+}
+```
+
+
+
+```{r child = customCode, eval = hasCustomCode, dev = device}
+```
+
+
+
+# Reproducibility
+
+The input for this report was generated with `DESeq2` `r citep(bib[['DESeq2']])` using version `r metadata(dds)$version` and the resulting features were called significantly differentially expressed if their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]` were less than `alpha` = `r metadata(res)$alpha`. This report was generated in path `r tmpdir` using the following call to `DESeq2Report()`:
+
+```{r thecall, echo=FALSE}
+theCall
+```
+
+Date the report was generated.
+
+```{r reproducibility1, echo=FALSE}
+## Date the report was generated
+Sys.time()
+```
+
+Wallclock time spent generating the report.
+
+```{r reproducibility2, echo=FALSE}
+## Processing time in seconds
+totalTime <- diff(c(startTime, Sys.time()))
+round(totalTime, digits=3)
+```
+
+`R` session information.
+
+```{r reproducibility3, echo=FALSE}
+## Session info
+options(width = 120)
+session_info()
+```
+
+# Bibliography
+
+This report was created with `regionReport` `r citep(bib[['regionReport']])` using `rmarkdown` `r citep(bib[['rmarkdown']])` while `knitr` `r citep(bib[['knitr']])` and  `DT` `r citep(bib[['DT']])` were running behind the scenes. `pheatmap` `r citep(bib[['pheatmap']])` was used to create the sample distances heatmap. Several plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
+
+Citations made with `knitcitations` `r citep(bib[['knitcitations']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
+
+```{r bibliography, results='asis', echo=FALSE, warning = FALSE}
+## Print bibliography
+bibliography()
+```
+

@@ -20,7 +20,7 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore a set of genomic regions and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. You will most likely need a more in-depth analysis for your specific data set.
+This report is meant to help explore a set of genomic regions and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument.
 
 Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 
@@ -45,6 +45,7 @@ if(is.null(txdb)) {
 
 ## CRAN
 library('ggplot2')
+if(!is.null(theme)) theme_set(theme)
 library('grid')
 library('gridExtra')
 library('knitr')
@@ -253,7 +254,7 @@ vennSig <- vennRegions(annotatedRegions, counts.col = 'blue',
 
 ## Region information
 
-Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions)` regions (out of `r nrow(regions.df)`) as ranked by p-value `r ifelse(hasPvalueVars, '', 'without ranking because no p-value information was provided')`. Inf and -Inf are shown as 1e100 and -1e100 respectively.
+Below is an interactive table with the top `r min(nrow(regions.df), nBestRegions)` regions (out of `r nrow(regions.df)`) as ranked by p-value `r ifelse(hasPvalueVars, '', 'without ranking because no p-value information was provided')`. Inf and -Inf are shown as 1e100 and -1e100 respectively. `r ifelse(outputIsHTML, 'Use the search function to find your region of interest or sort by one of the columns.', 'Since the report is in PDF format, only the top 20 regions are shown.')`
 
 
 ```{r bestRegionInfo, results='asis'}
@@ -286,23 +287,29 @@ topRegions <- replaceInf(topRegions, which(sapply(topRegions, function(x) {
     class(x) %in% c('numeric', 'integer')})))
 
 ## Make the table
+greptext <- 'value$|area$|mean|log2FoldChange'
+greppval <- 'pvalues$|qvalues$|fwer$'
+if(hasPvalueVars) {
+    greppval <- paste0(paste(pvalueVars, collapse = '$|'), '$|', greppval)
+}
+if(hasDensityVars) {
+    greptext <- paste0(paste(densityVars, collapse = '$|'), '$|', greptext)
+}
+
+for(i in which(grepl(greppval, colnames(topRegions)))) topRegions[, i] <- format(topRegions[, i], scientific = TRUE)
+
 if(outputIsHTML) {
-    greptext <- 'value$|area$|mean|log2FoldChange|pvalues$|qvalues$|fwer$'
-    if(hasPvalueVars) {
-        greptext <- paste0(paste(pvalueVars, collapse = '$|'), '$|', greptext)
-    }
-    if(hasDensityVars) {
-        greptext <- paste0(paste(densityVars, collapse = '$|'), '$|', greptext)
-    }
-    datatable(topRegions, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl(greptext, colnames(topRegions))), 3)
+    datatable(topRegions, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl(greptext, colnames(topRegions))), digits)
 } else {
     ## Only print the top part if your output is a PDF file
-    kable(head(topRegions, 20))
+    df_top <- head(topRegions, 20)
+    for(i in which(grepl(greptext, colnames(topRegions)))) df_top[, i] <- round(df_top[, i], digits)
+    kable(df_top)
 }
 ```
 
 
-```{r child = customCode, eval = hasCustomCode}
+```{r child = customCode, eval = hasCustomCode, dev = device}
 ```
 
 

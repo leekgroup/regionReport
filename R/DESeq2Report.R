@@ -1,0 +1,210 @@
+#' Generate a HTML report exploring DESeq2 results
+#'
+#' This function generates a HTML report with exploratory data analysis plots
+#' for DESeq2 results created with \link[DESeq2]{DESeq}. Other output formats
+#' are possible such as PDF but lose the interactivity. Users can easily append
+#' to the report by providing a R Markdown file to \code{customCode}, or can
+#' customize the entire template by providing an R Markdown file to
+#' \code{template}.
+#'
+#' @param dds A \link[DESeq2]{DESeqDataSet} object with the results from
+#' running \link[DESeq2]{DESeq}.
+#' @param project The title of the project.
+#' @param intgroup interesting groups: a character vector of names in 
+#' \code{colData(x)} to use for grouping. This parameter is passed to functions
+#' such as \link[DESeq2]{plotPCA}.
+#' @param colors vector of colors used in heatmap. If \code{NULL}, then a
+#' a default set of colors will be used. This argument is passed to
+#' \link[pheatmap]{pheatmap}.
+#' @param res A \link[DESeq2]{DESeqResults} object. If \code{NULL}, then
+#' \link[DESeq2]{results} will be used on \code{dds} with default parameters.
+#' @param nBest The number of features to include in the interactive 
+#' table. Features are ordered by their adjusted p-values.
+#' @param nBestFeatures The number of best features to make plots of their 
+#' counts. We recommend a small number, say 20.
+#' @param customCode An absolute path to a child R Markdown file with code to be
+#' evaluated before the reproducibility section. Its useful for users who want
+#' to customize the report by adding conclusions derived from the data and/or
+#' further quality checks and plots.
+#' @param outdir The name of output directory.
+#' @param output The name of output HTML file (without the html extension).
+#' @param browse If \code{TRUE} the HTML report is opened in your browser once 
+#' it's completed.
+#' @param device The graphical device used when knitting. See more at 
+#' http://yihui.name/knitr/options (\code{dev} argument).
+#' @param template Template file to use for the report. If not provided, will
+#' use the default file found in DESeq2Exploration/DESeq2Exploration.Rmd
+#' within the package source.
+#' @param searchURL A url used for searching the name of the features in
+#' the web. By default \code{http://www.ncbi.nlm.nih.gov/gene/?term=} is used
+#' which is the recommended option when features are genes. It's only used
+#' when the output is a HTML file.
+#' @param theme A ggplot2 \link[ggplot2]{theme} to use for the plots made with
+#' ggplot2.
+#' @param digits The number of digits to round to in the interactive table of
+#' the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't 
+#' be rounded.
+#' @param ... Arguments passed to other methods and/or advanced arguments.
+#'
+#' @return An HTML report with a basic exploration for the given set DESeq2
+#' results
+#'
+#' @author Leonardo Collado-Torres
+#' @export
+#'
+#' @import ggplot2
+#' @import knitr
+#' @import rmarkdown
+#' @import knitrBootstrap
+#' @import knitcitations
+#' @import RColorBrewer
+#' @import DT
+#' @import pheatmap
+#' @import DESeq2
+#' @importFrom devtools session_info
+#'
+#' @examples
+#'
+#' ## Load example data from the pasilla package
+#' library('pasilla')
+#' library('DESeq2')
+#'
+#' ## Create DESeqDataSet object from the pasilla package
+#' data('pasillaGenes')
+#' countData <- counts(pasillaGenes)
+#' colData <- pData(pasillaGenes)[, c('condition', 'type')]
+#' dds <- DESeqDataSetFromMatrix(countData = countData,
+#'    colData = colData,
+#'    design = ~ condition)
+#' dds <- DESeq(dds)
+#'
+#' ## The output will be saved in the 'DESeq2Report-example' directory
+#' dir.create('DESeq2Report-example', showWarnings = FALSE, recursive = TRUE)
+#'
+#' ## Generate the HTML report
+#' report <- DESeq2Report(dds, 'DESeq2-example', c('condition', 'type'),
+#'     outdir = 'DESeq2Report-example')
+#'
+#' if(interactive()) {
+#'     ## Browse the report
+#'     browseURL(report)
+#' }
+#'
+#' \dontrun{
+#' ## Note that you can run the example using:
+#' example('DESeq2Report', 'regionReport', ask=FALSE)
+#' }
+#'
+#'
+
+
+DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
+    nBest = 500, nBestFeatures = 20, customCode = NULL,
+    outdir = 'DESeq2Exploration', output = 'DESeq2Exploration',
+    browse = interactive(), device = 'png', template = NULL, 
+    searchURL = 'http://www.ncbi.nlm.nih.gov/gene/?term=', theme = NULL,
+    digits = 2, ...) {
+    ## Save start time for getting the total processing time
+    startTime <- Sys.time()
+    
+    
+    ## Check inputs
+    stopifnot(is(dds, 'DESeqDataSet'))
+    if (!"results" %in% mcols(mcols(dds))$type)
+        stop("couldn't find results. you should first run DESeq()")
+    if (!all(intgroup %in% names(colData(dds)))) 
+        stop("all variables in 'intgroup' must be columns of colData")
+    if(is.null(res)) {
+        ## Run results with default parameters
+        res <- results(dds)
+    } else {
+        stopifnot(is(res, 'DESeqResults'))
+        stopifnot(identical(nrow(res), nrow(dds)))
+    }
+    stopifnot(is.null(searchURL) | length(searchURL) == 1)
+    if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
+    
+    ## Is there custom code?
+    hasCustomCode <- !is.null(customCode)
+    if(hasCustomCode) stopifnot(length(customCode) == 1)
+
+    
+    ## Create outdir
+    dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
+    workingDir <- getwd()
+    
+    ## Locate Rmd if one is not provided
+    if (is.null(template)) {
+        template <- system.file(
+            file.path('DESeq2Exploration', 'DESeq2Exploration.Rmd'),
+            package = 'regionReport', mustWork = TRUE
+        )
+    }
+    
+    ## Load knitcitations with a clean bibliography
+    cleanbib()
+    cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+    # Note links won't show for now due to the following issue
+    # https://github.com/cboettig/knitcitations/issues/63
+    
+    
+    ## Write bibliography information
+    write.bibtex(c(
+        knitcitations = citation('knitcitations'), 
+        regionReport = citation('regionReport')[1],
+        DT = citation('DT'), 
+        ggplot2 = citation('ggplot2'),
+        knitr = citation('knitr')[3],
+        rmarkdown = citation('rmarkdown'),
+        pheatmap = citation('pheatmap'),
+        RColorBrewer = citation('RColorBrewer'),
+        DESeq2 = citation('DESeq2')),
+        file = file.path(outdir, paste0(output, '.bib'))
+    )
+    bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))
+    
+    ## Assign short names
+    names(bib) <- c('knitcitations', 'regionReport', 'DT', 'ggplot2', 'knitr',
+        'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2') 
+    
+    ## Save the call
+    theCall <- match.call()
+    
+    ## knitrBoostrap chunk options
+    opts_chunk$set(bootstrap.show.code = FALSE)
+    
+    ## Generate report
+    ## Perform code within the output directory.
+    tmpdir <- getwd()
+    with_wd(outdir, {
+        file.copy(template, to = paste0(output, '.Rmd'))
+    
+        ## Output format
+        output_format <- .advanced_argument('output_format', 'html_document', ...)
+        outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+        if(!outputIsHTML) {
+            opts_chunk$set(echo = FALSE)
+            if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
+        }
+    
+        ## Check knitrBoostrap version
+        knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
+            if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
+            ## CRAN version
+            tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
+                'code'), show_code = TRUE)
+            res <- file.path(tmpdir, outdir, paste0(output, '.html'))
+            unlink(paste0(output, '.md'))
+        } else {
+            res <- render(paste0(output, '.Rmd'), output_format,
+                clean = .advanced_argument('clean', TRUE, ...))
+        }
+        file.remove(paste0(output, '.Rmd'))
+    
+        ## Open
+        if (browse) browseURL(res)
+    })
+    
+    ## Finish
+    return(invisible(res))
+}

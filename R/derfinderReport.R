@@ -61,6 +61,7 @@
 #'
 #' @importFrom derfinder extendedMapSeqlevels
 #' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
+#' citep bibliography
 #' @importFrom GenomeInfoDb seqlevels renameSeqlevels
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render

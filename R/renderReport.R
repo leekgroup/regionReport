@@ -66,12 +66,12 @@
 #' @export
 #'
 #' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
+#' citep bibliography
 #' @importFrom GenomeInfoDb seqlengths
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols
 #' @importFrom knitrBootstrap knit_bootstrap
-#' @import knitr
 #'
 #' @examples
 #'

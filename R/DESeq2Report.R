@@ -55,6 +55,7 @@
 #' @importFrom SummarizedExperiment colData
 #' @importFrom DESeq2 results
 #' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
+#' citep bibliography
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols

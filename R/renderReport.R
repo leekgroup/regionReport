@@ -70,7 +70,7 @@
 #' @importFrom GenomeInfoDb seqlengths
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
-#' @importFrom GenomicRanges mcols
+#' @importFrom GenomicRanges mcols 'mcols<-'
 #' @importFrom knitrBootstrap knit_bootstrap
 #'
 #' @examples

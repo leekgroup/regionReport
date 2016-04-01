@@ -17,8 +17,8 @@ These functions are defunct and no longer available.
 The following functions are defunct; use the replacements indicated below:
  \itemize{
 
-   \item{plot_cluster: \code{\link{plotCluster}}}
-   \item{render_report: \code{\link{render_report}}}
+   \item{derfinder_report: \code{\link{derfinderReport}}}
+   \item{render_report: \code{\link{renderReport}}}
 
  }
 }

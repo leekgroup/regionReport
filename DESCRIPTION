@@ -1,7 +1,7 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of regions or DESeq2 results
-Version: 1.5.20
+Version: 1.5.21
 Date: 2016-03-31
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",

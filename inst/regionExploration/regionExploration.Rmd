@@ -30,35 +30,36 @@ Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 #### Libraries needed
 
 ## Bioconductor
-library('bumphunter')
-library('derfinder')
-library('derfinderPlot')
-library('GenomeInfoDb')
-library('GenomicRanges')
-library('ggbio')
+load_install('bumphunter')
+load_install('derfinder')
+load_install('derfinderPlot')
+load_install('GenomeInfoDb')
+load_install('GenomicRanges')
+load_install('ggbio')
 
 ## Transcription database to use by default
 if(is.null(txdb)) {
-    library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+    load_install('TxDb.Hsapiens.UCSC.hg19.knownGene')
     txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
 }
 
 ## CRAN
-library('ggplot2')
+load_install('ggplot2')
 if(!is.null(theme)) theme_set(theme)
-library('grid')
-library('gridExtra')
-library('knitr')
-library('RColorBrewer')
-library('mgcv')
-library('whisker')
-library('DT')
+load_install('grid')
+load_install('gridExtra')
+load_install('knitr')
+load_install('RColorBrewer')
+load_install('mgcv')
+load_install('whisker')
+load_install('DT')
+load_install('devtools')
 
 ## Working behind the scenes
-# library('knitcitations')
-# library('rmarkdown')
+# load_install('knitcitations')
+# load_install('rmarkdown')
 ## Optionally
-# library('knitrBootstrap')
+# load_install('knitrBootstrap')
 
 #### Code setup
 

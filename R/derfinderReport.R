@@ -59,24 +59,13 @@
 #' \link[derfinder]{fullCoverage}
 #' @export
 #'
-#' @import derfinder
-#' @import derfinderPlot
-#' @import GenomicRanges
-#' @import IRanges
-#' @import ggplot2
-#' @import grid
-#' @import gridExtra
-#' @importFrom ggbio plotIdeogram
-#' @import knitr
-#' @import rmarkdown
-#' @import knitrBootstrap
-#' @import knitcitations
-#' @import RColorBrewer
-#' @import mgcv
-#' @import DT
-#' @import GenomeInfoDb
-#' @importFrom devtools session_info
+#' @importFrom derfinder extendedMapSeqlevels
+#' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
+#' @importFrom GenomeInfoDb seqlevels renameSeqlevels
 #' @importFrom utils browseURL citation packageVersion
+#' @importFrom rmarkdown render
+#' @importFrom GenomicRanges mcols
+#' @importFrom knitrBootstrap knit_bootstrap
 #'
 #' @examples
 #'

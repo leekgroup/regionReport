@@ -30,3 +30,23 @@ with_wd <- function(dir, expr) {
     setwd(dir)
     eval(expr, envir = parent.frame())
 }
+
+
+#' Attempt to load the namespace of a package and install it if it's missing
+#'
+#' This function uses requireNamespace to try to load a package. But if it's
+#' misssing it will then install it via Bioconductor.
+#'
+#' @param pkg A single character vector with the name of the package.
+#' @param quietly Whether to run requireNamespace and biocLite quietly or not.
+#'
+load_install <- function(pkg, quietly = TRUE) {
+    attempt1 <- requireNamespace(pkg, quietly = quietly)
+    if(!attempt1) {
+        source('http://bioconductor.org/biocLite.R')
+        attemptInstall <- tryCatch(biocLite('pkg', suppressUpdates = quietly), warning = function(w) 'failed')
+        if(attemptInstall == 'failed') stop(paste('Failed to install the', pkg, 'package'))
+        requireNamespace(pkg, quietly = quietly)
+    }
+    return(invisible(NULL))
+}

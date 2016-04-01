@@ -52,17 +52,13 @@
 #' @author Leonardo Collado-Torres
 #' @export
 #'
-#' @import ggplot2
-#' @import knitr
-#' @import rmarkdown
-#' @import knitrBootstrap
-#' @import knitcitations
-#' @import RColorBrewer
-#' @import DT
-#' @import pheatmap
-#' @import DESeq2
-#' @importFrom devtools session_info
+#' @importFrom SummarizedExperiment colData
+#' @importFrom DESeq2 results
+#' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
 #' @importFrom utils browseURL citation packageVersion
+#' @importFrom rmarkdown render
+#' @importFrom GenomicRanges mcols
+#' @importFrom knitrBootstrap knit_bootstrap
 #'
 #' @examples
 #'

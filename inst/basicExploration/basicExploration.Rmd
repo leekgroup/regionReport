@@ -26,7 +26,7 @@ Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 
 ## Code setup
 
-```{r setup, warning=FALSE, bootstrap.show.message=FALSE, message = FALSE}
+```{r setup, bootstrap.show.message=FALSE}
 #### Libraries needed
 
 ## Bioconductor

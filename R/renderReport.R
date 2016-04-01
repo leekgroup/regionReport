@@ -356,7 +356,7 @@ This is a Manhattan plot for the {{{densityVarName}}} for all regions. A single 
 templatePvalueHistogram <- "
 ## {{{densityVarName}}}
 
-```{r histPval-{{{varName}}}, fig.width=10, fig.height=10, dev=device, warning=FALSE}
+```{r histPval-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
 p1{{{varName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
     geom_histogram(bins = 50, alpha=.5, position='identity') +
     xlim(c(0, 1.0005)) +
@@ -399,7 +399,7 @@ templateHistogram <- "
 
 ## {{{densityVarName}}}
 
-```{r histogram-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant, warning = FALSE}
+```{r histogram-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
 xrange <- range(regions.df.plot[, '{{{varName}}}'])
 p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, fill=seqnames)) +
     geom_histogram(alpha=.5, position='identity', bins = 50) +
@@ -414,7 +414,7 @@ p3b{{{varName}}} <- ggplot(regions.df.sig[is.finite(regions.df.sig[, '{{{varName
 grid.arrange(p3a{{{varName}}}, p3b{{{varName}}})
 ```
 
-```{r histogram-solo-{{{varName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant, warning = FALSE}
+```{r histogram-solo-{{{varName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
 p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, fill=seqnames)) +
     geom_histogram(alpha=.5, position='identity', bins = 50) +
     labs(title='Histogram of {{{densityVarName}}}') +

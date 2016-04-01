@@ -320,7 +320,7 @@ templateDensity <- "
 ## {{{densityVarName}}}
 
 ```{r density-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
-xrange <- range(regions.df.plot[, '{{{varName}}}'])
+xrange <- range(regions.df.plot[, '{{{varName}}}']) * c(0.95, 1.05)
 p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
     xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +

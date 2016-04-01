@@ -40,7 +40,7 @@ load_install('ggbio')
 ## Transcription database to use by default
 if(is.null(txdb)) {
     load_install('TxDb.Hsapiens.UCSC.hg19.knownGene')
-    txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+    txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
 }
 
 ## CRAN

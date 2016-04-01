@@ -120,6 +120,3 @@ proc.time()
 options(width = 120)
 devtools::session_info()
 ```
-
-
-

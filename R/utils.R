@@ -44,10 +44,11 @@ load_install <- function(pkg, quietly = TRUE) {
     attemptName <- requireNamespace(pkg, quietly = quietly)
     if(!attemptName) {
         source('http://bioconductor.org/biocLite.R')
-        attemptInstall <- tryCatch(biocLite('pkg', suppressUpdates = quietly), warning = function(w) 'failed')
-        if(attemptInstall == 'failed') stop(paste('Failed to install the', pkg, 'package'))
+        attemptInstall <- tryCatch(biocLite('pkg', suppressUpdates = quietly),
+            warning = function(w) 'failed')
+        if(attemptInstall == 'failed') stop(paste('Failed to install', pkg))
         attemptName <- requireNamespace(pkg, quietly = quietly)
     }
-    if(attemptName) attachNamespace(pkg)
+    if(attemptName) library(package = pkg, character.only = TRUE)
     return(invisible(NULL))
 }

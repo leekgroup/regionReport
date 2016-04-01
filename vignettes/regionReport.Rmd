@@ -236,36 +236,11 @@ library('regionReport')
 ```
 
 
-```{r createReportFake, eval=FALSE}
+```{r createReport}
 ## Generate the HTML report
 report <- derfinderReport(prefix='report', browse=FALSE,
     nBestRegions=15, makeBestClusters=TRUE, outdir='html',
     fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
-```
-
-
-```{r createReportReal, echo=FALSE, message=FALSE}
-## Generate the HTML report in a clean environment
-library('devtools')
-
-cat("## Generate the report in an isolated environment
-## This helps avoids conflicts with generating the vignette
-library(derfinder)
-library(regionReport)
-
-## Load optionsStats
-load(file.path('report', 'chr21', 'optionsStats.Rdata'))
-
-## Create report
-report <- derfinderReport(prefix='report', browse=FALSE,
-    nBestRegions=15, makeBestClusters=TRUE, outdir='html',
-    fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
-
-## Clean up
-file.remove('derfinderReport-isolated.R')
-", file='derfinderReport-isolated.R')
-clean_source('derfinderReport-isolated.R', quiet=TRUE)
-
 ```
 
 Once the output is generated, you can browse the report from `R` using 

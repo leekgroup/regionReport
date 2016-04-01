@@ -81,19 +81,8 @@ Now that we have identified a set of differentially methylated regions we can pr
 library('regionReport')
 ```
 
-```{r 'createReport', eval = FALSE}
-report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
-    densityVars = c('Area' = 'area', 'Value' = 'value',
-    'Cluster Length' = 'clusterL'), significantVar = NULL,
-    output = 'bumphunterExampleOutput', outdir = '.', device = 'png')
-```
-
-
-```{r 'createReportReal', echo = FALSE, results = 'hide'}
-save(regions, file = 'regionsTemp.Rdata')
-## Generate the HTML report in a clean environment
-library('devtools')
-
+```{r 'createReport'}
+## Make it so that the report will be available as a vignette
 cat("
 <!--
 %\\VignetteEngine{knitr::rmarkdown}
@@ -102,28 +91,13 @@ cat("
 -->
 ", file = 'vignetteInfo.Rmd')
 
-cat("## Generate the report in an isolated environment
-## This helps avoids https://github.com/rstudio/rmarkdown/issues/248
-
-## Load library and data
-library(regionReport)
-load('regionsTemp.Rdata')
-
-## Create report
+## Now create the report
 report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
-    output = 'bumphunterExampleOutput', outdir = '.', 
+    output = 'bumphunterExampleOutput', outdir = '.',
     customCode = 'vignetteInfo.Rmd', device = 'png')
-    
-## Clean up
-file.remove('regionsTemp.Rdata')
-file.remove('vignetteInfo.Rmd')
-", file = 'bumphunterReport-isolated.R')
-clean_source('bumphunterReport-isolated.R', quiet=TRUE)
-file.remove('bumphunterReport-isolated.R')
 ```
-
 
 
 You can view the final report [here](bumphunterExampleOutput.html).

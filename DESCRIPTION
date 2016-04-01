@@ -1,15 +1,16 @@
 Package: regionReport
 Type: Package
-Title: Generate HTML reports for exploring a set of regions
-Version: 1.5.19
+Title: Generate HTML or PDF reports for a set of regions or DESeq2 results
+Version: 1.5.20
 Date: 2016-03-31
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
     role = c("aut", "ths"), email = "jtleek@gmail.com"))
-Description: Generate HTML reports to explore a set of regions such as the
-    results from annotation-agnostic expression analysis of RNA-seq data at
-    base-pair resolution performed by derfinder.
+Description: Generate HTML or PDF reports to explore a set of regions such as
+    the results from annotation-agnostic expression analysis of RNA-seq data at
+    base-pair resolution performed by derfinder. You can also create reports for
+    DESeq2 results.
 License: Artistic-2.0
 LazyData: true
 URL: https://github.com/leekgroup/regionReport

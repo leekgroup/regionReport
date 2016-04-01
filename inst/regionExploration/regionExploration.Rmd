@@ -299,7 +299,7 @@ if(hasDensityVars) {
 for(i in which(grepl(greppval, colnames(topRegions)))) topRegions[, i] <- format(topRegions[, i], scientific = TRUE)
 
 if(outputIsHTML) {
-    datatable(topRegions, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl(greptext, colnames(topRegions))), digits)
+    datatable(topRegions, options = list(pagingType='full_numbers', pageLength=10, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl(greptext, colnames(topRegions))), digits)
 } else {
     ## Only print the top part if your output is a PDF file
     df_top <- head(topRegions, 20)

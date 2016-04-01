@@ -220,6 +220,9 @@ Next, proceed to merging the results.
 ## only one: chr21
 mergeResults(chrs = 'chr21', prefix = 'report',
     genomicState = genomicState$fullGenome)
+    
+## Load optionsStats
+load(file.path('report', 'chr21', 'optionsStats.Rdata'))
 ```
 
 

@@ -26,7 +26,7 @@ This report is meant to help explore `DESeq2` `r citep(bib[['DESeq2']])` results
 
 This section contains the code for setting up the rest of the report.
 
-```{r setup, bootstrap.show.message=FALSE, warning=FALSE}
+```{r setup, bootstrap.show.message=FALSE, warning=FALSE, message = FALSE}
 #### Libraries needed
 
 ## Bioconductor

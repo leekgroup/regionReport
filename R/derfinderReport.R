@@ -201,11 +201,6 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Check that overviewParams is correctly specified
     stopifnot(sum(names(overviewParams) %in% c('base_size', 'areaRel')) == 2)
     
-    if (hg19) {
-        requireNamespace('biovizBase')
-        requireNamespace('TxDb.Hsapiens.UCSC.hg19.knownGene')
-    }
-    
     ## Create outdir
     dir.create(file.path(prefix, outdir), showWarnings = FALSE,
         recursive = TRUE)

@@ -43,6 +43,8 @@ with_wd <- function(dir, expr) {
 load_install <- function(pkg, quietly = TRUE) {
     attemptName <- requireNamespace(pkg, quietly = quietly)
     if(!attemptName) {
+        biocLite <- NULL ## To satisfy R CMD check
+        
         source('http://bioconductor.org/biocLite.R')
         attemptInstall <- tryCatch(biocLite('pkg', suppressUpdates = quietly),
             warning = function(w) 'failed')

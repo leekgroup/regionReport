@@ -97,6 +97,9 @@ report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     'Cluster Length' = 'clusterL'), significantVar = NULL,
     output = 'bumphunterExampleOutput', outdir = '.',
     customCode = 'vignetteInfo.Rmd', device = 'png')
+
+## Clean up
+file.remove('vignetteInfo.Rmd')
 ```
 
 

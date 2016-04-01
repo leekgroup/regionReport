@@ -186,10 +186,13 @@ renderReport <- function(regions, project = "",
     
     ## Locate Rmd if one is not provided
     if (is.null(template)) {
+        templateNull <- TRUE
         template <- system.file(
             file.path('regionExploration', 'regionExploration.Rmd'),
             package = 'regionReport', mustWork = TRUE
         )
+    } else {
+        templateNull <- FALSE
     }
     
     ## Load knitcitations with a clean bibliography
@@ -253,7 +256,7 @@ renderReport <- function(regions, project = "",
             res <- render(paste0(output, '.Rmd'), output_format,
                 clean = .advanced_argument('clean', TRUE, ...))
         }
-        file.remove(paste0(output, '.Rmd'))
+        if(templateNull) file.remove(paste0(output, '.Rmd'))
     
         ## Open
         if (browse) browseURL(res)

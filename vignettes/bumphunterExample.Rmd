@@ -105,7 +105,7 @@ file.remove('vignetteInfo.Rmd')
 
 You can view the final report [here](bumphunterExampleOutput.html).
 
-In case the link does not work, a [pre-compiled version of this document](http://leekgroup.github.io/regionReportSupp/bumphunterExample.html) and its [corresponding report](http://leekgroup.github.io/regionReportSupp/bumphunterExample/index.html) are available at [leekgroup.github.io/regionReportSupp/](http://leekgroup.github.io/regionReportSupp/index.html).
+In case the link does not work, a [pre-compiled version of this document](http://leekgroup.github.io/regionReportSupp/bumphunterExample.html) and its [corresponding report](http://leekgroup.github.io/regionReportSupp/bumphunter-example/index.html) are available at [leekgroup.github.io/regionReportSupp/](http://leekgroup.github.io/regionReportSupp/index.html).
 
 # Reproducibility
 

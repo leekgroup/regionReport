@@ -1,12 +1,12 @@
 ---
-title: "Example with data from bumphunter"
+title: "Example report using bumphunter results"
 author: "L Collado-Torres"
 date: "`r doc_date()`"
 package: "`r pkg_ver('regionReport')`"
 output: 
   BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Example with data from bumphunter}
+  %\VignetteIndexEntry{Example report using bumphunter results}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 ---
@@ -83,23 +83,26 @@ library('regionReport')
 
 ```{r 'createReport'}
 ## Make it so that the report will be available as a vignette
-cat("
-<!--
-%\\VignetteEngine{knitr::rmarkdown}
-%\\VignetteIndexEntry{Basic genomic regions exploration}
-%\\VignetteEncoding{UTF-8}  
--->
-", file = 'vignetteInfo.Rmd')
+original <- readLines(system.file('regionExploration', 'regionExploration.Rmd',
+    package = 'regionReport'))
+vignetteInfo <- c(
+    'vignette: >',
+    '  %\\VignetteEngine{knitr::rmarkdown}',
+    '  %\\VignetteIndexEntry{Basic genomic regions exploration}',
+    '  %\\VignetteEncoding{UTF-8}'
+)
+new <- c(original[1:12], vignetteInfo, original[13:length(original)])
+writeLines(new, 'regionReportBumphunter.Rmd')
 
 ## Now create the report
 report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
     densityVars = c('Area' = 'area', 'Value' = 'value',
     'Cluster Length' = 'clusterL'), significantVar = NULL,
     output = 'bumphunterExampleOutput', outdir = '.',
-    customCode = 'vignetteInfo.Rmd', device = 'png')
-
+    template = 'regionReportBumphunter.Rmd', device = 'png')
+    
 ## Clean up
-file.remove('vignetteInfo.Rmd')
+file.remove('regionReportBumphunter.Rmd')
 ```
 
 

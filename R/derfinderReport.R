@@ -66,6 +66,7 @@
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols
 #' @importFrom knitrBootstrap knit_bootstrap
+#' @import knitr
 #'
 #' @examples
 #'

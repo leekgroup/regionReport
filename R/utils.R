@@ -41,12 +41,13 @@ with_wd <- function(dir, expr) {
 #' @param quietly Whether to run requireNamespace and biocLite quietly or not.
 #'
 load_install <- function(pkg, quietly = TRUE) {
-    attempt1 <- requireNamespace(pkg, quietly = quietly)
-    if(!attempt1) {
+    attemptName <- requireNamespace(pkg, quietly = quietly)
+    if(!attemptName) {
         source('http://bioconductor.org/biocLite.R')
         attemptInstall <- tryCatch(biocLite('pkg', suppressUpdates = quietly), warning = function(w) 'failed')
         if(attemptInstall == 'failed') stop(paste('Failed to install the', pkg, 'package'))
-        requireNamespace(pkg, quietly = quietly)
+        attemptName <- requireNamespace(pkg, quietly = quietly)
     }
+    if(attemptName) attachNamespace(pkg)
     return(invisible(NULL))
 }

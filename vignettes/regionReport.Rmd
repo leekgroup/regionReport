@@ -254,14 +254,6 @@ __browseURL()__ as shown below.
 browseURL(report)
 ```
 
-You can compare the resulting report with the pre-compiled report using the 
-following code.
-
-```{r openIncludedReport, eval=FALSE}
-browseURL(system.file(file.path('basicExploration', 'basicExploration.html'),  
-    package = 'regionReport', mustWork = TRUE))
-```
-
 ### Notes
 
 Note that the reports require an active Internet connection to render correctly.
@@ -329,18 +321,11 @@ system.time(render('regionReport.Rmd', 'BiocStyle::html_document'))
 ## Extract the R code
 library('knitr')
 knit('regionReport.Rmd', tangle = TRUE)
-
-## Copy report output to be distributed with the package for comparison 
-## purposes
-file.copy(file.path('report', 'html', 'basicExploration.html'),
-    file.path('..', 'inst', 'basicExploration', 'basicExploration.html'),
-    overwrite=TRUE)
 ```
 
 ```{r createVignette2}
 ## Clean up
 file.remove('regionReportRef.bib')
-#unlink('regionReport_files', recursive=TRUE)
 unlink('report', recursive = TRUE)
 ```
 

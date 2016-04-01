@@ -49,6 +49,6 @@ load_install <- function(pkg, quietly = TRUE) {
         if(attemptInstall == 'failed') stop(paste('Failed to install', pkg))
         attemptName <- requireNamespace(pkg, quietly = quietly)
     }
-    if(attemptName) library(package = pkg, character.only = TRUE)
+    if(attemptName) suppressPackageStartupMessages(library(package = pkg, character.only = TRUE))
     return(invisible(NULL))
 }

@@ -83,7 +83,8 @@ The above plot shows the first two principal components that explain the variabi
 sampleDists <- dist(t(assay(rld)))
 sampleDistMatrix <- as.matrix(sampleDists)
 ## Add names based on intgroup
-rownames(sampleDistMatrix) <- apply(as.data.frame(colData(rld)[, intgroup]), 1, paste, collapse = ' : ')
+rownames(sampleDistMatrix) <- apply(as.data.frame(colData(rld)[, intgroup]), 1,
+    paste, collapse = ' : ')
 colnames(sampleDistMatrix) <- NULL
 
 ## Define colors to use for the heatmap if none were supplied
@@ -104,7 +105,8 @@ This section contains three MA plots (see [Wikipedia](https://en.wikipedia.org/w
 
 ```{r 'MAplotalpha', dev = device}
 ## MA plot with alpha used in DESeq2::results()
-plotMA(res, alpha = metadata(res)$alpha, main = paste('MA plot with alpha =', metadata(res)$alpha))
+plotMA(res, alpha = metadata(res)$alpha, main = paste('MA plot with alpha =',
+    metadata(res)$alpha))
 ```
 
 This first plot shows uses `alpha` = `r metadata(res)$alpha`, which is the `alpha` value used to determine which resulting features were significant when running the function `DESeq2::results()`.
@@ -112,7 +114,8 @@ This first plot shows uses `alpha` = `r metadata(res)$alpha`, which is the `alph
 
 ```{r 'MAplotalphaHalf', dev = device}
 ## MA plot with alpha = 1/2 of the alpha used in DESeq2::results()
-plotMA(res, alpha = metadata(res)$alpha / 2, main = paste('MA plot with alpha =', metadata(res)$alpha / 2))
+plotMA(res, alpha = metadata(res)$alpha / 2,
+    main = paste('MA plot with alpha =', metadata(res)$alpha / 2))
 ```
 
 This second MA plot uses `alpha` = `r metadata(res)$alpha / 2` and can be used agains the first MA plot to identify which features have adjusted p-values between `r metadata(res)$alpha / 2` and `r metadata(res)$alpha`.
@@ -121,7 +124,8 @@ This second MA plot uses `alpha` = `r metadata(res)$alpha / 2` and can be used a
 ## MA plot with alpha corresponding to the one that gives the nBest features
 nBest.actual <- min(nBest, nrow(head(res.df, n = nBest)))
 nBest.alpha <- head(res.df, n = nBest)$padj[nBest.actual]
-plotMA(res, alpha = nBest.alpha * 1.00000000000001, main = paste('MA plot for top', nBest.actual, 'features'))
+plotMA(res, alpha = nBest.alpha * 1.00000000000001,
+    main = paste('MA plot for top', nBest.actual, 'features'))
 ```
 
 The third and final MA plot uses an alpha such that the top `r nBest.actual` features are shown in the plot. These are the features that whose details are included in the _top features_ interactive table.

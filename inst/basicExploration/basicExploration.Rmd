@@ -488,7 +488,7 @@ for(i in which(grepl('pvalues$|qvalues$|fwer$', colnames(topArea)))) topArea[, i
 
 ## Make the table
 if(outputIsHTML) {
-    datatable(topArea, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl('value$|area$|mean|log2FoldChange', colnames(topArea))), digits)
+    datatable(topArea, options = list(pagingType='full_numbers', pageLength=10, scrollX='100%'), rownames = FALSE) %>% formatRound(which(grepl('value$|area$|mean|log2FoldChange', colnames(topArea))), digits)
 } else {
     ## Only print the top part if your output is a PDF file
     df_top <- head(topArea, 20)
@@ -615,7 +615,7 @@ The following table shows how the group labels were permuted. `r ifelse(usedPerm
 
 ```{r permuteTable, results='asis', eval=usedPermutations, echo=usedPermutations}
 if(outputIsHTML) {
-    datatable(permuteDetail, options = list(pagingType='full_numbers', pageLength=50, scrollX='100%'))
+    datatable(permuteDetail, options = list(pagingType='full_numbers', pageLength=10, scrollX='100%'))
 } else {
     ## Only print the top part if your output is a PDF file
     kable(head(permuteDetail, 20))

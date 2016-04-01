@@ -65,25 +65,12 @@
 #' @author Leonardo Collado-Torres
 #' @export
 #'
-#' @import derfinder
-#' @import derfinderPlot
-#' @importFrom bumphunter annotateTranscripts matchGenes
-#' @import GenomicRanges
-#' @import ggplot2
-#' @importFrom ggbio plotGrandLinear
-#' @import grid
-#' @import gridExtra
-#' @import knitr
-#' @import rmarkdown
-#' @import knitrBootstrap
-#' @import knitcitations
-#' @import RColorBrewer
-#' @import mgcv
-#' @import GenomeInfoDb
-#' @import whisker
-#' @import DT
-#' @importFrom devtools session_info
+#' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
+#' @importFrom GenomeInfoDb seqlengths
 #' @importFrom utils browseURL citation packageVersion
+#' @importFrom rmarkdown render
+#' @importFrom GenomicRanges mcols
+#' @importFrom knitrBootstrap knit_bootstrap
 #'
 #' @examples
 #'

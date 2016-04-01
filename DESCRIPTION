@@ -1,8 +1,8 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of regions or DESeq2 results
-Version: 1.5.22
-Date: 2016-03-31
+Version: 1.5.23
+Date: 2016-04-01
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -21,32 +21,33 @@ biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization,
 Depends:
     R(>= 3.2)
 Imports:
-    bumphunter (>= 1.7.6),
     derfinder (>= 1.1.0),
-    derfinderPlot (>= 1.3.2),
     DESeq2,
-    devtools (>= 1.6),
-    DT,
     GenomeInfoDb,
     GenomicRanges,
+    knitcitations (>= 1.0.1),
+    knitrBootstrap (>= 0.9.0),
+    rmarkdown (>= 0.9.5),
+    SummarizedExperiment
+Suggests:
+    BiocStyle,
+    biovizBase,
+    bumphunter (>= 1.7.6),
+    Cairo,
+    derfinderPlot (>= 1.3.2),
+    devtools (>= 1.6),
+    DT,
+    DESeq,
     ggbio (>= 1.13.13),
     ggplot2,
     grid,
     gridExtra,
     IRanges,
-    knitcitations (>= 1.0.1),
     knitr (>= 1.6),
-    knitrBootstrap (>= 0.9.0),
     mgcv,
+    pasilla,
     pheatmap,
     RColorBrewer,
-    rmarkdown (>= 0.9.5),
+    TxDb.Hsapiens.UCSC.hg19.knownGene,
     whisker
-Suggests:
-    BiocStyle,
-    biovizBase,
-    Cairo,
-    DESeq,
-    pasilla,
-    TxDb.Hsapiens.UCSC.hg19.knownGene
 RoxygenNote: 5.0.1

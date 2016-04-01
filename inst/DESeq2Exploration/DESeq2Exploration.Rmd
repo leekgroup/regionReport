@@ -30,23 +30,24 @@ This section contains the code for setting up the rest of the report.
 #### Libraries needed
 
 ## Bioconductor
-library('DESeq2')
+load_install('DESeq2')
 
 ## CRAN
-library('ggplot2')
+load_install('ggplot2')
 if(!is.null(theme)) theme_set(theme)
-library('knitr')
+load_install('knitr')
 if(is.null(colors)) {
-    library('RColorBrewer')
+    load_install('RColorBrewer')
 }
-library('pheatmap')
-library('DT')
+load_install('pheatmap')
+load_install('DT')
+load_install('devtools')
 
 ## Working behind the scenes
-# library('knitcitations')
-# library('rmarkdown')
+# load_install('knitcitations')
+# load_install('rmarkdown')
 ## Optionally
-# library('knitrBootstrap')
+# load_install('knitrBootstrap')
 
 #### Code setup
 

@@ -97,7 +97,8 @@ library('devtools')
 cat("
 <!--
 %\\VignetteEngine{knitr::rmarkdown}
-%\\VignetteIndexEntry{Output from example with data from bumphunter}
+%\\VignetteIndexEntry{Basic genomic regions exploration}
+%\\VignetteEncoding{UTF-8}  
 -->
 ", file = 'vignetteInfo.Rmd')
 
@@ -120,12 +121,14 @@ file.remove('regionsTemp.Rdata')
 file.remove('vignetteInfo.Rmd')
 ", file = 'bumphunterReport-isolated.R')
 clean_source('bumphunterReport-isolated.R', quiet=TRUE)
-
+file.remove('bumphunterReport-isolated.R')
 ```
 
 
 
 You can view the final report [here](bumphunterExampleOutput.html).
+
+In case the link does not work, a [pre-compiled version of this document](http://leekgroup.github.io/regionReportSupp/bumphunterExample.html) and its [corresponding report](http://leekgroup.github.io/regionReportSupp/bumphunterExample/index.html) are available at [leekgroup.github.io/regionReportSupp/](http://leekgroup.github.io/regionReportSupp/index.html).
 
 # Reproducibility
 

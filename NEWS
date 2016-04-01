@@ -1,3 +1,12 @@
+CHANGES IN VERSION 1.5.19
+-------------------------
+
+NEW FEATURES
+
+    o Added the templates 'templatePvalueHistogram' and 'templateHistogram'
+        to be used with renderReport() if you prefer histogram plots instead
+        of density plots.
+
 CHANGES IN VERSION 1.5.12
 -------------------------
 

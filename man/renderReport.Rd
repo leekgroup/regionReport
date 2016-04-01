@@ -4,8 +4,10 @@
 \name{renderReport}
 \alias{renderReport}
 \alias{templateDensity}
+\alias{templateHistogram}
 \alias{templateManhattan}
 \alias{templatePvalueDensity}
+\alias{templatePvalueHistogram}
 \title{Generate a HTML report exploring a set of genomic regions}
 \format{An object of class \code{character} of length 1.}
 \usage{
@@ -23,6 +25,10 @@ templatePvalueDensity
 templateDensity
 
 templateManhattan
+
+templatePvalueHistogram
+
+templateHistogram
 }
 \arguments{
 \item{regions}{The set of genomic regions of interest as a \code{GRanges}
@@ -77,7 +83,9 @@ plots for the p-value variables (\code{pvalueVars}). These templates
 are processed by \link[whisker]{whisker.render}. Check the default templates 
 for more information. The \code{densityTemplates} argument is available for 
 those users interested in customizing these plots. For example, to show 
-histograms instead of density plots.}
+histograms instead of density plots use \code{templatePvalueHistogram} and
+\code{templateHistogram} instead of \code{templatePvalueDensity} and
+\code{templateDensity} respectively.}
 
 \item{template}{Template file to use for the report. If not provided, will
 use the default file found in regionExploration/regionExploration.Rmd

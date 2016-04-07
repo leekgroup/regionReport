@@ -1,4 +1,4 @@
-#' Generate a HTML report exploring DESeq2 results
+#' Generate a HTML/PDF report exploring DESeq2 results
 #'
 #' This function generates a HTML report with exploratory data analysis plots
 #' for DESeq2 results created with \link[DESeq2]{DESeq}. Other output formats
@@ -46,8 +46,8 @@
 #' be rounded.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
-#' @return An HTML report with a basic exploration for the given set DESeq2
-#' results
+#' @return An HTML report with a basic exploration for the given set of DESeq2
+#' results.
 #'
 #' @author Leonardo Collado-Torres
 #' @export
@@ -103,7 +103,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     outdir = 'DESeq2Exploration', output = 'DESeq2Exploration',
     browse = interactive(), device = 'png', template = NULL, 
     searchURL = 'http://www.ncbi.nlm.nih.gov/gene/?term=', theme = NULL,
-    digits = 2, ...) {
+    digits = 2, software = 'DESeq2', ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     
@@ -123,6 +123,11 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     }
     stopifnot(is.null(searchURL) | length(searchURL) == 1)
     if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
+        
+# @param software The name of the package used for performing the differential
+# expression analysis. Either \code{DESeq2} or \code{edgeR}.
+    software <- .advanced_argument('software', 'DESeq2', ...)
+    stopifnot(software %in% c('DESeq2', 'edgeR'))
     
     ## Is there custom code?
     hasCustomCode <- !is.null(customCode)
@@ -162,6 +167,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         pheatmap = citation('pheatmap'),
         RColorBrewer = citation('RColorBrewer'),
         DESeq2 = citation('DESeq2')),
+        edgeR = citation('edgeR')[5],
         file = file.path(outdir, paste0(output, '.bib'))
     )
     bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))

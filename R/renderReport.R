@@ -1,4 +1,4 @@
-#' Generate a HTML report exploring a set of genomic regions
+#' Generate a HTML/PDF report exploring a set of genomic regions
 #'
 #' This function generates a HTML report with quality checks, genome location
 #' exploration, and an interactive table with the results. Other output formats

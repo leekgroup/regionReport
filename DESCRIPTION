@@ -1,8 +1,8 @@
 Package: regionReport
 Type: Package
-Title: Generate HTML or PDF reports for a set of regions or DESeq2 results
-Version: 1.5.32
-Date: 2016-04-01
+Title: Generate HTML or PDF reports for a set of regions or DESeq2/edgeR results
+Version: 1.5.33
+Date: 2016-04-07
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -22,6 +22,7 @@ Depends:
     R(>= 3.2)
 Imports:
     derfinder (>= 1.1.0),
+    DEFormats,
     DESeq2,
     GenomeInfoDb,
     GenomicRanges,
@@ -29,6 +30,7 @@ Imports:
     knitr (>= 1.6),
     knitrBootstrap (>= 0.9.0),
     rmarkdown (>= 0.9.5),
+    S4Vectors,
     SummarizedExperiment
 Suggests:
     BiocStyle,
@@ -39,6 +41,7 @@ Suggests:
     devtools (>= 1.6),
     DT,
     DESeq,
+    edgeR,
     ggbio (>= 1.13.13),
     ggplot2,
     grid,

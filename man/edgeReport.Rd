@@ -42,6 +42,11 @@ be passed to \link[DESeq2]{results}.}
 applied automatically. By default it's set to \code{FALSE} in contrast with
 the default used in \link[DESeq2]{results} to match \code{edgeR}'s behavior.}
 
+\item{filter}{the vector of filter statistics over which the independent filtering 
+will be optimized. By default the logCPM will be used if
+\code{independentFiltering} is set to \code{TRUE}. It can also be a length
+1 character vector specifying one of the column names of \code{object$table}.}
+
 \item{theta}{the quantiles at which to assess the number of rejections from independent filtering. This argument is passed \link[DESeq2]{results}.}
 
 \item{filterFun}{an optional custom function as described in 
@@ -85,11 +90,6 @@ the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't
 be rounded.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
-
-\item{the}{vector of filter statistics over which the independent filtering 
-will be optimized. By default the logCPM will be used if
-\code{independentFiltering} is set to \code{TRUE}. It can also be a length
-1 character vector specifying one of the column names of \code{object$table}.}
 }
 \value{
 An HTML report with a basic exploration for the given set of edgeR

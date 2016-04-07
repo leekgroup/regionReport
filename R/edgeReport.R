@@ -21,7 +21,7 @@
 #' @param independentFiltering logical, whether independent filtering should be 
 #' applied automatically. By default it's set to \code{FALSE} in contrast with
 #' the default used in \link[DESeq2]{results} to match \code{edgeR}'s behavior.
-#' @param the vector of filter statistics over which the independent filtering 
+#' @param filter the vector of filter statistics over which the independent filtering 
 #' will be optimized. By default the logCPM will be used if
 #' \code{independentFiltering} is set to \code{TRUE}. It can also be a length
 #' 1 character vector specifying one of the column names of \code{object$table}.

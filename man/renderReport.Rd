@@ -8,7 +8,7 @@
 \alias{templateManhattan}
 \alias{templatePvalueDensity}
 \alias{templatePvalueHistogram}
-\title{Generate a HTML report exploring a set of genomic regions}
+\title{Generate a HTML/PDF report exploring a set of genomic regions}
 \format{An object of class \code{character} of length 1.}
 \usage{
 renderReport(regions, project = "", pvalueVars = c(`P-values` = "pval"),

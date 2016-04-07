@@ -1,4 +1,4 @@
-#' Generate a HTML report exploring the basic results from derfinder
+#' Generate a HTML/PDF report exploring the basic results from derfinder
 #'
 #' This function generates a HTML report exploring the basic results from 
 #' single base-level approach derfinder analysis results 

@@ -2,14 +2,14 @@
 % Please edit documentation in R/DESeq2Report.R
 \name{DESeq2Report}
 \alias{DESeq2Report}
-\title{Generate a HTML report exploring DESeq2 results}
+\title{Generate a HTML/PDF report exploring DESeq2 results}
 \usage{
 DESeq2Report(dds, project = "", intgroup, colors = NULL, res = NULL,
   nBest = 500, nBestFeatures = 20, customCode = NULL,
   outdir = "DESeq2Exploration", output = "DESeq2Exploration",
   browse = interactive(), device = "png", template = NULL,
   searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
-  digits = 2, ...)
+  digits = 2, software = "DESeq2", ...)
 }
 \arguments{
 \item{dds}{A \link[DESeq2]{DESeqDataSet} object with the results from
@@ -68,8 +68,8 @@ be rounded.}
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
 }
 \value{
-An HTML report with a basic exploration for the given set DESeq2
-results
+An HTML report with a basic exploration for the given set of DESeq2
+results.
 }
 \description{
 This function generates a HTML report with exploratory data analysis plots

@@ -1,3 +1,13 @@
+CHANGES IN VERSION 1.5.33
+-------------------------
+
+NEW FEATURES
+
+    o Added the function edgeReport() for creating HTML or PDF reports based on
+        edgeR results. Together with DESeq2Report() now regionReport supports
+        the two most used packages for RNA-seq feature-level analysis.
+
+
 CHANGES IN VERSION 1.5.19
 -------------------------
 

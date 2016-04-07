@@ -2,7 +2,7 @@
 % Please edit documentation in R/derfinderReport.R
 \name{derfinderReport}
 \alias{derfinderReport}
-\title{Generate a HTML report exploring the basic results from derfinder}
+\title{Generate a HTML/PDF report exploring the basic results from derfinder}
 \usage{
 derfinderReport(prefix, outdir = "basicExploration",
   output = "basicExploration", project = prefix, browse = interactive(),

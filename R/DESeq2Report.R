@@ -103,7 +103,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     outdir = 'DESeq2Exploration', output = 'DESeq2Exploration',
     browse = interactive(), device = 'png', template = NULL, 
     searchURL = 'http://www.ncbi.nlm.nih.gov/gene/?term=', theme = NULL,
-    digits = 2, software = 'DESeq2', ...) {
+    digits = 2, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
     
@@ -166,18 +166,19 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         rmarkdown = citation('rmarkdown'),
         pheatmap = citation('pheatmap'),
         RColorBrewer = citation('RColorBrewer'),
-        DESeq2 = citation('DESeq2')),
-        edgeR = citation('edgeR')[5],
+        DESeq2 = citation('DESeq2'),
+        edgeR = citation('edgeR')[5]),
         file = file.path(outdir, paste0(output, '.bib'))
     )
     bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))
     
     ## Assign short names
     names(bib) <- c('knitcitations', 'regionReport', 'DT', 'ggplot2', 'knitr',
-        'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2') 
+        'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2', 'edgeR') 
     
     ## Save the call
-    theCall <- match.call()
+    theCall <- .advanced_argument('theCall', NULL, ...)
+    if(!is(theCall, 'call')) theCall <- match.call()
     
     ## knitrBoostrap chunk options
     opts_chunk$set(bootstrap.show.code = FALSE)

@@ -7,7 +7,7 @@
 edgeReport(dge, object, project = "", intgroup, colors = NULL,
   pAdjustMethod = "BH", alpha = 0.1, independentFiltering = FALSE, filter,
   theta, filterFun, nBest = 500, nBestFeatures = 20, customCode = NULL,
-  outdir = "edgeRExploration", output = "edgeRExploration",
+  outdir = "edgeRexploration", output = "edgeRexploration",
   browse = interactive(), device = "png", template = NULL,
   searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
   digits = 2, ...)
@@ -18,6 +18,16 @@ edgeReport(dge, object, project = "", intgroup, colors = NULL,
 \item{object}{A \link[edgeR:DGEList-class]{DGEExact} or 
 \link[edgeR:DGELRT-class]{DGELRT} object that contains p-values stored in
 \code{object$table$PValue}.}
+
+\item{project}{The title of the project.}
+
+\item{intgroup}{interesting groups: a character vector of names in 
+\code{colData(x)} to use for grouping. This parameter is passed to functions
+such as \link[DESeq2]{plotPCA}.}
+
+\item{colors}{vector of colors used in heatmap. If \code{NULL}, then a
+a default set of colors will be used. This argument is passed to
+\link[pheatmap]{pheatmap}.}
 
 \item{pAdjustMethod}{the method to use for adjusting p-values, see 
 \link[stats]{p.adjust}. This argument will be passed to 
@@ -37,12 +47,49 @@ the default used in \link[DESeq2]{results} to match \code{edgeR}'s behavior.}
 \item{filterFun}{an optional custom function as described in 
 \link[DESeq2]{results}.}
 
+\item{nBest}{The number of features to include in the interactive 
+table. Features are ordered by their adjusted p-values.}
+
+\item{nBestFeatures}{The number of best features to make plots of their 
+counts. We recommend a small number, say 20.}
+
+\item{customCode}{An absolute path to a child R Markdown file with code to be
+evaluated before the reproducibility section. Its useful for users who want
+to customize the report by adding conclusions derived from the data and/or
+further quality checks and plots.}
+
+\item{outdir}{The name of output directory.}
+
+\item{output}{The name of output HTML file (without the html extension).}
+
+\item{browse}{If \code{TRUE} the HTML report is opened in your browser once 
+it's completed.}
+
+\item{device}{The graphical device used when knitting. See more at 
+http://yihui.name/knitr/options (\code{dev} argument).}
+
+\item{template}{Template file to use for the report. If not provided, will
+use the default file found in DESeq2Exploration/DESeq2Exploration.Rmd
+within the package source.}
+
+\item{searchURL}{A url used for searching the name of the features in
+the web. By default \code{http://www.ncbi.nlm.nih.gov/gene/?term=} is used
+which is the recommended option when features are genes. It's only used
+when the output is a HTML file.}
+
+\item{theme}{A ggplot2 \link[ggplot2]{theme} to use for the plots made with
+ggplot2.}
+
+\item{digits}{The number of digits to round to in the interactive table of
+the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't 
+be rounded.}
+
+\item{...}{Arguments passed to other methods and/or advanced arguments.}
+
 \item{the}{vector of filter statistics over which the independent filtering 
 will be optimized. By default the logCPM will be used if
 \code{independentFiltering} is set to \code{TRUE}. It can also be a length
 1 character vector specifying one of the column names of \code{object$table}.}
-
-\item{inheritParams}{DESeq2Report}
 }
 \value{
 An HTML report with a basic exploration for the given set of edgeR
@@ -60,6 +107,7 @@ customize the entire template by providing an R Markdown file to
 
 ## Create example data using DEFormats
 library('DEFormats')
+set.seed(20160407)
 counts <- simulateRnaSeqData()
 group <- rep(c("A", "B"), each = 3)
 
@@ -73,7 +121,7 @@ dge <- estimateDisp(dge, design)
 fit <- glmFit(dge, design)
 lrt <- glmLRT(fit, coef = 2)
 
-## The output will be saved in the 'DESeq2Report-example' directory
+## The output will be saved in the 'edgeReport-example' directory
 dir.create('edgeReport-example', showWarnings = FALSE, recursive = TRUE)
 
 ## Generate the HTML report

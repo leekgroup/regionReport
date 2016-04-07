@@ -28,7 +28,7 @@
 #' @param theta the quantiles at which to assess the number of rejections from independent filtering. This argument is passed \link[DESeq2]{results}.
 #' @param filterFun an optional custom function as described in 
 #' \link[DESeq2]{results}.
-#' @param inheritParams DESeq2Report
+#' @inheritParams DESeq2Report
 #'
 #' @return An HTML report with a basic exploration for the given set of edgeR
 #' results.
@@ -45,6 +45,7 @@
 #'
 #' ## Create example data using DEFormats
 #' library('DEFormats')
+#' set.seed(20160407)
 #' counts <- simulateRnaSeqData()
 #' group <- rep(c("A", "B"), each = 3)
 #' 
@@ -58,7 +59,7 @@
 #' fit <- glmFit(dge, design)
 #' lrt <- glmLRT(fit, coef = 2)
 #'
-#' ## The output will be saved in the 'DESeq2Report-example' directory
+#' ## The output will be saved in the 'edgeReport-example' directory
 #' dir.create('edgeReport-example', showWarnings = FALSE, recursive = TRUE)
 #'
 #' ## Generate the HTML report
@@ -81,7 +82,7 @@
 edgeReport <- function(dge, object, project = "", intgroup, colors = NULL,
     pAdjustMethod = 'BH', alpha = 0.1, independentFiltering = FALSE, filter,
     theta, filterFun, nBest = 500, nBestFeatures = 20, customCode = NULL,
-    outdir = 'edgeRExploration', output = 'edgeRExploration',
+    outdir = 'edgeRexploration', output = 'edgeRexploration',
     browse = interactive(), device = 'png', template = NULL, 
     searchURL = 'http://www.ncbi.nlm.nih.gov/gene/?term=', theme = NULL,
     digits = 2, ...) {
@@ -130,7 +131,10 @@ edgeReport <- function(dge, object, project = "", intgroup, colors = NULL,
     ## Save alpha value
     metadata(deseqRes)[["alpha"]] <- alpha
     
+    ## Call used
+    theCall <- match.call()
+    
     ## Create report
-    DESeq2Report(dds, project = project, intgroup = intgroup, colors = colors, res = deseqRes, nBest = nBest, nBestFeatures = nBestFeatures, customCode = customCode, outdir = outdir, output = output, browse = browse, device = device, template = template, searchURL = searchURL, theme = theme, digits = digits, software = 'edgeR', ...)
+    DESeq2Report(dds, project = project, intgroup = intgroup, colors = colors, res = deseqRes, nBest = nBest, nBestFeatures = nBestFeatures, customCode = customCode, outdir = outdir, output = output, browse = browse, device = device, template = template, searchURL = searchURL, theme = theme, digits = digits, software = 'edgeR', theCall = theCall, ...)
     
 }

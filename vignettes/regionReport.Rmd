@@ -59,7 +59,9 @@ bibs <- c(knitcitations = citation('knitcitations'),
     whikser = citation('whisker'),
     bumphunter = citation('bumphunter')[1],
     pheatmap = citation('pheatmap'),
-    DESeq2 = citation('DESeq2')
+    DESeq2 = citation('DESeq2'),
+    edgeR = citation('edgeR')[5],
+    DEFormats = citation('DEFormats')
 )
 
 write.bibtex(bibs,
@@ -71,13 +73,11 @@ names(bib) <- names(bibs)
 ```
 
 
-`r Biocpkg('regionReport')` `r citep(bib[['regionReport']])` creates HTML reports 
-styled with `r CRANpkg('knitrBootstrap')` `r citep(bib[['knitrBootstrap']])` for 
-a set of regions such as `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])` results.
+`r Biocpkg('regionReport')` `r citep(bib[['regionReport']])` creates HTML or PDF reports for a set of genomic regions such as `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])` results or for feature-level analyses performed with `r Biocpkg('DESeq2')` `r citep(bib[['edgeR']])` or `r Biocpkg('edgeR')` `r citep(bib[['edgeR']])`. The HTML reports are styled with `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` by default but can optionally be styled with `r CRANpkg('knitrBootstrap')` `r citep(bib[['knitrBootstrap']])`.
 
 
 This package includes a basic exploration for a general set of genomic regions which can be easily customized to include the appropriate conclusions and/or further exploration of the results. Such a report can be generated using `renderReport()`. `r Biocpkg('regionReport')` has a separate template for running a basic exploration analysis of `r Biocpkg('derfinder')` 
-results by using `derfinderReport()`. `derfinderReport()` is specific to single base-level approach `r Biocpkg('derfinder')` results. A third template is included for exploring `r Biocpkg('DESeq2')` differential expression results.
+results by using `derfinderReport()`. `derfinderReport()` is specific to single base-level approach `r Biocpkg('derfinder')` results. A third template is included for exploring `r Biocpkg('DESeq2')` or `r Biocpkg('edgeR')` differential expression results.
 
 All reports are written in [R Markdown](http://rmarkdown.rstudio.com/)
 format and include all the code for making the plots and explorations in the report itself. For all templates, `r Biocpkg('regionReport')` relies on
@@ -100,6 +100,23 @@ The `r Biocpkg('regionReport')` supplementary website [regionReportSupp](http://
 Note that in both examples we changed the `r CRANpkg('ggplot2')` theme to `theme_bw()`. Also, in the PDF version we used the option `device = 'pdf'` instead of the default `device = 'png'` in `DESeq2Report()` since PDF figures are more appropriate for PDF reports: they look better than PNG figures.
 
 If you want to create a similar HTML report as the one linked in this section, simply run `example('DESeq2Report', 'regionReport', ask=FALSE)`. The only difference will be the `r CRANpkg('ggplot2')` theme for the plots.
+
+# Using `r Biocpkg('regionReport')` for `r Biocpkg('edgeR')` results
+
+`r Biocpkg('regionReport')` has the `edgeReport()` function that takes as input a `DGEList` object and the results from the differential expression analysis using `r Biocpkg('edgeR')`. `edgeReport()` internally uses `r Biocpkg('DEFormats')` to convert the results to `r Biocpkg('DESeq2')`'s format and then uses `DESeqReport()` to create the final report. The report looks nearly the same whether you performed the differential expression analysis with `r Biocpkg('DESeq2')` or `r Biocpkg('edgeR')` in order to make more homogenous the exploratory data analysis step.
+
+
+## Examples
+
+The `r Biocpkg('regionReport')` supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/) has examples of using `r Biocpkg('regionReport')` with `r Biocpkg('edgeR')` results. In particular, please look at [edgeR.html](http://leekgroup.github.io/regionReportSupp/edgeR.html) which has the code for generating some random data with `r Biocpkg('DEFormats')` and performing the differential expression analysis with `r Biocpkg('edgeR')`. Then it uses those results to create HTML and PDF versions of the same report. The resulting reports are available in the following locations:
+
+* [HTML version](http://leekgroup.github.io/regionReportSupp/edgeR-example/index.html)
+* [PDF version](http://leekgroup.github.io/regionReportSupp/edgeR-example/edgeReport.pdf)
+
+Note that in both examples we changed the `r CRANpkg('ggplot2')` theme to `theme_linedraw()`. Also, in the PDF version we used the option `device = 'pdf'` instead of the default `device = 'png'` in `edgeReport()` since PDF figures are more appropriate for PDF reports: they look better than PNG figures.
+
+If you want to create a similar HTML report as the one linked in this section, simply run `example('edgeReport', 'regionReport', ask=FALSE)`. The only difference will be the `r CRANpkg('ggplot2')` theme for the plots and the amount of data simulated with `r Biocpkg('DEFormats')`.
+
 
 
 # Using `r Biocpkg('regionReport')` for region results
@@ -286,11 +303,13 @@ This package was made possible thanks to:
 
 * R `r citep(bib[['R']])`
 * `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+* `r Biocpkg('DEFormats')` `r citep(bib[['DEFormats']])`
 * `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])`
 * `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`
 * `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])`
 * `r CRANpkg('devtools')` `r citep(bib[['devtools']])`
 * `r CRANpkg('DT')` `r citep(bib[['DT']])`
+* `r Biocpkg('edgeR')` `r citep(bib[['edgeR']])`
 * `r Biocpkg('GenomeInfoDb')` `r citep(bib[['GenomeInfoDb']])`
 * `r Biocpkg('GenomicRanges')` `r citep(bib[['GenomicRanges']])`
 * `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`

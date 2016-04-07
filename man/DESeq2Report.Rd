@@ -9,7 +9,7 @@ DESeq2Report(dds, project = "", intgroup, colors = NULL, res = NULL,
   outdir = "DESeq2Exploration", output = "DESeq2Exploration",
   browse = interactive(), device = "png", template = NULL,
   searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
-  digits = 2, software = "DESeq2", ...)
+  digits = 2, ...)
 }
 \arguments{
 \item{dds}{A \link[DESeq2]{DESeqDataSet} object with the results from

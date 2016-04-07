@@ -111,10 +111,10 @@ edgeReport <- function(dge, object, project = "", intgroup, colors = NULL,
     ## Define res input
     deseqRes <- DESeqResults(DataFrame(object$table))
     
-    ## Use as default the logCPM
+    ## Use as default the logCPM (since it's renamed to baseMean)
     if(!missing(filter)) {
         if(is.character(filter) & length(filter) == 1) {
-            spotifnot(filter %in% colnames(object$table))
+            stopifnot(filter %in% colnames(object$table))
             filter <- object$table[, filter]
         }
     }

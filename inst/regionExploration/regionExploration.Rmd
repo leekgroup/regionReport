@@ -110,7 +110,7 @@ for(i in seq_len(length(pvalueVars))) {
 ## Region width
 
 ```{r regLen, fig.width=14, fig.height=14, eval=hasSignificant, echo=hasSignificant}
-xrange <- range(log10(regions.df.plot$width) * c(0.95, 1.05))
+xrange <- range(log10(regions.df.plot$width)) * c(0.95, 1.05)
 p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) + 
     geom_line(stat='density') + labs(title='Density of region lengths') +
     xlab('Region width (log10)') + scale_colour_discrete(limits=chrs) +

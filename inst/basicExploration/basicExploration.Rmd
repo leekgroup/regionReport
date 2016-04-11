@@ -144,7 +144,7 @@ if(hg19 & is.null(txdb)) {
 
 Theoretically, the p-values should be uniformly distributed between 0 and 1.
 
-```{r pvals, fig.width=10, fig.height=10, dev=device, eval=nullExist, echo=nullExist}
+```{r pvals, fig.width=10, fig.height=10, eval=nullExist, echo=nullExist}
 p1 <- ggplot(regions.df.plot, aes(x=pvalues, colour=seqnames)) +
     geom_line(stat='density') + xlim(0, 1) +
     labs(title='Density of p-values') + xlab('p-values') +
@@ -207,7 +207,7 @@ This table shows the number of candidate Differentially Expressed Regions (DERs)
 
 ## Region width
 
-```{r regLen, fig.width=14, fig.height=14, dev=device, eval=hasSig, echo=hasSig}
+```{r regLen, fig.width=14, fig.height=14, eval=hasSig, echo=hasSig}
 xrange <- range(log10(regions.df.plot$width) * c(0.95, 1.05))
 p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) + 
     geom_line(stat='density') + labs(title='Density of region lengths') +
@@ -221,7 +221,7 @@ p2b <- ggplot(regions.df.sig, aes(x=log10(width), colour=seqnames)) +
 grid.arrange(p2a, p2b)
 ```
 
-```{r regLen2, fig.width=10, fig.height=10, dev=device, eval=!hasSig, echo=!hasSig}
+```{r regLen2, fig.width=10, fig.height=10, eval=!hasSig, echo=!hasSig}
 p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of region lengths') +
     xlab('Region width (log10)') + scale_colour_discrete(limits=chrs) +
@@ -233,7 +233,7 @@ This plot shows the density of the region lengths for all regions. `r ifelse(has
 
 ## Region Area
 
-```{r regArea, fig.width=14, fig.height=14, dev=device, eval=hasArea, echo=hasArea}
+```{r regArea, fig.width=14, fig.height=14, eval=hasArea, echo=hasArea}
 xrange <- range(log10(regions.df.plot$area[finite.area]) * c(0.95, 1.05))
 if(inf.area > 0) {
     print(paste('Dropping', inf.area, 'due to Inf values.'))
@@ -250,7 +250,7 @@ p3b <- ggplot(regions.df.sig.area, aes(x=log10(area), colour=seqnames)) +
 grid.arrange(p3a, p3b)
 ```
 
-```{r regArea2, fig.width=10, fig.height=10, dev=device, eval=!hasArea, echo=!hasArea}
+```{r regArea2, fig.width=10, fig.height=10, eval=!hasArea, echo=!hasArea}
 if(inf.area > 0) {
     print(paste('Dropping', inf.area, 'due to Inf values.'))
 }
@@ -265,7 +265,7 @@ This plot shows the density of the region areas for all regions. `r ifelse(hasAr
 
 ## Null regions: width and area
 
-```{r nullLengthArea, fig.width=14, fig.height=14, dev=device, eval=nullExist, echo=nullExist}
+```{r nullLengthArea, fig.width=14, fig.height=14, eval=nullExist, echo=nullExist}
 p4 <- ggplot(nulls.df, aes(x=log10(width), colour=chr)) +
     geom_line(stat='density') + labs(title='Density of null region lengths') +
     xlab('Region width (log10)') + scale_colour_discrete(limits=chrs) +
@@ -286,7 +286,7 @@ This plot shows the density of the null region lengths and areas. `r ifelse(null
 
 ## Mean coverage
 
-```{r meanCov, fig.width=14, fig.height=14, dev=device, eval=hasSig, echo=hasSig}
+```{r meanCov, fig.width=14, fig.height=14, eval=hasSig, echo=hasSig}
 xrange <- range(log2(regions.df.plot$meanCoverage) * c(0.95, 1.05))
 p6a <- ggplot(regions.df.plot, aes(x=log2(meanCoverage), colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of region mean coverage') +
@@ -300,7 +300,7 @@ p6b <- ggplot(regions.df.sig, aes(x=log2(meanCoverage), colour=seqnames)) +
 grid.arrange(p6a, p6b)
 ```
 
-```{r meanCov2, fig.width=10, fig.height=10, dev=device, eval=!hasSig, echo=!hasSig}
+```{r meanCov2, fig.width=10, fig.height=10, eval=!hasSig, echo=!hasSig}
 p6a <- ggplot(regions.df.plot, aes(x=log2(meanCoverage), colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of region mean coverage') +
     xlab('Region mean coverage (log2)') + scale_colour_discrete(limits=chrs) +
@@ -317,7 +317,7 @@ The following plots are [MA](http://en.wikipedia.org/wiki/MA_plot)-style plots c
 
 These plots are only shown when there are two or more groups. A total of `r length(grep('log2FoldChange', colnames(values(fullRegions))))` plot(s) were made.
 
-```{r MAstyle, fig.width=10, fig.height=10, dev=device}
+```{r MAstyle, fig.width=10, fig.height=10}
 for(j in grep('log2FoldChange', colnames(values(fullRegions)))) {
     ## Identify the groups
     groups <- strsplit(gsub('log2FoldChange', '',
@@ -356,7 +356,7 @@ The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in t
 
 ## `r pvalText`
 
-```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=nullExist, echo=nullExist}
+```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dpi=300, eval=nullExist, echo=nullExist}
 plotOverview(regions=fullRegions, type=pvalVar, base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
@@ -378,7 +378,7 @@ rm(regions)
 
 ## Annotation
 
-```{r genomeOverview2, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300}
+```{r genomeOverview2, message=FALSE, fig.width=7, fig.height=9, dpi=300}
 plotOverview(regions=fullRegions, annotation=fullRegions, type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
@@ -396,7 +396,7 @@ if(outputIsHTML) {
 
 ## Annotation (significant)
 
-```{r genomeOverview3, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=hasSig, echo=hasSig}
+```{r genomeOverview3, message=FALSE, fig.width=7, fig.height=9, dpi=300, eval=hasSig, echo=hasSig}
 plotOverview(regions=fullRegions[idx.sig], annotation=fullRegions[idx.sig], type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
@@ -414,7 +414,7 @@ Below are the plots for the top `r nBestRegions` candidate DERs as ranked by are
 The annotation depends on the Genomic State used. For details on which one was used for this report check the call to `mergeResults` in the reproducibility details.
 
 
-```{r plotRegions, fig.width=10, fig.height=10, dev=device, bootstrap.show.message=FALSE}
+```{r plotRegions, fig.width=10, fig.height=10, bootstrap.show.message=FALSE}
 if(nBestRegions > 0) {
     plotRegionCoverage(regions = fullRegions, regionCoverage = regionCoverage,
         groupInfo = optionsStats$groupInfo, nearestAnnotation = regions.df,
@@ -443,7 +443,7 @@ if(outputIsHTML) {
 
 The following is a venn diagram showing how many regions overlap known exons, introns, and intergenic segments, none of them, or multiple of these groups.
 
-```{r vennDiagram, dev = device, fig.width=7, fig.height=7}
+```{r vennDiagram, fig.width=7, fig.height=7}
 ## Venn diagram for all regions
 venn <- vennRegions(fullAnnotatedRegions, counts.col = 'blue', 
     main = 'Regions overlapping genomic states')
@@ -451,7 +451,7 @@ venn <- vennRegions(fullAnnotatedRegions, counts.col = 'blue',
 
 `r ifelse(hasSig, 'The following plot is the genomic states venn diagram only for the significant regions.', '')`
 
-```{r vennDiagramSignificant, eval = hasSig, echo = hasSig, dev = device, fig.width=7, fig.height=7}
+```{r vennDiagramSignificant, eval = hasSig, echo = hasSig, fig.width=7, fig.height=7}
 ## Venn diagram for all regions
 vennSig <- vennRegions(fullAnnotatedRegions, counts.col = 'blue', 
     main = 'Significant regions overlapping genomic states',
@@ -549,7 +549,7 @@ regionClusterPlot <- function(idx, tUse='qval') {
 Below are the best `r nBestClusters` region clusters ordered by cluster area (sum of the area of regions inside a cluster). The region with the highest area in the cluster is shown with a red bar. `r ifelse(makeBestClusters, '', 'No plots were generated as requested.')`
 
 
-```{r bestClusters, message=FALSE, warning=FALSE, fig.width=20, fig.height=10, dev=device, eval=makeBestClusters, echo=makeBestClusters}
+```{r bestClusters, message=FALSE, warning=FALSE, fig.width=20, fig.height=10, eval=makeBestClusters, echo=makeBestClusters}
 
 ## Genome plots
 for(idx in bestArea) {
@@ -625,7 +625,7 @@ if(outputIsHTML) {
 
 ```
 
-```{r child = customCode, eval = hasCustomCode, dev = device}
+```{r child = customCode, eval = hasCustomCode}
 ```
 
 # Reproducibility

@@ -186,8 +186,8 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     theCall <- .advanced_argument('theCall', NULL, ...)
     if(!is(theCall, 'call')) theCall <- match.call()
     
-    ## knitrBoostrap chunk options
-    opts_chunk$set(bootstrap.show.code = FALSE)
+    ## knitrBoostrap and device chunk options
+    opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
     
     ## Generate report
     ## Perform code within the output directory.

@@ -297,8 +297,8 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     ## Save the call
     theCall <- match.call()
     
-    ## knitrBoostrap chunk options
-    opts_chunk$set(bootstrap.show.code = FALSE)
+    ## knitrBoostrap and device chunk options
+    opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
 
     ## Generate report
     ## Perform code within the output directory.

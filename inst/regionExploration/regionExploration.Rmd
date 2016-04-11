@@ -103,7 +103,7 @@ for(i in seq_len(length(pvalueVars))) {
 
 ## Region width
 
-```{r regLen, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
+```{r regLen, fig.width=14, fig.height=14, eval=hasSignificant, echo=hasSignificant}
 xrange <- range(log10(regions.df.plot$width) * c(0.95, 1.05))
 p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) + 
     geom_line(stat='density') + labs(title='Density of region lengths') +
@@ -117,7 +117,7 @@ p2b <- ggplot(regions.df.sig, aes(x=log10(width), colour=seqnames)) +
 grid.arrange(p2a, p2b)
 ```
 
-```{r regLen2, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
+```{r regLen2, fig.width=10, fig.height=10, eval=!hasSignificant, echo=!hasSignificant}
 p2a <- ggplot(regions.df.plot, aes(x=log10(width), colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of region lengths') +
     xlab('Region width (log10)') + scale_colour_discrete(limits=chrs) +
@@ -144,7 +144,7 @@ The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in t
 
 ## P-values
 
-```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=hasSignificant, echo=hasSignificant}
+```{r genomeOverview1, message=FALSE, fig.width=7, fig.height=9, dpi=300, eval=hasSignificant, echo=hasSignificant}
 ## Choose what variable to show on the top
 tmp <- regions
 tmp$significant <- factor(significantVar, levels = c('TRUE', 'FALSE'))
@@ -178,7 +178,7 @@ for(i in seq_len(length(pvalueVars))) {
 
 ## Annotation
 
-```{r genomeOverview2, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300}
+```{r genomeOverview2, message=FALSE, fig.width=7, fig.height=9, dpi=300}
 ## Annotate regions with bumphunter
 if(is.null(annotation)) {
     genes <- annotateTranscripts(txdb = txdb)
@@ -204,7 +204,7 @@ if(outputIsHTML) {
 
 ## Annotation (significant)
 
-```{r genomeOverview3, message=FALSE, fig.width=7, fig.height=9, dev=device, dpi=300, eval=hasSignificant, echo=hasSignificant}
+```{r genomeOverview3, message=FALSE, fig.width=7, fig.height=9, dpi=300, eval=hasSignificant, echo=hasSignificant}
 plotOverview(regions=regions[significantVar, ], annotation=annotation[significantVar, ], type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
@@ -238,7 +238,7 @@ if(outputIsHTML) {
 
 The following is a venn diagram showing how many regions overlap known exons, introns, and intergenic segments, none of them, or multiple of these groups.
 
-```{r vennDiagram, dev = device, fig.width=7, fig.height=7}
+```{r vennDiagram, fig.width=7, fig.height=7}
 ## Venn diagram for all regions
 venn <- vennRegions(annotatedRegions, counts.col = 'blue', 
     main = 'Regions overlapping genomic states')
@@ -246,7 +246,7 @@ venn <- vennRegions(annotatedRegions, counts.col = 'blue',
 
 `r ifelse(hasSignificant, 'The following plot is the genomic states venn diagram only for the significant regions.', '')`
 
-```{r vennDiagramSignificant, eval = hasSignificant, echo = hasSignificant, dev = device, fig.width=7, fig.height=7}
+```{r vennDiagramSignificant, eval = hasSignificant, echo = hasSignificant, fig.width=7, fig.height=7}
 ## Venn diagram for all regions
 vennSig <- vennRegions(annotatedRegions, counts.col = 'blue', 
     main = 'Significant regions overlapping genomic states',
@@ -310,7 +310,7 @@ if(outputIsHTML) {
 ```
 
 
-```{r child = customCode, eval = hasCustomCode, dev = device}
+```{r child = customCode, eval = hasCustomCode}
 ```
 
 

@@ -229,9 +229,6 @@ renderReport <- function(regions, project = "",
     ## Save the call
     theCall <- match.call()
     
-    ## knitrBoostrap and device chunk options
-    opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
-    
     ## Generate report
     ## Perform code within the output directory.
     tmpdir <- getwd()

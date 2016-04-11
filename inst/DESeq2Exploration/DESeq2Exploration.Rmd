@@ -63,7 +63,7 @@ rownames(res.df) <- NULL
 
 # PCA
 
-```{r 'PCA', dev = device}
+```{r 'PCA'}
 ## Transform count data
 rld <- rlog(dds)
 
@@ -79,7 +79,7 @@ The above plot shows the first two principal components that explain the variabi
 
 # Sample-to-sample distances
 
-```{r 'sampleDist', dev = device}
+```{r 'sampleDist'}
 ## Obtain the sample euclidean distances
 sampleDists <- dist(t(assay(rld)))
 sampleDistMatrix <- as.matrix(sampleDists)
@@ -104,7 +104,7 @@ This plot shows how samples are clustered based on their euclidean distance usin
 
 This section contains three MA plots (see [Wikipedia](https://en.wikipedia.org/wiki/MA_plot)) that compare the mean of the normalized counts against the log fold change. They show one point per feature. The points are shown in red if the feature has an adjusted p-value less than `alpha`, that is, the statistically significant features are shown in red.
 
-```{r 'MAplotalpha', dev = device}
+```{r 'MAplotalpha'}
 ## MA plot with alpha used in DESeq2::results()
 plotMA(res, alpha = metadata(res)$alpha, main = paste('MA plot with alpha =',
     metadata(res)$alpha))
@@ -113,7 +113,7 @@ plotMA(res, alpha = metadata(res)$alpha, main = paste('MA plot with alpha =',
 This first plot shows uses `alpha` = `r metadata(res)$alpha`, which is the `alpha` value used to determine which resulting features were significant when running the function `DESeq2::results()`.
 
 
-```{r 'MAplotalphaHalf', dev = device}
+```{r 'MAplotalphaHalf'}
 ## MA plot with alpha = 1/2 of the alpha used in DESeq2::results()
 plotMA(res, alpha = metadata(res)$alpha / 2,
     main = paste('MA plot with alpha =', metadata(res)$alpha / 2))
@@ -121,7 +121,7 @@ plotMA(res, alpha = metadata(res)$alpha / 2,
 
 This second MA plot uses `alpha` = `r metadata(res)$alpha / 2` and can be used agains the first MA plot to identify which features have adjusted p-values between `r metadata(res)$alpha / 2` and `r metadata(res)$alpha`.
 
-```{r 'MAplotalpha-nBest', dev = device}
+```{r 'MAplotalpha-nBest'}
 ## MA plot with alpha corresponding to the one that gives the nBest features
 nBest.actual <- min(nBest, nrow(head(res.df, n = nBest)))
 nBest.alpha <- head(res.df, n = nBest)$padj[nBest.actual]
@@ -134,7 +134,7 @@ The third and final MA plot uses an alpha such that the top `r nBest.actual` fea
 # P-values distribution
 
 
-```{r pvalueHistogram, dev = device}
+```{r pvalueHistogram}
 ## P-value histogram plot
 ggplot(res.df[!is.na(res.df$pvalue), ], aes(x = pvalue)) +
     geom_histogram(alpha=.5, position='identity', bins = 50) +
@@ -172,7 +172,7 @@ This table shows the number of features with p-values less or equal than some co
 
 # Adjusted p-values distribution
 
-```{r padjHistogram, dev = device}
+```{r padjHistogram}
 ## Adjusted p-values histogram plot
 ggplot(res.df[!is.na(res.df$padj), ], aes(x = padj)) +
     geom_histogram(alpha=.5, position='identity', bins = 50) +
@@ -240,7 +240,7 @@ if(outputIsHTML) {
 This section contains plots showing the normalized counts per sample for each group of interest. Only the best `r nBestFeatures` features are shown, ranked by their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]`. The Y axis is on the log10 scale and the feature name is shown in the title of each plot.
 
 
-```{r 'plotCounts', dev = device}
+```{r 'plotCounts'}
 plotCounts_gg <- function(i, dds, intgroup) {
     group <- if (length(intgroup) == 1) {
         colData(dds)[[intgroup]]
@@ -268,7 +268,7 @@ for(i in head(ord, nBestFeatures)) {
 
 
 
-```{r child = customCode, eval = hasCustomCode, dev = device}
+```{r child = customCode, eval = hasCustomCode}
 ```
 
 

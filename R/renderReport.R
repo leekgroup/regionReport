@@ -229,8 +229,8 @@ renderReport <- function(regions, project = "",
     ## Save the call
     theCall <- match.call()
     
-    ## knitrBoostrap chunk options
-    opts_chunk$set(bootstrap.show.code = FALSE)
+    ## knitrBoostrap and device chunk options
+    opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
     
     ## Generate report
     ## Perform code within the output directory.
@@ -274,7 +274,7 @@ renderReport <- function(regions, project = "",
 templatePvalueDensity <- "
 ## {{{densityVarName}}}
 
-```{r pval-density-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
+```{r pval-density-{{{varName}}}, fig.width=10, fig.height=10}
 p1{{{varName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + xlim(0, 1) +
     labs(title='Density of {{{densityVarName}}}') + xlab('{{{densityVarName}}}') +
@@ -312,7 +312,7 @@ This table shows the number of regions with {{{densityVarName}}} less or equal t
 templateDensity <- "
 ## {{{densityVarName}}}
 
-```{r density-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
+```{r density-{{{varName}}}, fig.width=14, fig.height=14, eval=hasSignificant, echo=hasSignificant}
 xrange <- range(regions.df.plot[, '{{{varName}}}']) * c(0.95, 1.05)
 p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
@@ -326,7 +326,7 @@ p3b{{{varName}}} <- ggplot(regions.df.sig[is.finite(regions.df.sig[, '{{{varName
 grid.arrange(p3a{{{varName}}}, p3b{{{varName}}})
 ```
 
-```{r density-solo-{{{varName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
+```{r density-solo-{{{varName}}}, fig.width=10, fig.height=10, eval=!hasSignificant, echo=!hasSignificant}
 p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of {{{densityVarName}}}') +
     xlab('{{{densityVarName}}}') + scale_colour_discrete(limits=chrs) +
@@ -343,7 +343,7 @@ This plot shows the density of the {{{densityVarName}}} for all regions. `r ifel
 templateManhattan <- "
 ## Manhattan {{{densityVarName}}}
 
-```{r manhattan-{{{varName}}}, fig.width=10, fig.height=10, dev=device, message = FALSE}
+```{r manhattan-{{{varName}}}, fig.width=10, fig.height=10, message = FALSE}
 
 regions.manhattan <- regions
 mcols(regions.manhattan)[['{{{varName}}}']] <- - log(mcols(regions.manhattan)[['{{{varName}}}']], base = 10)
@@ -361,7 +361,7 @@ This is a Manhattan plot for the {{{densityVarName}}} for all regions. A single 
 templatePvalueHistogram <- "
 ## {{{densityVarName}}}
 
-```{r histPval-{{{varName}}}, fig.width=10, fig.height=10, dev=device}
+```{r histPval-{{{varName}}}, fig.width=10, fig.height=10}
 p1{{{varName}}} <- ggplot(regions.df.plot, aes(x={{{varName}}}, colour=seqnames)) +
     geom_histogram(bins = 50, alpha=.5, position='identity') +
     xlim(c(0, 1.0005)) +
@@ -404,7 +404,7 @@ templateHistogram <- "
 
 ## {{{densityVarName}}}
 
-```{r histogram-{{{varName}}}, fig.width=14, fig.height=14, dev=device, eval=hasSignificant, echo=hasSignificant}
+```{r histogram-{{{varName}}}, fig.width=14, fig.height=14, eval=hasSignificant, echo=hasSignificant}
 xrange <- range(regions.df.plot[, '{{{varName}}}'])
 p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, fill=seqnames)) +
     geom_histogram(alpha=.5, position='identity', bins = 50) +
@@ -419,7 +419,7 @@ p3b{{{varName}}} <- ggplot(regions.df.sig[is.finite(regions.df.sig[, '{{{varName
 grid.arrange(p3a{{{varName}}}, p3b{{{varName}}})
 ```
 
-```{r histogram-solo-{{{varName}}}, fig.width=10, fig.height=10, dev=device, eval=!hasSignificant, echo=!hasSignificant}
+```{r histogram-solo-{{{varName}}}, fig.width=10, fig.height=10, eval=!hasSignificant, echo=!hasSignificant}
 p3a{{{varName}}} <- ggplot(regions.df.plot[is.finite(regions.df.plot[, '{{{varName}}}']), ], aes(x={{{varName}}}, fill=seqnames)) +
     geom_histogram(alpha=.5, position='identity', bins = 50) +
     labs(title='Histogram of {{{densityVarName}}}') +

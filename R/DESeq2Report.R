@@ -171,7 +171,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         pheatmap = citation('pheatmap'),
         RColorBrewer = citation('RColorBrewer'),
         DESeq2 = citation('DESeq2'),
-        if(software == 'edgeR') edgeR = citation('edgeR')[5]) else NULL,
+        if(software == 'edgeR') edgeR = citation('edgeR')[5] else NULL),
         file = file.path(outdir, paste0(output, '.bib'))
     )
     bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))

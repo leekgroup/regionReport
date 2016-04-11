@@ -155,6 +155,10 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     # Note links won't show for now due to the following issue
     # https://github.com/cboettig/knitcitations/issues/63
     
+    ## Install suggested packages that are needed for citation to work
+    pkgs <- c('DT', 'ggplot2', 'pheatmap', 'RColorBrewer')
+    if(software == 'edgeR') pkgs <- c(pkgs, 'edgeR')
+    for(pkg in pkgs) load_install(pkg)
     
     ## Write bibliography information
     write.bibtex(c(
@@ -167,14 +171,16 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         pheatmap = citation('pheatmap'),
         RColorBrewer = citation('RColorBrewer'),
         DESeq2 = citation('DESeq2'),
-        edgeR = citation('edgeR')[5]),
+        if(software == 'edgeR') edgeR = citation('edgeR')[5]) else NULL,
         file = file.path(outdir, paste0(output, '.bib'))
     )
     bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))
     
     ## Assign short names
-    names(bib) <- c('knitcitations', 'regionReport', 'DT', 'ggplot2', 'knitr',
-        'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2', 'edgeR') 
+    bib.names <- c('knitcitations', 'regionReport', 'DT', 'ggplot2', 'knitr',
+        'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2')
+    if(software == 'edgeR') bib.names <- c(bib.names, 'edgeR')
+    names(bib) <- bib.names 
     
     ## Save the call
     theCall <- .advanced_argument('theCall', NULL, ...)

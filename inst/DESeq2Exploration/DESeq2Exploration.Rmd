@@ -26,6 +26,12 @@ This report is meant to help explore `r software` `r citep(bib[[software]])` res
 
 This section contains the code for setting up the rest of the report.
 
+```{r docSetup, bootstrap.show.code = FALSE, dev = device, bootstrap.show.message=FALSE}
+## knitrBoostrap and device chunk options
+load_install('knitr')
+opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
+```
+
 ```{r setup, bootstrap.show.message=FALSE}
 #### Libraries needed
 

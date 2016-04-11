@@ -201,6 +201,8 @@ renderReport <- function(regions, project = "",
     # Note links won't show for now due to the following issue
     # https://github.com/cboettig/knitcitations/issues/63
     
+    ## Install suggested packages that are needed for citation to work
+    for(pkg in c('bumphunter', 'derfinderPlot', 'DT', 'ggbio', 'ggplot2', 'whisker')) load_install(pkg)
     
     ## Write bibliography information
     write.bibtex(c(

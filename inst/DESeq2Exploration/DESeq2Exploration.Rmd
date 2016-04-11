@@ -310,6 +310,8 @@ options(width = 120)
 session_info()
 ```
 
+Pandoc version used: `r rmarkdown::pandoc_version()`.
+
 # Bibliography
 
 This report was created with `regionReport` `r citep(bib[['regionReport']])` using `rmarkdown` `r citep(bib[['rmarkdown']])` while `knitr` `r citep(bib[['knitr']])` and  `DT` `r citep(bib[['DT']])` were running behind the scenes. `pheatmap` `r citep(bib[['pheatmap']])` was used to create the sample distances heatmap. Several plots were made with `ggplot2` `r citep(bib[['ggplot2']])`.

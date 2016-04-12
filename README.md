@@ -26,13 +26,15 @@ Similarly, check _renderReport()_ for an example of a general report, or use:
 example('renderReport', 'regionReport', ask=FALSE)
 ```
 
+For DESeq2 or edgeR results check _DESeq2Report()_ and _edgeReport()_.
+
 
 You may also want to consult the [vignette](http://www.bioconductor.org/packages/regionReport) for `regionReport` as well as the supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/).
 
 # Installation instructions
 
 Get R 3.2.2 from [CRAN](http://cran.r-project.org/) as well as pandoc 
-1.12.3 or newer from [here](http://johnmacfarlane.net/pandoc/installing.html).
+1.17.0.3 or newer from [here](http://johnmacfarlane.net/pandoc/installing.html).
 
 ```R
 ## From Bioconductor
@@ -54,19 +56,22 @@ __regionReport__.
 
 To cite package __regionReport__ in publications use:
 
-Collado-Torres L, Jaffe AE and Leek JT (2015). _regionReport: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results_.
-https://github.com/leekgroup/regionReport - R package version 1.5.46, <URL:
-http://www.bioconductor.org/packages/regionReport>.
+Collado-Torres L, Jaffe AE and Leek JT (2015). “regionReport: Interactive reports for region-based
+analyses.” _F1000Research_, *4*, pp. 105. doi: 10.12688/f1000research.6379.1 (URL:
+http://doi.org/10.12688/f1000research.6379.1), <URL: http://f1000research.com/articles/4-105/v1>.
 
 
 A BibTeX entry for LaTeX users is
 
-@Manual{,
-    title = {regionReport: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results},
+@Article{,
     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
+    title = {regionReport: Interactive reports for region-based analyses},
+    journal = {F1000Research},
     year = {2015},
-    url = {http://www.bioconductor.org/packages/regionReport},
-    note = {https://github.com/leekgroup/regionReport - R package version 1.5.46},
+    doi = {10.12688/f1000research.6379.1},
+    url = {http://f1000research.com/articles/4-105/v1},
+    volume = {4},
+    pages = {105},
 }
 
 # Testing

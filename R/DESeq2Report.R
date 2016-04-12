@@ -187,6 +187,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         pheatmap = citation('pheatmap'),
         RColorBrewer = citation('RColorBrewer'),
         DESeq2 = citation('DESeq2'),
+        if(isEdgeR) edgeR1 = citation('edgeR')[1] else NULL,
         if(isEdgeR) edgeR2 = citation('edgeR')[2] else NULL,
         if(isEdgeR) edgeR5 = citation('edgeR')[5] else NULL,
         if(isEdgeR) edgeR6 = RefManageR::BibEntry('inbook', key = 'edgeR6', author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', title = 'Differential expression analysis of complex RNA-seq experiments using edgeR', booktitle = 'Statistical Analysis of Next Generation Sequencing Data', year = 2014, editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer', location = 'New York', pages = '51-74') else NULL
@@ -197,7 +198,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     ## Assign short names
     bib.names <- c('knitcitations', 'regionReport', 'DT', 'ggplot2', 'knitr',
         'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2')
-    if(isEdgeR) bib.names <- c(bib.names, 'edgeR2', 'edgeR5', 'edgeR6')
+    if(isEdgeR) bib.names <- c(bib.names, 'edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')
     names(bib) <- bib.names 
     
     ## Save the call

@@ -30,6 +30,7 @@ Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 ## knitrBoostrap and device chunk options
 load_install('knitr')
 opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
+if(!outputIsHTML) opts_chunk$set(bootstrap.show.code = FALSE, dev = device, echo = FALSE)
 ```
 
 

@@ -60,7 +60,18 @@
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols
 #' @importFrom knitrBootstrap knit_bootstrap
+#' @importFrom RefManageR BibEntry
 #' @import knitr
+#'
+#' @details
+#' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 
+#' \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
+#' a PDF report respectively. If using knitrBootstrap, we recommend the version
+#' available only via GitHub at https://github.com/jimhester/knitrBootstrap
+#' which has nicer features than the current version available via CRAN.
+#'
+#' If you modify the YAML front matter of \code{template}, you can use other 
+#' values for \code{output_format}.
 #'
 #' @examples
 #'
@@ -128,6 +139,11 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
 # expression analysis. Either \code{DESeq2} or \code{edgeR}.
     software <- .advanced_argument('software', 'DESeq2', ...)
     stopifnot(software %in% c('DESeq2', 'edgeR'))
+    isEdgeR <- software == 'edgeR'
+    
+# @param dge A \link[edgeR]{DGEList} object.
+    dge <- .advanced_argument('dge', NULL, ...)
+    if(isEdgeR) stopifnot(is(dge, 'DGEList'))
     
     ## Is there custom code?
     hasCustomCode <- !is.null(customCode)
@@ -157,7 +173,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     
     ## Install suggested packages that are needed for citation to work
     pkgs <- c('DT', 'ggplot2', 'pheatmap', 'RColorBrewer')
-    if(software == 'edgeR') pkgs <- c(pkgs, 'edgeR')
+    if(isEdgeR) pkgs <- c(pkgs, 'edgeR')
     for(pkg in pkgs) load_install(pkg)
     
     ## Write bibliography information
@@ -171,15 +187,17 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         pheatmap = citation('pheatmap'),
         RColorBrewer = citation('RColorBrewer'),
         DESeq2 = citation('DESeq2'),
-        if(software == 'edgeR') edgeR = citation('edgeR')[5] else NULL),
-        file = file.path(outdir, paste0(output, '.bib'))
+        if(isEdgeR) edgeR2 = citation('edgeR')[2] else NULL,
+        if(isEdgeR) edgeR5 = citation('edgeR')[5] else NULL,
+        if(isEdgeR) edgeR6 = RefManageR::BibEntry('inbook', key = 'edgeR6', author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', title = 'Differential expression analysis of complex RNA-seq experiments using edgeR', booktitle = 'Statistical Analysis of Next Generation Sequencing Data', year = 2014, editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer', location = 'New York', pages = '51-74') else NULL
+        ), file = file.path(outdir, paste0(output, '.bib'))
     )
     bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))
     
     ## Assign short names
     bib.names <- c('knitcitations', 'regionReport', 'DT', 'ggplot2', 'knitr',
         'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2')
-    if(software == 'edgeR') bib.names <- c(bib.names, 'edgeR')
+    if(isEdgeR) bib.names <- c(bib.names, 'edgeR2', 'edgeR5', 'edgeR6')
     names(bib) <- bib.names 
     
     ## Save the call
@@ -193,10 +211,11 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         file.copy(template, to = paste0(output, '.Rmd'))
     
         ## Output format
-        output_format <- .advanced_argument('output_format', 'html_document', ...)
-        outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+        output_format <- .advanced_argument('output_format', 'html_document',
+            ...)
+        outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document',
+            'html_document')
         if(!outputIsHTML) {
-            opts_chunk$set(echo = FALSE)
             if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
         }
     

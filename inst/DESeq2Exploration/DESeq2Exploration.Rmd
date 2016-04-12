@@ -20,7 +20,7 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore `r software` `r citep(bib[[software]])` results and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument. This report is based on the vignette of the `DESeq2` `r citep(bib[['DESeq2']])` package which you can find [here](http://www.bioconductor.org/packages/DESeq2).
+This report is meant to help explore `r software` `r if(isEdgeR) citep(bib[[c('edgeR2', 'edgeR5', 'edgeR6')]]) else citep(bib[['DESeq2']])` results and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument. This report is based on the vignette of the `DESeq2` `r citep(bib[['DESeq2']])` package which you can find [here](http://www.bioconductor.org/packages/DESeq2).
 
 ## Code setup
 
@@ -30,6 +30,7 @@ This section contains the code for setting up the rest of the report.
 ## knitrBoostrap and device chunk options
 load_install('knitr')
 opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
+if(!outputIsHTML) opts_chunk$set(bootstrap.show.code = FALSE, dev = device, echo = FALSE)
 ```
 
 ```{r setup, bootstrap.show.message=FALSE}
@@ -37,6 +38,7 @@ opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
 
 ## Bioconductor
 load_install('DESeq2')
+if(isEdgeR) load_install('edgeR')
 
 ## CRAN
 load_install('ggplot2')
@@ -273,6 +275,26 @@ for(i in head(ord, nBestFeatures)) {
 ```
 
 
+# `r ifelse(isEdgeR, 'edgeR specific plots', NULL)`
+
+## `r ifelse(isEdgeR, 'Biological coefficient of variation', NULL)`
+
+```{r 'edgeR-BCV', eval = isEdgeR, echo = isEdgeR & outputIsHTML}
+## Make BCV plot for edgeR results
+plotBCV(dge)
+```
+
+`r ifelse(isEdgeR, 'This plot shows the feature-wise biological coefficient of variation (BCV) against the feature abundances in log2 counts per million. The plot shows the common, trended and feature-wise BCV estimates. If using _edgeR-robust_ only the trend and tagwise are shown. Check the [edgeR vignette](http://www.bioconductor.org/packages/edgeR) for further details regarding this plot.', NULL)`
+
+
+## `r ifelse(isEdgeR, 'MDS plot of distances', NULL)`
+
+```{r 'edgeR-MDS', eval = isEdgeR, echo = isEdgeR & outputIsHTML}
+## Make MDS plot for edgeR results
+plotMDS(dge)
+```
+
+`r ifelse(isEdgeR, 'This plot is a multidimensional scaling plot of distances between feature expression profiles. It shows the names of the samples in a two-dimensional scatterplot such that the distances are approximately the log2 fold changes between samples. Check the [edgeR vignette](http://www.bioconductor.org/packages/edgeR) for further details regarding this plot.', NULL)`
 
 ```{r child = customCode, eval = hasCustomCode}
 ```
@@ -281,7 +303,7 @@ for(i in head(ord, nBestFeatures)) {
 
 # Reproducibility
 
-The input for this report was generated with `r software` `r citep(bib[[software]])` `r if(software == 'DESeq2') paste('using version', metadata(dds)$version)` and the resulting features were called significantly differentially expressed if their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]` were less than `alpha` = `r metadata(res)$alpha`. This report was generated in path `r tmpdir` using the following call to `r ifelse(software == 'DESeq2', 'DESeq2Report()', 'edgeReport()')`:
+The input for this report was generated with `r software` `r if(isEdgeR) citep(bib[[c('edgeR2', 'edgeR5', 'edgeR6')]]) else citep(bib[['DESeq2']])` `r if(software == 'DESeq2') paste('using version', metadata(dds)$version)` and the resulting features were called significantly differentially expressed if their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]` were less than `alpha` = `r metadata(res)$alpha`. This report was generated in path `r tmpdir` using the following call to `r ifelse(software == 'DESeq2', 'DESeq2Report()', 'edgeReport()')`:
 
 ```{r thecall, echo=FALSE}
 theCall

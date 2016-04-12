@@ -1,3 +1,12 @@
+CHANGES IN VERSION 1.5.43
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o edgeReport() now includes two edgeR specific plots: one showing the BCV
+        and another showing a 2-dim MDS. Also added more edgeR citations that I
+        missed earlier: thank you Gordon Smyth!
+
 CHANGES IN VERSION 1.5.33
 -------------------------
 

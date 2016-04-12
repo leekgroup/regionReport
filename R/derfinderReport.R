@@ -69,6 +69,19 @@
 #' @importFrom knitrBootstrap knit_bootstrap
 #' @import knitr
 #'
+#' @details
+#' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 
+#' \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
+#' a PDF report respectively. If using knitrBootstrap, we recommend the version
+#' available only via GitHub at https://github.com/jimhester/knitrBootstrap
+#' which has nicer features than the current version available via CRAN.
+#'
+#' If you modify the YAML front matter of \code{template}, you can use other 
+#' values for \code{output_format}.
+#'
+#' The HTML report styled with knitrBootstrap can be smaller in size than the
+#' default HTML report.
+#'
 #' @examples
 #'
 #' ## Load derfinder
@@ -307,7 +320,6 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         output_format <- .advanced_argument('output_format', 'html_document', ...)
         outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
         if(!outputIsHTML) {
-            opts_chunk$set(echo = FALSE)
             if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
         }
     

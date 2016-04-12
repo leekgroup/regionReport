@@ -275,26 +275,26 @@ for(i in head(ord, nBestFeatures)) {
 ```
 
 
-# `r ifelse(isEdgeR, 'edgeR specific plots', NULL)`
+# `r ifelse(isEdgeR, 'edgeR specific plots', '')`
 
-## `r ifelse(isEdgeR, 'Biological coefficient of variation', NULL)`
+## `r ifelse(isEdgeR, 'Biological coefficient of variation', '')`
 
 ```{r 'edgeR-BCV', eval = isEdgeR, echo = isEdgeR & outputIsHTML}
 ## Make BCV plot for edgeR results
 plotBCV(dge)
 ```
 
-`r ifelse(isEdgeR, 'This plot shows the feature-wise biological coefficient of variation (BCV) against the feature abundances in log2 counts per million. The plot shows the common, trended and feature-wise BCV estimates. If using _edgeR-robust_ only the trend and tagwise are shown. Check the [edgeR vignette](http://www.bioconductor.org/packages/edgeR) for further details regarding this plot.', NULL)`
+`r ifelse(isEdgeR, 'This plot shows the feature-wise biological coefficient of variation (BCV) against the feature abundances in log2 counts per million. The plot shows the common, trended and feature-wise BCV estimates. If using _edgeR-robust_ only the trend and tagwise are shown. Check the [edgeR vignette](http://www.bioconductor.org/packages/edgeR) for further details regarding this plot.', '')`
 
 
-## `r ifelse(isEdgeR, 'MDS plot of distances', NULL)`
+## `r ifelse(isEdgeR, 'MDS plot of distances', '')`
 
 ```{r 'edgeR-MDS', eval = isEdgeR, echo = isEdgeR & outputIsHTML}
 ## Make MDS plot for edgeR results
 plotMDS(dge)
 ```
 
-`r ifelse(isEdgeR, 'This plot is a multidimensional scaling plot of distances between feature expression profiles. It shows the names of the samples in a two-dimensional scatterplot such that the distances are approximately the log2 fold changes between samples. Check the [edgeR vignette](http://www.bioconductor.org/packages/edgeR) for further details regarding this plot.', NULL)`
+`r ifelse(isEdgeR, 'This plot is a multidimensional scaling plot of distances between feature expression profiles. It shows the names of the samples in a two-dimensional scatterplot such that the distances are approximately the log2 fold changes between samples. Check the [edgeR vignette](http://www.bioconductor.org/packages/edgeR) for further details regarding this plot.', '')`
 
 ```{r child = customCode, eval = hasCustomCode}
 ```

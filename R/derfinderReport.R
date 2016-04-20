@@ -299,12 +299,12 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     }
     pvalText <- switch(sigVar, significant = 'P-value', significantQval = 'FDR adjusted P-value', significantFWER = 'FWER adjusted P-value')
     pvalVar <- switch(sigVar, significant = 'pval', significantQval = 'qval', significantFWER = 'fwer')
-    idx.sig <- which(as.logical(mcols(fullRegions)[[sigVar]]))
+    idx.sig <- as.logical(mcols(fullRegions)[[sigVar]])
     sigCut <- optionsMerge$significantCut[ifelse(sigVar == 'significantQval', 2, 1)]
-    hasSig <- length(idx.sig) > 0
+    hasSig <- any(idx.sig)
     ## Are there regions with infite area?
-    finite.area <- which(is.finite(fullRegions$area))
-    hasArea <- length(intersect(idx.sig, finite.area)) > 0
+    finite.area <- is.finite(fullRegions$area)
+    hasArea <- any(idx.sig & finite.area)
     inf.area <- sum(!is.finite(fullRegions$area))
     
     ## Save the call

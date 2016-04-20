@@ -554,7 +554,7 @@ Below are the best `r nBestClusters` region clusters ordered by cluster area (su
 
 ## Genome plots
 for(idx in bestArea) {
-    regionClusterPlot(idx, ifelse(nullExist, ifelse(fwerExist, 'fwer', 'qval'), 'none'))
+    regionClusterPlot(idx, ifelse(nullExist, ifelse(pvalVar == 'fwer', ifelse(fwerExist, 'fwer', 'qval'), pvalVar), 'none'))
 }
 ```
 

@@ -80,6 +80,7 @@ nulls.df <- as.data.frame(fullNullSummary)
 ## Special subsets: need at least 3 points for a density plot
 keepChr <- table(regions.df$seqnames) > 2
 regions.df.plot <- subset(regions.df, seqnames %in% names(keepChr[keepChr]))
+finite.area <- finite.area[regions.df$seqnames %in% names(keepChr[keepChr])]
 
 if(hasSig) {
     ## Keep only those sig
@@ -90,17 +91,16 @@ if(hasSig) {
     if(nrow(regions.df.sig) > 0) {
         ## If there's any sig, keep those with finite areas
         if(hasArea) {
-            finite.area.sig <- which(is.finite(regions.df.sig$area))
-            
-            regions.df.sig.area <- regions.df.sig[finite.area.sig, ]
+            regions.df.sig.area <- regions.df.sig[is.finite(regions.df.sig$area), ]
             keepChr <- table(regions.df.sig.area$seqnames) > 2
             regions.df.sig.area <- subset(regions.df.sig.area, seqnames %in%
                 names(keepChr[keepChr]))
             
             ## Save the info
-            hasArea <- (nrow(regions.df.sig.area) > 0)
+            hasArea <- nrow(regions.df.sig.area) > 0
         }
     } else {
+        print('Not a single chromosome had 2 or more significant regions, so plots for significant regions will be skipped.')
         hasSig <- hasArea <- FALSE
     }
 }
@@ -123,17 +123,10 @@ if(!is.null(fullCov) & !is.null(colsubset)) {
 
 ## Get region coverage for the top regions
 if(nBestRegions > 0) {
-    if(packageVersion('derfinder') >= '0.0.60') {
-        regionCoverage <- getRegionCoverage(fullCov = fullCov, 
-            regions = fullRegions[seq_len(nBestRegions)],
-            chrsStyle = chrsStyle, species = species,
-            currentStyle = currentStyle, verbose = FALSE)
-    } else {
-        regionCoverage <- getRegionCoverage(fullCov = fullCov, 
-            regions = fullRegions[seq_len(nBestRegions)],
-            verbose = FALSE)
-    }
-    
+    regionCoverage <- getRegionCoverage(fullCov = fullCov, 
+        regions = fullRegions[seq_len(nBestRegions)],
+        chrsStyle = chrsStyle, species = species,
+        currentStyle = currentStyle, verbose = FALSE)
     save(regionCoverage, file=file.path(workingDir, 'regionCoverage.Rdata'))
 }
 
@@ -246,7 +239,7 @@ xrange <- range(log10(regions.df.plot$area[finite.area])) * c(0.95, 1.05)
 if(inf.area > 0) {
     print(paste('Dropping', inf.area, 'due to Inf values.'))
 }
-p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) +
+p3a <- ggplot(regions.df.plot[finite.area, ], aes(x=log10(area), colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of region areas') +
     xlab('Region area (log10)') + scale_colour_discrete(limits=chrs) +
     xlim(xrange) + theme(legend.title=element_blank())
@@ -262,7 +255,7 @@ grid.arrange(p3a, p3b)
 if(inf.area > 0) {
     print(paste('Dropping', inf.area, 'due to Inf values.'))
 }
-p3a <- ggplot(regions.df[finite.area, ], aes(x=log10(area), colour=seqnames)) +
+p3a <- ggplot(regions.df.plot[finite.area, ], aes(x=log10(area), colour=seqnames)) +
     geom_line(stat='density') + labs(title='Density of region areas') +
     xlab('Region area (log10)') + scale_colour_discrete(limits=chrs) +
     theme(legend.title=element_blank())
@@ -402,13 +395,13 @@ if(outputIsHTML) {
 }
 ```
 
-## Annotation (significant)
+`r ifelse(hasSig, '## Annotation (significant)', '')`
 
 ```{r genomeOverview3, message=FALSE, fig.width=7, fig.height=9, dpi=300, eval=hasSig, echo=hasSig}
 plotOverview(regions=fullRegions[idx.sig], annotation=fullRegions[idx.sig], type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
-This genomic overview plot shows the annotation region type for the __candidate__ regions that have a `r pvalText` less than `r sigCut`. Note that the regions are shown only if the annotation information is available. `r ifelse(hasSig, '', 'Plot skipped because there are no significant regions.')`
+`r ifelse(hasSig, paste0('This genomic overview plot shows the annotation region type for the __candidate__ regions that have a ', pvalText, 'less than ', sigCut, '. Note that the regions are shown only if the annotation information is available.'), '')`
 
 
 # Best regions

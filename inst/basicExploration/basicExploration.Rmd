@@ -189,7 +189,7 @@ This table shows the number of candidate Differentially Expressed Regions (DERs)
 summary(fullRegions$fwer)
 ```
 
-This is the numerical summary of the distribution of the q-values. `r ifelse(fwerExist, '', 'Skipped because there are no FWER-adjusted P-values.')`
+This is the numerical summary of the distribution of the FWER adjusted p-values. `r ifelse(fwerExist, '', 'Skipped because there are no FWER-adjusted P-values.')`
 
 ```{r FWERsummary, eval=fwerExist, echo=fwerExist, results='asis'}
 fwertable <- lapply(c(1e-04, 0.001, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5,

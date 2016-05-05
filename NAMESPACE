@@ -2,10 +2,8 @@
 
 export(DESeq2Report)
 export(derfinderReport)
-export(derfinder_report)
 export(edgeReport)
 export(renderReport)
-export(render_report)
 export(templateDensity)
 export(templateHistogram)
 export(templateManhattan)

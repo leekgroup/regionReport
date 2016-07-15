@@ -56,20 +56,19 @@ __regionReport__.
 
 To cite package __regionReport__ in publications use:
 
-Collado-Torres L, Jaffe AE and Leek JT (2015). “regionReport: Interactive reports for region-based
-analyses.” _F1000Research_, *4*, pp. 105. doi: 10.12688/f1000research.6379.1 (URL:
-http://doi.org/10.12688/f1000research.6379.1), <URL: http://f1000research.com/articles/4-105/v1>.
+Collado-Torres L, Jaffe AE and Leek JT (2016). “regionReport: Interactive reports for region-level and feature-level genomic analyses [version2; referees: 2 approved, 1 approved with reservations].” _F1000Research_, *4*, pp. 105. doi: 10.12688/f1000research.6379.2 (URL:
+http://doi.org/10.12688/f1000research.6379.2), <URL: http://f1000research.com/articles/4-105/v2>.
 
 
 A BibTeX entry for LaTeX users is
 
 @Article{,
     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
-    title = {regionReport: Interactive reports for region-based analyses},
+    title = {regionReport: Interactive reports for region-level and feature-level genomic analyses [version2; referees: 2 approved, 1 approved with reservations]},
     journal = {F1000Research},
-    year = {2015},
-    doi = {10.12688/f1000research.6379.1},
-    url = {http://f1000research.com/articles/4-105/v1},
+    year = {2016},
+    doi = {10.12688/f1000research.6379.2},
+    url = {http://f1000research.com/articles/4-105/v2},
     volume = {4},
     pages = {105},
 }

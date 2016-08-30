@@ -33,7 +33,7 @@ You may also want to consult the [vignette](http://www.bioconductor.org/packages
 
 # Installation instructions
 
-Get R 3.2.2 from [CRAN](http://cran.r-project.org/) as well as pandoc 
+Get R 3.3.x from [CRAN](http://cran.r-project.org/) as well as pandoc 
 1.17.0.3 or newer from [here](http://johnmacfarlane.net/pandoc/installing.html).
 
 ```R

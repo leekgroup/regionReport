@@ -40,6 +40,7 @@
 #' @importFrom DEFormats as.DESeqDataSet
 #' @importFrom DESeq2 DESeqResults
 #' @importFrom GenomicRanges mcols 'mcols<-'
+#' @importFrom methods is
 #'
 #' @details
 #' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 

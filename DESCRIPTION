@@ -30,6 +30,7 @@ Imports:
     knitcitations (>= 1.0.1),
     knitr (>= 1.6),
     knitrBootstrap (>= 0.9.0),
+    methods,
     RefManageR,
     rmarkdown (>= 0.9.5),
     S4Vectors,

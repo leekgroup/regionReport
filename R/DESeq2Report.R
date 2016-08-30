@@ -62,6 +62,7 @@
 #' @importFrom knitrBootstrap knit_bootstrap
 #' @importFrom RefManageR BibEntry
 #' @import knitr
+#' @importFrom methods is
 #'
 #' @details
 #' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 

@@ -72,6 +72,7 @@
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols 'mcols<-'
 #' @importFrom knitrBootstrap knit_bootstrap
+#' @importFrom methods is
 #'
 #' @details
 #' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 

@@ -1,6 +1,6 @@
-pkgVer <- function(pkg, default) { 
-    x <- packageDescription(pkg, fields = 'Version')
-    ver <- ifelse(is.na(x), default, x)
+pkgVer <- function(pkg) {
+    if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
+    ver <- meta$Version
     paste0('https://github.com/leekgroup/', pkg, ' - R package version ', ver)
 }
 c(
@@ -33,5 +33,16 @@ c(
         journal = "bioRxiv",
         doi = "10.1101/015370",
         url = "http://biorxiv.org/content/early/2016/05/07/015370"
+    ),
+    bibentry(bibtype="manual",
+        title = "regionReport: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results",
+        author = personList(
+            as.person("Leonardo Collado-Torres"),
+            as.person("Andrew E. Jaffe"),
+            as.person("Jeffrey T. Leek")
+        ),
+        year = 2016,
+        url = "http://www.bioconductor.org/packages/regionReport",
+        note = pkgVer('regionReport')
     )
 )

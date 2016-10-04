@@ -286,20 +286,6 @@ want to consider setting _nBestCluters_ to a small number or even set
 _makeBestClusters_ to `FALSE`.
 
 
-# Advanced arguments
-
-If you are interested in using the advanced arguments, use `derfinder::advancedArg()` as shown below:
-
-```{r 'advancedArg'}
-## URLs to advanced arguemtns
-derfinder::advancedArg('derfinderReport', package = 'regionReport',
-    browse = FALSE)
-## Set browse = TRUE if you want to open them in your browser
-```
-
-In particular, you might be interested in specifying the `output_format` argument in either `renderReport()` or `derfinderReport()`. For example, setting `output_format = 'pdf_document'` will generate a PDF file instead. However, you will lose interactivity for toggling hiding/showing code and the tables will be static.
-
-
 # Reproducibility
 
 This package was made possible thanks to:

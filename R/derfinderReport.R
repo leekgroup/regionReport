@@ -51,6 +51,35 @@
 #' the top \code{nBestRegions}. Note that p-values and adjusted p-values won't 
 #' be rounded.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
+#' Advanced arguments:
+#' \describe{
+#' \item{chrsStyle }{ The naming style of the chromosomes. By default, UCSC. 
+#' See \link[GenomeInfoDb]{seqlevelsStyle}.}
+#' \item{species }{ Species name. See \link[derfinder]{extendedMapSeqlevels}  
+#' for more information.}
+#' \item{currentStyle }{ Current naming style used. See 
+#' \link[derfinder]{extendedMapSeqlevels} for more information.}
+#' \item{fullRegions }{ Part of the output of \link[derfinder]{mergeResults}. 
+#' Specify it only if you have already loaded it in memory.}
+#' \item{fullNullSummary }{ Part of the output of 
+#' \link[derfinder]{mergeResults}. Specify it only if you have already loaded 
+#' it in memory.}
+#' \item{fullAnnotatedRegions }{ Part of the output of 
+#' \link[derfinder]{mergeResults}. Specify it only if you have already loaded 
+#' it in memory.}
+#' \item{optionsStats }{ Part of the output of \link[derfinder]{analyzeChr}. 
+#' Specify it only if you have already loaded it in memory.}
+#' \item{optionsMerge }{ Part of the output of \link[derfinder]{mergeResults}. 
+#' Specify it only if you have already loaded it in memory.}
+#' \item{overviewParams }{ A two element list with \code{base_size} and 
+#' \code{areaRel} that control the text size for the genomic overview plots.}
+#' \item{output_format }{ Either \code{html_document}, \code{pdf_document} or
+#' \code{knitrBootstrap::bootstrap_document} unless you modify the YAML
+#' template.}
+#' \item{clean }{ Logical, whether to clean the results or not. Passed to
+#' \link[rmarkdown]{render}.}
+#' }
+#' Passed to \link[derfinder]{extendedMapSeqlevels}.
 #'
 #' @return An HTML report with a basic exploration of the derfinder results.
 #'

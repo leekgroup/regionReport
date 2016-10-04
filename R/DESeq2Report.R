@@ -45,6 +45,20 @@
 #' the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't 
 #' be rounded.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
+#' Advanced arguments:
+#' \describe{
+#' \item{software }{ The name of the package used for performing the 
+#' differential expression analysis. Either \code{DESeq2} or \code{edgeR}.}
+#' \item{dge }{ A \link[edgeR]{DGEList} object. \code{NULL} by default and only 
+#' used by \link{edgeReport}.}
+#' \item{theCall }{ The function call. \code{NULL} by default and only used by
+#' \link{edgeReport}.}
+#' \item{output_format }{ Either \code{html_document}, \code{pdf_document} or
+#' \code{knitrBootstrap::bootstrap_document} unless you modify the YAML
+#' template.}
+#' \item{clean }{ Logical, whether to clean the results or not. Passed to
+#' \link[rmarkdown]{render}.}
+#' }
 #'
 #' @return An HTML report with a basic exploration for the given set of DESeq2
 #' results.

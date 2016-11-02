@@ -79,9 +79,10 @@
 #' citep bibliography
 #' @importFrom GenomeInfoDb seqlengths
 #' @importFrom utils browseURL citation packageVersion
-#' @importFrom rmarkdown render
+#' @importFrom rmarkdown render html_document
 #' @importFrom GenomicRanges mcols 'mcols<-'
 #' @importFrom knitrBootstrap knit_bootstrap
+#' @importFrom BiocStyle html_document2
 #' @importFrom methods is
 #'
 #' @details
@@ -89,10 +90,16 @@
 #' \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 #' a PDF report respectively. If using knitrBootstrap, we recommend the version
 #' available only via GitHub at https://github.com/jimhester/knitrBootstrap
-#' which has nicer features than the current version available via CRAN.
+#' which has nicer features than the current version available via CRAN. You can
+#' also set the \code{output_format} to \code{'html_document'} for a HTML
+#' report styled by rmarkdown. The default is set to 
+#' \code{'BiocStyle::html_document2'}.
 #'
 #' If you modify the YAML front matter of \code{template}, you can use other 
 #' values for \code{output_format}.
+#'
+#' The HTML report styled with knitrBootstrap can be smaller in size than the
+#' \code{'html_document'} report.
 #'
 #' @examples
 #'
@@ -257,8 +264,10 @@ renderReport <- function(regions, project = "",
         file.copy(template, to = paste0(output, '.Rmd'))
     
         ## Output format
-        output_format <- .advanced_argument('output_format', 'html_document', ...)
-        outputIsHTML <- output_format %in% c('knitrBootstrap::bootstrap_document', 'html_document')
+        output_format <- .advanced_argument('output_format',
+            'BiocStyle::html_document2', ...)
+        outputIsHTML <- output_format %in% c('html_document',
+            'knitrBootstrap::bootstrap_document', 'BiocStyle::html_document2')
         if(!outputIsHTML) {
             if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
         }

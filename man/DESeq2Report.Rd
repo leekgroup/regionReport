@@ -98,10 +98,16 @@ Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 a PDF report respectively. If using knitrBootstrap, we recommend the version
 available only via GitHub at https://github.com/jimhester/knitrBootstrap
-which has nicer features than the current version available via CRAN.
+which has nicer features than the current version available via CRAN. You can
+also set the \code{output_format} to \code{'html_document'} for a HTML
+report styled by rmarkdown. The default is set to 
+\code{'BiocStyle::html_document2'}.
 
 If you modify the YAML front matter of \code{template}, you can use other 
 values for \code{output_format}.
+
+The HTML report styled with knitrBootstrap can be smaller in size than the
+\code{'html_document'} report.
 }
 \examples{
 

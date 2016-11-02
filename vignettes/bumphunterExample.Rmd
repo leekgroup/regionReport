@@ -4,7 +4,10 @@ author: "L Collado-Torres"
 date: "`r doc_date()`"
 package: "`r pkg_ver('regionReport')`"
 output: 
-  BiocStyle::html_document
+  BiocStyle::html_document2:
+    toc: true
+    toc_float: true
+    code_folding: show
 vignette: >
   %\VignetteIndexEntry{Example report using bumphunter results}
   %\VignetteEngine{knitr::rmarkdown}
@@ -91,7 +94,7 @@ vignetteInfo <- c(
     '  %\\VignetteIndexEntry{Basic genomic regions exploration}',
     '  %\\VignetteEncoding{UTF-8}'
 )
-new <- c(original[1:12], vignetteInfo, original[13:length(original)])
+new <- c(original[1:16], vignetteInfo, original[17:length(original)])
 writeLines(new, 'regionReportBumphunter.Rmd')
 
 ## Now create the report

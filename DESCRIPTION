@@ -22,7 +22,7 @@ biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization,
 Depends:
     R(>= 3.2)
 Imports:
-    BiocStyle,
+    BiocStyle (>= 2.3.12),
     derfinder (>= 1.1.0),
     DEFormats,
     DESeq2,

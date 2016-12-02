@@ -1,8 +1,8 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results
-Version: 1.9.3
-Date: 2016-11-23
+Version: 1.9.4
+Date: 2016-12-02
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -22,7 +22,7 @@ biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization,
 Depends:
     R(>= 3.2)
 Imports:
-    BiocStyle (>= 2.3.12),
+    BiocStyle (>= 2.3.20),
     derfinder (>= 1.1.0),
     DEFormats,
     DESeq2,

@@ -286,6 +286,39 @@ If the report is taking too long to compile (say more than 3 hours), you might
 want to consider setting _nBestCluters_ to a small number or even set 
 _makeBestClusters_ to `FALSE`.
 
+# Basics
+
+## Install `r Biocpkg('regionReport')`
+
+`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('regionReport')` is a `R` package available via the [Bioconductor](http://bioconductor/packages/regionReport) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('regionReport')` by using the following commands in your `R` session:
+
+```{r 'installDer', eval = FALSE}
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("regionReport")
+
+## Check that you have a valid Bioconductor installation
+biocValid()
+```
+
+## Required knowledge
+
+`r Biocpkg('regionReport')` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data. That is, packages like `r Biocpkg('GenomicFeatures')` that allow you to import the data and `r Biocpkg('DESeq2')` for generating differential expression results. A `r Biocpkg('regionReport')` user is not expected to deal with those packages directly.
+
+If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startBioC/#.VkOKbq6rRuU).
+
+## Asking for help
+
+As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `regionReport` tag and check [the older posts](https://support.bioconductor.org/t/regionReport/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidlines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
+
+## Citing `r Biocpkg('regionReport')`
+
+We hope that `r Biocpkg('regionReport')` will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!
+
+```{r 'citation'}
+## Citation info
+citation('regionReport')
+```
 
 # Reproducibility
 

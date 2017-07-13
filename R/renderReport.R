@@ -233,7 +233,7 @@ renderReport <- function(regions, project = "",
     for(pkg in c('bumphunter', 'derfinderPlot', 'DT', 'ggbio', 'ggplot2', 'whisker')) load_install(pkg)
     
     ## Write bibliography information
-    write.bibtex(c(
+    bib <- c(
         knitcitations = citation('knitcitations'), 
         regionReport = citation('regionReport')[1],
         derfinderPlot = citation('derfinderPlot')[1],
@@ -244,15 +244,8 @@ renderReport <- function(regions, project = "",
         rmarkdown = citation('rmarkdown'),
         whisker = citation('whisker'),
         bumphunter = citation('bumphunter')[1],
-        derfinder = citation('derfinder')[1]),
-        file = file.path(outdir, paste0(output, '.bib'))
-    )
-    bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))
-    
-    ## Assign short names
-    names(bib) <- c('knitcitations', 'regionReport', 'derfinderPlot', 
-        'DT', 'ggbio', 'ggplot2', 'knitr', 'rmarkdown', 'whisker',
-        'bumphunter', 'derfinder') 
+        derfinder = citation('derfinder')[1])
+    write.bibtex(bib, file = file.path(outdir, paste0(output, '.bib')))
     
     ## Save the call
     theCall <- match.call()

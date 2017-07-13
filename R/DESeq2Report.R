@@ -158,9 +158,11 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
         
 # @param software The name of the package used for performing the differential
-# expression analysis. Either \code{DESeq2}, \code{edgeR} or \code{other}.
+# expression analysis. Either \code{DESeq2}, \code{edgeR} or \code{other}
+# where \code{other} has a valid citation.
     software <- .advanced_argument('software', 'DESeq2', ...)
-    stopifnot(software %in% c('DESeq2', 'edgeR', 'other'))
+    if(!software %in% c('DESeq2', 'edgeR'))
+        stopifnot(!is.null(citation(software)[1]))
     isEdgeR <- software == 'edgeR'
     
 # @param dge A \link[edgeR]{DGEList} object.
@@ -199,7 +201,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     for(pkg in pkgs) load_install(pkg)
     
     ## Write bibliography information
-    write.bibtex(c(
+    bib <- c(
         knitcitations = citation('knitcitations'), 
         regionReport = citation('regionReport')[1],
         DT = citation('DT'), 
@@ -209,19 +211,14 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         pheatmap = citation('pheatmap'),
         RColorBrewer = citation('RColorBrewer'),
         DESeq2 = citation('DESeq2'),
-        if(isEdgeR) edgeR1 = citation('edgeR')[1] else NULL,
-        if(isEdgeR) edgeR2 = citation('edgeR')[2] else NULL,
-        if(isEdgeR) edgeR5 = citation('edgeR')[5] else NULL,
-        if(isEdgeR) edgeR6 = RefManageR::BibEntry('inbook', key = 'edgeR6', author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', title = 'Differential expression analysis of complex RNA-seq experiments using edgeR', booktitle = 'Statistical Analysis of Next Generation Sequencing Data', year = 2014, editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer', location = 'New York', pages = '51-74') else NULL
-        ), file = file.path(outdir, paste0(output, '.bib'))
+        edgeR1 = if(isEdgeR) citation('edgeR')[1] else NULL,
+        edgeR2 = if(isEdgeR) citation('edgeR')[2] else NULL,
+        edgeR5 = if(isEdgeR) citation('edgeR')[5] else NULL,
+        edgeR6 = if(isEdgeR) RefManageR::BibEntry('inbook', key = 'edgeR6', author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', title = 'Differential expression analysis of complex RNA-seq experiments using edgeR', booktitle = 'Statistical Analysis of Next Generation Sequencing Data', year = 2014, editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer', location = 'New York', pages = '51-74') else NULL,
+        other = if(!software %in% c('DESeq2', 'edgeR')) citation(software)[1] else NULL
     )
-    bib <- read.bibtex(file.path(outdir, paste0(output, '.bib')))
     
-    ## Assign short names
-    bib.names <- c('knitcitations', 'regionReport', 'DT', 'ggplot2', 'knitr',
-        'rmarkdown', 'pheatmap', 'RColorBrewer', 'DESeq2')
-    if(isEdgeR) bib.names <- c(bib.names, 'edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')
-    names(bib) <- bib.names 
+    write.bibtex(bib, file = file.path(outdir, paste0(output, '.bib')))
     
     ## Save the call
     theCall <- .advanced_argument('theCall', NULL, ...)

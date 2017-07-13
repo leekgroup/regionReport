@@ -158,9 +158,9 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
         
 # @param software The name of the package used for performing the differential
-# expression analysis. Either \code{DESeq2} or \code{edgeR}.
+# expression analysis. Either \code{DESeq2}, \code{edgeR} or \code{other}.
     software <- .advanced_argument('software', 'DESeq2', ...)
-    stopifnot(software %in% c('DESeq2', 'edgeR'))
+    stopifnot(software %in% c('DESeq2', 'edgeR', 'other'))
     isEdgeR <- software == 'edgeR'
     
 # @param dge A \link[edgeR]{DGEList} object.

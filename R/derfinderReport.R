@@ -274,7 +274,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
     for(pkg in c('derfinderPlot', 'DT', 'ggbio', 'ggplot2')) load_install(pkg)
     
     ## Write bibliography information
-    write.bibtex(c(
+    bib <- c(
         knitcitations = citation('knitcitations'), 
         derfinder = citation('derfinder')[1],
         derfinderPlot = citation('derfinderPlot')[1],
@@ -283,15 +283,9 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         ggbio = citation('ggbio'),
         ggplot2 = citation('ggplot2'),
         knitr = citation('knitr')[3],
-        rmarkdown = citation('rmarkdown')),
-        file = file.path(prefix, outdir, paste0(output, '.bib'))
-    )
-    bib <- read.bibtex(file.path(prefix, outdir, paste0(output, '.bib')))
-    
-    ## Assign short names
-    names(bib) <- c('knitcitations', 'derfinder', 'derfinderPlot', 
-        'regionReport', 'DT', 'ggbio', 'ggplot2', 'knitr',
-        'rmarkdown')
+        rmarkdown = citation('rmarkdown'))
+        
+    write.bibtex(bib, file = file.path(prefix, outdir, paste0(output, '.bib')))
     
     ## Load files
     if (is.null(fullRegions)) 

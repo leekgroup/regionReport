@@ -24,7 +24,7 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore `r software` `r if(software == 'edgeR') citep(bib[[c('edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')]]) else if (software == 'DESeq2') citep(bib[['DESeq2']]) else print("software")` results and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument. This report is based on the vignette of the `DESeq2` `r citep(bib[['DESeq2']])` package which you can find [here](http://www.bioconductor.org/packages/DESeq2).
+This report is meant to help explore `r software` `r if(software == 'edgeR') citep(bib[[c('edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')]]) else if (software == 'DESeq2') citep(bib[['DESeq2']]) else citep(bib[['other']])` results and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument. This report is based on the vignette of the `DESeq2` `r citep(bib[['DESeq2']])` package which you can find [here](http://www.bioconductor.org/packages/DESeq2).
 
 ## Code setup
 
@@ -307,7 +307,7 @@ plotMDS(dge)
 
 # Reproducibility
 
-The input for this report was generated with `r software` `r if(software == 'edgeR') citep(bib[[c('edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')]]) else if (software == 'DESeq2') citep(bib[['DESeq2']]) else print('software')` `r if(software == 'DESeq2') paste('using version', metadata(dds)$version)` and the resulting features were called significantly differentially expressed if their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]` were less than `alpha` = `r metadata(res)$alpha`. This report was generated in path `r tmpdir` using the following call to `r ifelse(software != 'edgeR', 'DESeq2Report()', 'edgeReport()')`:
+The input for this report was generated with `r software` `r if(software == 'edgeR') citep(bib[[c('edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')]]) else if (software == 'DESeq2') citep(bib[['DESeq2']]) else citep(bib[['other']])` `r if(software == 'DESeq2') paste('using version', metadata(dds)$version)` and the resulting features were called significantly differentially expressed if their `r elementMetadata(res)$description[grep('adjusted', elementMetadata(res)$description)]` were less than `alpha` = `r metadata(res)$alpha`. This report was generated in path `r tmpdir` using the following call to `r ifelse(software != 'edgeR', 'DESeq2Report()', 'edgeReport()')`:
 
 ```{r thecall, echo=FALSE}
 theCall

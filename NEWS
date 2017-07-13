@@ -1,3 +1,16 @@
+CHANGES IN VERSION 1.11.1
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o DESeq2Report() can now be used with other software if their results are
+         made to look like DESeq2 results. For example, with limma-voom results.
+         
+BUG FIXES
+
+    o Made the DESeq2Report() more robust in case rlog() fails initially.
+
+
 CHANGES IN VERSION 1.9.1
 ------------------------
 

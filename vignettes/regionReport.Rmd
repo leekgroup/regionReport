@@ -71,7 +71,7 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-bibs <- c(knitcitations = citation('knitcitations'), 
+bib <- c(knitcitations = citation('knitcitations'), 
     derfinder = citation('derfinder')[1], 
     regionReport = citation('regionReport')[1],
     knitrBootstrap = citation('knitrBootstrap'),
@@ -110,12 +110,7 @@ bibs <- c(knitcitations = citation('knitcitations'),
     DEFormats = citation('DEFormats')
 )
 
-write.bibtex(bibs,
-    file = 'regionReportRef.bib')
-bib <- read.bibtex('regionReportRef.bib')
-
-## Assign short names
-names(bib) <- names(bibs)
+write.bibtex(bib, file = 'regionReportRef.bib')
 ```
 
 

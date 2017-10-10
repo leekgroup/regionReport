@@ -93,7 +93,7 @@
 #' which has nicer features than the current version available via CRAN. You can
 #' also set the \code{output_format} to \code{'html_document'} for a HTML
 #' report styled by rmarkdown. The default is set to 
-#' \code{'BiocStyle::html_document2'}.
+#' \code{'BiocStyle::html_document'}.
 #'
 #' If you modify the YAML front matter of \code{template}, you can use other 
 #' values for \code{output_format}.
@@ -258,9 +258,9 @@ renderReport <- function(regions, project = "",
     
         ## Output format
         output_format <- .advanced_argument('output_format',
-            'BiocStyle::html_document2', ...)
+            'BiocStyle::html_document', ...)
         outputIsHTML <- output_format %in% c('html_document',
-            'knitrBootstrap::bootstrap_document', 'BiocStyle::html_document2')
+            'knitrBootstrap::bootstrap_document', 'BiocStyle::html_document')
         if(!outputIsHTML) {
             if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
         }

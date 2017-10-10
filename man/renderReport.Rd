@@ -130,7 +130,7 @@ available only via GitHub at https://github.com/jimhester/knitrBootstrap
 which has nicer features than the current version available via CRAN. You can
 also set the \code{output_format} to \code{'html_document'} for a HTML
 report styled by rmarkdown. The default is set to 
-\code{'BiocStyle::html_document2'}.
+\code{'BiocStyle::html_document'}.
 
 If you modify the YAML front matter of \code{template}, you can use other 
 values for \code{output_format}.

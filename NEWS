@@ -1,3 +1,12 @@
+CHANGES IN VERSION 1.11.6
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Changed the default style to BiocStyle::html_document to mirror recent
+        changes in BiocStyle.
+
+
 CHANGES IN VERSION 1.11.4
 -------------------------
 

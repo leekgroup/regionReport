@@ -22,4 +22,3 @@ See here: http://plantarum.ca/code/setwd-part2/
 Tyler Smith, contributed to regionReport by David Robinson 
 https://github.com/dgrtwo
 }
-

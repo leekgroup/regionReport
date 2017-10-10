@@ -147,4 +147,3 @@ example('DESeq2Report', 'regionReport', ask=FALSE)
 \author{
 Leonardo Collado-Torres
 }
-

@@ -103,7 +103,6 @@ bib <- c(knitcitations = citation('knitcitations'),
     DESeq2 = citation('DESeq2'),
     edgeR1 = citation('edgeR')[1],
     edgeR2 = citation('edgeR')[2],
-    edgeR5 = citation('edgeR')[5],
     edgeR6 = RefManageR::BibEntry('inbook', key = 'edgeR6',
         author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', 
         title = 'Differential expression analysis of complex RNA-seq experiments using edgeR',
@@ -118,7 +117,7 @@ write.bibtex(bib, file = 'regionReportRef.bib')
 ```
 
 
-`r Biocpkg('regionReport')` `r citep(bib[['regionReport']])` creates HTML or PDF reports for a set of genomic regions such as `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])` results or for feature-level analyses performed with `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])` or `r Biocpkg('edgeR')` `r citep(bib[[c('edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')]])`. The HTML reports are styled with `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` by default but can optionally be styled with `r CRANpkg('knitrBootstrap')` `r citep(bib[['knitrBootstrap']])`.
+`r Biocpkg('regionReport')` `r citep(bib[['regionReport']])` creates HTML or PDF reports for a set of genomic regions such as `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])` results or for feature-level analyses performed with `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])` or `r Biocpkg('edgeR')` `r citep(bib[[c('edgeR1', 'edgeR2', 'edgeR6')]])`. The HTML reports are styled with `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` by default but can optionally be styled with `r CRANpkg('knitrBootstrap')` `r citep(bib[['knitrBootstrap']])`.
 
 
 This package includes a basic exploration for a general set of genomic regions which can be easily customized to include the appropriate conclusions and/or further exploration of the results. Such a report can be generated using `renderReport()`. `r Biocpkg('regionReport')` has a separate template for running a basic exploration analysis of `r Biocpkg('derfinder')` 
@@ -341,7 +340,7 @@ This package was made possible thanks to:
 * `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])`
 * `r CRANpkg('devtools')` `r citep(bib[['devtools']])`
 * `r CRANpkg('DT')` `r citep(bib[['DT']])`
-* `r Biocpkg('edgeR')` `r citep(bib[[c('edgeR1', 'edgeR2', 'edgeR5', 'edgeR6')]])`
+* `r Biocpkg('edgeR')` `r citep(bib[[c('edgeR1', 'edgeR2', 'edgeR6')]])`
 * `r Biocpkg('GenomeInfoDb')` `r citep(bib[['GenomeInfoDb']])`
 * `r Biocpkg('GenomicRanges')` `r citep(bib[['GenomicRanges']])`
 * `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`

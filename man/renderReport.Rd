@@ -3,11 +3,11 @@
 \docType{data}
 \name{renderReport}
 \alias{renderReport}
-\alias{templateDensity}
-\alias{templateHistogram}
-\alias{templateManhattan}
 \alias{templatePvalueDensity}
+\alias{templateDensity}
+\alias{templateManhattan}
 \alias{templatePvalueHistogram}
+\alias{templateHistogram}
 \title{Generate a HTML/PDF report exploring a set of genomic regions}
 \format{An object of class \code{character} of length 1.}
 \usage{
@@ -184,4 +184,3 @@ cat(templateManhattan)
 Leonardo Collado-Torres
 }
 \keyword{datasets}
-

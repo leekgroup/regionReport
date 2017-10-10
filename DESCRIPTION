@@ -1,7 +1,7 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results
-Version: 1.11.6
+Version: 1.11.7
 Date: 2017-10-10
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
@@ -55,4 +55,4 @@ Suggests:
     RColorBrewer,
     TxDb.Hsapiens.UCSC.hg19.knownGene,
     whisker
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

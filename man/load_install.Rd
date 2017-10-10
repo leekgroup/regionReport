@@ -15,4 +15,3 @@ load_install(pkg, quietly = TRUE)
 This function uses requireNamespace to try to load a package. But if it's
 misssing it will then install it via Bioconductor.
 }
-

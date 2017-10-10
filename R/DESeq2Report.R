@@ -213,7 +213,6 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         DESeq2 = citation('DESeq2'),
         edgeR1 = if(isEdgeR) citation('edgeR')[1] else NULL,
         edgeR2 = if(isEdgeR) citation('edgeR')[2] else NULL,
-        edgeR5 = if(isEdgeR) citation('edgeR')[5] else NULL,
         edgeR6 = if(isEdgeR) RefManageR::BibEntry('inbook', key = 'edgeR6', author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', title = 'Differential expression analysis of complex RNA-seq experiments using edgeR', booktitle = 'Statistical Analysis of Next Generation Sequencing Data', year = 2014, editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer', location = 'New York', pages = '51-74') else NULL,
         other = if(!software %in% c('DESeq2', 'edgeR')) citation(software)[1] else NULL
     )

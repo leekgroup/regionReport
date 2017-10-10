@@ -16,4 +16,3 @@ The HTML and PDF reports are generated using rmarkdown
 Leonardo Collado-Torres <lcollado@jhsph.edu>
 }
 \keyword{package}
-

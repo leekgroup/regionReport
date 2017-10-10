@@ -194,11 +194,10 @@ if(interactive()) {
 example('derfinderReport', 'regionReport', ask=FALSE)
 }
 }
-\author{
-Leonardo Collado-Torres
-}
 \seealso{
 \link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr}, 
 \link[derfinder]{fullCoverage}
 }
-
+\author{
+Leonardo Collado-Torres
+}

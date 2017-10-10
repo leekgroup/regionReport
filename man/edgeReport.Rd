@@ -172,4 +172,3 @@ example('edgeReport', 'regionReport', ask=FALSE)
 \author{
 Leonardo Collado-Torres
 }
-

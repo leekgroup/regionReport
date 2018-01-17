@@ -27,7 +27,7 @@
 #' chromosome lengths as well as the default transcription database 
 #' (TxDb.Hsapiens.UCSC.hg19.knownGene) will be used.
 #' @param p.ideos A list where each element is the result of 
-#' \link[ggbio]{plotIdeogram}. If it's \code{NULL} and \code{hg19=TRUE} then 
+#' \link[ggbio:Ideogram]{plotIdeogram}. If it's \code{NULL} and \code{hg19=TRUE} then 
 #' they are created for the hg19 human reference.
 #' @param txdb Specify the transcription database to use for making the plots 
 #' for the top regions by area. If \code{NULL} and \code{hg19=TRUE} then 

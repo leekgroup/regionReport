@@ -96,7 +96,7 @@
 #' @importFrom rmarkdown render html_document
 #' @importFrom GenomicRanges mcols
 #' @importFrom knitrBootstrap knit_bootstrap
-#' @importFrom BiocStyle html_document2
+#' @importFrom BiocStyle html_document
 #' @import knitr
 #' @importFrom methods is
 #'

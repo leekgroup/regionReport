@@ -1,5 +1,12 @@
+CHANGES IN VERSION 1.15.1
+-------------------------
+
+BUG FIXES
+
+    o Fix namespace issue in relation to BiocStyle::html_document2
+
 CHANGES IN VERSION 1.11.6
-------------------------
+-------------------------
 
 SIGNIFICANT USER-VISIBLE CHANGES
 

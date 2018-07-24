@@ -268,7 +268,14 @@ plotCounts_gg <- function(i, dds, intgroup) {
             1, paste, collapse = " : "))
     }
     data <- plotCounts(dds, gene=i, intgroup=intgroup, returnData = TRUE)
-    data <- cbind(data, data.frame('group' = group))
+    ## Change in version 1.15.3
+    ## It might not be necessary to have any of this if else, but I'm not
+    ## sure that plotCounts(returnData) will always return the 'group' variable.
+    if('group' %in% colnames(data)) {
+        data$group <- group
+    } else {
+        data <- cbind(data, data.frame('group' = group))
+    }
     main <- rownames(dds)[i]
 
     ggplot(data, aes(x = group, y = count)) + geom_point() + ylab('Normalized count') + ggtitle(main) + coord_trans(y = "log10")

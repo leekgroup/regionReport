@@ -1,3 +1,16 @@
+CHANGES IN VERSION 1.15.3
+-------------------------
+
+BUG FIXES
+
+    o Fixed an issue with DESeq2Exploration.Rmd that affected both
+        DESeq2Report and edgeReport. This should also fix the recount
+        bioc-release (3.7) and bioc-devel (3.8) branches.
+        
+    o Fixed a NAMESPACE issue with rmarkdown::html_document and
+        BiocStyle::html_document
+
+
 CHANGES IN VERSION 1.15.2
 -------------------------
 

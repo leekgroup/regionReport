@@ -1,3 +1,11 @@
+CHANGES IN VERSION 1.14.2
+
+BUG FIXES
+
+    o Fix a bug in the order that was reported and fixed by @bounlu at
+        https://github.com/leekgroup/regionReport/pull/9/
+
+
 CHANGES IN VERSION 1.14.1
 -------------------------
 

@@ -38,25 +38,26 @@ with_wd <- function(dir, expr) {
 #' misssing it will then install it via Bioconductor.
 #'
 #' @param pkg A single character vector with the name of the package.
-#' @param quietly Whether to run requireNamespace and biocLite quietly or not.
+#' @param quietly Whether to run requireNamespace and BiocManager::install
+#' quietly or not.
 #'
 load_install <- function(pkg, quietly = TRUE) {
     attemptName <- requireNamespace(pkg, quietly = quietly)
     if(!attemptName) {
-        biocLite <- NULL ## To satisfy R CMD check
-        
-        source('http://bioconductor.org/biocLite.R')
-        attemptInstall <- tryCatch(biocLite(pkg, suppressUpdates = quietly),
+        attemptInstall <- tryCatch(BiocManager::install(pkg,
+            suppressUpdates = quietly),
             warning = function(w) 'failed')
         if(attemptInstall == 'failed') stop(paste('Failed to install', pkg))
         attemptName <- requireNamespace(pkg, quietly = quietly)
     }
     if(attemptName) {
         if(quietly) {
-            suppressPackageStartupMessages(library(package = pkg, character.only = TRUE))
+            suppressPackageStartupMessages(library(package = pkg,
+                character.only = TRUE))
         } else {
             library(package = pkg, character.only = TRUE)
         }
     }
     return(invisible(NULL))
 }
+

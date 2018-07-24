@@ -9,7 +9,8 @@ load_install(pkg, quietly = TRUE)
 \arguments{
 \item{pkg}{A single character vector with the name of the package.}
 
-\item{quietly}{Whether to run requireNamespace and biocLite quietly or not.}
+\item{quietly}{Whether to run requireNamespace and BiocManager::install
+quietly or not.}
 }
 \description{
 This function uses requireNamespace to try to load a package. But if it's

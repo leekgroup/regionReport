@@ -71,7 +71,7 @@
 #' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
 #' citep bibliography
 #' @importFrom utils browseURL citation packageVersion
-#' @importFrom rmarkdown render html_document
+#' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols
 #' @importFrom knitrBootstrap knit_bootstrap
 #' @importFrom RefManageR BibEntry
@@ -233,6 +233,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         output_format <- .advanced_argument('output_format',
             'BiocStyle::html_document', ...)
         outputIsHTML <- output_format %in% c('html_document',
+            'rmarkdown::html_document',
             'knitrBootstrap::bootstrap_document', 'BiocStyle::html_document')
         if(!outputIsHTML) {
             if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")

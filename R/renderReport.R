@@ -79,7 +79,7 @@
 #' citep bibliography
 #' @importFrom GenomeInfoDb seqlengths
 #' @importFrom utils browseURL citation packageVersion
-#' @importFrom rmarkdown render html_document
+#' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols 'mcols<-'
 #' @importFrom knitrBootstrap knit_bootstrap
 #' @importFrom BiocStyle html_document2
@@ -260,6 +260,7 @@ renderReport <- function(regions, project = "",
         output_format <- .advanced_argument('output_format',
             'BiocStyle::html_document', ...)
         outputIsHTML <- output_format %in% c('html_document',
+            'rmarkdown::html_document',
             'knitrBootstrap::bootstrap_document', 'BiocStyle::html_document')
         if(!outputIsHTML) {
             if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")

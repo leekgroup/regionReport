@@ -69,7 +69,8 @@ res.df <- as.data.frame(res)
 ## Sort results by adjusted p-values
 ord <- order(res.df$padj, decreasing = FALSE)
 res.df <- res.df[ord, ]
-res.df <- cbind(data.frame(Feature = rownames(res.df)), res.df)
+features <- rownames(res.df)
+res.df <- cbind(data.frame(Feature = features), res.df)
 rownames(res.df) <- NULL
 ```
 
@@ -276,11 +277,10 @@ plotCounts_gg <- function(i, dds, intgroup) {
     } else {
         data <- cbind(data, data.frame('group' = group))
     }
-    main <- rownames(dds)[i]
 
-    ggplot(data, aes(x = group, y = count)) + geom_point() + ylab('Normalized count') + ggtitle(main) + coord_trans(y = "log10")
+    ggplot(data, aes(x = group, y = count)) + geom_point() + ylab('Normalized count') + ggtitle(i) + coord_trans(y = "log10") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 }
-for(i in head(ord, nBestFeatures)) {
+for(i in head(features, nBestFeatures)) {
     print(plotCounts_gg(i, dds = dds, intgroup = intgroup))
 }
 ```

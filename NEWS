@@ -1,4 +1,13 @@
+CHANGES IN VERSION 1.14.3
+-------------------------
+
+BUG FIXES
+
+    o Fix NAMESPACE issue with BiocStyle::html_document2
+
+
 CHANGES IN VERSION 1.14.2
+-------------------------
 
 BUG FIXES
 
@@ -64,7 +73,7 @@ CHANGES IN VERSION 1.9.1
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
-    o Changed the default style to BiocStyle::html_document2.
+    o Changed the default style to BiocStyle::html_document.
 
 CHANGES IN VERSION 1.7.10
 -------------------------

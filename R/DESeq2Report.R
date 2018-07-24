@@ -75,7 +75,7 @@
 #' @importFrom GenomicRanges mcols
 #' @importFrom knitrBootstrap knit_bootstrap
 #' @importFrom RefManageR BibEntry
-#' @importFrom BiocStyle html_document2
+#' @importFrom BiocStyle html_document
 #' @import knitr
 #' @importFrom methods is
 #'

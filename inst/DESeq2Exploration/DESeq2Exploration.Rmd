@@ -53,7 +53,7 @@ if(is.null(colors)) {
 }
 load_install('pheatmap')
 load_install('DT')
-load_install('devtools')
+load_install('sessioninfo')
 
 ## Working behind the scenes
 # load_install('knitcitations')

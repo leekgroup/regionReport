@@ -82,7 +82,7 @@ bib <- c(knitcitations = citation('knitcitations'),
     DT = citation('DT'),
     R = citation(),
     IRanges = citation('IRanges'),
-    devtools = citation('devtools'),
+    sessioninfo = citation('sessioninfo'),
     GenomeInfoDb = RefManageR::BibEntry(bibtype = 'manual',
         key = 'GenomeInfoDb',
         author = 'Sonali Arora and Martin Morgan and Marc Carlson and H. Pagès',
@@ -337,7 +337,6 @@ This package was made possible thanks to:
 * `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])`
 * `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`
 * `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])`
-* `r CRANpkg('devtools')` `r citep(bib[['devtools']])`
 * `r CRANpkg('DT')` `r citep(bib[['DT']])`
 * `r Biocpkg('edgeR')` `r citep(bib[[c('edgeR1', 'edgeR2', 'edgeR6')]])`
 * `r Biocpkg('GenomeInfoDb')` `r citep(bib[['GenomeInfoDb']])`
@@ -354,6 +353,7 @@ This package was made possible thanks to:
 * `r CRANpkg('pheatmap')` `r citep(bib[['pheatmap']])`
 * `r CRANpkg('RColorBrewer')` `r citep(bib[['RColorBrewer']])`
 * `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
+* `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
 * `r Biocannopkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
 * `r CRANpkg('whisker')` `r citep(bib[['whisker']])`
 
@@ -395,7 +395,7 @@ round(totalTimeVignette, digits=3)
 
 ```{r vignetteReproducibility3, echo=FALSE}
 ## Session info
-library('devtools')
+library('sessioninfo')
 options(width = 120)
 session_info()
 ```

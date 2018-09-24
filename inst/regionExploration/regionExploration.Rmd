@@ -64,7 +64,7 @@ load_install('RColorBrewer')
 load_install('mgcv')
 load_install('whisker')
 load_install('DT')
-load_install('devtools')
+load_install('sessioninfo')
 
 ## Working behind the scenes
 # load_install('knitcitations')

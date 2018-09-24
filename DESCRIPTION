@@ -1,8 +1,8 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results
-Version: 1.15.4
-Date: 2018-07-24
+Version: 1.15.5
+Date: 2018-09-24
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -41,7 +41,7 @@ Suggests:
     biovizBase,
     bumphunter (>= 1.7.6),
     derfinderPlot (>= 1.3.2),
-    devtools (>= 1.6),
+    sessioninfo,
     DT,
     DESeq,
     edgeR,

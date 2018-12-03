@@ -1,8 +1,8 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results
-Version: 1.17.0
-Date: 2018-09-24
+Version: 1.17.1
+Date: 2018-12-03
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -18,7 +18,7 @@ BugReports: https://support.bioconductor.org/t/regionReport/
 VignetteBuilder: knitr
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization,
     Transcription, Coverage, ReportWriting, DifferentialMethylation,
-    DifferentialPeakCalling
+    DifferentialPeakCalling, ImmunoOncology
 Depends:
     R(>= 3.2)
 Imports:

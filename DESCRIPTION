@@ -1,12 +1,14 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results
-Version: 1.17.1
-Date: 2018-12-03
+Version: 1.17.2
+Date: 2019-04-10
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
-    = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
-    email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
-    role = c("aut", "ths"), email = "jtleek@gmail.com"))
+    = "lcollado@jhu.edu", comment = c(ORCID = "0000-0003-2140-308X")),
+    person(c("Andrew", "E."), "Jaffe", role = "aut",
+    email = "andrew.jaffe@libd.org", comment = c(ORCID = "0000-0001-6886-1454")),
+    person(c("Jeffrey", "T."), "Leek", role = c("aut", "ths"),
+    email = "jtleek@gmail.com", comment = c(ORCID = "0000-0002-2873-2671")))
 Description: Generate HTML or PDF reports to explore a set of regions such as
     the results from annotation-agnostic expression analysis of RNA-seq data at
     base-pair resolution performed by derfinder. You can also create reports for

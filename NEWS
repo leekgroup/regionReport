@@ -1,3 +1,15 @@
+CHANGES IN VERSION 1.18.2
+-------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Renamed load_install() as load_check() as this function now only checks
+        that the package(s) was installed and returns an error if missing. The
+        error shows the user how to install the package(s) they are missing
+        instead of installing them automatically. This complies with Marcel
+        Ramos' request at https://github.com/leekgroup/recount/issues/14.
+
+
 CHANGES IN VERSION 1.17.2
 -------------------------
 
@@ -23,7 +35,7 @@ BUG FIXES
     o Fixed an issue with DESeq2Exploration.Rmd that affected both
         DESeq2Report and edgeReport. This should also fix the recount
         bioc-release (3.7) and bioc-devel (3.8) branches.
-        
+
     o Fixed a NAMESPACE issue with rmarkdown::html_document and
         BiocStyle::html_document
 
@@ -76,7 +88,7 @@ SIGNIFICANT USER-VISIBLE CHANGES
 
     o DESeq2Report() can now be used with other software if their results are
          made to look like DESeq2 results. For example, with limma-voom results.
-         
+
 BUG FIXES
 
     o Made the DESeq2Report() more robust in case rlog() fails initially.
@@ -154,7 +166,7 @@ SIGNIFICANT USER-VISIBLE CHANGES
     o Added a 'digits' argument to control how to round some numerical variables
         in all type of reports.
     o Added a 'theme' argument to allow setting the ggplot2 theme for the plots.
-    
+
 BUG FIXES
 
     o Improved the PDF versions of all reports by hiding code and shortening
@@ -205,10 +217,10 @@ SIGNIFICANT USER-VISIBLE CHANGES
     o Merged pull request https://github.com/leekgroup/regionReport/pull/7
     o Added "template" argument to renderReport and derfinderReport to
         customize the knitr template used
-    o Wrapped code that works in a temporary directory in with_wd function, 
-        which evaluates in the directory but returns to the original directory 
+    o Wrapped code that works in a temporary directory in with_wd function,
+        which evaluates in the directory but returns to the original directory
         in the case of a user interrupt or error (with on.exit)
-    
+
 
 
 CHANGES IN VERSION 1.3.4
@@ -238,7 +250,7 @@ CHANGES IN VERSION 1.3.2
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
-    o Deprecated functions with underscores in their names in favor of 
+    o Deprecated functions with underscores in their names in favor of
         camelCase functions. This was done to simplify the package.
 
 CHANGES IN VERSION 1.3.1
@@ -259,7 +271,7 @@ NEW FEATURES
     o Introduced renderReport() which creates a simple exploratory report for
         any set of genomic regions. It allows the user to further customize the
         report by using a child file.
-    o You can now use the 'output_format' advanced parameter on both 
+    o You can now use the 'output_format' advanced parameter on both
         renderReport() and derfinderReport() to output a PDF file instead
         of an HTML file. The interactive tables are lost and only the top 20
         rows are shown.
@@ -310,7 +322,7 @@ SIGNIFICANT USER-VISIBLE CHANGES
 CHANGES IN VERSION 0.0.18
 -------------------------
 
-    o Now derfinderReport() has a 'chrsStyle' argument to match changes in 
+    o Now derfinderReport() has a 'chrsStyle' argument to match changes in
     derfinder version 0.0.60. 'chrsStyle' is set to 'UCSC' by default.
 
 CHANGES IN VERSION 0.0.17

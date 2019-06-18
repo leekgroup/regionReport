@@ -19,6 +19,6 @@ back to the original.
 See here: http://plantarum.ca/code/setwd-part2/
 }
 \author{
-Tyler Smith, contributed to regionReport by David Robinson 
+Tyler Smith, contributed to regionReport by David Robinson
 https://github.com/dgrtwo
 }

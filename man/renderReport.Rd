@@ -11,9 +11,9 @@
 \title{Generate a HTML/PDF report exploring a set of genomic regions}
 \format{An object of class \code{character} of length 1.}
 \usage{
-renderReport(regions, project = "", pvalueVars = c(`P-values` = "pval"),
-  densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
-  annotation = NULL, nBestRegions = 500, customCode = NULL,
+renderReport(regions, project = "", pvalueVars = c(`P-values` =
+  "pval"), densityVars = NULL, significantVar = mcols(regions)$pval <=
+  0.05, annotation = NULL, nBestRegions = 500, customCode = NULL,
   outdir = "regionExploration", output = "regionExploration",
   browse = interactive(), txdb = NULL, device = "png",
   densityTemplates = list(Pvalue = templatePvalueDensity, Common =
@@ -43,7 +43,7 @@ character vector is provided, the names are used in the plot titles.}
 
 \item{densityVars}{The names of variables to use for making density plots
 by chromosome. Commonly used to explore scores and other variables given
-by region.  If a named character vector is provided, the names are used in 
+by region.  If a named character vector is provided, the names are used in
 the plot titles.}
 
 \item{significantVar}{A \code{logical} variable differentiating statistically
@@ -54,7 +54,7 @@ are compared against each other to see differences in width, location, etc.}
 \code{regions}. Note that this can take time for a large set of regions
 so it's better to pre-compute this information and save it.}
 
-\item{nBestRegions}{The number of regions to include in the interactive 
+\item{nBestRegions}{The number of regions to include in the interactive
 table.}
 
 \item{customCode}{An absolute path to a child R Markdown file with code to be
@@ -66,23 +66,23 @@ further quality checks and plots.}
 
 \item{output}{The name of output HTML file (without the html extension).}
 
-\item{browse}{If \code{TRUE} the HTML report is opened in your browser once 
+\item{browse}{If \code{TRUE} the HTML report is opened in your browser once
 it's completed.}
 
 \item{txdb}{Specify the transcription database to use for identifying the
 closest genes via \link[bumphunter]{matchGenes}. If \code{NULL} it will
 use TxDb.Hsapiens.UCSC.hg19.knownGene by default.}
 
-\item{device}{The graphical device used when knitting. See more at 
+\item{device}{The graphical device used when knitting. See more at
 http://yihui.name/knitr/options (\code{dev} argument).}
 
-\item{densityTemplates}{A list of length 3 with templates for the p-value 
-density plots (variables from \code{pvalueVars}), the continuous 
-variables density plots (variables from \code{densityVars}), and Manhattan 
-plots for the p-value variables (\code{pvalueVars}). These templates 
-are processed by \link[whisker]{whisker.render}. Check the default templates 
-for more information. The \code{densityTemplates} argument is available for 
-those users interested in customizing these plots. For example, to show 
+\item{densityTemplates}{A list of length 3 with templates for the p-value
+density plots (variables from \code{pvalueVars}), the continuous
+variables density plots (variables from \code{densityVars}), and Manhattan
+plots for the p-value variables (\code{pvalueVars}). These templates
+are processed by \link[whisker]{whisker.render}. Check the default templates
+for more information. The \code{densityTemplates} argument is available for
+those users interested in customizing these plots. For example, to show
 histograms instead of density plots use \code{templatePvalueHistogram} and
 \code{templateHistogram} instead of \code{templatePvalueDensity} and
 \code{templateDensity} respectively.}
@@ -95,13 +95,13 @@ within the package source.}
 ggplot2.}
 
 \item{digits}{The number of digits to round to in the interactive table of
-the top \code{nBestRegions}. Note that p-values and adjusted p-values won't 
+the top \code{nBestRegions}. Note that p-values and adjusted p-values won't
 be rounded.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.
 Advanced arguments:
 \describe{
-\item{overviewParams }{ A two element list with \code{base_size} and 
+\item{overviewParams }{ A two element list with \code{base_size} and
 \code{areaRel} that control the text size for the genomic overview plots.}
 \item{output_format }{ Either \code{html_document}, \code{pdf_document} or
 \code{knitrBootstrap::bootstrap_document} unless you modify the YAML
@@ -123,16 +123,16 @@ customize the entire template by providing an R Markdown file to
 \code{template}.
 }
 \details{
-Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 
+Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 a PDF report respectively. If using knitrBootstrap, we recommend the version
 available only via GitHub at https://github.com/jimhester/knitrBootstrap
 which has nicer features than the current version available via CRAN. You can
 also set the \code{output_format} to \code{'html_document'} for a HTML
-report styled by rmarkdown. The default is set to 
+report styled by rmarkdown. The default is set to
 \code{'BiocStyle::html_document'}.
 
-If you modify the YAML front matter of \code{template}, you can use other 
+If you modify the YAML front matter of \code{template}, you can use other
 values for \code{output_format}.
 
 The HTML report styled with knitrBootstrap can be smaller in size than the
@@ -154,7 +154,7 @@ dir.create('renderReport-example', showWarnings = FALSE, recursive = TRUE)
 ## Generate the HTML report
 report <- renderReport(regions, 'Example run', pvalueVars = c(
     'Q-values' = 'qvalues', 'P-values' = 'pvalues'), densityVars = c(
-    'Area' = 'area', 'Mean coverage' = 'meanCoverage'), 
+    'Area' = 'area', 'Mean coverage' = 'meanCoverage'),
     significantVar = regions$qvalues <= 0.05, nBestRegions = 20,
     outdir = 'renderReport-example')
 
@@ -168,7 +168,7 @@ if(interactive()) {
 example('renderReport', 'regionReport', ask=FALSE)
 }
 
-## Check the default templates. For users interested in customizing these 
+## Check the default templates. For users interested in customizing these
 ## plots.
 ## For p-value variables:
 cat(templatePvalueDensity)

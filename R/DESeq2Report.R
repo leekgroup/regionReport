@@ -10,7 +10,7 @@
 #' @param dds A \link[DESeq2]{DESeqDataSet} object with the results from
 #' running \link[DESeq2]{DESeq}.
 #' @param project The title of the project.
-#' @param intgroup interesting groups: a character vector of names in 
+#' @param intgroup interesting groups: a character vector of names in
 #' \code{colData(x)} to use for grouping. This parameter is passed to functions
 #' such as \link[DESeq2]{plotPCA}.
 #' @param colors vector of colors used in heatmap. If \code{NULL}, then a
@@ -18,9 +18,9 @@
 #' \link[pheatmap]{pheatmap}.
 #' @param res A \link[DESeq2]{DESeqResults} object. If \code{NULL}, then
 #' \link[DESeq2]{results} will be used on \code{dds} with default parameters.
-#' @param nBest The number of features to include in the interactive 
+#' @param nBest The number of features to include in the interactive
 #' table. Features are ordered by their adjusted p-values.
-#' @param nBestFeatures The number of best features to make plots of their 
+#' @param nBestFeatures The number of best features to make plots of their
 #' counts. We recommend a small number, say 20.
 #' @param customCode An absolute path to a child R Markdown file with code to be
 #' evaluated before the reproducibility section. Its useful for users who want
@@ -28,9 +28,9 @@
 #' further quality checks and plots.
 #' @param outdir The name of output directory.
 #' @param output The name of output HTML file (without the html extension).
-#' @param browse If \code{TRUE} the HTML report is opened in your browser once 
+#' @param browse If \code{TRUE} the HTML report is opened in your browser once
 #' it's completed.
-#' @param device The graphical device used when knitting. See more at 
+#' @param device The graphical device used when knitting. See more at
 #' http://yihui.name/knitr/options (\code{dev} argument).
 #' @param template Template file to use for the report. If not provided, will
 #' use the default file found in DESeq2Exploration/DESeq2Exploration.Rmd
@@ -42,14 +42,14 @@
 #' @param theme A ggplot2 \link[ggplot2]{theme} to use for the plots made with
 #' ggplot2.
 #' @param digits The number of digits to round to in the interactive table of
-#' the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't 
+#' the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't
 #' be rounded.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #' Advanced arguments:
 #' \describe{
-#' \item{software }{ The name of the package used for performing the 
+#' \item{software }{ The name of the package used for performing the
 #' differential expression analysis. Either \code{DESeq2} or \code{edgeR}.}
-#' \item{dge }{ A \link[edgeR]{DGEList} object. \code{NULL} by default and only 
+#' \item{dge }{ A \link[edgeR]{DGEList} object. \code{NULL} by default and only
 #' used by \link{edgeReport}.}
 #' \item{theCall }{ The function call. \code{NULL} by default and only used by
 #' \link{edgeReport}.}
@@ -80,16 +80,16 @@
 #' @importFrom methods is
 #'
 #' @details
-#' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 
+#' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 #' \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 #' a PDF report respectively. If using knitrBootstrap, we recommend the version
 #' available only via GitHub at https://github.com/jimhester/knitrBootstrap
 #' which has nicer features than the current version available via CRAN. You can
 #' also set the \code{output_format} to \code{'html_document'} for a HTML
-#' report styled by rmarkdown. The default is set to 
+#' report styled by rmarkdown. The default is set to
 #' \code{'BiocStyle::html_document'}.
 #'
-#' If you modify the YAML front matter of \code{template}, you can use other 
+#' If you modify the YAML front matter of \code{template}, you can use other
 #' values for \code{output_format}.
 #'
 #' The HTML report styled with knitrBootstrap can be smaller in size than the
@@ -134,18 +134,18 @@
 DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     nBest = 500, nBestFeatures = 20, customCode = NULL,
     outdir = 'DESeq2Exploration', output = 'DESeq2Exploration',
-    browse = interactive(), device = 'png', template = NULL, 
+    browse = interactive(), device = 'png', template = NULL,
     searchURL = 'http://www.ncbi.nlm.nih.gov/gene/?term=', theme = NULL,
     digits = 2, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
-    
-    
+
+
     ## Check inputs
     stopifnot(is(dds, 'DESeqDataSet'))
     if (!"results" %in% mcols(mcols(dds))$type)
         stop("couldn't find results. you should first run DESeq()")
-    if (!all(intgroup %in% names(colData(dds)))) 
+    if (!all(intgroup %in% names(colData(dds))))
         stop("all variables in 'intgroup' must be columns of colData")
     if(is.null(res)) {
         ## Run results with default parameters
@@ -156,7 +156,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     }
     stopifnot(is.null(searchURL) | length(searchURL) == 1)
     if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
-        
+
 # @param software The name of the package used for performing the differential
 # expression analysis. Either \code{DESeq2}, \code{edgeR} or \code{other}
 # where \code{other} has a valid citation.
@@ -164,20 +164,20 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     if(!software %in% c('DESeq2', 'edgeR'))
         stopifnot(!is.null(citation(software)[1]))
     isEdgeR <- software == 'edgeR'
-    
+
 # @param dge A \link[edgeR]{DGEList} object.
     dge <- .advanced_argument('dge', NULL, ...)
     if(isEdgeR) stopifnot(is(dge, 'DGEList'))
-    
+
     ## Is there custom code?
     hasCustomCode <- !is.null(customCode)
     if(hasCustomCode) stopifnot(length(customCode) == 1)
 
-    
+
     ## Create outdir
     dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
     workingDir <- getwd()
-    
+
     ## Locate Rmd if one is not provided
     if (is.null(template)) {
         templateNull <- TRUE
@@ -188,23 +188,24 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     } else {
         templateNull <- FALSE
     }
-    
+
     ## Load knitcitations with a clean bibliography
     cleanbib()
     cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
     # Note links won't show for now due to the following issue
     # https://github.com/cboettig/knitcitations/issues/63
-    
-    ## Install suggested packages that are needed for citation to work
-    pkgs <- c('DT', 'ggplot2', 'pheatmap', 'RColorBrewer')
+
+    ## Check all packages (from suggests) needed for the report
+    pkgs <- c('DESeq2', 'ggplot2', 'RColorBrewer', 'pheatmap', 'DT',
+        'sessioninfo')
     if(isEdgeR) pkgs <- c(pkgs, 'edgeR')
-    for(pkg in pkgs) load_install(pkg)
-    
+    load_check(pkgs)
+
     ## Write bibliography information
     bib <- c(
-        knitcitations = citation('knitcitations'), 
+        knitcitations = citation('knitcitations'),
         regionReport = citation('regionReport')[1],
-        DT = citation('DT'), 
+        DT = citation('DT'),
         ggplot2 = citation('ggplot2'),
         knitr = citation('knitr')[3],
         rmarkdown = citation('rmarkdown'),
@@ -216,19 +217,19 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         edgeR6 = if(isEdgeR) RefManageR::BibEntry('inbook', key = 'edgeR6', author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', title = 'Differential expression analysis of complex RNA-seq experiments using edgeR', booktitle = 'Statistical Analysis of Next Generation Sequencing Data', year = 2014, editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer', location = 'New York', pages = '51-74') else NULL,
         other = if(!software %in% c('DESeq2', 'edgeR')) citation(software)[1] else NULL
     )
-    
+
     write.bibtex(bib, file = file.path(outdir, paste0(output, '.bib')))
-    
+
     ## Save the call
     theCall <- .advanced_argument('theCall', NULL, ...)
     if(!is(theCall, 'call')) theCall <- match.call()
-    
+
     ## Generate report
     ## Perform code within the output directory.
     tmpdir <- getwd()
     with_wd(outdir, {
         file.copy(template, to = paste0(output, '.Rmd'))
-    
+
         ## Output format
         output_format <- .advanced_argument('output_format',
             'BiocStyle::html_document', ...)
@@ -238,7 +239,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         if(!outputIsHTML) {
             if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
         }
-    
+
         ## Check knitrBoostrap version
         knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
             if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
@@ -252,11 +253,11 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
                 clean = .advanced_argument('clean', TRUE, ...))
         }
         if(templateNull) file.remove(paste0(output, '.Rmd'))
-    
+
         ## Open
         if (browse) browseURL(res)
     })
-    
+
     ## Finish
     return(invisible(res))
 }

@@ -32,7 +32,7 @@ Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
 
 ```{r docSetup, bootstrap.show.code = FALSE, dev = device, bootstrap.show.message=FALSE}
 ## knitrBoostrap and device chunk options
-load_install('knitr')
+library('knitr')
 opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
 if(!outputIsHTML) opts_chunk$set(bootstrap.show.code = FALSE, dev = device, echo = FALSE)
 ```
@@ -41,36 +41,30 @@ if(!outputIsHTML) opts_chunk$set(bootstrap.show.code = FALSE, dev = device, echo
 #### Libraries needed
 
 ## Bioconductor
-load_install('bumphunter')
-load_install('derfinder')
-load_install('derfinderPlot')
-load_install('GenomeInfoDb')
-load_install('GenomicRanges')
-load_install('ggbio')
+library('bumphunter')
+library('derfinder')
+library('derfinderPlot')
+library('GenomeInfoDb')
+library('GenomicRanges')
+library('ggbio')
 
 ## Transcription database to use by default
 if(is.null(txdb)) {
-    load_install('TxDb.Hsapiens.UCSC.hg19.knownGene')
+    library('TxDb.Hsapiens.UCSC.hg19.knownGene')
     txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
 }
 
 ## CRAN
-load_install('ggplot2')
+library('ggplot2')
 if(!is.null(theme)) theme_set(theme)
-load_install('grid')
-load_install('gridExtra')
-load_install('knitr')
-load_install('RColorBrewer')
-load_install('mgcv')
-load_install('whisker')
-load_install('DT')
-load_install('sessioninfo')
-
-## Working behind the scenes
-# load_install('knitcitations')
-# load_install('rmarkdown')
-## Optionally
-# load_install('knitrBootstrap')
+library('grid')
+library('gridExtra')
+library('knitr')
+library('RColorBrewer')
+library('mgcv')
+library('whisker')
+library('DT')
+library('sessioninfo')
 
 #### Code setup
 

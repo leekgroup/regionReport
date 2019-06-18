@@ -5,15 +5,16 @@
 \title{Generate a HTML/PDF report exploring the basic results from derfinder}
 \usage{
 derfinderReport(prefix, outdir = "basicExploration",
-  output = "basicExploration", project = prefix, browse = interactive(),
-  nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
-  fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
-  device = "png", significantVar = "qvalue", customCode = NULL,
-  template = NULL, theme = NULL, digits = 2, ...)
+  output = "basicExploration", project = prefix,
+  browse = interactive(), nBestRegions = 100,
+  makeBestClusters = TRUE, nBestClusters = 2, fullCov = NULL,
+  hg19 = TRUE, p.ideos = NULL, txdb = NULL, device = "png",
+  significantVar = "qvalue", customCode = NULL, template = NULL,
+  theme = NULL, digits = 2, ...)
 }
 \arguments{
-\item{prefix}{The main data directory path where 
-\link[derfinder]{mergeResults} was run. It should be the same as 
+\item{prefix}{The main data directory path where
+\link[derfinder]{mergeResults} was run. It should be the same as
 \code{mergeResults(prefix)}.}
 
 \item{outdir}{The name of output directory relative to \code{prefix}.}
@@ -22,35 +23,35 @@ derfinderReport(prefix, outdir = "basicExploration",
 
 \item{project}{The title of the project.}
 
-\item{browse}{If \code{TRUE} the HTML report is opened in your browser once 
+\item{browse}{If \code{TRUE} the HTML report is opened in your browser once
 it's completed.}
 
 \item{nBestRegions}{The number of region plots to make, ordered by area.}
 
-\item{makeBestClusters}{If \code{TRUE}, \link[derfinderPlot]{plotCluster} is 
-used on the \code{nBestClusters} regions by area. Note that these plots take 
+\item{makeBestClusters}{If \code{TRUE}, \link[derfinderPlot]{plotCluster} is
+used on the \code{nBestClusters} regions by area. Note that these plots take
 some time to make.}
 
-\item{nBestClusters}{The number of region cluster plots to make by taking 
+\item{nBestClusters}{The number of region cluster plots to make by taking
 the \code{nBestClusters} regions ranked by area of the cluster.}
 
-\item{fullCov}{A list where each element is the result from 
-\link[derfinder]{loadCoverage} used with \code{cutoff=NULL}. Can be 
+\item{fullCov}{A list where each element is the result from
+\link[derfinder]{loadCoverage} used with \code{cutoff=NULL}. Can be
 generated using \link[derfinder]{fullCoverage}.}
 
-\item{hg19}{If \code{TRUE} then the reference is assumed to be hg19 and 
-chromosome lengths as well as the default transcription database 
+\item{hg19}{If \code{TRUE} then the reference is assumed to be hg19 and
+chromosome lengths as well as the default transcription database
 (TxDb.Hsapiens.UCSC.hg19.knownGene) will be used.}
 
-\item{p.ideos}{A list where each element is the result of 
-\link[ggbio:plotSingleChrom]{plotIdeogram}. If it's \code{NULL} and \code{hg19=TRUE} then 
+\item{p.ideos}{A list where each element is the result of
+\link[ggbio:plotSingleChrom]{plotIdeogram}. If it's \code{NULL} and \code{hg19=TRUE} then
 they are created for the hg19 human reference.}
 
-\item{txdb}{Specify the transcription database to use for making the plots 
-for the top regions by area. If \code{NULL} and \code{hg19=TRUE} then 
+\item{txdb}{Specify the transcription database to use for making the plots
+for the top regions by area. If \code{NULL} and \code{hg19=TRUE} then
 TxDb.Hsapiens.UCSC.hg19.knownGene is used.}
 
-\item{device}{The graphical device used when knitting. See more at 
+\item{device}{The graphical device used when knitting. See more at
 http://yihui.name/knitr/options (\code{dev} argument).}
 
 \item{significantVar}{A character variable specifying whether to use the
@@ -71,31 +72,31 @@ within the package source.}
 ggplot2.}
 
 \item{digits}{The number of digits to round to in the interactive table of
-the top \code{nBestRegions}. Note that p-values and adjusted p-values won't 
+the top \code{nBestRegions}. Note that p-values and adjusted p-values won't
 be rounded.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.
 Advanced arguments:
 \describe{
-\item{chrsStyle }{ The naming style of the chromosomes. By default, UCSC. 
+\item{chrsStyle }{ The naming style of the chromosomes. By default, UCSC.
 See \link[GenomeInfoDb]{seqlevelsStyle}.}
-\item{species }{ Species name. See \link[derfinder]{extendedMapSeqlevels}  
+\item{species }{ Species name. See \link[derfinder]{extendedMapSeqlevels}
 for more information.}
-\item{currentStyle }{ Current naming style used. See 
+\item{currentStyle }{ Current naming style used. See
 \link[derfinder]{extendedMapSeqlevels} for more information.}
-\item{fullRegions }{ Part of the output of \link[derfinder]{mergeResults}. 
+\item{fullRegions }{ Part of the output of \link[derfinder]{mergeResults}.
 Specify it only if you have already loaded it in memory.}
-\item{fullNullSummary }{ Part of the output of 
-\link[derfinder]{mergeResults}. Specify it only if you have already loaded 
+\item{fullNullSummary }{ Part of the output of
+\link[derfinder]{mergeResults}. Specify it only if you have already loaded
 it in memory.}
-\item{fullAnnotatedRegions }{ Part of the output of 
-\link[derfinder]{mergeResults}. Specify it only if you have already loaded 
+\item{fullAnnotatedRegions }{ Part of the output of
+\link[derfinder]{mergeResults}. Specify it only if you have already loaded
 it in memory.}
-\item{optionsStats }{ Part of the output of \link[derfinder]{analyzeChr}. 
+\item{optionsStats }{ Part of the output of \link[derfinder]{analyzeChr}.
 Specify it only if you have already loaded it in memory.}
-\item{optionsMerge }{ Part of the output of \link[derfinder]{mergeResults}. 
+\item{optionsMerge }{ Part of the output of \link[derfinder]{mergeResults}.
 Specify it only if you have already loaded it in memory.}
-\item{overviewParams }{ A two element list with \code{base_size} and 
+\item{overviewParams }{ A two element list with \code{base_size} and
 \code{areaRel} that control the text size for the genomic overview plots.}
 \item{output_format }{ Either \code{html_document}, \code{pdf_document} or
 \code{knitrBootstrap::bootstrap_document} unless you modify the YAML
@@ -109,23 +110,23 @@ Passed to \link[derfinder]{extendedMapSeqlevels}.}
 An HTML report with a basic exploration of the derfinder results.
 }
 \description{
-This function generates a HTML report exploring the basic results from 
-single base-level approach derfinder analysis results 
-(www.bioconductor.org/packages/derfinder). The HTML report itself 
-is generated using rmarkdown (http://rmarkdown.rstudio.com/). It works best 
+This function generates a HTML report exploring the basic results from
+single base-level approach derfinder analysis results
+(www.bioconductor.org/packages/derfinder). The HTML report itself
+is generated using rmarkdown (http://rmarkdown.rstudio.com/). It works best
 after using \link[derfinder]{mergeResults}.
 }
 \details{
-Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 
+Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 a PDF report respectively. If using knitrBootstrap, we recommend the version
 available only via GitHub at https://github.com/jimhester/knitrBootstrap
 which has nicer features than the current version available via CRAN. You can
 also set the \code{output_format} to \code{'html_document'} for a HTML
-report styled by rmarkdown. The default is set to 
+report styled by rmarkdown. The default is set to
 \code{'BiocStyle::html_document'}.
 
-If you modify the YAML front matter of \code{template}, you can use other 
+If you modify the YAML front matter of \code{template}, you can use other
 values for \code{output_format}.
 
 The HTML report styled with knitrBootstrap can be smaller in size than the
@@ -140,7 +141,7 @@ library('derfinder')
 dir.create('derfinderReport-example', showWarnings = FALSE, recursive = TRUE)
 
 ## For convenience, the derfinder output has been pre-computed
-file.copy(system.file(file.path('extdata', 'chr21'), package='derfinder', 
+file.copy(system.file(file.path('extdata', 'chr21'), package='derfinder',
     mustWork=TRUE), 'derfinderReport-example', recursive = TRUE)
 
 \dontrun{
@@ -149,11 +150,11 @@ initialPath <- getwd()
 setwd(file.path(initialPath, 'derfinderReport-example'))
 
 ## Collapse the coverage information
-collapsedFull <- collapseFullCoverage(list(genomeData$coverage), 
+collapsedFull <- collapseFullCoverage(list(genomeData$coverage),
     verbose=TRUE)
 
 ## Calculate library size adjustments
-sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE, 
+sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE,
     verbose=TRUE)
 
 ## Build the models
@@ -162,25 +163,25 @@ adjustvars <- data.frame(genomeInfo$gender)
 models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
 
 ## Analyze chromosome 21
-analyzeChr(chr='21', coverageInfo=genomeData, models=models, 
-    cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
+analyzeChr(chr='21', coverageInfo=genomeData, models=models,
+    cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group,
     mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
 
 ## Change the directory back to the original one
 setwd(initialPath)
 }
 
-## Merge the results from the different chromosomes. In this case, there's 
+## Merge the results from the different chromosomes. In this case, there's
 ## only one: chr21
-mergeResults(chrs = '21', prefix = 'derfinderReport-example', 
+mergeResults(chrs = '21', prefix = 'derfinderReport-example',
     genomicState = genomicState$fullGenome)
 
 ## Load the options used for calculating the statistics
 load(file.path('derfinderReport-example', 'chr21', 'optionsStats.Rdata'))
 
 ## Generate the HTML report
-report <- derfinderReport(prefix='derfinderReport-example', browse=FALSE, 
-    nBestRegions=1, makeBestClusters=FALSE, 
+report <- derfinderReport(prefix='derfinderReport-example', browse=FALSE,
+    nBestRegions=1, makeBestClusters=FALSE,
     fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
 
 
@@ -195,7 +196,7 @@ example('derfinderReport', 'regionReport', ask=FALSE)
 }
 }
 \seealso{
-\link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr}, 
+\link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr},
 \link[derfinder]{fullCoverage}
 }
 \author{

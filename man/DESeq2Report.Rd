@@ -17,7 +17,7 @@ running \link[DESeq2]{DESeq}.}
 
 \item{project}{The title of the project.}
 
-\item{intgroup}{interesting groups: a character vector of names in 
+\item{intgroup}{interesting groups: a character vector of names in
 \code{colData(x)} to use for grouping. This parameter is passed to functions
 such as \link[DESeq2]{plotPCA}.}
 
@@ -28,10 +28,10 @@ a default set of colors will be used. This argument is passed to
 \item{res}{A \link[DESeq2]{DESeqResults} object. If \code{NULL}, then
 \link[DESeq2]{results} will be used on \code{dds} with default parameters.}
 
-\item{nBest}{The number of features to include in the interactive 
+\item{nBest}{The number of features to include in the interactive
 table. Features are ordered by their adjusted p-values.}
 
-\item{nBestFeatures}{The number of best features to make plots of their 
+\item{nBestFeatures}{The number of best features to make plots of their
 counts. We recommend a small number, say 20.}
 
 \item{customCode}{An absolute path to a child R Markdown file with code to be
@@ -43,10 +43,10 @@ further quality checks and plots.}
 
 \item{output}{The name of output HTML file (without the html extension).}
 
-\item{browse}{If \code{TRUE} the HTML report is opened in your browser once 
+\item{browse}{If \code{TRUE} the HTML report is opened in your browser once
 it's completed.}
 
-\item{device}{The graphical device used when knitting. See more at 
+\item{device}{The graphical device used when knitting. See more at
 http://yihui.name/knitr/options (\code{dev} argument).}
 
 \item{template}{Template file to use for the report. If not provided, will
@@ -62,15 +62,15 @@ when the output is a HTML file.}
 ggplot2.}
 
 \item{digits}{The number of digits to round to in the interactive table of
-the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't 
+the top \code{nBestFeatures}. Note that p-values and adjusted p-values won't
 be rounded.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.
 Advanced arguments:
 \describe{
-\item{software }{ The name of the package used for performing the 
+\item{software }{ The name of the package used for performing the
 differential expression analysis. Either \code{DESeq2} or \code{edgeR}.}
-\item{dge }{ A \link[edgeR]{DGEList} object. \code{NULL} by default and only 
+\item{dge }{ A \link[edgeR]{DGEList} object. \code{NULL} by default and only
 used by \link{edgeReport}.}
 \item{theCall }{ The function call. \code{NULL} by default and only used by
 \link{edgeReport}.}
@@ -94,16 +94,16 @@ customize the entire template by providing an R Markdown file to
 \code{template}.
 }
 \details{
-Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or 
+Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 a PDF report respectively. If using knitrBootstrap, we recommend the version
 available only via GitHub at https://github.com/jimhester/knitrBootstrap
 which has nicer features than the current version available via CRAN. You can
 also set the \code{output_format} to \code{'html_document'} for a HTML
-report styled by rmarkdown. The default is set to 
+report styled by rmarkdown. The default is set to
 \code{'BiocStyle::html_document'}.
 
-If you modify the YAML front matter of \code{template}, you can use other 
+If you modify the YAML front matter of \code{template}, you can use other
 values for \code{output_format}.
 
 The HTML report styled with knitrBootstrap can be smaller in size than the

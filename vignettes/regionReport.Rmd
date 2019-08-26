@@ -39,7 +39,7 @@ BiocManager::valid()
 
 `r Biocpkg('regionReport')` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data. That is, packages like `r Biocpkg('GenomicFeatures')` that allow you to import the data and `r Biocpkg('DESeq2')` for generating differential expression results. A `r Biocpkg('regionReport')` user is not expected to deal with those packages directly.
 
-If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startBioC/#.VkOKbq6rRuU).
+If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
 
 ## Asking for help
 

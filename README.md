@@ -38,8 +38,10 @@ Get R 3.5.x from [CRAN](http://cran.r-project.org/) as well as pandoc
 
 ```R
 ## From Bioconductor
-install.packages("BiocManager")
-BiocManager::install('regionReport')
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("regionReport")
 ```
 
 # Vignette

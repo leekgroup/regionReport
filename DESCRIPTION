@@ -1,7 +1,7 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results
-Version: 1.20.0
+Version: 1.21.0
 Date: 2019-10-22
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")),

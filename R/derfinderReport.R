@@ -287,7 +287,7 @@ derfinderReport <- function(prefix, outdir = 'basicExploration',
         ggbio = citation('ggbio'),
         ggplot2 = citation('ggplot2'),
         knitr = citation('knitr')[3],
-        rmarkdown = citation('rmarkdown'))
+        rmarkdown = citation('rmarkdown')[1])
 
     write.bibtex(bib, file = file.path(prefix, outdir, paste0(output, '.bib')))
 

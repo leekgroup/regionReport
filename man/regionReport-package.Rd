@@ -2,17 +2,31 @@
 % Please edit documentation in R/regionReport-package.R
 \docType{package}
 \name{regionReport-package}
+\alias{regionReport}
 \alias{regionReport-package}
-\title{Generate HTML or PDF reports for a set of regions or DESeq2/edgeR results.}
+\title{regionReport: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results}
 \description{
-Generate an HTML reports to explore a set of regions such as the
-results from annotation-agnostic expression analysis of RNA-seq data at 
-base-pair resolution performed by derfinder. The package can also be used
-to generate reports for DESeq2 or edgeR results.
-The HTML and PDF reports are generated using rmarkdown 
-(http://rmarkdown.rstudio.com/).
+Generate HTML or PDF reports to explore a set of regions such as
+    the results from annotation-agnostic expression analysis of RNA-seq data at
+    base-pair resolution performed by derfinder. You can also create reports for
+    DESeq2 or edgeR results.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/leekgroup/regionReport}
+  \item Report bugs at \url{https://support.bioconductor.org/t/regionReport/}
+}
+
 }
 \author{
-Leonardo Collado-Torres <lcollado@jhsph.edu>
+\strong{Maintainer}: Leonardo Collado-Torres \email{lcolladotor@gmail.com} (\href{https://orcid.org/0000-0003-2140-308X}{ORCID})
+
+Authors:
+\itemize{
+  \item Andrew E. Jaffe \email{andrew.jaffe@libd.org} (\href{https://orcid.org/0000-0001-6886-1454}{ORCID})
+  \item Jeffrey T. Leek \email{jtleek@gmail.com} (\href{https://orcid.org/0000-0002-2873-2671}{ORCID}) [thesis advisor]
 }
-\keyword{package}
+
+}
+\keyword{internal}

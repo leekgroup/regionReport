@@ -28,8 +28,9 @@ vignette: >
 `R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('regionReport')` is a `R` package available via the [Bioconductor](http://bioconductor/packages/regionReport) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('regionReport')` by using the following commands in your `R` session:
 
 ```{r 'installDer', eval = FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+      install.packages("BiocManager")
+  }
 
 BiocManager::install("regionReport")
 
@@ -53,7 +54,7 @@ We hope that `r Biocpkg('regionReport')` will be useful for your research. Pleas
 
 ```{r 'citation'}
 ## Citation info
-citation('regionReport')
+citation("regionReport")
 ```
 
 # HTML reports for a set differential region results
@@ -63,58 +64,63 @@ citation('regionReport')
 startTimeVignette <- Sys.time()
 
 ## Bib setup
-library('knitcitations')
+library("knitcitations")
 
 ## Load knitcitations with a clean bibliography
 cleanbib()
-cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
 # Note links won't show for now due to the following issue
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-bib <- c(knitcitations = citation('knitcitations'), 
-    derfinder = citation('derfinder')[1], 
-    regionReport = citation('regionReport')[1],
-    knitrBootstrap = citation('knitrBootstrap'),
-    BiocStyle = citation('BiocStyle'),
-    ggbio = citation('ggbio'),
-    ggplot2 = citation('ggplot2'),
-    knitr = citation('knitr')[3],
-    rmarkdown = citation('rmarkdown')[1],
-    DT = citation('DT'),
+bib <- c(
+    knitcitations = citation("knitcitations"),
+    derfinder = citation("derfinder")[1],
+    regionReport = citation("regionReport")[1],
+    knitrBootstrap = citation("knitrBootstrap"),
+    BiocStyle = citation("BiocStyle"),
+    ggbio = citation("ggbio"),
+    ggplot2 = citation("ggplot2"),
+    knitr = citation("knitr")[3],
+    rmarkdown = citation("rmarkdown")[1],
+    DT = citation("DT"),
     R = citation(),
-    IRanges = citation('IRanges'),
-    sessioninfo = citation('sessioninfo'),
-    GenomeInfoDb = RefManageR::BibEntry(bibtype = 'manual',
-        key = 'GenomeInfoDb',
-        author = 'Sonali Arora and Martin Morgan and Marc Carlson and H. Pagès',
+    IRanges = citation("IRanges"),
+    sessioninfo = citation("sessioninfo"),
+    GenomeInfoDb = RefManageR::BibEntry(
+        bibtype = "manual",
+        key = "GenomeInfoDb",
+        author = "Sonali Arora and Martin Morgan and Marc Carlson and H. Pagès",
         title = "GenomeInfoDb: Utilities for manipulating chromosome and other 'seqname' identifiers",
-        year = 2017, doi = '10.18129/B9.bioc.GenomeInfoDb'),
-    GenomicRanges = citation('GenomicRanges'),
-    biovizBase = citation('biovizBase'),
-    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
-    derfinderPlot = citation('derfinderPlot')[1],
-    grid = citation('grid'),
-    gridExtra = citation('gridExtra'),
-    mgcv = citation('mgcv'),
-    RColorBrewer = citation('RColorBrewer'),
-    whikser = citation('whisker'),
-    bumphunter = citation('bumphunter')[1],
-    pheatmap = citation('pheatmap'),
-    DESeq2 = citation('DESeq2'),
-    edgeR1 = citation('edgeR')[1],
-    edgeR2 = citation('edgeR')[2],
-    edgeR6 = RefManageR::BibEntry('inbook', key = 'edgeR6',
-        author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', 
-        title = 'Differential expression analysis of complex RNA-seq experiments using edgeR',
-        booktitle = 'Statistical Analysis of Next Generation Sequencing Data', 
+        year = 2017, doi = "10.18129/B9.bioc.GenomeInfoDb"
+    ),
+    GenomicRanges = citation("GenomicRanges"),
+    biovizBase = citation("biovizBase"),
+    TxDb.Hsapiens.UCSC.hg19.knownGene = citation("TxDb.Hsapiens.UCSC.hg19.knownGene"),
+    derfinderPlot = citation("derfinderPlot")[1],
+    grid = citation("grid"),
+    gridExtra = citation("gridExtra"),
+    mgcv = citation("mgcv"),
+    RColorBrewer = citation("RColorBrewer"),
+    whikser = citation("whisker"),
+    bumphunter = citation("bumphunter")[1],
+    pheatmap = citation("pheatmap"),
+    DESeq2 = citation("DESeq2"),
+    edgeR1 = citation("edgeR")[1],
+    edgeR2 = citation("edgeR")[2],
+    edgeR6 = RefManageR::BibEntry("inbook",
+        key = "edgeR6",
+        author = "Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.",
+        title = "Differential expression analysis of complex RNA-seq experiments using edgeR",
+        booktitle = "Statistical Analysis of Next Generation Sequencing Data",
         year = 2014,
-        editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer',
-        location = 'New York', pages = '51-74'),
-    DEFormats = citation('DEFormats')
+        editor = "Datta, Somnath and Nettleton, Dan", publisher = "Springer",
+        location = "New York", pages = "51-74"
+    ),
+    DEFormats = citation("DEFormats")
 )
 
-write.bibtex(bib, file = 'regionReportRef.bib')
+write.bibtex(bib, file = "regionReportRef.bib")
 ```
 
 
@@ -186,22 +192,26 @@ Here is a short example of how to use `renderReport()`. Note that we are using r
 
 ```{r overviewNotRun, eval = FALSE}
 ## Load derfinder
-library('derfinder')
+library("derfinder")
 regions <- genomeRegions$regions
 
 ## Assign chr length
-library('GenomicRanges')
-seqlengths(regions) <- c('chr21' = 48129895)
+library("GenomicRanges")
+seqlengths(regions) <- c("chr21" = 48129895)
 
 ## The output will be saved in the 'derfinderReport-example' directory
-dir.create('renderReport-example', showWarnings = FALSE, recursive = TRUE)
+dir.create("renderReport-example", showWarnings = FALSE, recursive = TRUE)
 
 ## Generate the HTML report
-report <- renderReport(regions, 'Example run', pvalueVars = c(
-    'Q-values' = 'qvalues', 'P-values' = 'pvalues'), densityVars = c(
-    'Area' = 'area', 'Mean coverage' = 'meanCoverage'), 
+report <- renderReport(regions, "Example run",
+    pvalueVars = c(
+        "Q-values" = "qvalues", "P-values" = "pvalues"
+    ), densityVars = c(
+        "Area" = "area", "Mean coverage" = "meanCoverage"
+    ),
     significantVar = regions$qvalues <= 0.05, nBestRegions = 20,
-    outdir = 'renderReport-example')
+    outdir = "renderReport-example"
+)
 ```
 
 For `r Biocpkg('derfinder')` results created via the expressed regions-level approach you can use `renderReport()` to explore the results. If you use `r Biocpkg('DESeq2')` to perform the differential expression analysis of the expressed regions you can then use `DESeq2Report()`.
@@ -224,10 +234,10 @@ Below, we run `r Biocpkg('derfinder')` for the example data included in the pack
 
 ```{r loadDerfinder}
 ## Load derfinder
-library('derfinder')
+library("derfinder")
 
 ## The output will be saved in the 'report' directory
-dir.create('report', showWarnings = FALSE, recursive = TRUE)
+dir.create("report", showWarnings = FALSE, recursive = TRUE)
 ```
 
 The following code runs `r Biocpkg('derfinder')`.
@@ -235,27 +245,32 @@ The following code runs `r Biocpkg('derfinder')`.
 ```{r runDerfinderFake, eval=FALSE}
 ## Save the current path
 initialPath <- getwd()
-setwd(file.path(initialPath, 'report'))
+setwd(file.path(initialPath, "report"))
 
 ## Generate output from derfinder
 
 ## Collapse the coverage information
-collapsedFull <- collapseFullCoverage(list(genomeData$coverage), 
-verbose=TRUE)
+collapsedFull <- collapseFullCoverage(list(genomeData$coverage),
+    verbose = TRUE
+)
 
 ## Calculate library size adjustments
-sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE, 
-verbose=TRUE)
+sampleDepths <- sampleDepth(collapsedFull,
+    probs = c(0.5), nonzero = TRUE,
+    verbose = TRUE
+)
 
 ## Build the models
 group <- genomeInfo$pop
 adjustvars <- data.frame(genomeInfo$gender)
-models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
+models <- makeModels(sampleDepths, testvars = group, adjustvars = adjustvars)
 
 ## Analyze chromosome 21
-analysis <- analyzeChr(chr='21', coverageInfo=genomeData, models=models, 
-cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group, 
-mc.cores=1, writeOutput=TRUE, returnOutput=TRUE)
+analysis <- analyzeChr(
+    chr = "21", coverageInfo = genomeData, models = models,
+    cutoffFstat = 1, cutoffType = "manual", seeds = 20140330, groupInfo = group,
+    mc.cores = 1, writeOutput = TRUE, returnOutput = TRUE
+)
 
 ## Save the stats options for later
 optionsStats <- analysis$optionsStats
@@ -271,20 +286,24 @@ of `r Biocpkg('derfinder')`.
 
 ```{r runDerfinderReal}
 ## Copy previous results
-file.copy(system.file(file.path('extdata', 'chr21'), package='derfinder', 
-mustWork=TRUE), 'report', recursive=TRUE)
+file.copy(system.file(file.path("extdata", "chr21"),
+    package = "derfinder",
+    mustWork = TRUE
+), "report", recursive = TRUE)
 ```
 
 Next, proceed to merging the results.
 
 ```{r mergeResults}
-## Merge the results from the different chromosomes. In this case, there's 
+## Merge the results from the different chromosomes. In this case, there's
 ## only one: chr21
-mergeResults(chrs = 'chr21', prefix = 'report',
-    genomicState = genomicState$fullGenome)
-    
+mergeResults(
+    chrs = "chr21", prefix = "report",
+    genomicState = genomicState$fullGenome
+)
+
 ## Load optionsStats
-load(file.path('report', 'chr21', 'optionsStats.Rdata'), verbose = TRUE)
+load(file.path("report", "chr21", "optionsStats.Rdata"), verbose = TRUE)
 ```
 
 
@@ -297,15 +316,17 @@ __derfinderReport()__ to create the HTML report.
 
 ```{r loadLib, message=FALSE}
 ## Load derfindeReport
-library('regionReport')
+library("regionReport")
 ```
 
 
 ```{r createReport, warning = FALSE}
 ## Generate the HTML report
-report <- derfinderReport(prefix='report', browse=FALSE,
-    nBestRegions=15, makeBestClusters=TRUE, outdir='html',
-    fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
+report <- derfinderReport(
+    prefix = "report", browse = FALSE,
+    nBestRegions = 15, makeBestClusters = TRUE, outdir = "html",
+    fullCov = list("21" = genomeDataRaw$coverage), optionsStats = optionsStats
+)
 ```
 
 Once the output is generated, you can browse the report from `R` using 
@@ -364,18 +385,18 @@ Code for creating the vignette
 
 ```{r createVignette, eval=FALSE}
 ## Create the vignette
-library('rmarkdown')
-system.time(render('regionReport.Rmd', 'BiocStyle::html_document'))
+library("rmarkdown")
+system.time(render("regionReport.Rmd", "BiocStyle::html_document"))
 
 ## Extract the R code
-library('knitr')
-knit('regionReport.Rmd', tangle = TRUE)
+library("knitr")
+knit("regionReport.Rmd", tangle = TRUE)
 ```
 
 ```{r createVignette2}
 ## Clean up
-file.remove('regionReportRef.bib')
-unlink('report', recursive = TRUE)
+file.remove("regionReportRef.bib")
+unlink("report", recursive = TRUE)
 ```
 
 Date the vignette was generated.
@@ -390,14 +411,14 @@ Wallclock time spent generating the vignette.
 ```{r vignetteReproducibility2, echo=FALSE}
 ## Processing time in seconds
 totalTimeVignette <- diff(c(startTimeVignette, Sys.time()))
-round(totalTimeVignette, digits=3)
+round(totalTimeVignette, digits = 3)
 ```
 
 `R` session information.
 
 ```{r vignetteReproducibility3, echo=FALSE}
 ## Session info
-library('sessioninfo')
+library("sessioninfo")
 options(width = 120)
 session_info()
 ```

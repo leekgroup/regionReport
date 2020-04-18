@@ -98,80 +98,82 @@
 #' @examples
 #'
 #' ## Load example data from the pasilla package
-#' library('pasilla')
-#' library('DESeq')
-#' library('DESeq2')
+#' library("pasilla")
+#' library("DESeq")
+#' library("DESeq2")
 #'
 #' ## Create DESeqDataSet object from the pasilla package
-#' data('pasillaGenes')
+#' data("pasillaGenes")
 #' countData <- counts(pasillaGenes)
-#' colData <- pData(pasillaGenes)[, c('condition', 'type')]
-#' dds <- DESeqDataSetFromMatrix(countData = countData,
-#'    colData = colData,
-#'    design = ~ condition)
+#' colData <- pData(pasillaGenes)[, c("condition", "type")]
+#' dds <- DESeqDataSetFromMatrix(
+#'     countData = countData,
+#'     colData = colData,
+#'     design = ~condition
+#' )
 #' dds <- DESeq(dds)
 #'
 #' ## The output will be saved in the 'DESeq2Report-example' directory
-#' dir.create('DESeq2Report-example', showWarnings = FALSE, recursive = TRUE)
+#' dir.create("DESeq2Report-example", showWarnings = FALSE, recursive = TRUE)
 #'
 #' ## Generate the HTML report
-#' report <- DESeq2Report(dds, 'DESeq2-example', c('condition', 'type'),
-#'     outdir = 'DESeq2Report-example')
+#' report <- DESeq2Report(dds, "DESeq2-example", c("condition", "type"),
+#'     outdir = "DESeq2Report-example"
+#' )
 #'
-#' if(interactive()) {
+#' if (interactive()) {
 #'     ## Browse the report
 #'     browseURL(report)
 #' }
-#'
 #' \dontrun{
 #' ## Note that you can run the example using:
-#' example('DESeq2Report', 'regionReport', ask=FALSE)
+#' example("DESeq2Report", "regionReport", ask = FALSE)
 #' }
 #'
-#'
-
-
 DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     nBest = 500, nBestFeatures = 20, customCode = NULL,
-    outdir = 'DESeq2Exploration', output = 'DESeq2Exploration',
-    browse = interactive(), device = 'png', template = NULL,
-    searchURL = 'http://www.ncbi.nlm.nih.gov/gene/?term=', theme = NULL,
+    outdir = "DESeq2Exploration", output = "DESeq2Exploration",
+    browse = interactive(), device = "png", template = NULL,
+    searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
     digits = 2, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
 
 
     ## Check inputs
-    stopifnot(is(dds, 'DESeqDataSet'))
-    if (!"results" %in% mcols(mcols(dds))$type)
-        stop("couldn't find results. you should first run DESeq()")
-    if (!all(intgroup %in% names(colData(dds))))
-        stop("all variables in 'intgroup' must be columns of colData")
-    if(is.null(res)) {
+    stopifnot(is(dds, "DESeqDataSet"))
+    if (!"results" %in% mcols(mcols(dds))$type) {
+          stop("couldn't find results. you should first run DESeq()")
+      }
+    if (!all(intgroup %in% names(colData(dds)))) {
+          stop("all variables in 'intgroup' must be columns of colData")
+      }
+    if (is.null(res)) {
         ## Run results with default parameters
         res <- results(dds)
     } else {
-        stopifnot(is(res, 'DESeqResults'))
+        stopifnot(is(res, "DESeqResults"))
         stopifnot(identical(nrow(res), nrow(dds)))
     }
     stopifnot(is.null(searchURL) | length(searchURL) == 1)
-    if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
+    if (!is.null(theme)) stopifnot(is(theme, c("theme", "gg")))
 
-# @param software The name of the package used for performing the differential
-# expression analysis. Either \code{DESeq2}, \code{edgeR} or \code{other}
-# where \code{other} has a valid citation.
-    software <- .advanced_argument('software', 'DESeq2', ...)
-    if(!software %in% c('DESeq2', 'edgeR'))
-        stopifnot(!is.null(citation(software)[1]))
-    isEdgeR <- software == 'edgeR'
+    # @param software The name of the package used for performing the differential
+    # expression analysis. Either \code{DESeq2}, \code{edgeR} or \code{other}
+    # where \code{other} has a valid citation.
+    software <- .advanced_argument("software", "DESeq2", ...)
+    if (!software %in% c("DESeq2", "edgeR")) {
+          stopifnot(!is.null(citation(software)[1]))
+      }
+    isEdgeR <- software == "edgeR"
 
-# @param dge A \link[edgeR]{DGEList} object.
-    dge <- .advanced_argument('dge', NULL, ...)
-    if(isEdgeR) stopifnot(is(dge, 'DGEList'))
+    # @param dge A \link[edgeR]{DGEList} object.
+    dge <- .advanced_argument("dge", NULL, ...)
+    if (isEdgeR) stopifnot(is(dge, "DGEList"))
 
     ## Is there custom code?
     hasCustomCode <- !is.null(customCode)
-    if(hasCustomCode) stopifnot(length(customCode) == 1)
+    if (hasCustomCode) stopifnot(length(customCode) == 1)
 
 
     ## Create outdir
@@ -182,8 +184,8 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     if (is.null(template)) {
         templateNull <- TRUE
         template <- system.file(
-            file.path('DESeq2Exploration', 'DESeq2Exploration.Rmd'),
-            package = 'regionReport', mustWork = TRUE
+            file.path("DESeq2Exploration", "DESeq2Exploration.Rmd"),
+            package = "regionReport", mustWork = TRUE
         )
     } else {
         templateNull <- FALSE
@@ -191,68 +193,77 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
 
     ## Load knitcitations with a clean bibliography
     cleanbib()
-    cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+    cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
     # Note links won't show for now due to the following issue
     # https://github.com/cboettig/knitcitations/issues/63
 
     ## Check all packages (from suggests) needed for the report
-    pkgs <- c('DESeq2', 'ggplot2', 'RColorBrewer', 'pheatmap', 'DT',
-        'sessioninfo')
-    if(isEdgeR) pkgs <- c(pkgs, 'edgeR')
+    pkgs <- c(
+        "DESeq2", "ggplot2", "RColorBrewer", "pheatmap", "DT",
+        "sessioninfo"
+    )
+    if (isEdgeR) pkgs <- c(pkgs, "edgeR")
     load_check(pkgs)
 
     ## Write bibliography information
     bib <- c(
-        knitcitations = citation('knitcitations'),
-        regionReport = citation('regionReport')[1],
-        DT = citation('DT'),
-        ggplot2 = citation('ggplot2'),
-        knitr = citation('knitr')[3],
-        rmarkdown = citation('rmarkdown')[1],
-        pheatmap = citation('pheatmap'),
-        RColorBrewer = citation('RColorBrewer'),
-        DESeq2 = citation('DESeq2'),
-        edgeR1 = if(isEdgeR) citation('edgeR')[1] else NULL,
-        edgeR2 = if(isEdgeR) citation('edgeR')[2] else NULL,
-        edgeR6 = if(isEdgeR) RefManageR::BibEntry('inbook', key = 'edgeR6', author = 'Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.', title = 'Differential expression analysis of complex RNA-seq experiments using edgeR', booktitle = 'Statistical Analysis of Next Generation Sequencing Data', year = 2014, editor = 'Datta, Somnath and Nettleton, Dan', publisher = 'Springer', location = 'New York', pages = '51-74') else NULL,
-        other = if(!software %in% c('DESeq2', 'edgeR')) citation(software)[1] else NULL
+        knitcitations = citation("knitcitations"),
+        regionReport = citation("regionReport")[1],
+        DT = citation("DT"),
+        ggplot2 = citation("ggplot2"),
+        knitr = citation("knitr")[3],
+        rmarkdown = citation("rmarkdown")[1],
+        pheatmap = citation("pheatmap"),
+        RColorBrewer = citation("RColorBrewer"),
+        DESeq2 = citation("DESeq2"),
+        edgeR1 = if (isEdgeR) citation("edgeR")[1] else NULL,
+        edgeR2 = if (isEdgeR) citation("edgeR")[2] else NULL,
+        edgeR6 = if (isEdgeR) RefManageR::BibEntry("inbook", key = "edgeR6", author = "Chen, Yunshun and Lun, Aaron T. L. and Smyth, Gordon K.", title = "Differential expression analysis of complex RNA-seq experiments using edgeR", booktitle = "Statistical Analysis of Next Generation Sequencing Data", year = 2014, editor = "Datta, Somnath and Nettleton, Dan", publisher = "Springer", location = "New York", pages = "51-74") else NULL,
+        other = if (!software %in% c("DESeq2", "edgeR")) citation(software)[1] else NULL
     )
 
-    write.bibtex(bib, file = file.path(outdir, paste0(output, '.bib')))
+    write.bibtex(bib, file = file.path(outdir, paste0(output, ".bib")))
 
     ## Save the call
-    theCall <- .advanced_argument('theCall', NULL, ...)
-    if(!is(theCall, 'call')) theCall <- match.call()
+    theCall <- .advanced_argument("theCall", NULL, ...)
+    if (!is(theCall, "call")) theCall <- match.call()
 
     ## Generate report
     ## Perform code within the output directory.
     tmpdir <- getwd()
     with_wd(outdir, {
-        file.copy(template, to = paste0(output, '.Rmd'))
+        file.copy(template, to = paste0(output, ".Rmd"))
 
         ## Output format
-        output_format <- .advanced_argument('output_format',
-            'BiocStyle::html_document', ...)
-        outputIsHTML <- output_format %in% c('html_document',
-            'rmarkdown::html_document',
-            'knitrBootstrap::bootstrap_document', 'BiocStyle::html_document')
-        if(!outputIsHTML) {
-            if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
+        output_format <- .advanced_argument(
+            "output_format",
+            "BiocStyle::html_document", ...
+        )
+        outputIsHTML <- output_format %in% c(
+            "html_document",
+            "rmarkdown::html_document",
+            "knitrBootstrap::bootstrap_document", "BiocStyle::html_document"
+        )
+        if (!outputIsHTML) {
+            if (device == "png") warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
         }
 
         ## Check knitrBoostrap version
-        knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
-            if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
+        knitrBootstrapFlag <- packageVersion("knitrBootstrap") < "1.0.0"
+        if (knitrBootstrapFlag & output_format == "knitrBootstrap::bootstrap_document") {
             ## CRAN version
-            tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
-                'code'), show_code = TRUE)
-            res <- file.path(tmpdir, outdir, paste0(output, '.html'))
-            unlink(paste0(output, '.md'))
+            tmp <- knit_bootstrap(paste0(output, ".Rmd"), chooser = c(
+                "boot",
+                "code"
+            ), show_code = TRUE)
+            res <- file.path(tmpdir, outdir, paste0(output, ".html"))
+            unlink(paste0(output, ".md"))
         } else {
-            res <- render(paste0(output, '.Rmd'), output_format,
-                clean = .advanced_argument('clean', TRUE, ...))
+            res <- render(paste0(output, ".Rmd"), output_format,
+                clean = .advanced_argument("clean", TRUE, ...)
+            )
         }
-        if(templateNull) file.remove(paste0(output, '.Rmd'))
+        if (templateNull) file.remove(paste0(output, ".Rmd"))
 
         ## Open
         if (browse) browseURL(res)

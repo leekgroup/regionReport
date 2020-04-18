@@ -4,12 +4,25 @@
 \alias{DESeq2Report}
 \title{Generate a HTML/PDF report exploring DESeq2 results}
 \usage{
-DESeq2Report(dds, project = "", intgroup, colors = NULL, res = NULL,
-  nBest = 500, nBestFeatures = 20, customCode = NULL,
-  outdir = "DESeq2Exploration", output = "DESeq2Exploration",
-  browse = interactive(), device = "png", template = NULL,
-  searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
-  digits = 2, ...)
+DESeq2Report(
+  dds,
+  project = "",
+  intgroup,
+  colors = NULL,
+  res = NULL,
+  nBest = 500,
+  nBestFeatures = 20,
+  customCode = NULL,
+  outdir = "DESeq2Exploration",
+  output = "DESeq2Exploration",
+  browse = interactive(),
+  device = "png",
+  template = NULL,
+  searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=",
+  theme = NULL,
+  digits = 2,
+  ...
+)
 }
 \arguments{
 \item{dds}{A \link[DESeq2]{DESeqDataSet} object with the results from
@@ -112,36 +125,37 @@ The HTML report styled with knitrBootstrap can be smaller in size than the
 \examples{
 
 ## Load example data from the pasilla package
-library('pasilla')
-library('DESeq')
-library('DESeq2')
+library("pasilla")
+library("DESeq")
+library("DESeq2")
 
 ## Create DESeqDataSet object from the pasilla package
-data('pasillaGenes')
+data("pasillaGenes")
 countData <- counts(pasillaGenes)
-colData <- pData(pasillaGenes)[, c('condition', 'type')]
-dds <- DESeqDataSetFromMatrix(countData = countData,
-   colData = colData,
-   design = ~ condition)
+colData <- pData(pasillaGenes)[, c("condition", "type")]
+dds <- DESeqDataSetFromMatrix(
+    countData = countData,
+    colData = colData,
+    design = ~condition
+)
 dds <- DESeq(dds)
 
 ## The output will be saved in the 'DESeq2Report-example' directory
-dir.create('DESeq2Report-example', showWarnings = FALSE, recursive = TRUE)
+dir.create("DESeq2Report-example", showWarnings = FALSE, recursive = TRUE)
 
 ## Generate the HTML report
-report <- DESeq2Report(dds, 'DESeq2-example', c('condition', 'type'),
-    outdir = 'DESeq2Report-example')
+report <- DESeq2Report(dds, "DESeq2-example", c("condition", "type"),
+    outdir = "DESeq2Report-example"
+)
 
-if(interactive()) {
+if (interactive()) {
     ## Browse the report
     browseURL(report)
 }
-
 \dontrun{
 ## Note that you can run the example using:
-example('DESeq2Report', 'regionReport', ask=FALSE)
+example("DESeq2Report", "regionReport", ask = FALSE)
 }
-
 
 }
 \author{

@@ -4,13 +4,27 @@
 \alias{derfinderReport}
 \title{Generate a HTML/PDF report exploring the basic results from derfinder}
 \usage{
-derfinderReport(prefix, outdir = "basicExploration",
-  output = "basicExploration", project = prefix,
-  browse = interactive(), nBestRegions = 100,
-  makeBestClusters = TRUE, nBestClusters = 2, fullCov = NULL,
-  hg19 = TRUE, p.ideos = NULL, txdb = NULL, device = "png",
-  significantVar = "qvalue", customCode = NULL, template = NULL,
-  theme = NULL, digits = 2, ...)
+derfinderReport(
+  prefix,
+  outdir = "basicExploration",
+  output = "basicExploration",
+  project = prefix,
+  browse = interactive(),
+  nBestRegions = 100,
+  makeBestClusters = TRUE,
+  nBestClusters = 2,
+  fullCov = NULL,
+  hg19 = TRUE,
+  p.ideos = NULL,
+  txdb = NULL,
+  device = "png",
+  significantVar = "qvalue",
+  customCode = NULL,
+  template = NULL,
+  theme = NULL,
+  digits = 2,
+  ...
+)
 }
 \arguments{
 \item{prefix}{The main data directory path where
@@ -135,37 +149,43 @@ The HTML report styled with knitrBootstrap can be smaller in size than the
 \examples{
 
 ## Load derfinder
-library('derfinder')
+library("derfinder")
 
 ## The output will be saved in the 'derfinderReport-example' directory
-dir.create('derfinderReport-example', showWarnings = FALSE, recursive = TRUE)
+dir.create("derfinderReport-example", showWarnings = FALSE, recursive = TRUE)
 
 ## For convenience, the derfinder output has been pre-computed
-file.copy(system.file(file.path('extdata', 'chr21'), package='derfinder',
-    mustWork=TRUE), 'derfinderReport-example', recursive = TRUE)
-
+file.copy(system.file(file.path("extdata", "chr21"),
+    package = "derfinder",
+    mustWork = TRUE
+), "derfinderReport-example", recursive = TRUE)
 \dontrun{
 ## If you prefer, you can generate the output from derfinder
 initialPath <- getwd()
-setwd(file.path(initialPath, 'derfinderReport-example'))
+setwd(file.path(initialPath, "derfinderReport-example"))
 
 ## Collapse the coverage information
 collapsedFull <- collapseFullCoverage(list(genomeData$coverage),
-    verbose=TRUE)
+    verbose = TRUE
+)
 
 ## Calculate library size adjustments
-sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE,
-    verbose=TRUE)
+sampleDepths <- sampleDepth(collapsedFull,
+    probs = c(0.5), nonzero = TRUE,
+    verbose = TRUE
+)
 
 ## Build the models
 group <- genomeInfo$pop
 adjustvars <- data.frame(genomeInfo$gender)
-models <- makeModels(sampleDepths, testvars=group, adjustvars=adjustvars)
+models <- makeModels(sampleDepths, testvars = group, adjustvars = adjustvars)
 
 ## Analyze chromosome 21
-analyzeChr(chr='21', coverageInfo=genomeData, models=models,
-    cutoffFstat=1, cutoffType='manual', seeds=20140330, groupInfo=group,
-    mc.cores=1, writeOutput=TRUE, returnOutput=FALSE)
+analyzeChr(
+    chr = "21", coverageInfo = genomeData, models = models,
+    cutoffFstat = 1, cutoffType = "manual", seeds = 20140330, groupInfo = group,
+    mc.cores = 1, writeOutput = TRUE, returnOutput = FALSE
+)
 
 ## Change the directory back to the original one
 setwd(initialPath)
@@ -173,27 +193,31 @@ setwd(initialPath)
 
 ## Merge the results from the different chromosomes. In this case, there's
 ## only one: chr21
-mergeResults(chrs = '21', prefix = 'derfinderReport-example',
-    genomicState = genomicState$fullGenome)
+mergeResults(
+    chrs = "21", prefix = "derfinderReport-example",
+    genomicState = genomicState$fullGenome
+)
 
 ## Load the options used for calculating the statistics
-load(file.path('derfinderReport-example', 'chr21', 'optionsStats.Rdata'))
+load(file.path("derfinderReport-example", "chr21", "optionsStats.Rdata"))
 
 ## Generate the HTML report
-report <- derfinderReport(prefix='derfinderReport-example', browse=FALSE,
-    nBestRegions=1, makeBestClusters=FALSE,
-    fullCov=list('21'=genomeDataRaw$coverage), optionsStats=optionsStats)
+report <- derfinderReport(
+    prefix = "derfinderReport-example", browse = FALSE,
+    nBestRegions = 1, makeBestClusters = FALSE,
+    fullCov = list("21" = genomeDataRaw$coverage), optionsStats = optionsStats
+)
 
 
-if(interactive()) {
+if (interactive()) {
     ## Browse the report
     browseURL(report)
 }
-
 \dontrun{
 ## Note that you can run the example using:
-example('derfinderReport', 'regionReport', ask=FALSE)
+example("derfinderReport", "regionReport", ask = FALSE)
 }
+
 }
 \seealso{
 \link[derfinder]{mergeResults}, \link[derfinder]{analyzeChr},

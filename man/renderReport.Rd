@@ -9,16 +9,39 @@
 \alias{templatePvalueHistogram}
 \alias{templateHistogram}
 \title{Generate a HTML/PDF report exploring a set of genomic regions}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+
+An object of class \code{character} of length 1.
+
+An object of class \code{character} of length 1.
+
+An object of class \code{character} of length 1.
+
+An object of class \code{character} of length 1.
+}
 \usage{
-renderReport(regions, project = "", pvalueVars = c(`P-values` =
-  "pval"), densityVars = NULL, significantVar = mcols(regions)$pval <=
-  0.05, annotation = NULL, nBestRegions = 500, customCode = NULL,
-  outdir = "regionExploration", output = "regionExploration",
-  browse = interactive(), txdb = NULL, device = "png",
-  densityTemplates = list(Pvalue = templatePvalueDensity, Common =
-  templateDensity, Manhattan = templateManhattan), template = NULL,
-  theme = NULL, digits = 2, ...)
+renderReport(
+  regions,
+  project = "",
+  pvalueVars = c(`P-values` = "pval"),
+  densityVars = NULL,
+  significantVar = mcols(regions)$pval <= 0.05,
+  annotation = NULL,
+  nBestRegions = 500,
+  customCode = NULL,
+  outdir = "regionExploration",
+  output = "regionExploration",
+  browse = interactive(),
+  txdb = NULL,
+  device = "png",
+  densityTemplates = list(Pvalue = templatePvalueDensity, Common = templateDensity,
+    Manhattan = templateManhattan),
+  template = NULL,
+  theme = NULL,
+  digits = 2,
+  ...
+)
 
 templatePvalueDensity
 
@@ -141,31 +164,34 @@ The HTML report styled with knitrBootstrap can be smaller in size than the
 \examples{
 
 ## Load derfinder for an example set of regions
-library('derfinder')
+library("derfinder")
 regions <- genomeRegions$regions
 
 ## Assign chr length
-library('GenomicRanges')
-seqlengths(regions) <- c('chr21' = 48129895)
+library("GenomicRanges")
+seqlengths(regions) <- c("chr21" = 48129895)
 
 ## The output will be saved in the 'renderReport-example' directory
-dir.create('renderReport-example', showWarnings = FALSE, recursive = TRUE)
+dir.create("renderReport-example", showWarnings = FALSE, recursive = TRUE)
 
 ## Generate the HTML report
-report <- renderReport(regions, 'Example run', pvalueVars = c(
-    'Q-values' = 'qvalues', 'P-values' = 'pvalues'), densityVars = c(
-    'Area' = 'area', 'Mean coverage' = 'meanCoverage'),
+report <- renderReport(regions, "Example run",
+    pvalueVars = c(
+        "Q-values" = "qvalues", "P-values" = "pvalues"
+    ), densityVars = c(
+        "Area" = "area", "Mean coverage" = "meanCoverage"
+    ),
     significantVar = regions$qvalues <= 0.05, nBestRegions = 20,
-    outdir = 'renderReport-example')
+    outdir = "renderReport-example"
+)
 
-if(interactive()) {
+if (interactive()) {
     ## Browse the report
     browseURL(report)
 }
-
 \dontrun{
 ## Note that you can run the example using:
-example('renderReport', 'regionReport', ask=FALSE)
+example("renderReport", "regionReport", ask = FALSE)
 }
 
 ## Check the default templates. For users interested in customizing these
@@ -178,7 +204,6 @@ cat(templateDensity)
 
 ## For Manhattan plots
 cat(templateManhattan)
-
 }
 \author{
 Leonardo Collado-Torres

@@ -28,13 +28,15 @@ The `r Biocpkg('bumphunter')` package can be used for methylation analyses where
 
 ```{r 'findRegions'}
 ## Load bumphunter
-library('bumphunter')
+library("bumphunter")
 
 ## Create data from the vignette
-pos <- list(pos1=seq(1, 1000, 35),
-            pos2=seq(2001, 3000, 35),
-            pos3=seq(1, 1000, 50))
-chr <- rep(paste0('chr', c(1, 1, 2)), times = sapply(pos, length))
+pos <- list(
+    pos1 = seq(1, 1000, 35),
+    pos2 = seq(2001, 3000, 35),
+    pos3 = seq(1, 1000, 50)
+)
+chr <- rep(paste0("chr", c(1, 1, 2)), times = sapply(pos, length))
 pos <- unlist(pos, use.names = FALSE)
 
 ## Find clusters
@@ -43,11 +45,11 @@ cl <- clusterMaker(chr, pos, maxGap = 300)
 ## Build simulated bumps
 Indexes <- split(seq_along(cl), cl)
 beta1 <- rep(0, length(pos))
-for(i in seq(along=Indexes)){
+for (i in seq(along = Indexes)) {
     ind <- Indexes[[i]]
     x <- pos[ind]
-    z <- scale(x, median(x), max(x)/12)
-    beta1[ind] <- i*(-1)^(i+1)*pmax(1-abs(z)^3,0)^3 ##multiply by i to vary size
+    z <- scale(x, median(x), max(x) / 12)
+    beta1[ind] <- i * (-1)^(i + 1) * pmax(1 - abs(z)^3, 0)^3 ## multiply by i to vary size
 }
 
 ## Build data
@@ -58,7 +60,7 @@ error <- matrix(rnorm(20 * length(beta1), 0, 1), ncol = 20)
 y <- t(X[, 1]) %x% beta0 + t(X[, 2]) %x% beta1 + error
 
 ## Perform bumphunting
-tab <- bumphunter(y, X, chr, pos, cl, cutoff=.5)
+tab <- bumphunter(y, X, chr, pos, cl, cutoff = .5)
 
 ## Explore data
 lapply(tab, head)
@@ -67,19 +69,22 @@ lapply(tab, head)
 Once we have the regions we can proceed to build the required `GRanges` object.
 
 ```{r 'buildGRanges'}
-library('GenomicRanges')
+library("GenomicRanges")
 
 ## Build GRanges with sequence lengths
-regions <- GRanges(seqnames = tab$table$chr, 
+regions <- GRanges(
+    seqnames = tab$table$chr,
     IRanges(start = tab$table$start, end = tab$table$end),
-    strand = '*', value = tab$table$value, area = tab$table$area, 
-    cluster = tab$table$cluster, L = tab$table$L, clusterL = tab$table$clusterL)
+    strand = "*", value = tab$table$value, area = tab$table$area,
+    cluster = tab$table$cluster, L = tab$table$L, clusterL = tab$table$clusterL
+)
 
 ## Assign chr lengths
 seqlengths(regions) <- seqlengths(
-    getChromInfoFromUCSC('hg19', as.Seqinfo = TRUE))[
-        names(seqlengths(regions))
-    ]
+    getChromInfoFromUCSC("hg19", as.Seqinfo = TRUE)
+)[
+    names(seqlengths(regions))
+]
 
 ## Explore the regions
 regions
@@ -90,31 +95,36 @@ Now that we have identified a set of differentially methylated regions we can pr
 
 ```{r 'loadLib'}
 ## Load regionReport
-library('regionReport')
+library("regionReport")
 ```
 
 ```{r 'createReport'}
 ## Make it so that the report will be available as a vignette
-original <- readLines(system.file('regionExploration', 'regionExploration.Rmd',
-    package = 'regionReport'))
+original <- readLines(system.file("regionExploration", "regionExploration.Rmd",
+    package = "regionReport"
+))
 vignetteInfo <- c(
-    'vignette: >',
-    '  %\\VignetteEngine{knitr::rmarkdown}',
-    '  %\\VignetteIndexEntry{Basic genomic regions exploration}',
-    '  %\\VignetteEncoding{UTF-8}'
+    "vignette: >",
+    "  %\\VignetteEngine{knitr::rmarkdown}",
+    "  %\\VignetteIndexEntry{Basic genomic regions exploration}",
+    "  %\\VignetteEncoding{UTF-8}"
 )
 new <- c(original[1:16], vignetteInfo, original[17:length(original)])
-writeLines(new, 'regionReportBumphunter.Rmd')
+writeLines(new, "regionReportBumphunter.Rmd")
 
 ## Now create the report
-report <- renderReport(regions, 'Example bumphunter', pvalueVars = NULL,
-    densityVars = c('Area' = 'area', 'Value' = 'value',
-    'Cluster Length' = 'clusterL'), significantVar = NULL,
-    output = 'bumphunterExampleOutput', outdir = '.',
-    template = 'regionReportBumphunter.Rmd', device = 'png')
-    
+report <- renderReport(regions, "Example bumphunter",
+    pvalueVars = NULL,
+    densityVars = c(
+        "Area" = "area", "Value" = "value",
+        "Cluster Length" = "clusterL"
+    ), significantVar = NULL,
+    output = "bumphunterExampleOutput", outdir = ".",
+    template = "regionReportBumphunter.Rmd", device = "png"
+)
+
 ## Clean up
-file.remove('regionReportBumphunter.Rmd')
+file.remove("regionReportBumphunter.Rmd")
 ```
 
 

@@ -104,31 +104,34 @@
 #' @examples
 #'
 #' ## Load derfinder for an example set of regions
-#' library('derfinder')
+#' library("derfinder")
 #' regions <- genomeRegions$regions
 #'
 #' ## Assign chr length
-#' library('GenomicRanges')
-#' seqlengths(regions) <- c('chr21' = 48129895)
+#' library("GenomicRanges")
+#' seqlengths(regions) <- c("chr21" = 48129895)
 #'
 #' ## The output will be saved in the 'renderReport-example' directory
-#' dir.create('renderReport-example', showWarnings = FALSE, recursive = TRUE)
+#' dir.create("renderReport-example", showWarnings = FALSE, recursive = TRUE)
 #'
 #' ## Generate the HTML report
-#' report <- renderReport(regions, 'Example run', pvalueVars = c(
-#'     'Q-values' = 'qvalues', 'P-values' = 'pvalues'), densityVars = c(
-#'     'Area' = 'area', 'Mean coverage' = 'meanCoverage'),
+#' report <- renderReport(regions, "Example run",
+#'     pvalueVars = c(
+#'         "Q-values" = "qvalues", "P-values" = "pvalues"
+#'     ), densityVars = c(
+#'         "Area" = "area", "Mean coverage" = "meanCoverage"
+#'     ),
 #'     significantVar = regions$qvalues <= 0.05, nBestRegions = 20,
-#'     outdir = 'renderReport-example')
+#'     outdir = "renderReport-example"
+#' )
 #'
-#' if(interactive()) {
+#' if (interactive()) {
 #'     ## Browse the report
 #'     browseURL(report)
 #' }
-#'
 #' \dontrun{
 #' ## Note that you can run the example using:
-#' example('renderReport', 'regionReport', ask=FALSE)
+#' example("renderReport", "regionReport", ask = FALSE)
 #' }
 #'
 #' ## Check the default templates. For users interested in customizing these
@@ -141,71 +144,72 @@
 #'
 #' ## For Manhattan plots
 #' cat(templateManhattan)
-#'
-
-
 renderReport <- function(regions, project = "",
-    pvalueVars = c('P-values' = 'pval'),
+    pvalueVars = c("P-values" = "pval"),
     densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
     annotation = NULL, nBestRegions = 500, customCode = NULL,
-    outdir = 'regionExploration', output = 'regionExploration',
-    browse = interactive(), txdb = NULL, device = 'png',
-    densityTemplates = list(Pvalue = templatePvalueDensity,
-        Common = templateDensity, Manhattan = templateManhattan),
+    outdir = "regionExploration", output = "regionExploration",
+    browse = interactive(), txdb = NULL, device = "png",
+    densityTemplates = list(
+        Pvalue = templatePvalueDensity,
+        Common = templateDensity, Manhattan = templateManhattan
+    ),
     template = NULL, theme = NULL, digits = 2, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
 
 
     ## Check inputs
-    stopifnot(is(regions, 'GRanges'))
+    stopifnot(is(regions, "GRanges"))
     stopifnot(!any(is.na(seqlengths(regions))))
-    stopifnot(is.list(densityTemplates) & length(densityTemplates) == 3 & all(c('Pvalue', 'Common', 'Manhattan') %in% names(densityTemplates)))
+    stopifnot(is.list(densityTemplates) & length(densityTemplates) == 3 & all(c("Pvalue", "Common", "Manhattan") %in% names(densityTemplates)))
     hasCustomCode <- !is.null(customCode)
-    if(hasCustomCode) stopifnot(length(customCode) == 1)
-    if(!is.null(annotation)) stopifnot(nrow(annotation) == length(regions))
-    if(!is.null(theme)) stopifnot(is(theme, c('theme', 'gg')))
+    if (hasCustomCode) stopifnot(length(customCode) == 1)
+    if (!is.null(annotation)) stopifnot(nrow(annotation) == length(regions))
+    if (!is.null(theme)) stopifnot(is(theme, c("theme", "gg")))
 
     # @param overviewParams A two element list with \code{base_size} and
     # \code{areaRel} that control the text size for the genomic overview plots.
-    overviewParams <- .advanced_argument('overviewParam', list(base_size = 10,
-            areaRel = 5), ...)
+    overviewParams <- .advanced_argument("overviewParam", list(
+        base_size = 10,
+        areaRel = 5
+    ), ...)
 
 
     ## Check that overviewParams is correctly specified
-    stopifnot(sum(names(overviewParams) %in% c('base_size', 'areaRel')) == 2)
+    stopifnot(sum(names(overviewParams) %in% c("base_size", "areaRel")) == 2)
 
     ## Are there p-value vars?
     hasPvalueVars <- length(pvalueVars) > 0
-    if(hasPvalueVars) stopifnot(is.character(pvalueVars))
+    if (hasPvalueVars) stopifnot(is.character(pvalueVars))
     ## Fix p-value variable names
     colnames(mcols(regions))[which(colnames(mcols(regions)) %in% pvalueVars)] <- make.names(pvalueVars)
     pvalueVars[seq_len(length(pvalueVars))] <- make.names(pvalueVars)
 
     ## Are there density vars?
     hasDensityVars <- length(densityVars) > 0
-    if(hasDensityVars) stopifnot(is.character(densityVars))
+    if (hasDensityVars) stopifnot(is.character(densityVars))
     ## Fix density variable names
     colnames(mcols(regions))[which(colnames(mcols(regions)) %in% densityVars)] <- make.names(densityVars)
     densityVars[seq_len(length(densityVars))] <- make.names(densityVars)
 
     ## Are there significant regions?
     hasSignificant <- length(significantVar) > 0
-    if(hasSignificant) {
+    if (hasSignificant) {
         stopifnot(length(significantVar) == length(regions))
         stopifnot(is.logical(significantVar))
         hasSignificant <- any(significantVar)
-        if(!hasSignificant) warning("There are no statistically significant regions in this set.")
+        if (!hasSignificant) warning("There are no statistically significant regions in this set.")
     }
 
     ## Template for pvalueVars
-    if(hasPvalueVars) {
+    if (hasPvalueVars) {
         templatePvalueDensityInUse <- densityTemplates$Pvalue
         templateManhattanInUse <- densityTemplates$Manhattan
     }
 
     ## Template for densityVars
-    if(hasDensityVars) templateDensityInUse <- densityTemplates$Common
+    if (hasDensityVars) templateDensityInUse <- densityTemplates$Common
 
 
     ## Create outdir
@@ -216,8 +220,8 @@ renderReport <- function(regions, project = "",
     if (is.null(template)) {
         templateNull <- TRUE
         template <- system.file(
-            file.path('regionExploration', 'regionExploration.Rmd'),
-            package = 'regionReport', mustWork = TRUE
+            file.path("regionExploration", "regionExploration.Rmd"),
+            package = "regionReport", mustWork = TRUE
         )
     } else {
         templateNull <- FALSE
@@ -225,31 +229,32 @@ renderReport <- function(regions, project = "",
 
     ## Load knitcitations with a clean bibliography
     cleanbib()
-    cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+    cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
     # Note links won't show for now due to the following issue
     # https://github.com/cboettig/knitcitations/issues/63
 
     ## Check all packages (from suggests) needed for the report
-    if(is.null(txdb)) load_check('TxDb.Hsapiens.UCSC.hg19.knownGene')
+    if (is.null(txdb)) load_check("TxDb.Hsapiens.UCSC.hg19.knownGene")
     load_check(c(
-        'bumphunter', 'derfinderPlot','ggbio', 'ggplot2', 'grid', 'gridExtra',
-        'RColorBrewer', 'mgcv', 'whisker', 'DT', 'sessioninfo'
+        "bumphunter", "derfinderPlot", "ggbio", "ggplot2", "grid", "gridExtra",
+        "RColorBrewer", "mgcv", "whisker", "DT", "sessioninfo"
     ))
 
     ## Write bibliography information
     bib <- c(
-        knitcitations = citation('knitcitations'),
-        regionReport = citation('regionReport')[1],
-        derfinderPlot = citation('derfinderPlot')[1],
-        DT = citation('DT'),
-        ggbio = citation('ggbio'),
-        ggplot2 = citation('ggplot2'),
-        knitr = citation('knitr')[3],
-        rmarkdown = citation('rmarkdown')[1],
-        whisker = citation('whisker'),
-        bumphunter = citation('bumphunter')[1],
-        derfinder = citation('derfinder')[1])
-    write.bibtex(bib, file = file.path(outdir, paste0(output, '.bib')))
+        knitcitations = citation("knitcitations"),
+        regionReport = citation("regionReport")[1],
+        derfinderPlot = citation("derfinderPlot")[1],
+        DT = citation("DT"),
+        ggbio = citation("ggbio"),
+        ggplot2 = citation("ggplot2"),
+        knitr = citation("knitr")[3],
+        rmarkdown = citation("rmarkdown")[1],
+        whisker = citation("whisker"),
+        bumphunter = citation("bumphunter")[1],
+        derfinder = citation("derfinder")[1]
+    )
+    write.bibtex(bib, file = file.path(outdir, paste0(output, ".bib")))
 
     ## Save the call
     theCall <- match.call()
@@ -258,31 +263,38 @@ renderReport <- function(regions, project = "",
     ## Perform code within the output directory.
     tmpdir <- getwd()
     with_wd(outdir, {
-        file.copy(template, to = paste0(output, '.Rmd'))
+        file.copy(template, to = paste0(output, ".Rmd"))
 
         ## Output format
-        output_format <- .advanced_argument('output_format',
-            'BiocStyle::html_document', ...)
-        outputIsHTML <- output_format %in% c('html_document',
-            'rmarkdown::html_document',
-            'knitrBootstrap::bootstrap_document', 'BiocStyle::html_document')
-        if(!outputIsHTML) {
-            if(device == 'png') warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
+        output_format <- .advanced_argument(
+            "output_format",
+            "BiocStyle::html_document", ...
+        )
+        outputIsHTML <- output_format %in% c(
+            "html_document",
+            "rmarkdown::html_document",
+            "knitrBootstrap::bootstrap_document", "BiocStyle::html_document"
+        )
+        if (!outputIsHTML) {
+            if (device == "png") warning("You might want to switch the 'device' argument from 'png' to 'pdf' for better quality plots.")
         }
 
         ## Check knitrBoostrap version
-        knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
-            if(knitrBootstrapFlag & output_format == 'knitrBootstrap::bootstrap_document') {
+        knitrBootstrapFlag <- packageVersion("knitrBootstrap") < "1.0.0"
+        if (knitrBootstrapFlag & output_format == "knitrBootstrap::bootstrap_document") {
             ## CRAN version
-            tmp <- knit_bootstrap(paste0(output, '.Rmd'), chooser = c('boot',
-                'code'), show_code = TRUE)
-            res <- file.path(tmpdir, outdir, paste0(output, '.html'))
-            unlink(paste0(output, '.md'))
+            tmp <- knit_bootstrap(paste0(output, ".Rmd"), chooser = c(
+                "boot",
+                "code"
+            ), show_code = TRUE)
+            res <- file.path(tmpdir, outdir, paste0(output, ".html"))
+            unlink(paste0(output, ".md"))
         } else {
-            res <- render(paste0(output, '.Rmd'), output_format,
-                clean = .advanced_argument('clean', TRUE, ...))
+            res <- render(paste0(output, ".Rmd"), output_format,
+                clean = .advanced_argument("clean", TRUE, ...)
+            )
         }
-        if(templateNull) file.remove(paste0(output, '.Rmd'))
+        if (templateNull) file.remove(paste0(output, ".Rmd"))
 
         ## Open
         if (browse) browseURL(res)

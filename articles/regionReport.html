@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.4</span>
       </span>
     </div>
 
@@ -58,9 +58,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/bumphunterExample.html">Example report using bumphunter results</a>
-    </li>
-    <li>
-      <a href="../articles/fakeVignettes/bumphunterExampleOutput.html">UNKNOWN TITLE</a>
     </li>
   </ul>
 </li>
@@ -91,7 +88,7 @@
       <h1 data-toc-skip>Introduction to regionReport</h1>
                         <h4 class="author">Leonardo Collado-Torres</h4>
             <address class="author_afil">
-      Lieber Institute for Brain Development, Johns Hopkins Medical Campus<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
+      Lieber Institute for Brain Development, Johns Hopkins Medical Campus<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com">lcolladotor@gmail.com</a>
       </address>
                   
             <h4 class="date">17 April 2020</h4>
@@ -111,7 +108,7 @@
 <a href="#install-regionreport" class="anchor"></a>Install <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em>
 </h2>
 <p><code>R</code> is an open-source statistical environment which can be easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> is a <code>R</code> package available via the <a href="http://bioconductor/packages/regionReport">Bioconductor</a> repository for packages. <code>R</code> can be installed on any operating system from <a href="https://cran.r-project.org/">CRAN</a> after which you can install <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> by using the following commands in your <code>R</code> session:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>)) {
+<div class="sourceCode"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>)) {
       <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
   }
 
@@ -136,7 +133,7 @@
 <a href="#citing-regionreport" class="anchor"></a>Citing <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em>
 </h2>
 <p>We hope that <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co">## Citation info</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Citation info</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"regionReport"</span>)</pre></body></html></div>
 <pre><code>## 
 ## Collado-Torres L, Jaffe AE, Leek JT (2016). "regionReport: Interactive
@@ -156,7 +153,7 @@
 ## HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
 ## results_. doi: 10.18129/B9.bioc.regionReport (URL:
 ## https://doi.org/10.18129/B9.bioc.regionReport),
-## https://github.com/leekgroup/regionReport - R package version 1.21.2,
+## https://github.com/leekgroup/regionReport - R package version 1.21.4,
 ## &lt;URL: http://www.bioconductor.org/packages/regionReport&gt;.
 ## 
 ## To see these entries in BibTeX format, use 'print(&lt;citation&gt;,
@@ -175,9 +172,9 @@
 <h1 class="hasAnchor">
 <a href="#using-regionreport-for-deseq2-results" class="anchor"></a>Using <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> for <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em> results</h1>
 <p>The plots in <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> for exploring <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em> are powered by <em><a href="https://CRAN.R-project.org/package=ggplot2">ggplot2</a></em> <a id="cite-Wickham_2016"></a>(<a href="https://ggplot2.tidyverse.org">Wickham, 2016</a>) and <em><a href="https://CRAN.R-project.org/package=pheatmap">pheatmap</a></em> <a id="cite-Kolde_2019"></a>(<a href="https://CRAN.R-project.org/package=pheatmap">Kolde, 2019</a>).</p>
-<div id="examples" class="section level2">
+<div id="deseq2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+<a href="#deseq2" class="anchor"></a>DESeq2</h2>
 <p>The <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> supplementary website <a href="http://leekgroup.github.io/regionReportSupp/">regionReportSupp</a> has examples of using <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> with <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em> results. In particular, please look at <a href="http://leekgroup.github.io/regionReportSupp/DESeq2.html">DESeq2.html</a> which has the code for generating some <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em> results based on the <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em> vignette. Then it uses those results to create HTML and PDF versions of the same report. The resulting reports are available in the following locations:</p>
 <ul>
 <li><a href="http://leekgroup.github.io/regionReportSupp/DESeq2-example/index.html">HTML version</a></li>
@@ -191,9 +188,9 @@
 <h1 class="hasAnchor">
 <a href="#using-regionreport-for-edger-results" class="anchor"></a>Using <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> for <em><a href="https://bioconductor.org/packages/3.11/edgeR">edgeR</a></em> results</h1>
 <p><em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> has the <code><a href="../reference/edgeReport.html">edgeReport()</a></code> function that takes as input a <code>DGEList</code> object and the results from the differential expression analysis using <em><a href="https://bioconductor.org/packages/3.11/edgeR">edgeR</a></em>. <code><a href="../reference/edgeReport.html">edgeReport()</a></code> internally uses <em><a href="https://bioconductor.org/packages/3.11/DEFormats">DEFormats</a></em> to convert the results to <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em>’s format and then uses <code>DESeqReport()</code> to create the final report. The report looks nearly the same whether you performed the differential expression analysis with <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em> or <em><a href="https://bioconductor.org/packages/3.11/edgeR">edgeR</a></em> in order to make more homogenous the exploratory data analysis step.</p>
-<div id="examples-1" class="section level2">
+<div id="edger" class="section level2">
 <h2 class="hasAnchor">
-<a href="#examples-1" class="anchor"></a>Examples</h2>
+<a href="#edger" class="anchor"></a>edgeR</h2>
 <p>The <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> supplementary website <a href="http://leekgroup.github.io/regionReportSupp/">regionReportSupp</a> has examples of using <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> with <em><a href="https://bioconductor.org/packages/3.11/edgeR">edgeR</a></em> results. In particular, please look at <a href="http://leekgroup.github.io/regionReportSupp/edgeR.html">edgeR.html</a> which has the code for generating some random data with <em><a href="https://bioconductor.org/packages/3.11/DEFormats">DEFormats</a></em> and performing the differential expression analysis with <em><a href="https://bioconductor.org/packages/3.11/edgeR">edgeR</a></em>. Then it uses those results to create HTML and PDF versions of the same report. The resulting reports are available in the following locations:</p>
 <ul>
 <li><a href="http://leekgroup.github.io/regionReportSupp/edgeR-example/index.html">HTML version</a></li>
@@ -207,9 +204,9 @@
 <h1 class="hasAnchor">
 <a href="#using-regionreport-for-region-results" class="anchor"></a>Using <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> for region results</h1>
 <p>The plots in <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> for region reports are powered by <em><a href="https://bioconductor.org/packages/3.11/derfinderPlot">derfinderPlot</a></em> <a id="cite-Collado-Torres_2017a"></a>(<a href="http://www.bioconductor.org/packages/derfinderPlot">Collado-Torres, Jaffe, and Leek, 2017</a>), <em><a href="https://bioconductor.org/packages/3.11/ggbio">ggbio</a></em> <a id="cite-Yin_2012"></a>(<a href="#bib-Yin_2012">Yin, Cook, and Lawrence, 2012</a>), and <em><a href="https://CRAN.R-project.org/package=ggplot2">ggplot2</a></em> (<a href="https://ggplot2.tidyverse.org">Wickham, 2016</a>).</p>
-<div id="examples-2" class="section level2">
+<div id="examples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#examples-2" class="anchor"></a>Examples</h2>
+<a href="#examples" class="anchor"></a>Examples</h2>
 <p>The <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> supplementary website <a href="http://leekgroup.github.io/regionReportSupp/">regionReportSupp</a> has examples of using <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> with results from <em><a href="https://bioconductor.org/packages/3.11/DiffBind">DiffBind</a></em> and <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em>. Included as a vignette, this package also has an example using a small data set derived from <em><a href="https://bioconductor.org/packages/3.11/bumphunter">bumphunter</a></em>. These represent different uses of <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em> for results from ChIP-seq, methylation, and RNA-seq data. In particular, the <em><a href="https://bioconductor.org/packages/3.11/DiffBind">DiffBind</a></em> example illustrates how to expand a basic report created with <code><a href="../reference/renderReport.html">renderReport()</a></code>.</p>
 </div>
 <div id="general-case" class="section level2">
@@ -225,8 +222,8 @@
 <code>significantVar</code>: is a logical vector separating the regions into by whether they are statistically significant. For example, this information is used to explore the width of all the regions and compare it the significant ones.</li>
 </ul>
 <p>Other parameters control the name of the report, where it’ll be located, the transcripts database used to annotate the nearest genes, graphical parameters, etc.</p>
-<p>Here is a short example of how to use <code><a href="../reference/renderReport.html">renderReport()</a></code>. Note that we are using regions produced by <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em> just for convenience sake. You can also run this example by using <code><a href="https://rdrr.io/r/utils/example.html">example('renderReport', 'regionReport', ask=FALSE)</a></code>.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">## Load derfinder</span>
+<p>Here is a short example of how to use <code><a href="../reference/renderReport.html">renderReport()</a></code>. Note that we are using regions produced by <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em> just for convenience sake.</p>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Load derfinder</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"derfinder"</span>)
 <span class="no">regions</span> <span class="kw">&lt;-</span> <span class="no">genomeRegions</span>$<span class="no">regions</span>
 
@@ -247,6 +244,7 @@
     <span class="kw">significantVar</span> <span class="kw">=</span> <span class="no">regions</span>$<span class="no">qvalues</span> <span class="kw">&lt;=</span> <span class="fl">0.05</span>, <span class="kw">nBestRegions</span> <span class="kw">=</span> <span class="fl">20</span>,
     <span class="kw">outdir</span> <span class="kw">=</span> <span class="st">"renderReport-example"</span>
 )</pre></body></html></div>
+<p>See the report created by this example <a href="http://leekgroup.github.io/regionReport/reference/renderReport-example/regionExploration.html">here</a>.</p>
 <p>For <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em> results created via the expressed regions-level approach you can use <code><a href="../reference/renderReport.html">renderReport()</a></code> to explore the results. If you use <em><a href="https://bioconductor.org/packages/3.11/DESeq2">DESeq2</a></em> to perform the differential expression analysis of the expressed regions you can then use <code><a href="../reference/DESeq2Report.html">DESeq2Report()</a></code>.</p>
 </div>
 <div id="derfinder-single-base-level-case" class="section level2">
@@ -266,13 +264,13 @@
 <li>Analyze the example data for chr21</li>
 <li>Merge the results (only one chr in this case, but in practice there’ll be more)</li>
 </ol>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co">## Load derfinder</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Load derfinder</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"derfinder"</span>)
 
 <span class="co">## The output will be saved in the 'report' directory</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">"report"</span>, <span class="kw">showWarnings</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <p>The following code runs <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co">## Save the current path</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Save the current path</span>
 <span class="no">initialPath</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>()
 <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="no">initialPath</span>, <span class="st">"report"</span>))
 
@@ -307,32 +305,32 @@
 <span class="co">## Change the directory back to the original one</span>
 <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span>(<span class="no">initialPath</span>)</pre></body></html></div>
 <p>For convenience, we have included the <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em> results as part of <em><a href="https://bioconductor.org/packages/3.11/regionReport">regionReport</a></em>. Note that the above functions are routinely checked as part of <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em>.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co">## Copy previous results</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Copy previous results</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">"extdata"</span>, <span class="st">"chr21"</span>),
     <span class="kw">package</span> <span class="kw">=</span> <span class="st">"derfinder"</span>,
     <span class="kw">mustWork</span> <span class="kw">=</span> <span class="fl">TRUE</span>
 ), <span class="st">"report"</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Next, proceed to merging the results.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co">## Merge the results from the different chromosomes. In this case, there's</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Merge the results from the different chromosomes. In this case, there's</span>
 <span class="co">## only one: chr21</span>
 <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/mergeResults.html">mergeResults</a></span>(
     <span class="kw">chrs</span> <span class="kw">=</span> <span class="st">"chr21"</span>, <span class="kw">prefix</span> <span class="kw">=</span> <span class="st">"report"</span>,
     <span class="kw">genomicState</span> <span class="kw">=</span> <span class="no">genomicState</span>$<span class="no">fullGenome</span>
 )</pre></body></html></div>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: Saving options used</code></pre>
-<pre><code>## 2020-04-17 21:26:53 Loading chromosome chr21</code></pre>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: Saving options used</code></pre>
+<pre><code>## 2020-04-17 22:23:41 Loading chromosome chr21</code></pre>
 <pre><code>## Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</code></pre>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: Saving fullNullSummary</code></pre>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: Re-calculating the p-values</code></pre>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: Saving fullRegions</code></pre>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: assigning genomic states</code></pre>
-<pre><code>## 2020-04-17 21:26:53 annotateRegions: counting</code></pre>
-<pre><code>## 2020-04-17 21:26:53 annotateRegions: annotating</code></pre>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: Saving fullAnnotatedRegions</code></pre>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: Saving fullFstats</code></pre>
-<pre><code>## 2020-04-17 21:26:53 mergeResults: Saving fullTime</code></pre>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="co">## Load optionsStats</span>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: Saving fullNullSummary</code></pre>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: Re-calculating the p-values</code></pre>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: Saving fullRegions</code></pre>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: assigning genomic states</code></pre>
+<pre><code>## 2020-04-17 22:23:41 annotateRegions: counting</code></pre>
+<pre><code>## 2020-04-17 22:23:41 annotateRegions: annotating</code></pre>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: Saving fullAnnotatedRegions</code></pre>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: Saving fullFstats</code></pre>
+<pre><code>## 2020-04-17 22:23:41 mergeResults: Saving fullTime</code></pre>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Load optionsStats</span>
 <span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">"report"</span>, <span class="st">"chr21"</span>, <span class="st">"optionsStats.Rdata"</span>), <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <pre><code>## Loading objects:
 ##   optionsStats</code></pre>
@@ -341,9 +339,9 @@
 <h3 class="hasAnchor">
 <a href="#create-report" class="anchor"></a>Create report</h3>
 <p>Once the <em><a href="https://bioconductor.org/packages/3.11/derfinder">derfinder</a></em> output has been generated and merged, use <strong>derfinderReport()</strong> to create the HTML report.</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co">## Load derfindeReport</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Load derfindeReport</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"regionReport"</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="co">## Generate the HTML report</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Generate the HTML report</span>
 <span class="no">report</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/derfinderReport.html">derfinderReport</a></span>(
     <span class="kw">prefix</span> <span class="kw">=</span> <span class="st">"report"</span>, <span class="kw">browse</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
     <span class="kw">nBestRegions</span> <span class="kw">=</span> <span class="fl">15</span>, <span class="kw">makeBestClusters</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">outdir</span> <span class="kw">=</span> <span class="st">"html"</span>,
@@ -395,11 +393,11 @@
 ## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ## output file: basicExploration.knit.md</code></pre>
-<pre><code>## /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output basicExploration.html --email-obfuscation none --self-contained --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpJ3dfSM/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpJ3dfSM/rmarkdown-stre7611a85e62f.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/latex-div.lua --variable code_folding=hide --variable code_menu=1</code></pre>
+<pre><code>## /usr/local/bin/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output basicExploration.html --smart --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpF1emMP/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpF1emMP/rmarkdown-strf09e2cd55962.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1</code></pre>
 <pre><code>## 
 ## Output created: basicExploration.html</code></pre>
 <p>Once the output is generated, you can browse the report from <code>R</code> using <strong>browseURL()</strong> as shown below.</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co">## Browse the report</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Browse the report</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/browseURL.html">browseURL</a></span>(<span class="no">report</span>)</pre></body></html></div>
 </div>
 <div id="notes" class="section level3">
@@ -469,21 +467,21 @@
 <li><em><a href="https://CRAN.R-project.org/package=whisker">whisker</a></em></li>
 </ul>
 <p>Code for creating the vignette</p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co">## Create the vignette</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Create the vignette</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"rmarkdown"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span>(<span class="st">"regionReport.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span>))
 
 <span class="co">## Extract the R code</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"knitr"</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span>(<span class="st">"regionReport.Rmd"</span>, <span class="kw">tangle</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="co">## Clean up</span>
+<div class="sourceCode"><html><body><pre class="r"><span class="co">## Clean up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span>(<span class="st">"regionReportRef.bib"</span>)</pre></body></html></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="st">"report"</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="st">"report"</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <p>Date the vignette was generated.</p>
-<pre><code>## [1] "2020-04-17 21:28:24 EDT"</code></pre>
+<pre><code>## [1] "2020-04-17 22:24:59 EDT"</code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>## Time difference of 1.74 mins</code></pre>
+<pre><code>## Time difference of 1.517 mins</code></pre>
 <p><code>R</code> session information.</p>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                                    
@@ -625,7 +623,7 @@
 ##  Rcpp                                1.0.4.6  2020-04-08 [1] Github (RcppCore/Rcpp@a831639)
 ##  RCurl                               1.98-1.1 2020-01-19 [1] CRAN (R 4.0.0)                
 ##  RefManageR                          1.2.12   2019-04-03 [1] CRAN (R 4.0.0)                
-##  regionReport                      * 1.21.2   2020-04-18 [1] Bioconductor                  
+##  regionReport                      * 1.21.4   2020-04-18 [1] Bioconductor                  
 ##  reshape                             0.8.8    2018-10-23 [1] CRAN (R 4.0.0)                
 ##  reshape2                            1.4.4    2020-04-09 [1] CRAN (R 4.0.0)                
 ##  rlang                               0.4.5    2020-03-01 [1] CRAN (R 4.0.0)                
@@ -666,7 +664,7 @@
 <a href="#bibliography" class="anchor"></a>Bibliography</h1>
 <p>This vignette was generated using <em><a href="https://CRAN.R-project.org/package=BiocStyle">BiocStyle</a></em> (<a href="https://github.com/Bioconductor/BiocStyle">Oleś, Morgan, and Huber, 2020</a>) with <em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (<a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a>) and <em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> (<a href="https://github.com/rstudio/rmarkdown">Allaire, Xie, McPherson, Luraschi, et al., 2020</a>) running behind the scenes.</p>
 <p>Citations made with <em><a href="https://CRAN.R-project.org/package=knitcitations">knitcitations</a></em> (<a href="https://CRAN.R-project.org/package=knitcitations">Boettiger, 2019</a>).</p>
-<p>[1] J. Allaire, Y. Xie, J. McPherson, J. Luraschi, et al. <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.1. 2020. &lt;URL: <a href="https://github.com/rstudio/rmarkdown" class="uri">https://github.com/rstudio/rmarkdown</a>&gt;.</p>
+<p>[1] J. Allaire, Y. Xie, J. McPherson, J. Luraschi, et al. <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.1. 2020. &lt;URL: <a href="https://github.com/rstudio/rmarkdown" class="uri">https://github.com/rstudio/rmarkdown</a>&gt;.</p>
 <p>[2] S. Arora, M. Morgan, M. Carlson, and H. Pagès. <em>GenomeInfoDb: Utilities for manipulating chromosome and other ‘seqname’ identifiers</em>. 2017. DOI: 10.18129/B9.bioc.GenomeInfoDb.</p>
 <p>[3] B. Auguie. <em>gridExtra: Miscellaneous Functions for “Grid” Graphics</em>. R package version 2.3. 2017. &lt;URL: <a href="https://CRAN.R-project.org/package=gridExtra" class="uri">https://CRAN.R-project.org/package=gridExtra</a>&gt;.</p>
 <p>[4] C. Boettiger. <em>knitcitations: Citations for ‘Knitr’ Markdown Files</em>. R package version 1.0.10. 2019. &lt;URL: <a href="https://CRAN.R-project.org/package=knitcitations" class="uri">https://CRAN.R-project.org/package=knitcitations</a>&gt;.</p>
@@ -674,15 +672,15 @@
 <p>[6] Y. Chen, A. T. L. Lun, and G. K. Smyth. “Differential expression analysis of complex RNA-seq experiments using edgeR”. In: <em>Statistical Analysis of Next Generation Sequencing Data</em>. Ed. by S. Datta and D. Nettleton. New York: Springer, 2014, pp. 51-74.</p>
 <p>[7] L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderPlot: Plotting functions for derfinder</em>. <a href="https://github.com/leekgroup/derfinderPlot" class="uri">https://github.com/leekgroup/derfinderPlot</a> - R package version 1.21.4. 2017. DOI: 10.18129/B9.bioc.derfinderPlot. &lt;URL: <a href="http://www.bioconductor.org/packages/derfinderPlot" class="uri">http://www.bioconductor.org/packages/derfinderPlot</a>&gt;.</p>
 <p>[8] L. Collado-Torres, A. E. Jaffe, and J. T. Leek. “regionReport: Interactive reports for region-level and feature-level genomic analyses [version2; referees: 2 approved, 1 approved with reservations]”. In: <em>F1000Research</em> 4 (2016), p. 105. DOI: 10.12688/f1000research.6379.2. &lt;URL: <a href="http://f1000research.com/articles/4-105/v2" class="uri">http://f1000research.com/articles/4-105/v2</a>&gt;.</p>
-<p>[9] L. Collado-Torres, A. Nellore, A. C. Frazee, C. Wilks, et al. “Flexible expressed region analysis for RNA-seq with derfinder”. In: <em>Nucl. Acids Res.</em> (2017). DOI: 10.1093/nar/gkw852. &lt;URL: <a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852" class="uri">http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852</a>&gt;.</p>
-<p>[10] G. Csárdi, R. core, H. Wickham, W. Chang, et al. <em>sessioninfo: R Session Information</em>. R package version 1.1.1. 2018. &lt;URL: <a href="https://CRAN.R-project.org/package=sessioninfo" class="uri">https://CRAN.R-project.org/package=sessioninfo</a>&gt;.</p>
+<p>[9] L. Collado-Torres, A. Nellore, A. C. Frazee, C. Wilks, et al. “Flexible expressed region analysis for RNA-seq with derfinder”. In: <em>Nucl. Acids Res.</em> (2017). DOI: 10.1093/nar/gkw852. &lt;URL: <a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852" class="uri">http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852</a>&gt;.</p>
+<p>[10] G. Csárdi, R. core, H. Wickham, W. Chang, et al. <em>sessioninfo: R Session Information</em>. R package version 1.1.1. 2018. &lt;URL: <a href="https://CRAN.R-project.org/package=sessioninfo" class="uri">https://CRAN.R-project.org/package=sessioninfo</a>&gt;.</p>
 <p>[11] J. Hester. <em>knitrBootstrap: ‘knitr’ Bootstrap Framework</em>. R package version 1.0.2. 2018. &lt;URL: <a href="https://CRAN.R-project.org/package=knitrBootstrap" class="uri">https://CRAN.R-project.org/package=knitrBootstrap</a>&gt;.</p>
-<p>[12] A. E. Jaffe, P. Murakami, H. Lee, J. T. Leek, et al. “Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies”. In: <em>International journal of epidemiology</em> 41.1 (2012), pp. 200-209. DOI: 10.1093/ije/dyr238.</p>
+<p>[12] A. E. Jaffe, P. Murakami, H. Lee, J. T. Leek, et al. “Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies”. In: <em>International journal of epidemiology</em> 41.1 (2012), pp. 200-209. DOI: 10.1093/ije/dyr238.</p>
 <p>[13] R. Kolde. <em>pheatmap: Pretty Heatmaps</em>. R package version 1.0.12. 2019. &lt;URL: <a href="https://CRAN.R-project.org/package=pheatmap" class="uri">https://CRAN.R-project.org/package=pheatmap</a>&gt;.</p>
-<p>[14] M. Lawrence, W. Huber, H. Pagès, P. Aboyoun, et al. “Software for Computing and Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8 2013). DOI: 10.1371/journal.pcbi.1003118. &lt;URL: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118" class="uri">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.&gt;</p>
-<p>[15] M. Lawrence, W. Huber, H. Pagès, P. Aboyoun, et al. “Software for Computing and Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8 2013). DOI: 10.1371/journal.pcbi.1003118. &lt;URL: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118" class="uri">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.&gt;</p>
+<p>[14] M. Lawrence, W. Huber, H. Pagès, P. Aboyoun, et al. “Software for Computing and Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8 2013). DOI: 10.1371/journal.pcbi.1003118. &lt;URL: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.&gt;</p>
+<p>[15] M. Lawrence, W. Huber, H. Pagès, P. Aboyoun, et al. “Software for Computing and Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8 2013). DOI: 10.1371/journal.pcbi.1003118. &lt;URL: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.&gt;</p>
 <p>[16] M. I. Love, W. Huber, and S. Anders. “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2”. In: <em>Genome Biology</em> 15 (12 2014), p. 550. DOI: 10.1186/s13059-014-0550-8.</p>
-<p>[17] D. J. McCarthy, Y. Chen, and G. K. Smyth. “Differential expression analysis of multifactor RNA-Seq experiments with respect to biological variation”. In: <em>Nucleic Acids Research</em> 40.10 (2012), pp. 4288-4297. DOI: 10.1093/nar/gks042.</p>
+<p>[17] D. J. McCarthy, Y. Chen, and G. K. Smyth. “Differential expression analysis of multifactor RNA-Seq experiments with respect to biological variation”. In: <em>Nucleic Acids Research</em> 40.10 (2012), pp. 4288-4297. DOI: 10.1093/nar/gks042.</p>
 <p>[18] E. Neuwirth. <em>RColorBrewer: ColorBrewer Palettes</em>. R package version 1.1-2. 2014. &lt;URL: <a href="https://CRAN.R-project.org/package=RColorBrewer" class="uri">https://CRAN.R-project.org/package=RColorBrewer</a>&gt;.</p>
 <p>[19] A. Oleś. <em>DEFormats: Differential gene expression data formats converter</em>. R package version 1.15.0. 2020. &lt;URL: <a href="https://github.com/aoles/DEFormats" class="uri">https://github.com/aoles/DEFormats</a>&gt;.</p>
 <p>[20] A. Oleś, M. Morgan, and W. Huber. <em>BiocStyle: Standard styles for vignettes and other Bioconductor documents</em>. R package version 2.15.6. 2020. &lt;URL: <a href="https://github.com/Bioconductor/BiocStyle" class="uri">https://github.com/Bioconductor/BiocStyle</a>&gt;.</p>

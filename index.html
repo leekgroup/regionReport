@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.4</span>
       </span>
     </div>
 
@@ -61,9 +61,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="articles/bumphunterExample.html">Example report using bumphunter results</a>
-    </li>
-    <li>
-      <a href="articles/fakeVignettes/bumphunterExampleOutput.html">UNKNOWN TITLE</a>
     </li>
   </ul>
 </li>
@@ -97,9 +94,9 @@
 
 <p>Generate HTML reports for a set of regions such as those from <a href="http://www.bioconductor.org/packages/derfinder">derfinder</a> results or any other pipeline that defines a set of genomic regions.</p>
 <p>Check the documentation for <code><a href="reference/derfinderReport.html">derfinderReport()</a></code> for an example on how to create the necessary input files and generating the HTML report for <strong>derfinder</strong> results. Or use:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">'derfinderReport'</span>, <span class="st">'regionReport'</span>, <span class="kw">ask</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></div>
+<div class="sourceCode"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">'derfinderReport'</span>, <span class="st">'regionReport'</span>, <span class="kw">ask</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></div>
 <p>Similarly, check <code><a href="reference/renderReport.html">renderReport()</a></code> for an example of a general report, or use:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">'renderReport'</span>, <span class="st">'regionReport'</span>, <span class="kw">ask</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></div>
+<div class="sourceCode"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">'renderReport'</span>, <span class="st">'regionReport'</span>, <span class="kw">ask</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></div>
 <p>For DESeq2 or edgeR results check <code><a href="reference/DESeq2Report.html">DESeq2Report()</a></code> and <code><a href="reference/edgeReport.html">edgeReport()</a></code>.</p>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -110,7 +107,7 @@
 <h2 class="hasAnchor">
 <a href="#installation-instructions" class="anchor"></a>Installation instructions</h2>
 <p>Get the latest stable <code>R</code> release from <a href="http://cran.r-project.org/">CRAN</a>. Then install <code>regionReport</code> using from <a href="http://bioconductor.org/">Bioconductor</a> the following code:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>))
+<div class="sourceCode"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>))
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
 
 <span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span>(<span class="st">"regionReport"</span>)</pre></div>
@@ -119,7 +116,7 @@
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p>Below is the citation output from using <code><a href="https://rdrr.io/r/utils/citation.html">citation('regionReport')</a></code> in R. Please run this yourself to check for any updates on how to cite <strong>regionReport</strong>.</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">'regionReport'</span>), <span class="kw">bibtex</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<div class="sourceCode"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">'regionReport'</span>), <span class="kw">bibtex</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Collado-Torres L, Jaffe AE, Leek JT (2016). "regionReport: Interactive</span>
 <span class="co">#&gt; reports for region-level and feature-level genomic analyses [version2;</span>

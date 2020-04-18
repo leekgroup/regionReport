@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.4</span>
       </span>
     </div>
 
@@ -98,9 +98,6 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/bumphunterExample.html">Example report using bumphunter results</a>
-    </li>
-    <li>
-      <a href="../articles/fakeVignettes/bumphunterExampleOutput.html">UNKNOWN TITLE</a>
     </li>
   </ul>
 </li>
@@ -132,110 +129,118 @@
       <small>Source: <a href='https://github.com/leekgroup/regionReport/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="regionreport-1213" class="section level1">
+    <div id="regionreport-1-21-4" class="section level1">
+<h1 class="page-header" data-toc-text="1.21.4">
+<a href="#regionreport-1-21-4" class="anchor"></a>regionReport 1.21.4</h1>
+<p>SIGNIFICANT USER-VISIBLE CHANGES</p>
+<ul>
+<li>Add links to the example reports created when deploying the documentation website with <code><a href="https://pkgdown.r-lib.org/reference/deploy_to_branch.html">pkgdown::deploy_to_branch()</a></code>. This eliminates the need for the <code>vignetttes/Makefile</code> and the fake vignettes. It should also avoid confusing <code>pkgdown</code>.</li>
+</ul>
+</div>
+    <div id="regionreport-1-21-3" class="section level1">
 <h1 class="page-header" data-toc-text="1.21.3">
-<a href="#regionreport-1213" class="anchor"></a>regionReport 1.21.3</h1>
+<a href="#regionreport-1-21-3" class="anchor"></a>regionReport 1.21.3</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Documentation website is now available at <a href="http://leekgroup.github.io/derfinderPlot/" class="uri">http://leekgroup.github.io/derfinderPlot/</a>. It gets updated with every commit on the master branch (bioc-devel) using GitHub Actions and pkgdown.</li>
 </ul>
 </div>
-    <div id="regionreport-1212" class="section level1">
+    <div id="regionreport-1-21-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.21.2">
-<a href="#regionreport-1212" class="anchor"></a>regionReport 1.21.2</h1>
+<a href="#regionreport-1-21-2" class="anchor"></a>regionReport 1.21.2</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Now use <code>GenomeIndoDb::getChromInfoFromUCSC()</code> instead of <code><a href="https://rdrr.io/r/utils/data.html">data(hg19Ideogram, package = 'biovizBase')</a></code> to get the hg19 chromosome lengths.</li>
 </ul>
 </div>
-    <div id="regionreport-1192" class="section level1">
+    <div id="regionreport-1-19-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.19.2">
-<a href="#regionreport-1192" class="anchor"></a>regionReport 1.19.2</h1>
+<a href="#regionreport-1-19-2" class="anchor"></a>regionReport 1.19.2</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
 </ul>
 </div>
-    <div id="regionreport-1192-1" class="section level1">
+    <div id="regionreport-1-19-2-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.19.2">
-<a href="#regionreport-1192-1" class="anchor"></a>regionReport 1.19.2</h1>
+<a href="#regionreport-1-19-2-1" class="anchor"></a>regionReport 1.19.2</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Renamed <code>load_install()</code> as <code>load_check()</code> as this function now only checks that the package(s) was installed and returns an error if missing. The error shows the user how to install the package(s) they are missing instead of installing them automatically. This complies with Marcel Ramos’ request at <a href="https://github.com/leekgroup/recount/issues/14" class="uri">https://github.com/leekgroup/recount/issues/14</a>.</li>
 </ul>
 </div>
-    <div id="regionreport-1172" class="section level1">
+    <div id="regionreport-1-17-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.17.2">
-<a href="#regionreport-1172" class="anchor"></a>regionReport 1.17.2</h1>
+<a href="#regionreport-1-17-2" class="anchor"></a>regionReport 1.17.2</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Add ORCID’s following changes at <a href="http://bioconductor.org/developers/package-guidelines/#description" class="uri">http://bioconductor.org/developers/package-guidelines/#description</a>
 </li>
 </ul>
 </div>
-    <div id="regionreport-1154" class="section level1">
+    <div id="regionreport-1-15-4" class="section level1">
 <h1 class="page-header" data-toc-text="1.15.4">
-<a href="#regionreport-1154" class="anchor"></a>regionReport 1.15.4</h1>
+<a href="#regionreport-1-15-4" class="anchor"></a>regionReport 1.15.4</h1>
 <p>BUG FIXES</p>
 <ul>
 <li>Fix a bug in the order that was reported and fixed by <a href='https://github.com/bounlu'>@bounlu</a> at <a href="https://github.com/leekgroup/regionReport/pull/9/" class="uri">https://github.com/leekgroup/regionReport/pull/9/</a>
 </li>
 </ul>
 </div>
-    <div id="regionreport-1153" class="section level1">
+    <div id="regionreport-1-15-3" class="section level1">
 <h1 class="page-header" data-toc-text="1.15.3">
-<a href="#regionreport-1153" class="anchor"></a>regionReport 1.15.3</h1>
+<a href="#regionreport-1-15-3" class="anchor"></a>regionReport 1.15.3</h1>
 <p>BUG FIXES</p>
 <ul>
 <li><p>Fixed an issue with <code>DESeq2Exploration.Rmd</code> that affected both <code><a href="../reference/DESeq2Report.html">DESeq2Report()</a></code> and <code><a href="../reference/edgeReport.html">edgeReport()</a></code>. This should also fix the recount bioc-release (3.7) and bioc-devel (3.8) branches.</p></li>
 <li><p>Fixed a <code>NAMESPACE</code> issue with <code><a href="https://rdrr.io/pkg/rmarkdown/man/html_document.html">rmarkdown::html_document</a></code> and <code><a href="https://rdrr.io/pkg/BiocStyle/man/html_document.html">BiocStyle::html_document</a></code></p></li>
 </ul>
 </div>
-    <div id="regionreport-1152" class="section level1">
+    <div id="regionreport-1-15-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.15.2">
-<a href="#regionreport-1152" class="anchor"></a>regionReport 1.15.2</h1>
+<a href="#regionreport-1-15-2" class="anchor"></a>regionReport 1.15.2</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Use BiocManager</li>
 </ul>
 </div>
-    <div id="regionreport-1151" class="section level1">
+    <div id="regionreport-1-15-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.15.1">
-<a href="#regionreport-1151" class="anchor"></a>regionReport 1.15.1</h1>
+<a href="#regionreport-1-15-1" class="anchor"></a>regionReport 1.15.1</h1>
 <p>BUG FIXES</p>
 <ul>
 <li>Fix namespace issue in relation to <code>BiocStyle::html_document2</code>
 </li>
 </ul>
 </div>
-    <div id="regionreport-1116" class="section level1">
+    <div id="regionreport-1-11-6" class="section level1">
 <h1 class="page-header" data-toc-text="1.11.6">
-<a href="#regionreport-1116" class="anchor"></a>regionReport 1.11.6</h1>
+<a href="#regionreport-1-11-6" class="anchor"></a>regionReport 1.11.6</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Changed the default style to <code><a href="https://rdrr.io/pkg/BiocStyle/man/html_document.html">BiocStyle::html_document</a></code> to mirror recent changes in <code>BiocStyle</code>.</li>
 </ul>
 </div>
-    <div id="regionreport-1114" class="section level1">
+    <div id="regionreport-1-11-4" class="section level1">
 <h1 class="page-header" data-toc-text="1.11.4">
-<a href="#regionreport-1114" class="anchor"></a>regionReport 1.11.4</h1>
+<a href="#regionreport-1-11-4" class="anchor"></a>regionReport 1.11.4</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Vignette now uses the new <code><a href="https://rdrr.io/pkg/BiocStyle/man/html_document.html">BiocStyle::html_document</a></code> that was recently released.</li>
 </ul>
 </div>
-    <div id="regionreport-1112" class="section level1">
+    <div id="regionreport-1-11-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.11.2">
-<a href="#regionreport-1112" class="anchor"></a>regionReport 1.11.2</h1>
+<a href="#regionreport-1-11-2" class="anchor"></a>regionReport 1.11.2</h1>
 <p>BUG FIXES</p>
 <ul>
 <li>Fixed the citations.</li>
 <li>Fixed <code><a href="../reference/DESeq2Report.html">DESeq2Report()</a></code> for <code>limma</code>-results so that it will properly cite <code>limma</code>.</li>
 </ul>
 </div>
-    <div id="regionreport-1111" class="section level1">
+    <div id="regionreport-1-11-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.11.1">
-<a href="#regionreport-1111" class="anchor"></a>regionReport 1.11.1</h1>
+<a href="#regionreport-1-11-1" class="anchor"></a>regionReport 1.11.1</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>
@@ -246,66 +251,66 @@
 <li>Made the <code><a href="../reference/DESeq2Report.html">DESeq2Report()</a></code> more robust in case<code>rlog()</code> fails initially.</li>
 </ul>
 </div>
-    <div id="regionreport-191" class="section level1">
+    <div id="regionreport-1-9-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.9.1">
-<a href="#regionreport-191" class="anchor"></a>regionReport 1.9.1</h1>
+<a href="#regionreport-1-9-1" class="anchor"></a>regionReport 1.9.1</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Changed the default style to <code>BiocStyle::html_document2</code>.</li>
 </ul>
 </div>
-    <div id="regionreport-1710" class="section level1">
+    <div id="regionreport-1-7-10" class="section level1">
 <h1 class="page-header" data-toc-text="1.7.10">
-<a href="#regionreport-1710" class="anchor"></a>regionReport 1.7.10</h1>
+<a href="#regionreport-1-7-10" class="anchor"></a>regionReport 1.7.10</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Help pages now document advanced arguments.</li>
 </ul>
 </div>
-    <div id="regionreport-172" class="section level1">
+    <div id="regionreport-1-7-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.7.2">
-<a href="#regionreport-172" class="anchor"></a>regionReport 1.7.2</h1>
+<a href="#regionreport-1-7-2" class="anchor"></a>regionReport 1.7.2</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Dropped defunct functions.</li>
 </ul>
 </div>
-    <div id="regionreport-1548" class="section level1">
+    <div id="regionreport-1-5-48" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.48">
-<a href="#regionreport-1548" class="anchor"></a>regionReport 1.5.48</h1>
+<a href="#regionreport-1-5-48" class="anchor"></a>regionReport 1.5.48</h1>
 <p>BUG FIXES</p>
 <ul>
 <li>Fixed a bug in <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code> for a case when there are significant regions but not all regions have finite areas.</li>
 </ul>
 </div>
-    <div id="regionreport-1543" class="section level1">
+    <div id="regionreport-1-5-43" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.43">
-<a href="#regionreport-1543" class="anchor"></a>regionReport 1.5.43</h1>
+<a href="#regionreport-1-5-43" class="anchor"></a>regionReport 1.5.43</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>
 <code><a href="../reference/edgeReport.html">edgeReport()</a></code> now includes two edgeR specific plots: one showing the BCV and another showing a 2-dim MDS. Also added more <code>edgeR</code> citations that I missed earlier: thank you Gordon Smyth!</li>
 </ul>
 </div>
-    <div id="regionreport-1533" class="section level1">
+    <div id="regionreport-1-5-33" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.33">
-<a href="#regionreport-1533" class="anchor"></a>regionReport 1.5.33</h1>
+<a href="#regionreport-1-5-33" class="anchor"></a>regionReport 1.5.33</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Added the function <code><a href="../reference/edgeReport.html">edgeReport()</a></code> for creating HTML or PDF reports based on edgeR results. Together with <code><a href="../reference/DESeq2Report.html">DESeq2Report()</a></code> now <code>regionReport</code> supports the two most used packages for RNA-seq feature-level analysis.</li>
 </ul>
 </div>
-    <div id="regionreport-1519" class="section level1">
+    <div id="regionreport-1-5-19" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.19">
-<a href="#regionreport-1519" class="anchor"></a>regionReport 1.5.19</h1>
+<a href="#regionreport-1-5-19" class="anchor"></a>regionReport 1.5.19</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Added the templates <code>templatePvalueHistogram</code> and <code>templateHistogram</code> to be used with <code><a href="../reference/renderReport.html">renderReport()</a></code> if you prefer histogram plots instead of density plots.</li>
 </ul>
 </div>
-    <div id="regionreport-1512" class="section level1">
+    <div id="regionreport-1-5-12" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.12">
-<a href="#regionreport-1512" class="anchor"></a>regionReport 1.5.12</h1>
+<a href="#regionreport-1-5-12" class="anchor"></a>regionReport 1.5.12</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Added the function <code><a href="../reference/DESeq2Report.html">DESeq2Report()</a></code> for creating HTML or PDF reports based on <code>DESeq2</code> results. This should also be useful to explore derfinder results created from the expressed regions-level approach.</li>
@@ -320,26 +325,26 @@
 <li>Improved the PDF versions of all reports by hiding code and shortening tables. Also added a warning to switch the device to <code>pdf</code> for PDF output since it looks better than the default <code>png</code>.</li>
 </ul>
 </div>
-    <div id="regionreport-156" class="section level1">
+    <div id="regionreport-1-5-6" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.6">
-<a href="#regionreport-156" class="anchor"></a>regionReport 1.5.6</h1>
+<a href="#regionreport-1-5-6" class="anchor"></a>regionReport 1.5.6</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Switched to using <code>rmarkdown</code> instead of <code>knitrBootstrap</code> as the default engine for creating the reports.</li>
 </ul>
 </div>
-    <div id="regionreport-138" class="section level1">
+    <div id="regionreport-1-3-8" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.8">
-<a href="#regionreport-138" class="anchor"></a>regionReport 1.3.8</h1>
+<a href="#regionreport-1-3-8" class="anchor"></a>regionReport 1.3.8</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>
 <code><a href="../reference/renderReport.html">renderReport()</a></code> and <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code> now show Manhattan plots for p-value variables (p-value, q-value, FWER adjusted p-value).</li>
 </ul>
 </div>
-    <div id="regionreport-137" class="section level1">
+    <div id="regionreport-1-3-7" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.7">
-<a href="#regionreport-137" class="anchor"></a>regionReport 1.3.7</h1>
+<a href="#regionreport-1-3-7" class="anchor"></a>regionReport 1.3.7</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>
@@ -347,17 +352,17 @@
 </li>
 </ul>
 </div>
-    <div id="regionreport-136" class="section level1">
+    <div id="regionreport-1-3-6" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.6">
-<a href="#regionreport-136" class="anchor"></a>regionReport 1.3.6</h1>
+<a href="#regionreport-1-3-6" class="anchor"></a>regionReport 1.3.6</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Added a vignette with an example report from bumphunter results.</li>
 </ul>
 </div>
-    <div id="regionreport-135" class="section level1">
+    <div id="regionreport-1-3-5" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.5">
-<a href="#regionreport-135" class="anchor"></a>regionReport 1.3.5</h1>
+<a href="#regionreport-1-3-5" class="anchor"></a>regionReport 1.3.5</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Merged pull request <a href="https://github.com/leekgroup/regionReport/pull/7" class="uri">https://github.com/leekgroup/regionReport/pull/7</a>
@@ -366,17 +371,17 @@
 <li>Wrapped code that works in a temporary directory in <code>with_wd()</code> function, which evaluates in the directory but returns to the original directory in the case of a user interrupt or error (with <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>)</li>
 </ul>
 </div>
-    <div id="regionreport-134" class="section level1">
+    <div id="regionreport-1-3-4" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.4">
-<a href="#regionreport-134" class="anchor"></a>regionReport 1.3.4</h1>
+<a href="#regionreport-1-3-4" class="anchor"></a>regionReport 1.3.4</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Reports now have a link to the BibTeX file used for the references. This addresses <a href="http://f1000research.com/articles/4-105/v1#reflist" class="uri">http://f1000research.com/articles/4-105/v1#reflist</a> Karthik Ram’s bullet point number 4.</li>
 </ul>
 </div>
-    <div id="regionreport-133" class="section level1">
+    <div id="regionreport-1-3-3" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.3">
-<a href="#regionreport-133" class="anchor"></a>regionReport 1.3.3</h1>
+<a href="#regionreport-1-3-3" class="anchor"></a>regionReport 1.3.3</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Now uses <code><a href="https://rdrr.io/pkg/derfinderPlot/man/vennRegions.html">derfinderPlot::vennRegions()</a></code> to show venn diagram of genomic states. Requires <code>derfinderPlot</code> version 1.3.2 or greater.</li>
@@ -384,59 +389,59 @@
 <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code> now has a <code>significantVar</code> argument that allows users to choose between determining significant regions by P-values, FDR adjusted P-values, or FWER adjusted P-values (if FWER adjusted P-values are absent, then FDR adjusted P-values are used instead, with a warning).</li>
 </ul>
 </div>
-    <div id="regionreport-132" class="section level1">
+    <div id="regionreport-1-3-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.2">
-<a href="#regionreport-132" class="anchor"></a>regionReport 1.3.2</h1>
+<a href="#regionreport-1-3-2" class="anchor"></a>regionReport 1.3.2</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Deprecated functions with underscores in their names in favor of camelCase functions. This was done to simplify the package.</li>
 </ul>
 </div>
-    <div id="regionreport-131" class="section level1">
+    <div id="regionreport-1-3-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.3.1">
-<a href="#regionreport-131" class="anchor"></a>regionReport 1.3.1</h1>
+<a href="#regionreport-1-3-1" class="anchor"></a>regionReport 1.3.1</h1>
 <p>BUG FIXES</p>
 <ul>
 <li>Fixed <code><a href="../reference/renderReport.html">renderReport()</a></code> and <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code> so they’ll open the correct URL when <code>interactive() == TRUE</code> and the user has knitrBootstrap version 0.9.0 installed instead of the latest GitHub version.</li>
 </ul>
 </div>
-    <div id="regionreport-119" class="section level1">
+    <div id="regionreport-1-1-9" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.9">
-<a href="#regionreport-119" class="anchor"></a>regionReport 1.1.9</h1>
+<a href="#regionreport-1-1-9" class="anchor"></a>regionReport 1.1.9</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Introduced <code><a href="../reference/renderReport.html">renderReport()</a></code> which creates a simple exploratory report for any set of genomic regions. It allows the user to further customize the report by using a child file.</li>
 <li>You can now use the <code>output_format</code> advanced parameter on both <code><a href="../reference/renderReport.html">renderReport()</a></code> and <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code> to output a PDF file instead of an HTML file. The interactive tables are lost and only the top 20 rows are shown.</li>
 </ul>
 </div>
-    <div id="regionreport-118" class="section level1">
+    <div id="regionreport-1-1-8" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.8">
-<a href="#regionreport-118" class="anchor"></a>regionReport 1.1.8</h1>
+<a href="#regionreport-1-1-8" class="anchor"></a>regionReport 1.1.8</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Adapted to work with <code>bumphunter</code> &gt;= 1.7.6</li>
 </ul>
 </div>
-    <div id="regionreport-117" class="section level1">
+    <div id="regionreport-1-1-7" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.7">
-<a href="#regionreport-117" class="anchor"></a>regionReport 1.1.7</h1>
+<a href="#regionreport-1-1-7" class="anchor"></a>regionReport 1.1.7</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Users can now control <code>output_format</code> and <code>clean</code> options from <code><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">rmarkdown::render()</a></code> when running <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code>
 </li>
 </ul>
 </div>
-    <div id="regionreport-113" class="section level1">
+    <div id="regionreport-1-1-3" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.3">
-<a href="#regionreport-113" class="anchor"></a>regionReport 1.1.3</h1>
+<a href="#regionreport-1-1-3" class="anchor"></a>regionReport 1.1.3</h1>
 <p>BUG FIXES</p>
 <ul>
 <li>Adapted <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code> to <code>derfinder</code> 1.1.5</li>
 </ul>
 </div>
-    <div id="regionreport-0990" class="section level1">
+    <div id="regionreport-0-99-0" class="section level1">
 <h1 class="page-header" data-toc-text="0.99.0">
-<a href="#regionreport-0990" class="anchor"></a>regionReport 0.99.0</h1>
+<a href="#regionreport-0-99-0" class="anchor"></a>regionReport 0.99.0</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Preparing to submit to Bioconductor.</li>
@@ -449,75 +454,75 @@
 <li>Added Travis integration.</li>
 </ul>
 </div>
-    <div id="regionreport-0018" class="section level1">
+    <div id="regionreport-0-0-18" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.18">
-<a href="#regionreport-0018" class="anchor"></a>regionReport 0.0.18</h1>
+<a href="#regionreport-0-0-18" class="anchor"></a>regionReport 0.0.18</h1>
 <ul>
 <li>Now <code><a href="../reference/derfinderReport.html">derfinderReport()</a></code> has a <code>chrsStyle</code> argument to match changes in <code>derfinder</code> version 0.0.60. <code>chrsStyle</code> is set to <code>UCSC</code> by default.</li>
 </ul>
 </div>
-    <div id="regionreport-0017" class="section level1">
+    <div id="regionreport-0-0-17" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.17">
-<a href="#regionreport-0017" class="anchor"></a>regionReport 0.0.17</h1>
+<a href="#regionreport-0-0-17" class="anchor"></a>regionReport 0.0.17</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Made more robust for cases where there is a small number of significant DERs: need at least 3 observations by chr for the chr to be included in the density plots.</li>
 </ul>
 </div>
-    <div id="regionreport-0016" class="section level1">
+    <div id="regionreport-0-0-16" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.16">
-<a href="#regionreport-0016" class="anchor"></a>regionReport 0.0.16</h1>
+<a href="#regionreport-0-0-16" class="anchor"></a>regionReport 0.0.16</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>MA-style plots now use the scaling factor.</li>
 <li>Using a GAM smoother instead of loess for MA-style plots. Helps for cases with many regions.</li>
 </ul>
 </div>
-    <div id="regionreport-0013" class="section level1">
+    <div id="regionreport-0-0-13" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.13">
-<a href="#regionreport-0013" class="anchor"></a>regionReport 0.0.13</h1>
+<a href="#regionreport-0-0-13" class="anchor"></a>regionReport 0.0.13</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Added a vignette</li>
 </ul>
 </div>
-    <div id="regionreport-0012" class="section level1">
+    <div id="regionreport-0-0-12" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.12">
-<a href="#regionreport-0012" class="anchor"></a>regionReport 0.0.12</h1>
+<a href="#regionreport-0-0-12" class="anchor"></a>regionReport 0.0.12</h1>
 <p>BUG FIXES</p>
 <ul>
 <li>complying with <code>BiocCheck</code> version 1.0.0</li>
 </ul>
 </div>
-    <div id="regionreport-0011" class="section level1">
+    <div id="regionreport-0-0-11" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.11">
-<a href="#regionreport-0011" class="anchor"></a>regionReport 0.0.11</h1>
+<a href="#regionreport-0-0-11" class="anchor"></a>regionReport 0.0.11</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>
 <code>genomicState</code> data moved to <code>derfinder</code> 0.0.53</li>
 </ul>
 </div>
-    <div id="regionreport-008" class="section level1">
+    <div id="regionreport-0-0-8" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.8">
-<a href="#regionreport-008" class="anchor"></a>regionReport 0.0.8</h1>
+<a href="#regionreport-0-0-8" class="anchor"></a>regionReport 0.0.8</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Now requires <code>knitrBootstrap</code> 1.0.0</li>
 <li>Matches <code>derfinder</code> version 0.0.49</li>
 </ul>
 </div>
-    <div id="regionreport-003" class="section level1">
+    <div id="regionreport-0-0-3" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.3">
-<a href="#regionreport-003" class="anchor"></a>regionReport 0.0.3</h1>
+<a href="#regionreport-0-0-3" class="anchor"></a>regionReport 0.0.3</h1>
 <p>SIGNIFICANT USER-VISIBLE CHANGES</p>
 <ul>
 <li>Matches <code>derfinder</code> version 0.0.34</li>
 </ul>
 </div>
-    <div id="regionreport-001" class="section level1">
+    <div id="regionreport-0-0-1" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
-<a href="#regionreport-001" class="anchor"></a>regionReport 0.0.1</h1>
+<a href="#regionreport-0-0-1" class="anchor"></a>regionReport 0.0.1</h1>
 <p>NEW FEATURES</p>
 <ul>
 <li>Migrated from <code>derfinder</code>

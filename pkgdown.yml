@@ -1,9 +1,8 @@
-pandoc: 2.7.3
+pandoc: 1.19.2.1
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   bumphunterExample: bumphunterExample.html
-  bumphunterExampleOutput: fakeVignettes/bumphunterExampleOutput.html
   regionReport: regionReport.html
-last_built: 2020-04-18T01:20Z
+last_built: 2020-04-18T02:19Z
 

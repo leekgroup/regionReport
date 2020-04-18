@@ -22,9 +22,9 @@
 #' @param dir a directory to perform an expression within
 #' @param expr expression to evaluate
 #'
-#' @details See here: http://plantarum.ca/code/setwd-part2/
+#' @details See here: <http://plantarum.ca/code/setwd-part2/>
 #' @author Tyler Smith, contributed to regionReport by David Robinson
-#' https://github.com/dgrtwo
+#' <https://github.com/dgrtwo>
 #' @noRd
 with_wd <- function(dir, expr) {
     wd <- getwd()

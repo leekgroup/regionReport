@@ -22,10 +22,10 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 Generate HTML reports for a set of regions such as those from 
-[derfinder](http://www.bioconductor.org/packages/derfinder) results or any other pipeline that defines a set of genomic regions.
+`r BiocStyle::Biocpkg('derfinder')` results or any other pipeline that defines a set of genomic regions.
 
 Check the documentation for `derfinderReport()` for an example on how to create 
-the necessary input files and generating the HTML report for __derfinder__ 
+the necessary input files and generating the HTML report for `r BiocStyle::Biocpkg('derfinder')`
 results. Or use:
 
 ```{r, eval = FALSE}
@@ -38,7 +38,7 @@ Similarly, check `renderReport()` for an example of a general report, or use:
 example('renderReport', 'regionReport', ask=FALSE)
 ```
 
-For DESeq2 or edgeR results check `DESeq2Report()` and `edgeReport()`.
+For `r BiocStyle::Biocpkg('DESeq2')` or `r BiocStyle::Biocpkg('edgeR')` results check `DESeq2Report()` and `edgeReport()`.
 
 ## Documentation
 

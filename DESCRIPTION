@@ -60,3 +60,4 @@ Suggests:
     whisker
 RoxygenNote: 7.1.0
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)

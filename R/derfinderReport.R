@@ -2,8 +2,8 @@
 #'
 #' This function generates a HTML report exploring the basic results from
 #' single base-level approach derfinder analysis results
-#' (www.bioconductor.org/packages/derfinder). The HTML report itself
-#' is generated using rmarkdown (http://rmarkdown.rstudio.com/). It works best
+#' (<www.bioconductor.org/packages/derfinder>). The HTML report itself
+#' is generated using rmarkdown (<http://rmarkdown.rstudio.com/>). It works best
 #' after using \link[derfinder]{mergeResults}.
 #'
 #' @param prefix The main data directory path where
@@ -33,7 +33,7 @@
 #' for the top regions by area. If \code{NULL} and \code{hg19=TRUE} then
 #' TxDb.Hsapiens.UCSC.hg19.knownGene is used.
 #' @param device The graphical device used when knitting. See more at
-#' http://yihui.name/knitr/options (\code{dev} argument).
+#' <http://yihui.name/knitr/options> (\code{dev} argument).
 #' @param significantVar A character variable specifying whether to use the
 #' p-values, the FDR adjusted p-values or the FWER adjusted p-values to
 #' determine significance. Has to be either \code{'pvalue'}, \code{'qvalue'}
@@ -106,7 +106,7 @@
 #' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 #' \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 #' a PDF report respectively. If using knitrBootstrap, we recommend the version
-#' available only via GitHub at https://github.com/jimhester/knitrBootstrap
+#' available only via GitHub at <https://github.com/jimhester/knitrBootstrap>
 #' which has nicer features than the current version available via CRAN. You can
 #' also set the \code{output_format} to \code{'html_document'} for a HTML
 #' report styled by rmarkdown. The default is set to

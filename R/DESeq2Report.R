@@ -31,7 +31,7 @@
 #' @param browse If \code{TRUE} the HTML report is opened in your browser once
 #' it's completed.
 #' @param device The graphical device used when knitting. See more at
-#' http://yihui.name/knitr/options (\code{dev} argument).
+#' <http://yihui.name/knitr/options> (\code{dev} argument).
 #' @param template Template file to use for the report. If not provided, will
 #' use the default file found in DESeq2Exploration/DESeq2Exploration.Rmd
 #' within the package source.
@@ -83,7 +83,7 @@
 #' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 #' \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 #' a PDF report respectively. If using knitrBootstrap, we recommend the version
-#' available only via GitHub at https://github.com/jimhester/knitrBootstrap
+#' available only via GitHub at <https://github.com/jimhester/knitrBootstrap>
 #' which has nicer features than the current version available via CRAN. You can
 #' also set the \code{output_format} to \code{'html_document'} for a HTML
 #' report styled by rmarkdown. The default is set to

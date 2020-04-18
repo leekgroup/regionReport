@@ -14,12 +14,13 @@ status](https://github.com/leekgroup/regionReport/workflows/R-CMD-check-bioc/bad
 <!-- badges: end -->
 
 Generate HTML reports for a set of regions such as those from
-[derfinder](http://www.bioconductor.org/packages/derfinder) results or
-any other pipeline that defines a set of genomic regions.
+*[derfinder](https://bioconductor.org/packages/3.11/derfinder)* results
+or any other pipeline that defines a set of genomic regions.
 
 Check the documentation for `derfinderReport()` for an example on how to
 create the necessary input files and generating the HTML report for
-**derfinder** results. Or use:
+*[derfinder](https://bioconductor.org/packages/3.11/derfinder)* results.
+Or use:
 
 ``` r
 example('derfinderReport', 'regionReport', ask=FALSE)
@@ -32,7 +33,9 @@ use:
 example('renderReport', 'regionReport', ask=FALSE)
 ```
 
-For DESeq2 or edgeR results check `DESeq2Report()` and `edgeReport()`.
+For *[DESeq2](https://bioconductor.org/packages/3.11/DESeq2)* or
+*[edgeR](https://bioconductor.org/packages/3.11/edgeR)* results check
+`DESeq2Report()` and `edgeReport()`.
 
 ## Documentation
 
@@ -103,7 +106,7 @@ print(citation('regionReport'), bibtex = TRUE)
 #> HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
 #> results_. doi: 10.18129/B9.bioc.regionReport (URL:
 #> https://doi.org/10.18129/B9.bioc.regionReport),
-#> https://github.com/leekgroup/regionReport - R package version 1.21.2,
+#> https://github.com/leekgroup/regionReport - R package version 1.21.4,
 #> <URL: http://www.bioconductor.org/packages/regionReport>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -113,7 +116,7 @@ print(citation('regionReport'), bibtex = TRUE)
 #>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
 #>     year = {2017},
 #>     url = {http://www.bioconductor.org/packages/regionReport},
-#>     note = {https://github.com/leekgroup/regionReport - R package version 1.21.2},
+#>     note = {https://github.com/leekgroup/regionReport - R package version 1.21.4},
 #>     doi = {10.18129/B9.bioc.regionReport},
 #>   }
 ```

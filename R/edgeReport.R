@@ -47,7 +47,7 @@
 #' Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 #' \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 #' a PDF report respectively. If using knitrBootstrap, we recommend the version
-#' available only via GitHub at https://github.com/jimhester/knitrBootstrap
+#' available only via GitHub at <https://github.com/jimhester/knitrBootstrap>
 #' which has nicer features than the current version available via CRAN.
 #'
 #' If you modify the YAML front matter of \code{template}, you can use other

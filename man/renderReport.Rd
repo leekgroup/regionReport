@@ -97,7 +97,7 @@ closest genes via \link[bumphunter]{matchGenes}. If \code{NULL} it will
 use TxDb.Hsapiens.UCSC.hg19.knownGene by default.}
 
 \item{device}{The graphical device used when knitting. See more at
-http://yihui.name/knitr/options (\code{dev} argument).}
+\url{http://yihui.name/knitr/options} (\code{dev} argument).}
 
 \item{densityTemplates}{A list of length 3 with templates for the p-value
 density plots (variables from \code{pvalueVars}), the continuous
@@ -136,7 +136,7 @@ template.}
 \value{
 An HTML report with a basic exploration for the given set of
 genomic regions. See the example report at
-<http://leekgroup.github.io/regionReport/reference/renderReport-example/regionExploration.html>.
+\url{http://leekgroup.github.io/regionReport/reference/renderReport-example/regionExploration.html}.
 }
 \description{
 This function generates a HTML report with quality checks, genome location
@@ -150,7 +150,7 @@ customize the entire template by providing an R Markdown file to
 Set \code{output_format} to \code{'knitrBootstrap::bootstrap_document'} or
 \code{'pdf_document'} if you want a HTML report styled by knitrBootstrap or
 a PDF report respectively. If using knitrBootstrap, we recommend the version
-available only via GitHub at https://github.com/jimhester/knitrBootstrap
+available only via GitHub at \url{https://github.com/jimhester/knitrBootstrap}
 which has nicer features than the current version available via CRAN. You can
 also set the \code{output_format} to \code{'html_document'} for a HTML
 report styled by rmarkdown. The default is set to
@@ -198,13 +198,13 @@ if (interactive()) {
 ## Check the default templates. For users interested in customizing these
 ## plots.
 ## For p-value variables:
-cat(templatePvalueDensity)
+cat(regionReport::templatePvalueDensity)
 
 ## For continous variables:
-cat(templateDensity)
+cat(regionReport::templateDensity)
 
 ## For Manhattan plots
-cat(templateManhattan)
+cat(regionReport::templateManhattan)
 
 ##################################################
 ## bumphunter example mentioned in the vignette ##

@@ -138,6 +138,9 @@ jobs:
               install.packages("BiocManager")
           BiocManager::install('BiocCheck')
 
+          ## Use the devel version of derfinder (1.21.5+) temporarely
+          BiocManager::install("lcolladotor/derfinder")
+
           ## Copy all the installed packages to a location where BiocCheck
           ## will find them later. This is needed when running biocdocker
           ## with the shared volume.

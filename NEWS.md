@@ -1,3 +1,12 @@
+# regionReport 1.21.5
+
+BUG FIXES
+
+* The example in `renderReport()` was failing because the first time the
+function was called, it ran `derfinder::makeGenomicState()` which in turn
+uses `GenomicFeatures::isActiveSeq()`. `derfinder` version 1.21.5 fixed this
+bug and is thus required by `regionReport` now.
+
 # regionReport 1.21.4
 
 SIGNIFICANT USER-VISIBLE CHANGES

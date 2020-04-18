@@ -42,7 +42,7 @@
 <meta property="og:title" content="Generate a HTML/PDF report exploring the basic results from derfinder — derfinderReport" />
 <meta property="og:description" content="This function generates a HTML report exploring the basic results from
 single base-level approach derfinder analysis results
-(www.bioconductor.org/packages/derfinder). The HTML report itself
+(&amp;lt;www.bioconductor.org/packages/derfinder&amp;gt;). The HTML report itself
 is generated using rmarkdown (http://rmarkdown.rstudio.com/). It works best
 after using mergeResults." />
 
@@ -76,7 +76,7 @@ after using mergeResults." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.5</span>
       </span>
     </div>
 
@@ -138,8 +138,8 @@ after using mergeResults." />
     <div class="ref-description">
     <p>This function generates a HTML report exploring the basic results from
 single base-level approach derfinder analysis results
-(www.bioconductor.org/packages/derfinder). The HTML report itself
-is generated using rmarkdown (http://rmarkdown.rstudio.com/). It works best
+(&lt;www.bioconductor.org/packages/derfinder&gt;). The HTML report itself
+is generated using rmarkdown (<a href='http://rmarkdown.rstudio.com/'>http://rmarkdown.rstudio.com/</a>). It works best
 after using <a href='https://rdrr.io/pkg/derfinder/man/mergeResults.html'>mergeResults</a>.</p>
     </div>
 
@@ -233,7 +233,7 @@ TxDb.Hsapiens.UCSC.hg19.knownGene is used.</p></td>
     <tr>
       <th>device</th>
       <td><p>The graphical device used when knitting. See more at
-http://yihui.name/knitr/options (<code>dev</code> argument).</p></td>
+<a href='http://yihui.name/knitr/options'>http://yihui.name/knitr/options</a> (<code>dev</code> argument).</p></td>
     </tr>
     <tr>
       <th>significantVar</th>
@@ -304,13 +304,13 @@ template.</p></dd>
 
     <p>An HTML report with a basic exploration of the derfinder results.
 See the example output at
-&lt;http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html&gt;.</p>
+<a href='http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html'>http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html</a>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Set <code>output_format</code> to <code>'knitrBootstrap::bootstrap_document'</code> or
 <code>'pdf_document'</code> if you want a HTML report styled by knitrBootstrap or
 a PDF report respectively. If using knitrBootstrap, we recommend the version
-available only via GitHub at https://github.com/jimhester/knitrBootstrap
+available only via GitHub at <a href='https://github.com/jimhester/knitrBootstrap'>https://github.com/jimhester/knitrBootstrap</a>
 which has nicer features than the current version available via CRAN. You can
 also set the <code>output_format</code> to <code>'html_document'</code> for a HTML
 report styled by rmarkdown. The default is set to
@@ -373,7 +373,7 @@ values for <code>output_format</code>.</p>
 <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/mergeResults.html'>mergeResults</a></span>(
     <span class='kw'>chrs</span> <span class='kw'>=</span> <span class='st'>"21"</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"derfinderReport-example"</span>,
     <span class='kw'>genomicState</span> <span class='kw'>=</span> <span class='no'>genomicState</span>$<span class='no'>fullGenome</span>
-)</div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: Saving options used</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 Loading chromosome chr21</span></div><div class='output co'>#&gt; <span class='message'>Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: Saving fullNullSummary</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: Re-calculating the p-values</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: Saving fullRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: assigning genomic states</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 annotateRegions: counting</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 annotateRegions: annotating</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: Saving fullAnnotatedRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: Saving fullFstats</span></div><div class='output co'>#&gt; <span class='message'>2020-04-17 22:20:08 mergeResults: Saving fullTime</span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving options used</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 Loading chromosome chr21</span></div><div class='output co'>#&gt; <span class='message'>Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullNullSummary</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Re-calculating the p-values</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: assigning genomic states</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 annotateRegions: counting</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 annotateRegions: annotating</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullAnnotatedRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullFstats</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullTime</span></div><div class='input'>
 <span class='co'>## Load the options used for calculating the statistics</span>
 <span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"derfinderReport-example"</span>, <span class='st'>"chr21"</span>, <span class='st'>"optionsStats.Rdata"</span>))
 
@@ -748,7 +748,7 @@ values for <code>output_format</code>.</p>
 #&gt;   |                                                                                                                      |..............................................................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: basicExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output basicExploration.html --smart --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpHjSkDA/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpHjSkDA/rmarkdown-strf0397e563a76.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: basicExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output basicExploration.html --smart --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/rmarkdown-str11e5450bae892.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Output created: basicExploration.html</span></div><div class='input'>
 
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {

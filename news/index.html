@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.5</span>
       </span>
     </div>
 
@@ -129,6 +129,14 @@
       <small>Source: <a href='https://github.com/leekgroup/regionReport/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="regionreport-1-21-5" class="section level1">
+<h1 class="page-header" data-toc-text="1.21.5">
+<a href="#regionreport-1-21-5" class="anchor"></a>regionReport 1.21.5</h1>
+<p>BUG FIXES</p>
+<ul>
+<li>The example in <code><a href="../reference/renderReport.html">renderReport()</a></code> was failing because the first time the function was called, it ran <code><a href="https://rdrr.io/pkg/derfinder/man/makeGenomicState.html">derfinder::makeGenomicState()</a></code> which in turn uses <code><a href="https://rdrr.io/pkg/GenomicFeatures/man/TxDb-class.html">GenomicFeatures::isActiveSeq()</a></code>. <code>derfinder</code> version 1.21.5 fixed this bug and is thus required by <code>regionReport</code> now.</li>
+</ul>
+</div>
     <div id="regionreport-1-21-4" class="section level1">
 <h1 class="page-header" data-toc-text="1.21.4">
 <a href="#regionreport-1-21-4" class="anchor"></a>regionReport 1.21.4</h1>

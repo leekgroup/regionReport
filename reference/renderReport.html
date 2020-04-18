@@ -77,7 +77,7 @@ template." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.5</span>
       </span>
     </div>
 
@@ -249,7 +249,7 @@ use TxDb.Hsapiens.UCSC.hg19.knownGene by default.</p></td>
     <tr>
       <th>device</th>
       <td><p>The graphical device used when knitting. See more at
-http://yihui.name/knitr/options (<code>dev</code> argument).</p></td>
+<a href='http://yihui.name/knitr/options'>http://yihui.name/knitr/options</a> (<code>dev</code> argument).</p></td>
     </tr>
     <tr>
       <th>densityTemplates</th>
@@ -308,13 +308,13 @@ template.</p></dd>
 
     <p>An HTML report with a basic exploration for the given set of
 genomic regions. See the example report at
-&lt;http://leekgroup.github.io/regionReport/reference/renderReport-example/regionExploration.html&gt;.</p>
+<a href='http://leekgroup.github.io/regionReport/reference/renderReport-example/regionExploration.html'>http://leekgroup.github.io/regionReport/reference/renderReport-example/regionExploration.html</a>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Set <code>output_format</code> to <code>'knitrBootstrap::bootstrap_document'</code> or
 <code>'pdf_document'</code> if you want a HTML report styled by knitrBootstrap or
 a PDF report respectively. If using knitrBootstrap, we recommend the version
-available only via GitHub at https://github.com/jimhester/knitrBootstrap
+available only via GitHub at <a href='https://github.com/jimhester/knitrBootstrap'>https://github.com/jimhester/knitrBootstrap</a>
 which has nicer features than the current version available via CRAN. You can
 also set the <code>output_format</code> to <code>'html_document'</code> for a HTML
 report styled by rmarkdown. The default is set to
@@ -542,7 +542,7 @@ values for <code>output_format</code>.</p>
 #&gt;   |                                                                                                                      |..............................................................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: regionExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS regionExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output regionExploration.html --smart --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpHjSkDA/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpHjSkDA/rmarkdown-strf03924c2740e.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: regionExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS regionExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output regionExploration.html --smart --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/rmarkdown-str11e547e4f8676.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Output created: regionExploration.html</span></div><div class='input'>
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
     <span class='co'>## Browse the report</span>
@@ -556,7 +556,7 @@ values for <code>output_format</code>.</p>
 <span class='co'>## Check the default templates. For users interested in customizing these</span>
 <span class='co'>## plots.</span>
 <span class='co'>## For p-value variables:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='no'>templatePvalueDensity</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='kw pkg'>regionReport</span><span class='kw ns'>::</span><span class='no'>templatePvalueDensity</span>)</div><div class='output co'>#&gt; 
 #&gt; ## {{{densityVarName}}}
 #&gt; 
 #&gt; ```{r pval-density-{{{varName}}}, fig.width=10, fig.height=10}
@@ -591,7 +591,7 @@ values for <code>output_format</code>.</p>
 #&gt; This table shows the number of regions with {{{densityVarName}}} less or equal than some commonly used cutoff values.
 #&gt; </div><div class='input'>
 <span class='co'>## For continous variables:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='no'>templateDensity</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='kw pkg'>regionReport</span><span class='kw ns'>::</span><span class='no'>templateDensity</span>)</div><div class='output co'>#&gt; 
 #&gt; ## {{{densityVarName}}}
 #&gt; 
 #&gt; ```{r density-{{{varName}}}, fig.width=14, fig.height=14, eval=hasSignificant, echo=hasSignificant}
@@ -619,7 +619,7 @@ values for <code>output_format</code>.</p>
 #&gt; This plot shows the density of the {{{densityVarName}}} for all regions. `r ifelse(hasSignificant, 'The bottom panel is restricted to significant regions.', '')`
 #&gt; </div><div class='input'>
 <span class='co'>## For Manhattan plots</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='no'>templateManhattan</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='kw pkg'>regionReport</span><span class='kw ns'>::</span><span class='no'>templateManhattan</span>)</div><div class='output co'>#&gt; 
 #&gt; ## Manhattan {{{densityVarName}}}
 #&gt; 
 #&gt; ```{r manhattan-{{{varName}}}, fig.width=10, fig.height=10, message = FALSE}
@@ -837,7 +837,118 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.width : num 7
 #&gt;  $ fig.height: num 9
 #&gt;  $ dpi       : num 300
-#&gt; </div><div class='output co'>#&gt; <span class='message'>No annotationPackage supplied. Trying org.Hs.eg.db.</span></div><div class='output co'>#&gt; <span class='message'>Getting TSS and TSE.</span></div><div class='output co'>#&gt; <span class='message'>Getting CSS and CSE.</span></div><div class='output co'>#&gt; <span class='message'>Getting exons.</span></div><div class='output co'>#&gt; <span class='message'>Annotating genes.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Quitting from lines 187-196 (bumphunter-example.Rmd) </span></div><div class='output co'>#&gt; <span class='error'>Error: Must request at least one colour from a hue palette.</span></div><div class='output co'>#&gt; </div><div class='input'>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>No annotationPackage supplied. Trying org.Hs.eg.db.</span></div><div class='output co'>#&gt; <span class='message'>Getting TSS and TSE.</span></div><div class='output co'>#&gt; <span class='message'>Getting CSS and CSE.</span></div><div class='output co'>#&gt; <span class='message'>Getting exons.</span></div><div class='output co'>#&gt; <span class='message'>Annotating genes.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt;   |                                                                                                                      |.................................................                                                             |  44%
+#&gt;    inline R code fragments
+#&gt; 
+#&gt;   |                                                                                                                      |...................................................                                                           |  47%
+#&gt; label: annoReg (with options) 
+#&gt; List of 1
+#&gt;  $ results: chr "asis"
+#&gt; 
+#&gt;   |                                                                                                                      |......................................................                                                        |  49%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                                                                      |........................................................                                                      |  51%
+#&gt; label: genomeOverview3 (with options) 
+#&gt; List of 6
+#&gt;  $ message   : logi FALSE
+#&gt;  $ fig.width : num 7
+#&gt;  $ fig.height: num 9
+#&gt;  $ dpi       : num 300
+#&gt;  $ eval      : symbol hasSignificant
+#&gt;  $ echo      : symbol hasSignificant
+#&gt; 
+#&gt;   |                                                                                                                      |...........................................................                                                   |  53%
+#&gt;    inline R code fragments
+#&gt; 
+#&gt;   |                                                                                                                      |.............................................................                                                 |  56%
+#&gt; label: countTable (with options) 
+#&gt; List of 1
+#&gt;  $ results: chr "asis"
+#&gt; 
+#&gt;   |                                                                                                                      |................................................................                                              |  58%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                                                                      |...................................................................                                           |  60%
+#&gt; label: vennDiagram (with options) 
+#&gt; List of 2
+#&gt;  $ fig.width : num 7
+#&gt;  $ fig.height: num 7
+#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |.....................................................................                                         |  63%
+#&gt;    inline R code fragments
+#&gt; 
+#&gt;   |                                                                                                                      |........................................................................                                      |  65%
+#&gt; label: vennDiagramSignificant (with options) 
+#&gt; List of 4
+#&gt;  $ eval      : symbol hasSignificant
+#&gt;  $ echo      : symbol hasSignificant
+#&gt;  $ fig.width : num 7
+#&gt;  $ fig.height: num 7
+#&gt; 
+#&gt;   |                                                                                                                      |..........................................................................                                    |  67%
+#&gt;    inline R code fragments
+#&gt; 
+#&gt;   |                                                                                                                      |.............................................................................                                 |  70%
+#&gt; label: bestRegionInfo (with options) 
+#&gt; List of 1
+#&gt;  $ results: chr "asis"
+#&gt; 
+#&gt;   |                                                                                                                      |...............................................................................                               |  72%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                                                                      |..................................................................................                            |  74%
+#&gt; label: unnamed-chunk-1 (with options) 
+#&gt; List of 2
+#&gt;  $ child: symbol customCode
+#&gt;  $ eval : symbol hasCustomCode
+#&gt; 
+#&gt;   |                                                                                                                      |....................................................................................                          |  77%
+#&gt;    inline R code fragments
+#&gt; 
+#&gt;   |                                                                                                                      |.......................................................................................                       |  79%
+#&gt; label: thecall (with options) 
+#&gt; List of 1
+#&gt;  $ echo: logi FALSE
+#&gt; 
+#&gt;   |                                                                                                                      |..........................................................................................                    |  81%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                                                                      |............................................................................................                  |  84%
+#&gt; label: reproducibility1 (with options) 
+#&gt; List of 1
+#&gt;  $ echo: logi FALSE
+#&gt; 
+#&gt;   |                                                                                                                      |...............................................................................................               |  86%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                                                                      |.................................................................................................             |  88%
+#&gt; label: reproducibility2 (with options) 
+#&gt; List of 1
+#&gt;  $ echo: logi FALSE
+#&gt; 
+#&gt;   |                                                                                                                      |....................................................................................................          |  91%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                                                                      |......................................................................................................        |  93%
+#&gt; label: reproducibility3 (with options) 
+#&gt; List of 1
+#&gt;  $ echo: logi FALSE
+#&gt; 
+#&gt;   |                                                                                                                      |.........................................................................................................     |  95%
+#&gt;    inline R code fragments
+#&gt; 
+#&gt;   |                                                                                                                      |...........................................................................................................   |  98%
+#&gt; label: bibliography (with options) 
+#&gt; List of 3
+#&gt;  $ results: chr "asis"
+#&gt;  $ echo   : logi FALSE
+#&gt;  $ warning: logi FALSE
+#&gt; 
+#&gt;   |                                                                                                                      |..............................................................................................................| 100%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: bumphunter-example.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS bumphunter-example.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output bumphunter-example.html --smart --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/rmarkdown-str11e546a8855f0.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: bumphunter-example.html</span></div><div class='input'>
 ## See the example report at
 ## http://leekgroup.github.io/regionReport/reference/bumphunter-example/bumphunter-example.html
 

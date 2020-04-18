@@ -373,7 +373,7 @@ values for <code>output_format</code>.</p>
 <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/mergeResults.html'>mergeResults</a></span>(
     <span class='kw'>chrs</span> <span class='kw'>=</span> <span class='st'>"21"</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"derfinderReport-example"</span>,
     <span class='kw'>genomicState</span> <span class='kw'>=</span> <span class='no'>genomicState</span>$<span class='no'>fullGenome</span>
-)</div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving options used</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 Loading chromosome chr21</span></div><div class='output co'>#&gt; <span class='message'>Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullNullSummary</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Re-calculating the p-values</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: assigning genomic states</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 annotateRegions: counting</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 annotateRegions: annotating</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullAnnotatedRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullFstats</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 03:04:37 mergeResults: Saving fullTime</span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: Saving options used</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 Loading chromosome chr21</span></div><div class='output co'>#&gt; <span class='message'>Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: Saving fullNullSummary</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: Re-calculating the p-values</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: Saving fullRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: assigning genomic states</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 annotateRegions: counting</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 annotateRegions: annotating</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: Saving fullAnnotatedRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: Saving fullFstats</span></div><div class='output co'>#&gt; <span class='message'>2020-04-18 08:02:29 mergeResults: Saving fullTime</span></div><div class='input'>
 <span class='co'>## Load the options used for calculating the statistics</span>
 <span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"derfinderReport-example"</span>, <span class='st'>"chr21"</span>, <span class='st'>"optionsStats.Rdata"</span>))
 
@@ -384,12 +384,13 @@ values for <code>output_format</code>.</p>
     <span class='kw'>fullCov</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"21"</span> <span class='kw'>=</span> <span class='no'>genomeDataRaw</span>$<span class='no'>coverage</span>), <span class='kw'>optionsStats</span> <span class='kw'>=</span> <span class='no'>optionsStats</span>
 )</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'GGally':</span>
 #&gt; <span class='message'>  method from   </span>
-#&gt; <span class='message'>  +.gg   ggplot2</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial match of 'Date' to 'Date/Publication'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial match of 'Date' to 'Date/Publication'</span></div><div class='output co'>#&gt; <span class='message'>Writing 9 Bibtex entries ... </span></div><div class='output co'>#&gt; <span class='message'>OK</span>
+#&gt; <span class='message'>  +.gg   ggplot2</span></div><div class='output co'>#&gt; <span class='message'>Writing 9 Bibtex entries ... </span></div><div class='output co'>#&gt; <span class='message'>OK</span>
 #&gt; <span class='message'>Results written to file 'derfinderReport-example/basicExploration/basicExploration.bib'</span></div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>processing file: basicExploration.Rmd</span></div><div class='output co'>#&gt;   |                                                                                                                      |                                                                                                              |   0%  |                                                                                                                      |.                                                                                                             |   1%
 #&gt;    inline R code fragments
-#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: partial match of 'len' to 'lengths'</span></div><div class='output co'>#&gt;   |                                                                                                                      |...                                                                                                           |   3%
+#&gt; 
+#&gt;   |                                                                                                                      |...                                                                                                           |   3%
 #&gt; label: docSetup (with options) 
 #&gt; List of 3
 #&gt;  $ bootstrap.show.code   : logi FALSE
@@ -414,7 +415,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.height: num 10
 #&gt;  $ eval      : symbol nullExist
 #&gt;  $ echo      : symbol nullExist
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |..........                                                                                                    |   9%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/pvals-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |..........                                                                                                    |   9%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                                                                      |...........                                                                                                   |  10%
@@ -471,7 +472,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.height: num 14
 #&gt;  $ eval      : symbol hasSig
 #&gt;  $ echo      : symbol hasSig
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |...........................                                                                                   |  25%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/regLen-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |...........................                                                                                   |  25%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                                                                      |.............................                                                                                 |  26%
@@ -492,7 +493,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.height: num 14
 #&gt;  $ eval      : symbol hasArea
 #&gt;  $ echo      : symbol hasArea
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |.................................                                                                             |  30%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/regArea-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |.................................                                                                             |  30%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                                                                      |..................................                                                                            |  31%
@@ -513,7 +514,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.height: num 14
 #&gt;  $ eval      : symbol nullExist
 #&gt;  $ echo      : symbol nullExist
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |.......................................                                                                       |  35%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/nullLengthArea-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |.......................................                                                                       |  35%
 #&gt;    inline R code fragments
 #&gt; 
 #&gt;   |                                                                                                                      |........................................                                                                      |  36%
@@ -523,7 +524,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.height: num 14
 #&gt;  $ eval      : symbol hasSig
 #&gt;  $ echo      : symbol hasSig
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |.........................................                                                                     |  38%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/meanCov-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |.........................................                                                                     |  38%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                                                                      |...........................................                                                                   |  39%
@@ -542,9 +543,10 @@ values for <code>output_format</code>.</p>
 #&gt; List of 2
 #&gt;  $ fig.width : num 10
 #&gt;  $ fig.height: num 10
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |...............................................                                                               |  43%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/MAstyle-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |...............................................                                                               |  43%
 #&gt;    inline R code fragments
-#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: partial match of 'len' to 'lengths'</span></div><div class='output co'>#&gt;   |                                                                                                                      |.................................................                                                             |  44%
+#&gt; 
+#&gt;   |                                                                                                                      |.................................................                                                             |  44%
 #&gt; label: genomeOverview1 (with options) 
 #&gt; List of 6
 #&gt;  $ message   : logi FALSE
@@ -553,7 +555,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ dpi       : num 300
 #&gt;  $ eval      : symbol nullExist
 #&gt;  $ echo      : symbol nullExist
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt;   |                                                                                                                      |..................................................                                                            |  45%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/genomeOverview1-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |..................................................                                                            |  45%
 #&gt;    inline R code fragments
 #&gt; 
 #&gt;   |                                                                                                                      |...................................................                                                           |  47%
@@ -572,7 +574,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.width : num 7
 #&gt;  $ fig.height: num 9
 #&gt;  $ dpi       : num 300
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt;   |                                                                                                                      |........................................................                                                      |  51%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/genomeOverview2-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |........................................................                                                      |  51%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                                                                      |.........................................................                                                     |  52%
@@ -592,7 +594,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ dpi       : num 300
 #&gt;  $ eval      : symbol hasSig
 #&gt;  $ echo      : symbol hasSig
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt;   |                                                                                                                      |.............................................................                                                 |  56%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/genomeOverview3-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |.............................................................                                                 |  56%
 #&gt;    inline R code fragments
 #&gt; 
 #&gt;   |                                                                                                                      |...............................................................                                               |  57%
@@ -601,7 +603,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.width             : num 10
 #&gt;  $ fig.height            : num 10
 #&gt;  $ bootstrap.show.message: logi FALSE
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |................................................................                                              |  58%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/plotRegions-1.png" but not available.</span></div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/plotRegions-2.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |................................................................                                              |  58%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                                                                      |..................................................................                                            |  60%
@@ -617,7 +619,7 @@ values for <code>output_format</code>.</p>
 #&gt; List of 2
 #&gt;  $ fig.width : num 7
 #&gt;  $ fig.height: num 7
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |......................................................................                                        |  64%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/vennDiagram-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |......................................................................                                        |  64%
 #&gt;    inline R code fragments
 #&gt; 
 #&gt;   |                                                                                                                      |.......................................................................                                       |  65%
@@ -627,7 +629,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ echo      : symbol hasSig
 #&gt;  $ fig.width : num 7
 #&gt;  $ fig.height: num 7
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |.........................................................................                                     |  66%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>The magick package is required to crop "basicExploration_files/figure-html/vennDiagramSignificant-1.png" but not available.</span></div><div class='output co'>#&gt;   |                                                                                                                      |.........................................................................                                     |  66%
 #&gt;    inline R code fragments
 #&gt; 
 #&gt;   |                                                                                                                      |..........................................................................                                    |  68%
@@ -748,7 +750,7 @@ values for <code>output_format</code>.</p>
 #&gt;   |                                                                                                                      |..............................................................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: basicExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output basicExploration.html --smart --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /Library/Frameworks/R.framework/Versions/4.0/Resources/library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /var/folders/cx/n9s558kx6fb7jf5z_pgszgb80000gn/T//RtmpMShqKR/rmarkdown-str11e5450bae892.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: basicExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output basicExploration.html --email-obfuscation none --self-contained --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpJSCIlh/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /usr/local/lib/R/host-site-library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /tmp/RtmpJSCIlh/rmarkdown-str3df21511330a.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /usr/local/lib/R/host-site-library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /usr/local/lib/R/host-site-library/rmarkdown/rmd/lua/latex-div.lua --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Output created: basicExploration.html</span></div><div class='input'>
 
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
@@ -778,7 +780,7 @@ values for <code>output_format</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

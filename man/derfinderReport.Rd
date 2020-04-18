@@ -122,6 +122,8 @@ Passed to \link[derfinder]{extendedMapSeqlevels}.}
 }
 \value{
 An HTML report with a basic exploration of the derfinder results.
+See the example output at
+<http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html>.
 }
 \description{
 This function generates a HTML report exploring the basic results from
@@ -213,6 +215,10 @@ if (interactive()) {
     ## Browse the report
     browseURL(report)
 }
+
+## See the example output at
+## http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html
+
 \dontrun{
 ## Note that you can run the example using:
 example("derfinderReport", "regionReport", ask = FALSE)

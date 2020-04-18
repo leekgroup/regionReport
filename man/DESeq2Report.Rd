@@ -96,7 +96,7 @@ template.}
 }
 \value{
 An HTML report with a basic exploration for the given set of DESeq2
-results.
+results. See an example at <http://leekgroup.github.io/regionReport/reference/DESeq2Report-example/DESeq2Exploration.html>.
 }
 \description{
 This function generates a HTML report with exploratory data analysis plots
@@ -152,6 +152,10 @@ if (interactive()) {
     ## Browse the report
     browseURL(report)
 }
+
+## See the example output at
+## http://leekgroup.github.io/regionReport/reference/DESeq2Report-example/DESeq2Exploration.html
+
 \dontrun{
 ## Note that you can run the example using:
 example("DESeq2Report", "regionReport", ask = FALSE)

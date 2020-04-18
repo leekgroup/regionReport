@@ -125,7 +125,8 @@ template.}
 }
 \value{
 An HTML report with a basic exploration for the given set of edgeR
-results.
+results. See the example report at
+<http://leekgroup.github.io/regionReport/reference/edgeReport-example/edgeRexploration.html>.
 }
 \description{
 This function generates a HTML report with exploratory data analysis plots
@@ -181,6 +182,10 @@ if (interactive()) {
     ## Browse the report
     browseURL(report)
 }
+
+## See the example report at
+## http://leekgroup.github.io/regionReport/reference/edgeReport-example/edgeRexploration.html
+
 \dontrun{
 ## Note that you can run the example using:
 example("edgeReport", "regionReport", ask = FALSE)

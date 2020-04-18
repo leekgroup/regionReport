@@ -1,3 +1,12 @@
+# regionReport 1.21.4
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Add links to the example reports created when deploying the documentation
+website with `pkgdown::deploy_to_branch()`. This eliminates the need for
+the `vignetttes/Makefile` and the fake vignettes. It should also avoid
+confusing `pkgdown`.
+
 # regionReport 1.21.3
 
 SIGNIFICANT USER-VISIBLE CHANGES

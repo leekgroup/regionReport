@@ -98,20 +98,7 @@ Now that we have identified a set of differentially methylated regions we can pr
 library("regionReport")
 ```
 
-```{r 'createReport'}
-## Make it so that the report will be available as a vignette
-original <- readLines(system.file("regionExploration", "regionExploration.Rmd",
-    package = "regionReport"
-))
-vignetteInfo <- c(
-    "vignette: >",
-    "  %\\VignetteEngine{knitr::rmarkdown}",
-    "  %\\VignetteIndexEntry{Basic genomic regions exploration}",
-    "  %\\VignetteEncoding{UTF-8}"
-)
-new <- c(original[1:16], vignetteInfo, original[17:length(original)])
-writeLines(new, "regionReportBumphunter.Rmd")
-
+```{r 'createReport', eval = FALSE}
 ## Now create the report
 report <- renderReport(regions, "Example bumphunter",
     pvalueVars = NULL,
@@ -119,16 +106,12 @@ report <- renderReport(regions, "Example bumphunter",
         "Area" = "area", "Value" = "value",
         "Cluster Length" = "clusterL"
     ), significantVar = NULL,
-    output = "bumphunterExampleOutput", outdir = ".",
-    template = "regionReportBumphunter.Rmd", device = "png"
+    output = "bumphunter-example", outdir = "bumphunter-example",
+    device = "png"
 )
-
-## Clean up
-file.remove("regionReportBumphunter.Rmd")
 ```
 
-
-You can view the final report [here](bumphunterExampleOutput.html).
+You can view the final report at `bumphunter-example/bumphunter-example.html` [or here](http://leekgroup.github.io/regionReport/reference/bumphunter-example/bumphunter-example.html).
 
 In case the link does not work, a [pre-compiled version of this document](http://leekgroup.github.io/regionReportSupp/bumphunterExample.html) and its [corresponding report](http://leekgroup.github.io/regionReportSupp/bumphunter-example/index.html) are available at [leekgroup.github.io/regionReportSupp/](http://leekgroup.github.io/regionReportSupp/index.html).
 

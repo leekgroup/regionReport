@@ -31,7 +31,8 @@
 #' @inheritParams DESeq2Report
 #'
 #' @return An HTML report with a basic exploration for the given set of edgeR
-#' results.
+#' results. See the example report at
+#' <http://leekgroup.github.io/regionReport/reference/edgeReport-example/edgeRexploration.html>.
 #'
 #' @author Leonardo Collado-Torres
 #' @export
@@ -88,6 +89,10 @@
 #'     ## Browse the report
 #'     browseURL(report)
 #' }
+#'
+#' ## See the example report at
+#' ## http://leekgroup.github.io/regionReport/reference/edgeReport-example/edgeRexploration.html
+#'
 #' \dontrun{
 #' ## Note that you can run the example using:
 #' example("edgeReport", "regionReport", ask = FALSE)

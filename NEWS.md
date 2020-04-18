@@ -1,4 +1,13 @@
+# regionReport 1.21.2
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Now use `GenomeIndoDb::getChromInfoFromUCSC()` instead of
+`data(hg19Ideogram, package = 'biovizBase')` to get the hg19 chromosome lengths.
+
 # regionReport 1.19.2
+
+SIGNIFICANT USER-VISIBLE CHANGES
 
 * Added a `NEWS.md` file to track changes to the package.
 

@@ -76,8 +76,10 @@ regions <- GRanges(seqnames = tab$table$chr,
     cluster = tab$table$cluster, L = tab$table$L, clusterL = tab$table$clusterL)
 
 ## Assign chr lengths
-data(hg19Ideogram, package = 'biovizBase')
-seqlengths(regions) <- seqlengths(hg19Ideogram)[names(seqlengths(regions))]
+seqlengths(regions) <- seqlengths(
+    getChromInfoFromUCSC('hg19', as.Seqinfo = TRUE))[
+        names(seqlengths(regions))
+    ]
 
 ## Explore the regions
 regions

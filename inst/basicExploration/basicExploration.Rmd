@@ -105,9 +105,9 @@ if(hasSig) {
 
 ## Get chr lengths
 if(hg19) {
-    data(hg19Ideogram, package = 'biovizBase')
-    seqlengths(fullRegions) <- seqlengths(hg19Ideogram)[mapSeqlevels(names(seqlengths(fullRegions)),
-         'UCSC')]
+    seqlengths(fullRegions) <- seqlengths(getChromInfoFromUCSC('hg19',
+        as.Seqinfo = TRUE))[
+          mapSeqlevels(names(seqlengths(fullRegions)), 'UCSC')]
 }
 
 ## Find which chrs are present in the data set

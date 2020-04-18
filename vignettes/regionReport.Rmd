@@ -141,7 +141,7 @@ format and include all the code for making the plots and explorations in the rep
 The plots in `r Biocpkg('regionReport')` for exploring `r Biocpkg('DESeq2')` are powered by `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])` and `r CRANpkg('pheatmap')` `r citep(bib[['pheatmap']])`.
 
 
-## DESeq2
+## Example
 
 The `r Biocpkg('regionReport')` supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/) has examples of using `r Biocpkg('regionReport')` with `r Biocpkg('DESeq2')` results. In particular, please look at [DESeq2.html](http://leekgroup.github.io/regionReportSupp/DESeq2.html) which has the code for generating some `r Biocpkg('DESeq2')` results based on the `r Biocpkg('DESeq2')` vignette. Then it uses those results to create HTML and PDF versions of the same report. The resulting reports are available in the following locations:
 
@@ -157,7 +157,7 @@ If you want to create a similar HTML report as the one linked in this section, s
 `r Biocpkg('regionReport')` has the `edgeReport()` function that takes as input a `DGEList` object and the results from the differential expression analysis using `r Biocpkg('edgeR')`. `edgeReport()` internally uses `r Biocpkg('DEFormats')` to convert the results to `r Biocpkg('DESeq2')`'s format and then uses `DESeqReport()` to create the final report. The report looks nearly the same whether you performed the differential expression analysis with `r Biocpkg('DESeq2')` or `r Biocpkg('edgeR')` in order to make more homogenous the exploratory data analysis step.
 
 
-## edgeR
+## Example
 
 The `r Biocpkg('regionReport')` supplementary website [regionReportSupp](http://leekgroup.github.io/regionReportSupp/) has examples of using `r Biocpkg('regionReport')` with `r Biocpkg('edgeR')` results. In particular, please look at [edgeR.html](http://leekgroup.github.io/regionReportSupp/edgeR.html) which has the code for generating some random data with `r Biocpkg('DEFormats')` and performing the differential expression analysis with `r Biocpkg('edgeR')`. Then it uses those results to create HTML and PDF versions of the same report. The resulting reports are available in the following locations:
 

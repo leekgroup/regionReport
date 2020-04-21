@@ -106,7 +106,7 @@ print(citation('regionReport'), bibtex = TRUE)
 #> HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
 #> results_. doi: 10.18129/B9.bioc.regionReport (URL:
 #> https://doi.org/10.18129/B9.bioc.regionReport),
-#> https://github.com/leekgroup/regionReport - R package version 1.21.4,
+#> https://github.com/leekgroup/regionReport - R package version 1.21.7,
 #> <URL: http://www.bioconductor.org/packages/regionReport>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -116,7 +116,7 @@ print(citation('regionReport'), bibtex = TRUE)
 #>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
 #>     year = {2017},
 #>     url = {http://www.bioconductor.org/packages/regionReport},
-#>     note = {https://github.com/leekgroup/regionReport - R package version 1.21.4},
+#>     note = {https://github.com/leekgroup/regionReport - R package version 1.21.7},
 #>     doi = {10.18129/B9.bioc.regionReport},
 #>   }
 ```

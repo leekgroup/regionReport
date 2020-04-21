@@ -427,7 +427,7 @@ session_info()
 
 # Bibliography
 
-This vignette was generated using `r CRANpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+This vignette was generated using `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
 with `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` running behind the scenes.
 
 Citations made with `r CRANpkg('knitcitations')` `r citep(bib[[1]])`.

@@ -1,3 +1,21 @@
+# regionReport 1.21.10
+
+BUG FIXES
+
+* Add `crop = NULL` to all template Rmarkdown files. Drop `magick` as a
+depencency since cropping is not used on the reports (as done through
+`BiocStyle` by default). This is again related to responding to
+https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016645.html.
+
+# regionReport 1.21.9
+
+BUG FIXES
+
+* Ran another test in preparation for 
+https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016645.html after the 
+test in version 1.21.8 failed. The code will now be run in the example of
+`derfinderReport()` instead of the vignette.
+
 # regionReport 1.21.8
 
 BUG FIXES

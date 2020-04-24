@@ -33,7 +33,7 @@ This section contains the code for setting up the rest of the report.
 ```{r docSetup, bootstrap.show.code = FALSE, dev = device, bootstrap.show.message=FALSE}
 ## knitrBoostrap and device chunk options
 library('knitr')
-opts_chunk$set(bootstrap.show.code = FALSE, dev = device)
+opts_chunk$set(bootstrap.show.code = FALSE, dev = device, crop = NULL)
 if(!outputIsHTML) opts_chunk$set(bootstrap.show.code = FALSE, dev = device, echo = FALSE)
 ```
 

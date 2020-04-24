@@ -1,3 +1,31 @@
+# regionReport 1.21.11
+
+BUG FIXES
+
+* Cropping images through `magick::image_trim()` as done by default by 
+`BiocStyle::html_document()` can fail on Linux. This could be an ImageMagick
+issue or an issue about lack of resources. The full investigative report is at
+https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016650.html.
+This is related to:
+https://github.com/yihui/knitr/issues/1785#issuecomment-574723631
+https://github.com/yihui/knitr/issues/1796
+https://github.com/Bioconductor/BiocStyle/issues/65#issuecomment-552832630
+https://github.com/ropensci/magick/issues/171
+https://github.com/ropensci/magick/issues/194
+In regionReport version 1.21.10 I have opted by using `crop = NULL` to disable
+cropping of images by `BiocStyle::html_document()` and thus avoid the
+issues with `ImageMagick` either coming from `magick`, from the version of
+`ImageMagick` installed on the Linux Bioconductor build machine and devel
+docker, or from resources in these two Linux environments as described in the
+investigative report.
+About a month ago I also saw failures on Windows on Bioc 3.10. Whether they were
+caused by ggbio 1.35.1 or this issue will remain a mystery. But it's likely
+that this `magick::image_trim()` issue also affected the Bioconductor windows
+builder.
+The related bioc-devel threads are:
+https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016538.html
+https://stat.ethz.ch/pipermail/bioc-devel/2020-March/016365.html
+
 # regionReport 1.21.10
 
 BUG FIXES

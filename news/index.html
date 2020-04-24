@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.11</span>
       </span>
     </div>
 
@@ -129,6 +129,15 @@
       <small>Source: <a href='https://github.com/leekgroup/regionReport/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="regionreport-1-21-11" class="section level1">
+<h1 class="page-header" data-toc-text="1.21.11">
+<a href="#regionreport-1-21-11" class="anchor"></a>regionReport 1.21.11</h1>
+<p>BUG FIXES</p>
+<ul>
+<li>Cropping images through <code>magick::image_trim()</code> as done by default by <code><a href="https://rdrr.io/pkg/BiocStyle/man/html_document.html">BiocStyle::html_document()</a></code> can fail on Linux. This could be an ImageMagick issue or an issue about lack of resources. The full investigative report is at <a href="https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016650.html" class="uri">https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016650.html</a>. This is related to: <a href="https://github.com/yihui/knitr/issues/1785#issuecomment-574723631" class="uri">https://github.com/yihui/knitr/issues/1785#issuecomment-574723631</a> <a href="https://github.com/yihui/knitr/issues/1796" class="uri">https://github.com/yihui/knitr/issues/1796</a> <a href="https://github.com/Bioconductor/BiocStyle/issues/65#issuecomment-552832630" class="uri">https://github.com/Bioconductor/BiocStyle/issues/65#issuecomment-552832630</a> <a href="https://github.com/ropensci/magick/issues/171" class="uri">https://github.com/ropensci/magick/issues/171</a> <a href="https://github.com/ropensci/magick/issues/194" class="uri">https://github.com/ropensci/magick/issues/194</a> In regionReport version 1.21.10 I have opted by using <code>crop = NULL</code> to disable cropping of images by <code><a href="https://rdrr.io/pkg/BiocStyle/man/html_document.html">BiocStyle::html_document()</a></code> and thus avoid the issues with <code>ImageMagick</code> either coming from <code>magick</code>, from the version of <code>ImageMagick</code> installed on the Linux Bioconductor build machine and devel docker, or from resources in these two Linux environments as described in the investigative report. About a month ago I also saw failures on Windows on Bioc 3.10. Whether they were caused by ggbio 1.35.1 or this issue will remain a mystery. But it’s likely that this <code>magick::image_trim()</code> issue also affected the Bioconductor windows builder. The related bioc-devel threads are: <a href="https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016538.html" class="uri">https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016538.html</a> <a href="https://stat.ethz.ch/pipermail/bioc-devel/2020-March/016365.html" class="uri">https://stat.ethz.ch/pipermail/bioc-devel/2020-March/016365.html</a>
+</li>
+</ul>
+</div>
     <div id="regionreport-1-21-10" class="section level1">
 <h1 class="page-header" data-toc-text="1.21.10">
 <a href="#regionreport-1-21-10" class="anchor"></a>regionReport 1.21.10</h1>

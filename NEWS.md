@@ -1,3 +1,13 @@
+# regionReport 1.21.8
+
+BUG FIXES
+
+* In an attempt to fix the bug I reported at
+https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016645.html and in
+preparation to reply to this thread, I'm experimenting with suggesting that
+`magick` is installed, at which point `BiocStyle` will try to crop. Another
+option might be to use `crop = NULL` on all Rmd files.
+
 # regionReport 1.21.5
 
 BUG FIXES

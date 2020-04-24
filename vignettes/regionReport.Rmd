@@ -238,8 +238,8 @@ Below, we run `r Biocpkg('derfinder')` for the example data included in the pack
 ## Load derfinder
 library("derfinder")
 
-## The output will be saved in the 'report' directory
-dir.create("report", showWarnings = FALSE, recursive = TRUE)
+## The output will be saved in the "derfinderReport-example" directory
+dir.create("derfinderReport-example", showWarnings = FALSE, recursive = TRUE)
 ```
 
 The following code runs `r Biocpkg('derfinder')`.
@@ -247,7 +247,7 @@ The following code runs `r Biocpkg('derfinder')`.
 ```{r runDerfinderFake, eval=FALSE}
 ## Save the current path
 initialPath <- getwd()
-setwd(file.path(initialPath, "report"))
+setwd(file.path(initialPath, "derfinderReport-example"))
 
 ## Generate output from derfinder
 
@@ -291,7 +291,7 @@ of `r Biocpkg('derfinder')`.
 file.copy(system.file(file.path("extdata", "chr21"),
     package = "derfinder",
     mustWork = TRUE
-), "report", recursive = TRUE)
+), "derfinderReport-example", recursive = TRUE)
 ```
 
 Next, proceed to merging the results.
@@ -300,12 +300,12 @@ Next, proceed to merging the results.
 ## Merge the results from the different chromosomes. In this case, there's
 ## only one: chr21
 mergeResults(
-    chrs = "chr21", prefix = "report",
+    chrs = "chr21", prefix = "derfinderReport-example",
     genomicState = genomicState$fullGenome
 )
 
 ## Load optionsStats
-load(file.path("report", "chr21", "optionsStats.Rdata"), verbose = TRUE)
+load(file.path("derfinderReport-example", "chr21", "optionsStats.Rdata"), verbose = TRUE)
 ```
 
 
@@ -322,11 +322,11 @@ library("regionReport")
 ```
 
 
-```{r createReport, warning = FALSE}
+```{r createReport, eval = FALSE}
 ## Generate the HTML report
 report <- derfinderReport(
-    prefix = "report", browse = FALSE,
-    nBestRegions = 15, makeBestClusters = TRUE, outdir = "html",
+    prefix = "derfinderReport-example", browse = FALSE,
+    nBestRegions = 15, makeBestClusters = TRUE,
     fullCov = list("21" = genomeDataRaw$coverage), optionsStats = optionsStats
 )
 ```
@@ -338,6 +338,8 @@ __browseURL()__ as shown below.
 ## Browse the report
 browseURL(report)
 ```
+
+You can view a pre-compiled version of this report [here](http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html).
 
 ### Notes
 
@@ -398,7 +400,7 @@ knit("regionReport.Rmd", tangle = TRUE)
 ```{r createVignette2}
 ## Clean up
 file.remove("regionReportRef.bib")
-unlink("report", recursive = TRUE)
+unlink("derfinderReport-example", recursive = TRUE)
 ```
 
 Date the vignette was generated.

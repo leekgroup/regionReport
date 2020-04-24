@@ -1,7 +1,7 @@
 Package: regionReport
 Type: Package
 Title: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results
-Version: 1.21.8
+Version: 1.21.9
 Date: 2020-04-23
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")),
@@ -38,7 +38,8 @@ Imports:
     rmarkdown (>= 0.9.5),
     S4Vectors,
     SummarizedExperiment,
-    utils
+    utils,
+    magick
 Suggests:
     BiocManager,
     biovizBase,
@@ -53,7 +54,6 @@ Suggests:
     grid,
     gridExtra,
     IRanges,
-    magick,
     mgcv,
     pasilla,
     pheatmap,

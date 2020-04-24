@@ -176,7 +176,7 @@
 #' ## Generate the HTML report
 #' report <- derfinderReport(
 #'     prefix = "derfinderReport-example", browse = FALSE,
-#'     nBestRegions = 1, makeBestClusters = FALSE,
+#'     nBestRegions = 15, makeBestClusters = TRUE,
 #'     fullCov = list("21" = genomeDataRaw$coverage), optionsStats = optionsStats
 #' )
 #'

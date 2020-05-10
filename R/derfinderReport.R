@@ -188,7 +188,6 @@
 #'
 #' ## See the example output at
 #' ## http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html
-#'
 #' \dontrun{
 #' ## Note that you can run the example using:
 #' example("derfinderReport", "regionReport", ask = FALSE)

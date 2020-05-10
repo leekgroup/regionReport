@@ -126,7 +126,6 @@ The HTML report styled with knitrBootstrap can be smaller in size than the
 
 ## Load example data from the pasilla package
 library("pasilla")
-library("DESeq")
 library("DESeq2")
 
 ## Create DESeqDataSet object from the pasilla package
@@ -155,7 +154,6 @@ if (interactive()) {
 
 ## See the example output at
 ## http://leekgroup.github.io/regionReport/reference/DESeq2Report-example/DESeq2Exploration.html
-
 \dontrun{
 ## Note that you can run the example using:
 example("DESeq2Report", "regionReport", ask = FALSE)

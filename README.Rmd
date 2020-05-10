@@ -6,10 +6,10 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    out.width = "100%"
 )
 ```
 
@@ -32,13 +32,13 @@ the necessary input files and generating the HTML report for `r BiocStyle::Biocp
 results. Or use:
 
 ```{r, eval = FALSE}
-example('derfinderReport', 'regionReport', ask=FALSE)
+example("derfinderReport", "regionReport", ask = FALSE)
 ```
 
 Similarly, check `renderReport()` for an example of a general report, or use:
 
 ````{r, eval = FALSE}
-example('renderReport', 'regionReport', ask=FALSE)
+example("renderReport", "regionReport", ask = FALSE)
 ```
 
 For `r BiocStyle::Biocpkg('DESeq2')` or `r BiocStyle::Biocpkg('edgeR')` results check `DESeq2Report()` and `edgeReport()`.
@@ -52,8 +52,9 @@ For more information about `derfinderPlot` check the vignettes [through Biocondu
 Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `regionReport` using from [Bioconductor](http://bioconductor.org/) the following code:
 
 ```{r 'install', eval = FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+      install.packages("BiocManager")
+  }
 
 BiocManager::install("regionReport")
 ```
@@ -64,7 +65,7 @@ Below is the citation output from using `citation('regionReport')` in R. Please
 run this yourself to check for any updates on how to cite __regionReport__.
 
 ```{r 'citation', eval = requireNamespace('regionReport')}
-print(citation('regionReport'), bibtex = TRUE)
+print(citation("regionReport"), bibtex = TRUE)
 ```
 
 Please note that the `regionReport` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.

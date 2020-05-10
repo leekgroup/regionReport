@@ -92,7 +92,6 @@
 #'
 #' ## See the example report at
 #' ## http://leekgroup.github.io/regionReport/reference/edgeReport-example/edgeRexploration.html
-#'
 #' \dontrun{
 #' ## Note that you can run the example using:
 #' example("edgeReport", "regionReport", ask = FALSE)

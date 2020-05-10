@@ -221,8 +221,6 @@
 #'
 #' ## See the example report at
 #' ## http://leekgroup.github.io/regionReport/reference/bumphunter-example/bumphunter-example.html
-#'
-
 renderReport <- function(regions, project = "",
     pvalueVars = c("P-values" = "pval"),
     densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,

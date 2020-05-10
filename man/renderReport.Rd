@@ -281,7 +281,6 @@ report <- renderReport(regions, "Example bumphunter",
 
 ## See the example report at
 ## http://leekgroup.github.io/regionReport/reference/bumphunter-example/bumphunter-example.html
-
 }
 \author{
 Leonardo Collado-Torres

@@ -1,3 +1,9 @@
+# regionReport 1.23.2
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* No longer suggest `DESeq` since this package has been deprecated.
+
 # regionReport 1.21.11
 
 BUG FIXES

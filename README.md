@@ -1,51 +1,78 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-regionReport
-============
+
+# regionReport
 
 <!-- badges: start -->
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) [![BioC status](http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/regionReport) [![BioC dev status](http://www.bioconductor.org/shields/build/devel/bioc/regionReport.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport) [![R build status](https://github.com/leekgroup/regionReport/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/regionReport/actions) [![Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts.](http://www.bioconductor.org/shields/posts/regionReport.svg)](https://support.bioconductor.org/t/regionReport/) [![GitHub issues](https://img.shields.io/github/issues/leekgroup/regionReport)](https://github.com/leekgroup/regionReport/issues) <!-- badges: end -->
 
-Generate HTML reports for a set of regions such as those from *[derfinder](https://bioconductor.org/packages/3.11/derfinder)* results or any other pipeline that defines a set of genomic regions.
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![BioC
+status](http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/regionReport)
+[![BioC dev
+status](http://www.bioconductor.org/shields/build/devel/bioc/regionReport.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport)
+[![R build
+status](https://github.com/leekgroup/regionReport/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/regionReport/actions)
+[![Support site activity, last 6 months: tagged questions/avg. answers
+per question/avg. comments per question/accepted answers, or 0 if no
+tagged
+posts.](http://www.bioconductor.org/shields/posts/regionReport.svg)](https://support.bioconductor.org/t/regionReport/)
+[![GitHub
+issues](https://img.shields.io/github/issues/leekgroup/regionReport)](https://github.com/leekgroup/regionReport/issues)
+<!-- badges: end -->
 
-Check the documentation for `derfinderReport()` for an example on how to create the necessary input files and generating the HTML report for *[derfinder](https://bioconductor.org/packages/3.11/derfinder)* results. Or use:
+Generate HTML reports for a set of regions such as those from
+*[derfinder](https://bioconductor.org/packages/3.11/derfinder)* results
+or any other pipeline that defines a set of genomic regions.
+
+Check the documentation for `derfinderReport()` for an example on how to
+create the necessary input files and generating the HTML report for
+*[derfinder](https://bioconductor.org/packages/3.11/derfinder)* results.
+Or use:
 
 ``` r
-example('derfinderReport', 'regionReport', ask=FALSE)
+example("derfinderReport", "regionReport", ask = FALSE)
 ```
 
-Similarly, check `renderReport()` for an example of a general report, or use:
+Similarly, check `renderReport()` for an example of a general report, or
+use:
 
 ``` r
-example('renderReport', 'regionReport', ask=FALSE)
+example("renderReport", "regionReport", ask = FALSE)
 ```
 
-For *[DESeq2](https://bioconductor.org/packages/3.11/DESeq2)* or *[edgeR](https://bioconductor.org/packages/3.11/edgeR)* results check `DESeq2Report()` and `edgeReport()`.
+For *[DESeq2](https://bioconductor.org/packages/3.11/DESeq2)* or
+*[edgeR](https://bioconductor.org/packages/3.11/edgeR)* results check
+`DESeq2Report()` and `edgeReport()`.
 
-Documentation
--------------
+## Documentation
 
-For more information about `derfinderPlot` check the vignettes [through Bioconductor](http://bioconductor.org/packages/regionReport) or at the [documentation website](http://leekgroup.github.io/regionReport).
+For more information about `derfinderPlot` check the vignettes [through
+Bioconductor](http://bioconductor.org/packages/regionReport) or at the
+[documentation website](http://leekgroup.github.io/regionReport).
 
-Installation instructions
--------------------------
+## Installation instructions
 
-Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `regionReport` using from [Bioconductor](http://bioconductor.org/) the following code:
+Get the latest stable `R` release from
+[CRAN](http://cran.r-project.org/). Then install `regionReport` using
+from [Bioconductor](http://bioconductor.org/) the following code:
 
 ``` r
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+      install.packages("BiocManager")
+  }
 
 BiocManager::install("regionReport")
 ```
 
-Citation
---------
+## Citation
 
-Below is the citation output from using `citation('regionReport')` in R. Please run this yourself to check for any updates on how to cite **regionReport**.
+Below is the citation output from using `citation('regionReport')` in R.
+Please run this yourself to check for any updates on how to cite
+**regionReport**.
 
 ``` r
-print(citation('regionReport'), bibtex = TRUE)
+print(citation("regionReport"), bibtex = TRUE)
 #> 
 #> Collado-Torres L, Jaffe AE, Leek JT (2016). "regionReport: Interactive
 #> reports for region-level and feature-level genomic analyses [version2;
@@ -88,7 +115,7 @@ print(citation('regionReport'), bibtex = TRUE)
 #> HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
 #> results_. doi: 10.18129/B9.bioc.regionReport (URL:
 #> https://doi.org/10.18129/B9.bioc.regionReport),
-#> https://github.com/leekgroup/regionReport - R package version 1.23.1,
+#> https://github.com/leekgroup/regionReport - R package version 1.23.2,
 #> <URL: http://www.bioconductor.org/packages/regionReport>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -98,25 +125,44 @@ print(citation('regionReport'), bibtex = TRUE)
 #>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
 #>     year = {2017},
 #>     url = {http://www.bioconductor.org/packages/regionReport},
-#>     note = {https://github.com/leekgroup/regionReport - R package version 1.23.1},
+#>     note = {https://github.com/leekgroup/regionReport - R package version 1.23.2},
 #>     doi = {10.18129/B9.bioc.regionReport},
 #>   }
 ```
 
-Please note that the `regionReport` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
+Please note that the `regionReport` was only made possible thanks to
+many other R and bioinformatics software authors, which are cited either
+in the vignettes and/or the paper(s) describing this package.
 
-Code of Conduct
----------------
+## Code of Conduct
 
-Please note that the regionReport project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the regionReport project is released with a
+[Contributor Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
 
-Development tools
------------------
+## Development tools
 
--   Continuous code testing is possible thanks to [GitHub actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/) through *[usethis](https://CRAN.R-project.org/package=usethis)*, *[remotes](https://CRAN.R-project.org/package=remotes)*, *[sysreqs](https://github.com/r-hub/sysreqs)* and *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized to use [Bioconductor's docker containers](https://www.bioconductor.org/help/docker/) and *[BiocCheck](https://bioconductor.org/packages/3.11/BiocCheck)*.
--   Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh) and *[covr](https://CRAN.R-project.org/package=covr)*.
--   The [documentation website](http://leekgroup.github.io/derfinderPlot) is automatically updated thanks to *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
--   The code is styled automatically thanks to *[styler](https://CRAN.R-project.org/package=styler)*.
--   The documentation is formatted thanks to *[devtools](https://CRAN.R-project.org/package=devtools)* and *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
+  - Continuous code testing is possible thanks to [GitHub
+    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+    through *[usethis](https://CRAN.R-project.org/package=usethis)*,
+    *[remotes](https://CRAN.R-project.org/package=remotes)*,
+    *[sysreqs](https://github.com/r-hub/sysreqs)* and
+    *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
+    customized to use [Bioconductor’s docker
+    containers](https://www.bioconductor.org/help/docker/) and
+    *[BiocCheck](https://bioconductor.org/packages/3.11/BiocCheck)*.
+  - Code coverage assessment is possible thanks to
+    [codecov](https://codecov.io/gh) and
+    *[covr](https://CRAN.R-project.org/package=covr)*.
+  - The [documentation
+    website](http://leekgroup.github.io/derfinderPlot) is automatically
+    updated thanks to
+    *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
+  - The code is styled automatically thanks to
+    *[styler](https://CRAN.R-project.org/package=styler)*.
+  - The documentation is formatted thanks to
+    *[devtools](https://CRAN.R-project.org/package=devtools)* and
+    *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
 
 For more details, check the `dev` directory.

@@ -8,3 +8,4 @@ dev
 ^docs$
 ^pkgdown$
 ^README\.Rmd$
+^dev$

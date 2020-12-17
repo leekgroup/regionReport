@@ -91,8 +91,7 @@
 #' @export
 #'
 #' @importFrom derfinder extendedMapSeqlevels
-#' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
-#' citep bibliography
+#' @importFrom RefManageR PrintBibliography Citep WriteBib
 #' @importFrom GenomeInfoDb seqlevels renameSeqlevels
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
@@ -281,12 +280,6 @@ derfinderReport <- function(prefix, outdir = "basicExploration",
         templateNull <- FALSE
     }
 
-    ## Load knitcitations with a clean bibliography
-    cleanbib()
-    cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
-    # Note links won't show for now due to the following issue
-    # https://github.com/cboettig/knitcitations/issues/63
-
     ## Check all packages (from suggests) needed for the report
     if (hg19) load_check(c("TxDb.Hsapiens.UCSC.hg19.knownGene", "biovizBase"))
     load_check(c(
@@ -296,7 +289,7 @@ derfinderReport <- function(prefix, outdir = "basicExploration",
 
     ## Write bibliography information
     bib <- c(
-        knitcitations = citation("knitcitations"),
+        RefManageR = citation("RefManageR")[1],
         derfinder = citation("derfinder")[1],
         derfinderPlot = citation("derfinderPlot")[1],
         regionReport = citation("regionReport")[1],
@@ -307,24 +300,24 @@ derfinderReport <- function(prefix, outdir = "basicExploration",
         rmarkdown = citation("rmarkdown")[1]
     )
 
-    write.bibtex(bib, file = file.path(prefix, outdir, paste0(output, ".bib")))
+    WriteBib(bib, file = file.path(prefix, outdir, paste0(output, ".bib")))
 
     ## Load files
     if (is.null(fullRegions)) {
-          load(file.path(prefix, "fullRegions.Rdata"))
-      }
+        load(file.path(prefix, "fullRegions.Rdata"))
+    }
     if (is.null(fullNullSummary)) {
-          load(file.path(prefix, "fullNullSummary.Rdata"))
-      }
+        load(file.path(prefix, "fullNullSummary.Rdata"))
+    }
     if (is.null(fullAnnotatedRegions)) {
-          load(file.path(prefix, "fullAnnotatedRegions.Rdata"))
-      }
+        load(file.path(prefix, "fullAnnotatedRegions.Rdata"))
+    }
     if (is.null(optionsStats)) {
-          load(file.path(prefix, dir(prefix, pattern = "chr")[1], "optionsStats.Rdata"))
-      }
+        load(file.path(prefix, dir(prefix, pattern = "chr")[1], "optionsStats.Rdata"))
+    }
     if (is.null(optionsMerge)) {
-          load(file.path(prefix, "optionsMerge.Rdata"))
-      }
+        load(file.path(prefix, "optionsMerge.Rdata"))
+    }
 
     ## Require fullCov
     if (makeBestClusters) {

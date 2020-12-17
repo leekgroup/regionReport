@@ -76,8 +76,7 @@
 #' @author Leonardo Collado-Torres
 #' @export
 #'
-#' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
-#' citep bibliography
+#' @importFrom RefManageR PrintBibliography Citep WriteBib
 #' @importFrom GenomeInfoDb seqlengths
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
@@ -304,12 +303,6 @@ renderReport <- function(regions, project = "",
         templateNull <- FALSE
     }
 
-    ## Load knitcitations with a clean bibliography
-    cleanbib()
-    cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
-    # Note links won't show for now due to the following issue
-    # https://github.com/cboettig/knitcitations/issues/63
-
     ## Check all packages (from suggests) needed for the report
     if (is.null(txdb)) load_check("TxDb.Hsapiens.UCSC.hg19.knownGene")
     load_check(c(
@@ -319,7 +312,7 @@ renderReport <- function(regions, project = "",
 
     ## Write bibliography information
     bib <- c(
-        knitcitations = citation("knitcitations"),
+        RefManageR = citation("RefManageR")[1],
         regionReport = citation("regionReport")[1],
         derfinderPlot = citation("derfinderPlot")[1],
         DT = citation("DT"),
@@ -331,7 +324,7 @@ renderReport <- function(regions, project = "",
         bumphunter = citation("bumphunter")[1],
         derfinder = citation("derfinder")[1]
     )
-    write.bibtex(bib, file = file.path(outdir, paste0(output, ".bib")))
+    WriteBib(bib, file = file.path(outdir, paste0(output, ".bib")))
 
     ## Save the call
     theCall <- match.call()

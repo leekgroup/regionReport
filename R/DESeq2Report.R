@@ -68,8 +68,7 @@
 #'
 #' @importFrom SummarizedExperiment colData
 #' @importFrom DESeq2 results
-#' @importFrom knitcitations cleanbib cite_options write.bibtex read.bibtex
-#' citep bibliography
+#' @importFrom RefManageR PrintBibliography Citep WriteBib
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols
@@ -145,11 +144,11 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     ## Check inputs
     stopifnot(is(dds, "DESeqDataSet"))
     if (!"results" %in% mcols(mcols(dds))$type) {
-          stop("couldn't find results. you should first run DESeq()")
-      }
+        stop("couldn't find results. you should first run DESeq()")
+    }
     if (!all(intgroup %in% names(colData(dds)))) {
-          stop("all variables in 'intgroup' must be columns of colData")
-      }
+        stop("all variables in 'intgroup' must be columns of colData")
+    }
     if (is.null(res)) {
         ## Run results with default parameters
         res <- results(dds)
@@ -165,8 +164,8 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
     # where \code{other} has a valid citation.
     software <- .advanced_argument("software", "DESeq2", ...)
     if (!software %in% c("DESeq2", "edgeR")) {
-          stopifnot(!is.null(citation(software)[1]))
-      }
+        stopifnot(!is.null(citation(software)[1]))
+    }
     isEdgeR <- software == "edgeR"
 
     # @param dge A \link[edgeR]{DGEList} object.
@@ -193,12 +192,6 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         templateNull <- FALSE
     }
 
-    ## Load knitcitations with a clean bibliography
-    cleanbib()
-    cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
-    # Note links won't show for now due to the following issue
-    # https://github.com/cboettig/knitcitations/issues/63
-
     ## Check all packages (from suggests) needed for the report
     pkgs <- c(
         "DESeq2", "ggplot2", "RColorBrewer", "pheatmap", "DT",
@@ -209,7 +202,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
 
     ## Write bibliography information
     bib <- c(
-        knitcitations = citation("knitcitations"),
+        RefManageR = citation("RefManageR")[1],
         regionReport = citation("regionReport")[1],
         DT = citation("DT"),
         ggplot2 = citation("ggplot2"),
@@ -224,7 +217,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         other = if (!software %in% c("DESeq2", "edgeR")) citation(software)[1] else NULL
     )
 
-    write.bibtex(bib, file = file.path(outdir, paste0(output, ".bib")))
+    WriteBib(bib, file = file.path(outdir, paste0(output, ".bib")))
 
     ## Save the call
     theCall <- .advanced_argument("theCall", NULL, ...)

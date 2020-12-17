@@ -24,9 +24,9 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore a set of genomic regions and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument.
+This report is meant to help explore a set of genomic regions and was generated using the `regionReport` `r Citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument.
 
-Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
+Most plots were made with using `ggplot2` `r Citep(bib[['ggplot2']])`.
 
 ## Code setup
 
@@ -145,7 +145,7 @@ for(i in seq_len(length(densityVars))) {
 
 # Genomic overview
 
-The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotOverview` in `derfinderPlot` `r citep(bib[['derfinderPlot']])`.
+The following plots were made using `ggbio` `r Citep(bib[['ggbio']])` which in turn uses `ggplot2` `r Citep(bib[['ggplot2']])`. For more details check `plotOverview` in `derfinderPlot` `r Citep(bib[['derfinderPlot']])`.
 
 ## P-values
 
@@ -195,7 +195,7 @@ if(is.null(annotation)) {
 plotOverview(regions=regions, annotation=annotation, type='annotation', base_size=overviewParams$base_size, areaRel=overviewParams$areaRel, legend.position=c(0.97, 0.12))
 ```
 
-This genomic overview plot shows the annotation region type for the regions as determined using `bumphunter` `r citep(bib[['bumphunter']])`. Note that the regions are shown only if the annotation information is available. Below is a table of the actual number of results per annotation region type.
+This genomic overview plot shows the annotation region type for the regions as determined using `bumphunter` `r Citep(bib[['bumphunter']])`. Note that the regions are shown only if the annotation information is available. Below is a table of the actual number of results per annotation region type.
 
 ```{r annoReg, results='asis'}
 annoReg <- table(annotation$region, useNA='always')
@@ -220,7 +220,7 @@ This genomic overview plot shows the annotation region type for the statisticall
 
 ## Genomic states
 
-Below is a table summarizing the number of genomic states per region as determined using `derfinder` `r citep(bib[['derfinder']])`.
+Below is a table summarizing the number of genomic states per region as determined using `derfinder` `r Citep(bib[['derfinder']])`.
 
 ```{r countTable, results='asis'}
 ## Construct genomic state object
@@ -355,12 +355,12 @@ Pandoc version used: `r rmarkdown::pandoc_version()`.
 
 # Bibliography
 
-This report was created with `regionReport` `r citep(bib[['regionReport']])` using `rmarkdown` `r citep(bib[['rmarkdown']])` while `knitr` `r citep(bib[['knitr']])` and  `DT` `r citep(bib[['DT']])` were running behind the scenes. `whisker` `r citep(bib[['whisker']])` was used for creating templates for the `pvalueVars` and `densityVars`.
+This report was created with `regionReport` `r Citep(bib[['regionReport']])` using `rmarkdown` `r Citep(bib[['rmarkdown']])` while `knitr` `r Citep(bib[['knitr']])` and  `DT` `r Citep(bib[['DT']])` were running behind the scenes. `whisker` `r Citep(bib[['whisker']])` was used for creating templates for the `pvalueVars` and `densityVars`.
 
-Citations made with `knitcitations` `r citep(bib[['knitcitations']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
+Citations made with `r CRANpkg('RefManageR')` `r Citep(bib[['RefManageR']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
 
 ```{r bibliography, results='asis', echo=FALSE, warning = FALSE}
 ## Print bibliography
-bibliography()
+PrintBibliography(bib, .opts = list(hyperlink = "to.doc", style = "html"))
 ```
 

@@ -24,9 +24,9 @@ Project: `r project`.
 
 # Introduction
 
-This report is meant to help explore the results of the `derfinder` `r citep(bib[['derfinder']])` package using the single base-level approach and was generated using the `regionReport` `r citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument.
+This report is meant to help explore the results of the `derfinder` `r Citep(bib[['derfinder']])` package using the single base-level approach and was generated using the `regionReport` `r Citep(bib[['regionReport']])` package. While the report is rich, it is meant to just start the exploration of the results and exemplify some of the code used to do so. If you need a more in-depth analysis for your specific data set you might want to use the `customCode` argument.
 
-Most plots were made with using `ggplot2` `r citep(bib[['ggplot2']])`.
+Most plots were made with using `ggplot2` `r Citep(bib[['ggplot2']])`.
 
 ## Code setup
 
@@ -351,7 +351,7 @@ for(j in grep('log2FoldChange', colnames(values(fullRegions)))) {
 
 # Genomic overview
 
-The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotOverview` in `derfinder` `r citep(bib[['derfinder']])`.
+The following plots were made using `ggbio` `r Citep(bib[['ggbio']])` which in turn uses `ggplot2` `r Citep(bib[['ggplot2']])`. For more details check `plotOverview` in `derfinder` `r Citep(bib[['derfinder']])`.
 
 ## `r pvalText`
 
@@ -501,7 +501,7 @@ if(outputIsHTML) {
  
 # Best region clusters
 
-The following plots were made using `ggbio` `r citep(bib[['ggbio']])` which in turn uses `ggplot2` `r citep(bib[['ggplot2']])`. For more details check `plotCluster()` in `derfinder` `r citep(bib[['derfinder']])`. 
+The following plots were made using `ggbio` `r Citep(bib[['ggbio']])` which in turn uses `ggplot2` `r Citep(bib[['ggplot2']])`. For more details check `plotCluster()` in `derfinder` `r Citep(bib[['derfinder']])`. 
 
 ## Plots
 
@@ -684,12 +684,12 @@ Pandoc version used: `r rmarkdown::pandoc_version()`.
 
 # Bibliography
 
-This report was created with `regionReport` `r citep(bib[['regionReport']])` using `rmarkdown` `r citep(bib[['rmarkdown']])` while `knitr` `r citep(bib[['knitr']])` and  `DT` `r citep(bib[['DT']])` were running behind the scenes.
+This report was created with `regionReport` `r Citep(bib[['regionReport']])` using `rmarkdown` `r Citep(bib[['rmarkdown']])` while `knitr` `r Citep(bib[['knitr']])` and  `DT` `r Citep(bib[['DT']])` were running behind the scenes.
 
-Citations made with `knitcitations` `r citep(bib[['knitcitations']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
+Citations made with `r CRANpkg('RefManageR')` `r Citep(bib[['RefManageR']])`. The [BibTeX](http://www.bibtex.org/) file can be found [here](`r paste0(output, '.bib')`).
 
 ```{r bibliography, results='asis', echo=FALSE, warning = FALSE}
 ## Print bibliography
-bibliography()
+PrintBibliography(bib, .opts = list(hyperlink = "to.doc", style = "html"))
 ```
 

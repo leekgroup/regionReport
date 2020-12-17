@@ -64,17 +64,10 @@ citation("regionReport")
 startTimeVignette <- Sys.time()
 
 ## Bib setup
-library("knitcitations")
-
-## Load knitcitations with a clean bibliography
-cleanbib()
-cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
-# Note links won't show for now due to the following issue
-# https://github.com/cboettig/knitcitations/issues/63
+library("RefManager")
 
 ## Write bibliography information
 bib <- c(
-    knitcitations = citation("knitcitations"),
     derfinder = citation("derfinder")[1],
     regionReport = citation("regionReport")[1],
     knitrBootstrap = citation("knitrBootstrap"),
@@ -82,6 +75,7 @@ bib <- c(
     ggbio = citation("ggbio"),
     ggplot2 = citation("ggplot2"),
     knitr = citation("knitr")[3],
+    RefManageR = citation("RefManageR")[1],
     rmarkdown = citation("rmarkdown")[1],
     DT = citation("DT"),
     R = citation(),
@@ -119,12 +113,10 @@ bib <- c(
     ),
     DEFormats = citation("DEFormats")
 )
-
-write.bibtex(bib, file = "regionReportRef.bib")
 ```
 
 
-`r Biocpkg('regionReport')` `r citep(bib[['regionReport']])` creates HTML or PDF reports for a set of genomic regions such as `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])` results or for feature-level analyses performed with `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])` or `r Biocpkg('edgeR')` `r citep(bib[[c('edgeR1', 'edgeR2', 'edgeR6')]])`. The HTML reports are styled with `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` by default but can optionally be styled with `r CRANpkg('knitrBootstrap')` `r citep(bib[['knitrBootstrap']])`.
+`r Biocpkg('regionReport')` `r Citep(bib[['regionReport']])` creates HTML or PDF reports for a set of genomic regions such as `r Biocpkg('derfinder')` `r Citep(bib[['derfinder']])` results or for feature-level analyses performed with `r Biocpkg('DESeq2')` `r Citep(bib[['DESeq2']])` or `r Biocpkg('edgeR')` `r Citep(bib[[c('edgeR1', 'edgeR2', 'edgeR6')]])`. The HTML reports are styled with `r CRANpkg('rmarkdown')` `r Citep(bib[['rmarkdown']])` by default but can optionally be styled with `r CRANpkg('knitrBootstrap')` `r Citep(bib[['knitrBootstrap']])`.
 
 
 This package includes a basic exploration for a general set of genomic regions which can be easily customized to include the appropriate conclusions and/or further exploration of the results. Such a report can be generated using `renderReport()`. `r Biocpkg('regionReport')` has a separate template for running a basic exploration analysis of `r Biocpkg('derfinder')` 
@@ -132,13 +124,13 @@ results by using `derfinderReport()`. `derfinderReport()` is specific to single 
 
 All reports are written in [R Markdown](http://rmarkdown.rstudio.com/)
 format and include all the code for making the plots and explorations in the report itself. For all templates, `r Biocpkg('regionReport')` relies on
-`r CRANpkg('knitr')` `r citep(bib[['knitr']])`, `r CRANpkg('rmarkdown')` 
-`r citep(bib[['rmarkdown']])`, `DT` `r citep(bib[['DT']])` and optionally `r CRANpkg('knitrBootstrap')` 
-`r citep(bib[['knitrBootstrap']])` for generating the report. The reports can be either in HTML or PDF format and can be easily customized.
+`r CRANpkg('knitr')` `r Citep(bib[['knitr']])`, `r CRANpkg('rmarkdown')` 
+`r Citep(bib[['rmarkdown']])`, `DT` `r Citep(bib[['DT']])` and optionally `r CRANpkg('knitrBootstrap')` 
+`r Citep(bib[['knitrBootstrap']])` for generating the report. The reports can be either in HTML or PDF format and can be easily customized.
 
 # Using `r Biocpkg('regionReport')` for `r Biocpkg('DESeq2')` results
 
-The plots in `r Biocpkg('regionReport')` for exploring `r Biocpkg('DESeq2')` are powered by `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])` and `r CRANpkg('pheatmap')` `r citep(bib[['pheatmap']])`.
+The plots in `r Biocpkg('regionReport')` for exploring `r Biocpkg('DESeq2')` are powered by `r CRANpkg('ggplot2')` `r Citep(bib[['ggplot2']])` and `r CRANpkg('pheatmap')` `r Citep(bib[['pheatmap']])`.
 
 
 ## Example
@@ -172,7 +164,7 @@ If you want to create a similar HTML report as the one linked in this section, s
 
 # Using `r Biocpkg('regionReport')` for region results
 
-The plots in `r Biocpkg('regionReport')` for region reports are powered by `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`, `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`, and `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])`.
+The plots in `r Biocpkg('regionReport')` for region reports are powered by `r Biocpkg('derfinderPlot')` `r Citep(bib[['derfinderPlot']])`, `r Biocpkg('ggbio')` `r Citep(bib[['ggbio']])`, and `r CRANpkg('ggplot2')` `r Citep(bib[['ggplot2']])`.
 
 ## Examples
 
@@ -356,33 +348,33 @@ _makeBestClusters_ to `FALSE`.
 
 This package was made possible thanks to:
 
-* R `r citep(bib[['R']])`
-* `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
-* `r Biocpkg('biovizBase')` `r citep(bib[['biovizBase']])`
-* `r Biocpkg('bumphunter')` `r citep(bib[['bumphunter']])`
-* `r Biocpkg('DEFormats')` `r citep(bib[['DEFormats']])`
-* `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])`
-* `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`
-* `r Biocpkg('DESeq2')` `r citep(bib[['DESeq2']])`
-* `r CRANpkg('DT')` `r citep(bib[['DT']])`
-* `r Biocpkg('edgeR')` `r citep(bib[[c('edgeR1', 'edgeR2', 'edgeR6')]])`
-* `r Biocpkg('GenomeInfoDb')` `r citep(bib[['GenomeInfoDb']])`
-* `r Biocpkg('GenomicRanges')` `r citep(bib[['GenomicRanges']])`
-* `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`
-* `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])`
-* `r CRANpkg('grid')` `r citep(bib[['grid']])`
-* `r CRANpkg('gridExtra')` `r citep(bib[['gridExtra']])`
-* `r Biocpkg('IRanges')` `r citep(bib[['IRanges']])`
-* `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
-* `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
-* `r CRANpkg('knitrBootstrap')` `r citep(bib[['knitrBootstrap']])`
-* `r CRANpkg('mgcv')` `r citep(bib[['mgcv']])`
-* `r CRANpkg('pheatmap')` `r citep(bib[['pheatmap']])`
-* `r CRANpkg('RColorBrewer')` `r citep(bib[['RColorBrewer']])`
-* `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
-* `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
-* `r Biocannopkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
-* `r CRANpkg('whisker')` `r citep(bib[['whisker']])`
+* R `r Citep(bib[['R']])`
+* `r Biocpkg('BiocStyle')` `r Citep(bib[['BiocStyle']])`
+* `r Biocpkg('biovizBase')` `r Citep(bib[['biovizBase']])`
+* `r Biocpkg('bumphunter')` `r Citep(bib[['bumphunter']])`
+* `r Biocpkg('DEFormats')` `r Citep(bib[['DEFormats']])`
+* `r Biocpkg('derfinder')` `r Citep(bib[['derfinder']])`
+* `r Biocpkg('derfinderPlot')` `r Citep(bib[['derfinderPlot']])`
+* `r Biocpkg('DESeq2')` `r Citep(bib[['DESeq2']])`
+* `r CRANpkg('DT')` `r Citep(bib[['DT']])`
+* `r Biocpkg('edgeR')` `r Citep(bib[[c('edgeR1', 'edgeR2', 'edgeR6')]])`
+* `r Biocpkg('GenomeInfoDb')` `r Citep(bib[['GenomeInfoDb']])`
+* `r Biocpkg('GenomicRanges')` `r Citep(bib[['GenomicRanges']])`
+* `r Biocpkg('ggbio')` `r Citep(bib[['ggbio']])`
+* `r CRANpkg('ggplot2')` `r Citep(bib[['ggplot2']])`
+* `r CRANpkg('grid')` `r Citep(bib[['grid']])`
+* `r CRANpkg('gridExtra')` `r Citep(bib[['gridExtra']])`
+* `r Biocpkg('IRanges')` `r Citep(bib[['IRanges']])`
+* `r CRANpkg('knitr')` `r Citep(bib[['knitr']])`
+* `r CRANpkg('knitrBootstrap')` `r Citep(bib[['knitrBootstrap']])`
+* `r CRANpkg('mgcv')` `r Citep(bib[['mgcv']])`
+* `r CRANpkg('pheatmap')` `r Citep(bib[['pheatmap']])`
+* `r CRANpkg('RColorBrewer')` `r Citep(bib[['RColorBrewer']])`
+* `r CRANpkg("RefManageR")` `r Citep(bib[["RefManageR"]])`
+* `r CRANpkg('rmarkdown')` `r Citep(bib[['rmarkdown']])`
+* `r CRANpkg('sessioninfo')` `r Citep(bib[['sessioninfo']])`
+* `r Biocannopkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r Citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
+* `r CRANpkg('whisker')` `r Citep(bib[['whisker']])`
 
 
 Code for creating the vignette
@@ -399,7 +391,6 @@ knit("regionReport.Rmd", tangle = TRUE)
 
 ```{r createVignette2}
 ## Clean up
-file.remove("regionReportRef.bib")
 unlink("derfinderReport-example", recursive = TRUE)
 ```
 
@@ -429,12 +420,12 @@ session_info()
 
 # Bibliography
 
-This vignette was generated using `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
-with `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` running behind the scenes.
+This vignette was generated using `r Biocpkg('BiocStyle')` `r Citep(bib[['BiocStyle']])`
+with `r CRANpkg('knitr')` `r Citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r Citep(bib[['rmarkdown']])` running behind the scenes.
 
-Citations made with `r CRANpkg('knitcitations')` `r citep(bib[[1]])`.
+Citations made with `r CRANpkg('RefManageR')` `r Citep(bib[['RefManageR']])`.
 
 ```{r vignetteBiblio, results='asis', echo=FALSE, warning = FALSE, message = FALSE}
 ## Print bibliography
-bibliography()
+PrintBibliography(bib, .opts = list(hyperlink = "to.doc", style = "html"))
 ```

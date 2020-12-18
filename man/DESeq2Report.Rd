@@ -124,17 +124,31 @@ The HTML report styled with knitrBootstrap can be smaller in size than the
 }
 \examples{
 
-## Load example data from the pasilla package
+## Load example data from the pasilla package as done in the DESeq2 vignette
+## at
+## <https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-matrix-input>.
 library("pasilla")
-library("DESeq2")
+pasCts <- system.file("extdata",
+    "pasilla_gene_counts.tsv",
+    package = "pasilla", mustWork = TRUE
+)
+pasAnno <- system.file("extdata",
+    "pasilla_sample_annotation.csv",
+    package = "pasilla", mustWork = TRUE
+)
+cts <- as.matrix(read.csv(pasCts, sep = "\t", row.names = "gene_id"))
+coldata <- read.csv(pasAnno, row.names = 1)
+coldata <- coldata[, c("condition", "type")]
+coldata$condition <- factor(coldata$condition)
+coldata$type <- factor(coldata$type)
+rownames(coldata) <- sub("fb", "", rownames(coldata))
+cts <- cts[, rownames(coldata)]
 
 ## Create DESeqDataSet object from the pasilla package
-data("pasillaGenes")
-countData <- counts(pasillaGenes)
-colData <- pData(pasillaGenes)[, c("condition", "type")]
+library("DESeq2")
 dds <- DESeqDataSetFromMatrix(
-    countData = countData,
-    colData = colData,
+    countData = cts,
+    colData = coldata,
     design = ~condition
 )
 dds <- DESeq(dds)

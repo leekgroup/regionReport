@@ -76,7 +76,7 @@
 #' @author Leonardo Collado-Torres
 #' @export
 #'
-#' @importFrom RefManageR PrintBibliography Citep WriteBib
+#' @importFrom RefManageR PrintBibliography Citep WriteBib as.BibEntry
 #' @importFrom GenomeInfoDb seqlengths
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
@@ -324,7 +324,7 @@ renderReport <- function(regions, project = "",
         bumphunter = citation("bumphunter")[1],
         derfinder = citation("derfinder")[1]
     )
-    WriteBib(bib, file = file.path(outdir, paste0(output, ".bib")))
+    WriteBib(as.BibEntry(bib), file = file.path(outdir, paste0(output, ".bib")))
 
     ## Save the call
     theCall <- match.call()

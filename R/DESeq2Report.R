@@ -68,7 +68,7 @@
 #'
 #' @importFrom SummarizedExperiment colData
 #' @importFrom DESeq2 results
-#' @importFrom RefManageR PrintBibliography Citep WriteBib
+#' @importFrom RefManageR PrintBibliography Citep WriteBib as.BibEntry
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols
@@ -217,7 +217,7 @@ DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
         other = if (!software %in% c("DESeq2", "edgeR")) citation(software)[1] else NULL
     )
 
-    WriteBib(bib, file = file.path(outdir, paste0(output, ".bib")))
+    WriteBib(as.BibEntry(bib), file = file.path(outdir, paste0(output, ".bib")))
 
     ## Save the call
     theCall <- .advanced_argument("theCall", NULL, ...)

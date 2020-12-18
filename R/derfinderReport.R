@@ -91,7 +91,7 @@
 #' @export
 #'
 #' @importFrom derfinder extendedMapSeqlevels
-#' @importFrom RefManageR PrintBibliography Citep WriteBib
+#' @importFrom RefManageR PrintBibliography Citep WriteBib as.BibEntry
 #' @importFrom GenomeInfoDb seqlevels renameSeqlevels
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
@@ -300,7 +300,7 @@ derfinderReport <- function(prefix, outdir = "basicExploration",
         rmarkdown = citation("rmarkdown")[1]
     )
 
-    WriteBib(bib, file = file.path(prefix, outdir, paste0(output, ".bib")))
+    WriteBib(as.BibEntry(bib), file = file.path(prefix, outdir, paste0(output, ".bib")))
 
     ## Load files
     if (is.null(fullRegions)) {

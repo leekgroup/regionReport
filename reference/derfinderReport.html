@@ -76,7 +76,7 @@ after using mergeResults." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.21.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.25.2</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@ after using mergeResults." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -113,7 +113,7 @@ after using mergeResults." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/leekgroup/regionReport/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,27 +143,27 @@ is generated using rmarkdown (<a href='http://rmarkdown.rstudio.com/'>http://rma
 after using <a href='https://rdrr.io/pkg/derfinder/man/mergeResults.html'>mergeResults</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>derfinderReport</span>(
-  <span class='no'>prefix</span>,
-  <span class='kw'>outdir</span> <span class='kw'>=</span> <span class='st'>"basicExploration"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"basicExploration"</span>,
-  <span class='kw'>project</span> <span class='kw'>=</span> <span class='no'>prefix</span>,
-  <span class='kw'>browse</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(),
-  <span class='kw'>nBestRegions</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>makeBestClusters</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>nBestClusters</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>fullCov</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>hg19</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>p.ideos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>txdb</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>device</span> <span class='kw'>=</span> <span class='st'>"png"</span>,
-  <span class='kw'>significantVar</span> <span class='kw'>=</span> <span class='st'>"qvalue"</span>,
-  <span class='kw'>customCode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>template</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>derfinderReport</span><span class='op'>(</span>
+  <span class='va'>prefix</span>,
+  outdir <span class='op'>=</span> <span class='st'>"basicExploration"</span>,
+  output <span class='op'>=</span> <span class='st'>"basicExploration"</span>,
+  project <span class='op'>=</span> <span class='va'>prefix</span>,
+  browse <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span>,
+  nBestRegions <span class='op'>=</span> <span class='fl'>100</span>,
+  makeBestClusters <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  nBestClusters <span class='op'>=</span> <span class='fl'>2</span>,
+  fullCov <span class='op'>=</span> <span class='cn'>NULL</span>,
+  hg19 <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  p.ideos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  txdb <span class='op'>=</span> <span class='cn'>NULL</span>,
+  device <span class='op'>=</span> <span class='st'>"png"</span>,
+  significantVar <span class='op'>=</span> <span class='st'>"qvalue"</span>,
+  customCode <span class='op'>=</span> <span class='cn'>NULL</span>,
+  template <span class='op'>=</span> <span class='cn'>NULL</span>,
+  theme <span class='op'>=</span> <span class='cn'>NULL</span>,
+  digits <span class='op'>=</span> <span class='fl'>2</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -323,66 +323,72 @@ values for <code>output_format</code>.</p>
 
     <div class='dont-index'><p><a href='https://rdrr.io/pkg/derfinder/man/mergeResults.html'>mergeResults</a>, <a href='https://rdrr.io/pkg/derfinder/man/analyzeChr.html'>analyzeChr</a>,
 <a href='https://rdrr.io/pkg/derfinder/man/fullCoverage.html'>fullCoverage</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Leonardo Collado-Torres</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Load derfinder</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"derfinder"</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/lcolladotor/derfinder'>"derfinder"</a></span><span class='op'>)</span>
 
 <span class='co'>## The output will be saved in the 'derfinderReport-example' directory</span>
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='st'>"derfinderReport-example"</span>, <span class='kw'>showWarnings</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='st'>"derfinderReport-example"</span>, showWarnings <span class='op'>=</span> <span class='cn'>FALSE</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>## For convenience, the derfinder output has been pre-computed</span>
-<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"chr21"</span>),
-    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"derfinder"</span>,
-    <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-), <span class='st'>"derfinderReport-example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"chr21"</span><span class='op'>)</span>,
+    package <span class='op'>=</span> <span class='st'>"derfinder"</span>,
+    mustWork <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>, <span class='st'>"derfinderReport-example"</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## If you prefer, you can generate the output from derfinder</span>
-<span class='no'>initialPath</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>initialPath</span>, <span class='st'>"derfinderReport-example"</span>))
+<span class='va'>initialPath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>initialPath</span>, <span class='st'>"derfinderReport-example"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>## Collapse the coverage information</span>
-<span class='no'>collapsedFull</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/collapseFullCoverage.html'>collapseFullCoverage</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>genomeData</span>$<span class='no'>coverage</span>),
-    <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)
+<span class='va'>collapsedFull</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/collapseFullCoverage.html'>collapseFullCoverage</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>genomeData</span><span class='op'>$</span><span class='va'>coverage</span><span class='op'>)</span>,
+    verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
 <span class='co'>## Calculate library size adjustments</span>
-<span class='no'>sampleDepths</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/sampleDepth.html'>sampleDepth</a></span>(<span class='no'>collapsedFull</span>,
-    <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>), <span class='kw'>nonzero</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)
+<span class='va'>sampleDepths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/sampleDepth.html'>sampleDepth</a></span><span class='op'>(</span><span class='va'>collapsedFull</span>,
+    probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span><span class='op'>)</span>, nonzero <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
 <span class='co'>## Build the models</span>
-<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='no'>genomeInfo</span>$<span class='no'>pop</span>
-<span class='no'>adjustvars</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='no'>genomeInfo</span>$<span class='no'>gender</span>)
-<span class='no'>models</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/makeModels.html'>makeModels</a></span>(<span class='no'>sampleDepths</span>, <span class='kw'>testvars</span> <span class='kw'>=</span> <span class='no'>group</span>, <span class='kw'>adjustvars</span> <span class='kw'>=</span> <span class='no'>adjustvars</span>)
+<span class='va'>group</span> <span class='op'>&lt;-</span> <span class='va'>genomeInfo</span><span class='op'>$</span><span class='va'>pop</span>
+<span class='va'>adjustvars</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>genomeInfo</span><span class='op'>$</span><span class='va'>gender</span><span class='op'>)</span>
+<span class='va'>models</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/makeModels.html'>makeModels</a></span><span class='op'>(</span><span class='va'>sampleDepths</span>, testvars <span class='op'>=</span> <span class='va'>group</span>, adjustvars <span class='op'>=</span> <span class='va'>adjustvars</span><span class='op'>)</span>
 
 <span class='co'>## Analyze chromosome 21</span>
-<span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/analyzeChr.html'>analyzeChr</a></span>(
-    <span class='kw'>chr</span> <span class='kw'>=</span> <span class='st'>"21"</span>, <span class='kw'>coverageInfo</span> <span class='kw'>=</span> <span class='no'>genomeData</span>, <span class='kw'>models</span> <span class='kw'>=</span> <span class='no'>models</span>,
-    <span class='kw'>cutoffFstat</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>cutoffType</span> <span class='kw'>=</span> <span class='st'>"manual"</span>, <span class='kw'>seeds</span> <span class='kw'>=</span> <span class='fl'>20140330</span>, <span class='kw'>groupInfo</span> <span class='kw'>=</span> <span class='no'>group</span>,
-    <span class='kw'>mc.cores</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>writeOutput</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>returnOutput</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+<span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/analyzeChr.html'>analyzeChr</a></span><span class='op'>(</span>
+    chr <span class='op'>=</span> <span class='st'>"21"</span>, coverageInfo <span class='op'>=</span> <span class='va'>genomeData</span>, models <span class='op'>=</span> <span class='va'>models</span>,
+    cutoffFstat <span class='op'>=</span> <span class='fl'>1</span>, cutoffType <span class='op'>=</span> <span class='st'>"manual"</span>, seeds <span class='op'>=</span> <span class='fl'>20140330</span>, groupInfo <span class='op'>=</span> <span class='va'>group</span>,
+    mc.cores <span class='op'>=</span> <span class='fl'>1</span>, writeOutput <span class='op'>=</span> <span class='cn'>TRUE</span>, returnOutput <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
 <span class='co'>## Change the directory back to the original one</span>
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>initialPath</span>)
-}
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>initialPath</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='co'>## Merge the results from the different chromosomes. In this case, there's</span>
 <span class='co'>## only one: chr21</span>
-<span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/mergeResults.html'>mergeResults</a></span>(
-    <span class='kw'>chrs</span> <span class='kw'>=</span> <span class='st'>"21"</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"derfinderReport-example"</span>,
-    <span class='kw'>genomicState</span> <span class='kw'>=</span> <span class='no'>genomicState</span>$<span class='no'>fullGenome</span>
-)</div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: Saving options used</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 Loading chromosome chr21</span></div><div class='output co'>#&gt; <span class='message'>Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: Saving fullNullSummary</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: Re-calculating the p-values</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: Saving fullRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: assigning genomic states</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 annotateRegions: counting</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 annotateRegions: annotating</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: Saving fullAnnotatedRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: Saving fullFstats</span></div><div class='output co'>#&gt; <span class='message'>2020-04-27 14:56:18 mergeResults: Saving fullTime</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/mergeResults.html'>mergeResults</a></span><span class='op'>(</span>
+    chrs <span class='op'>=</span> <span class='st'>"21"</span>, prefix <span class='op'>=</span> <span class='st'>"derfinderReport-example"</span>,
+    genomicState <span class='op'>=</span> <span class='va'>genomicState</span><span class='op'>$</span><span class='va'>fullGenome</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: Saving options used</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 Loading chromosome chr21</span></div><div class='output co'>#&gt; <span class='message'>Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: Saving fullNullSummary</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: Re-calculating the p-values</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: Saving fullRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: assigning genomic states</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 annotateRegions: counting</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 annotateRegions: annotating</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: Saving fullAnnotatedRegions</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: Saving fullFstats</span></div><div class='output co'>#&gt; <span class='message'>2020-12-18 18:41:25 mergeResults: Saving fullTime</span></div><div class='input'>
 <span class='co'>## Load the options used for calculating the statistics</span>
-<span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"derfinderReport-example"</span>, <span class='st'>"chr21"</span>, <span class='st'>"optionsStats.Rdata"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='st'>"derfinderReport-example"</span>, <span class='st'>"chr21"</span>, <span class='st'>"optionsStats.Rdata"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>## Generate the HTML report</span>
-<span class='no'>report</span> <span class='kw'>&lt;-</span> <span class='fu'>derfinderReport</span>(
-    <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"derfinderReport-example"</span>, <span class='kw'>browse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-    <span class='kw'>nBestRegions</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>makeBestClusters</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>fullCov</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"21"</span> <span class='kw'>=</span> <span class='no'>genomeDataRaw</span>$<span class='no'>coverage</span>), <span class='kw'>optionsStats</span> <span class='kw'>=</span> <span class='no'>optionsStats</span>
-)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'GGally':</span>
+<span class='va'>report</span> <span class='op'>&lt;-</span> <span class='fu'>derfinderReport</span><span class='op'>(</span>
+    prefix <span class='op'>=</span> <span class='st'>"derfinderReport-example"</span>, browse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+    nBestRegions <span class='op'>=</span> <span class='fl'>15</span>, makeBestClusters <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    fullCov <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"21"</span> <span class='op'>=</span> <span class='va'>genomeDataRaw</span><span class='op'>$</span><span class='va'>coverage</span><span class='op'>)</span>, optionsStats <span class='op'>=</span> <span class='va'>optionsStats</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'GGally':</span>
 #&gt; <span class='message'>  method from   </span>
 #&gt; <span class='message'>  +.gg   ggplot2</span></div><div class='output co'>#&gt; <span class='message'>Writing 9 Bibtex entries ... </span></div><div class='output co'>#&gt; <span class='message'>OK</span>
 #&gt; <span class='message'>Results written to file 'derfinderReport-example/basicExploration/basicExploration.bib'</span></div><div class='output co'>#&gt; <span class='message'>extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span></div><div class='output co'>#&gt; <span class='message'></span>
@@ -660,9 +666,7 @@ values for <code>output_format</code>.</p>
 #&gt;  $ fig.height: num 10
 #&gt;  $ eval      : symbol makeBestClusters
 #&gt;  $ echo      : symbol makeBestClusters
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Parsing transcripts...</span></div><div class='output co'>#&gt; <span class='message'>Parsing exons...</span></div><div class='output co'>#&gt; <span class='message'>Parsing cds...</span></div><div class='output co'>#&gt; <span class='message'>Parsing utrs...</span></div><div class='output co'>#&gt; <span class='message'>------exons...</span></div><div class='output co'>#&gt; <span class='message'>------cdss...</span></div><div class='output co'>#&gt; <span class='message'>------introns...</span></div><div class='output co'>#&gt; <span class='message'>------utr...</span></div><div class='output co'>#&gt; <span class='message'>aggregating...</span></div><div class='output co'>#&gt; <span class='message'>Done</span></div><div class='output co'>#&gt; <span class='message'>Constructing graphics...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `quo_expr()` is deprecated as of rlang 0.2.0.</span>
-#&gt; <span class='warning'>Please use `quo_squash()` instead.</span>
-#&gt; <span class='warning'>This warning is displayed once per session.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt; <span class='message'>Parsing transcripts...</span></div><div class='output co'>#&gt; <span class='message'>Parsing exons...</span></div><div class='output co'>#&gt; <span class='message'>Parsing cds...</span></div><div class='output co'>#&gt; <span class='message'>Parsing utrs...</span></div><div class='output co'>#&gt; <span class='message'>------exons...</span></div><div class='output co'>#&gt; <span class='message'>------cdss...</span></div><div class='output co'>#&gt; <span class='message'>------introns...</span></div><div class='output co'>#&gt; <span class='message'>------utr...</span></div><div class='output co'>#&gt; <span class='message'>aggregating...</span></div><div class='output co'>#&gt; <span class='message'>Done</span></div><div class='output co'>#&gt; <span class='message'>Constructing graphics...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt;   |                                                                                                                      |.................................................................................                             |  74%
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Parsing transcripts...</span></div><div class='output co'>#&gt; <span class='message'>Parsing exons...</span></div><div class='output co'>#&gt; <span class='message'>Parsing cds...</span></div><div class='output co'>#&gt; <span class='message'>Parsing utrs...</span></div><div class='output co'>#&gt; <span class='message'>------exons...</span></div><div class='output co'>#&gt; <span class='message'>------cdss...</span></div><div class='output co'>#&gt; <span class='message'>------introns...</span></div><div class='output co'>#&gt; <span class='message'>------utr...</span></div><div class='output co'>#&gt; <span class='message'>aggregating...</span></div><div class='output co'>#&gt; <span class='message'>Done</span></div><div class='output co'>#&gt; <span class='message'>Constructing graphics...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt; <span class='message'>Parsing transcripts...</span></div><div class='output co'>#&gt; <span class='message'>Parsing exons...</span></div><div class='output co'>#&gt; <span class='message'>Parsing cds...</span></div><div class='output co'>#&gt; <span class='message'>Parsing utrs...</span></div><div class='output co'>#&gt; <span class='message'>------exons...</span></div><div class='output co'>#&gt; <span class='message'>------cdss...</span></div><div class='output co'>#&gt; <span class='message'>------introns...</span></div><div class='output co'>#&gt; <span class='message'>------utr...</span></div><div class='output co'>#&gt; <span class='message'>aggregating...</span></div><div class='output co'>#&gt; <span class='message'>Done</span></div><div class='output co'>#&gt; <span class='message'>Constructing graphics...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt;   |                                                                                                                      |.................................................................................                             |  74%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                                                                      |...................................................................................                           |  75%
@@ -751,21 +755,22 @@ values for <code>output_format</code>.</p>
 #&gt;   |                                                                                                                      |..............................................................................................................| 100%
 #&gt;   ordinary text without R code
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: basicExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output basicExploration.html --email-obfuscation none --self-contained --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpL3vFtT/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /usr/local/lib/R/host-site-library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /tmp/RtmpL3vFtT/rmarkdown-str3e1d2e11e449.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /usr/local/lib/R/host-site-library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /usr/local/lib/R/host-site-library/rmarkdown/rmd/lua/latex-div.lua --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: basicExploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS basicExploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output basicExploration.html --lua-filter /__w/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /__w/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /__w/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/Rtmpkhkn6V/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /__w/_temp/Library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /tmp/Rtmpkhkn6V/rmarkdown-str25987f1688fc.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Output created: basicExploration.html</span></div><div class='input'>
 
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
     <span class='co'>## Browse the report</span>
-    <span class='fu'><a href='https://rdrr.io/r/utils/browseURL.html'>browseURL</a></span>(<span class='no'>report</span>)
-}
+    <span class='fu'><a href='https://rdrr.io/r/utils/browseURL.html'>browseURL</a></span><span class='op'>(</span><span class='va'>report</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='co'>## See the example output at</span>
 <span class='co'>## http://leekgroup.github.io/regionReport/reference/derfinderReport-example/basicExploration/basicExploration.html</span>
-
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## Note that you can run the example using:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span>(<span class='st'>"derfinderReport"</span>, <span class='st'>"regionReport"</span>, <span class='kw'>ask</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span><span class='op'>(</span><span class='st'>"derfinderReport"</span>, <span class='st'>"regionReport"</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -781,7 +786,7 @@ values for <code>output_format</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

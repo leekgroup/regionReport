@@ -162,6 +162,12 @@ jobs:
           ## https://github.com/r-lib/remotes/issues/296
           ## Ideally, all dependencies should get installed in the first pass.
 
+          ## For testing regionReport v1.25.3 that depends on derfinder 1.25.3
+          ## that I just updated due to an error on the BBS as noted at
+          ## https://github.com/lcolladotor/derfinder/commit/2a6d8ac1161d85dcf142551ebdb0ff5a07cf61fc
+          ## This will be temporary.
+          BiocManager::install("lcolladotor/derfinder")
+
           ## Pass #1 at installing dependencies
           message(paste('****', Sys.time(), 'pass number 1 at installing dependencies: local dependencies ****'))
           remotes::install_local(dependencies = TRUE, repos = BiocManager::repositories(), build_vignettes = TRUE, upgrade = TRUE)
@@ -173,12 +179,6 @@ jobs:
           ## Pass #2 at installing dependencies
           message(paste('****', Sys.time(), 'pass number 2 at installing dependencies: any remaining dependencies ****'))
           remotes::install_local(dependencies = TRUE, repos = BiocManager::repositories(), build_vignettes = TRUE, upgrade = TRUE)
-
-          ## For testing regionReport v1.25.3 that depends on derfinder 1.25.3
-          ## that I just updated due to an error on the BBS as noted at
-          ## https://github.com/lcolladotor/derfinder/commit/2a6d8ac1161d85dcf142551ebdb0ff5a07cf61fc
-          ## This will be temporary.
-          BiocManager::install("lcolladotor/derfinder")
 
           ## For running the checks
           message(paste('****', Sys.time(), 'installing rcmdcheck and BiocCheck ****'))

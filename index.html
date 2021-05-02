@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.25.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.25.3</span>
       </span>
     </div>
 
@@ -92,14 +92,14 @@
 <a href="#regionreport" class="anchor"></a>regionReport</h1></div>
 <!-- badges: start -->
 
-<p>Generate HTML reports for a set of regions such as those from <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> results or any other pipeline that defines a set of genomic regions.</p>
-<p>Check the documentation for <code><a href="reference/derfinderReport.html">derfinderReport()</a></code> for an example on how to create the necessary input files and generating the HTML report for <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> results. Or use:</p>
+<p>Generate HTML reports for a set of regions such as those from <em><a href="https://bioconductor.org/packages/3.13/derfinder">derfinder</a></em> results or any other pipeline that defines a set of genomic regions.</p>
+<p>Check the documentation for <code><a href="reference/derfinderReport.html">derfinderReport()</a></code> for an example on how to create the necessary input files and generating the HTML report for <em><a href="https://bioconductor.org/packages/3.13/derfinder">derfinder</a></em> results. Or use:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="st">"derfinderReport"</span>, <span class="st">"regionReport"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Similarly, check <code><a href="reference/renderReport.html">renderReport()</a></code> for an example of a general report, or use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="st">"renderReport"</span>, <span class="st">"regionReport"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>For <em><a href="https://bioconductor.org/packages/3.12/DESeq2">DESeq2</a></em> or <em><a href="https://bioconductor.org/packages/3.12/edgeR">edgeR</a></em> results check <code><a href="reference/DESeq2Report.html">DESeq2Report()</a></code> and <code><a href="reference/edgeReport.html">edgeReport()</a></code>.</p>
+<p>For <em><a href="https://bioconductor.org/packages/3.13/DESeq2">DESeq2</a></em> or <em><a href="https://bioconductor.org/packages/3.13/edgeR">edgeR</a></em> results check <code><a href="reference/DESeq2Report.html">DESeq2Report()</a></code> and <code><a href="reference/edgeReport.html">edgeReport()</a></code>.</p>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h2>
@@ -111,8 +111,8 @@
 <p>Get the latest stable <code>R</code> release from <a href="http://cran.r-project.org/">CRAN</a>. Then install <code>regionReport</code> using from <a href="http://bioconductor.org/">Bioconductor</a> the following code:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-  <span class="op">}</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="op">}</span>
 
 <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"regionReport"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -164,7 +164,7 @@
 <span class="co">#&gt; HTML or PDF reports for a set of genomic regions or DESeq2/edgeR</span>
 <span class="co">#&gt; results_. doi: 10.18129/B9.bioc.regionReport (URL:</span>
 <span class="co">#&gt; https://doi.org/10.18129/B9.bioc.regionReport),</span>
-<span class="co">#&gt; https://github.com/leekgroup/regionReport - R package version 1.25.1,</span>
+<span class="co">#&gt; https://github.com/leekgroup/regionReport - R package version 1.25.3,</span>
 <span class="co">#&gt; &lt;URL: http://www.bioconductor.org/packages/regionReport&gt;.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
@@ -174,7 +174,7 @@
 <span class="co">#&gt;     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},</span>
 <span class="co">#&gt;     year = {2017},</span>
 <span class="co">#&gt;     url = {http://www.bioconductor.org/packages/regionReport},</span>
-<span class="co">#&gt;     note = {https://github.com/leekgroup/regionReport - R package version 1.25.1},</span>
+<span class="co">#&gt;     note = {https://github.com/leekgroup/regionReport - R package version 1.25.3},</span>
 <span class="co">#&gt;     doi = {10.18129/B9.bioc.regionReport},</span>
 <span class="co">#&gt;   }</span></code></pre></div>
 <p>Please note that the <code>regionReport</code> was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.</p>
@@ -188,14 +188,14 @@
 <h2 class="hasAnchor">
 <a href="#development-tools" class="anchor"></a>Development tools</h2>
 <ul>
-<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.12/BiocCheck">BiocCheck</a></em>.</li>
+<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.13/BiocCheck">BiocCheck</a></em>.</li>
 <li>Code coverage assessment is possible thanks to <a href="https://codecov.io/gh">codecov</a> and <em><a href="https://CRAN.R-project.org/package=covr">covr</a></em>.</li>
 <li>The <a href="http://leekgroup.github.io/derfinderPlot">documentation website</a> is automatically updated thanks to <em><a href="https://CRAN.R-project.org/package=pkgdown">pkgdown</a></em>.</li>
 <li>The code is styled automatically thanks to <em><a href="https://CRAN.R-project.org/package=styler">styler</a></em>.</li>
 <li>The documentation is formatted thanks to <em><a href="https://CRAN.R-project.org/package=devtools">devtools</a></em> and <em><a href="https://CRAN.R-project.org/package=roxygen2">roxygen2</a></em>.</li>
 </ul>
 <p>For more details, check the <code>dev</code> directory.</p>
-<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.12/biocthis">biocthis</a></em>.</p>
+<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.13/biocthis">biocthis</a></em>.</p>
 </div>
 </div>
   </div>

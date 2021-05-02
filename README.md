@@ -22,12 +22,12 @@ issues](https://img.shields.io/github/issues/leekgroup/regionReport)](https://gi
 <!-- badges: end -->
 
 Generate HTML reports for a set of regions such as those from
-*[derfinder](https://bioconductor.org/packages/3.12/derfinder)* results
+*[derfinder](https://bioconductor.org/packages/3.13/derfinder)* results
 or any other pipeline that defines a set of genomic regions.
 
 Check the documentation for `derfinderReport()` for an example on how to
 create the necessary input files and generating the HTML report for
-*[derfinder](https://bioconductor.org/packages/3.12/derfinder)* results.
+*[derfinder](https://bioconductor.org/packages/3.13/derfinder)* results.
 Or use:
 
 ``` r
@@ -41,8 +41,8 @@ use:
 example("renderReport", "regionReport", ask = FALSE)
 ```
 
-For *[DESeq2](https://bioconductor.org/packages/3.12/DESeq2)* or
-*[edgeR](https://bioconductor.org/packages/3.12/edgeR)* results check
+For *[DESeq2](https://bioconductor.org/packages/3.13/DESeq2)* or
+*[edgeR](https://bioconductor.org/packages/3.13/edgeR)* results check
 `DESeq2Report()` and `edgeReport()`.
 
 ## Documentation
@@ -59,8 +59,8 @@ from [Bioconductor](http://bioconductor.org/) the following code:
 
 ``` r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
-      install.packages("BiocManager")
-  }
+    install.packages("BiocManager")
+}
 
 BiocManager::install("regionReport")
 ```
@@ -115,7 +115,7 @@ print(citation("regionReport"), bibtex = TRUE)
 #> HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
 #> results_. doi: 10.18129/B9.bioc.regionReport (URL:
 #> https://doi.org/10.18129/B9.bioc.regionReport),
-#> https://github.com/leekgroup/regionReport - R package version 1.25.1,
+#> https://github.com/leekgroup/regionReport - R package version 1.25.3,
 #> <URL: http://www.bioconductor.org/packages/regionReport>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -125,7 +125,7 @@ print(citation("regionReport"), bibtex = TRUE)
 #>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
 #>     year = {2017},
 #>     url = {http://www.bioconductor.org/packages/regionReport},
-#>     note = {https://github.com/leekgroup/regionReport - R package version 1.25.1},
+#>     note = {https://github.com/leekgroup/regionReport - R package version 1.25.3},
 #>     doi = {10.18129/B9.bioc.regionReport},
 #>   }
 ```
@@ -151,7 +151,7 @@ By contributing to this project, you agree to abide by its terms.
     *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
     customized to use [Bioconductor’s docker
     containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.12/BiocCheck)*.
+    *[BiocCheck](https://bioconductor.org/packages/3.13/BiocCheck)*.
 -   Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
@@ -168,4 +168,4 @@ By contributing to this project, you agree to abide by its terms.
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.12/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.13/biocthis)*.

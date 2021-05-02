@@ -340,13 +340,25 @@ derfinderReport <- function(prefix, outdir = "basicExploration",
     seeds <- optionsStats$seeds
     usedPermutations <- length(optionsStats$nPermute) > 0 & !is.null(seeds)
     ## Are there significant regions?
-    sigVar <- switch(significantVar, pvalue = "significant", qvalue = "significantQval", fwer = "significantFWER")
+    sigVar <- switch(significantVar,
+        pvalue = "significant",
+        qvalue = "significantQval",
+        fwer = "significantFWER"
+    )
     if (significantVar == "fwer" & !fwerExist) {
         warning("There are no FWER adjusted P-values, will use FDR adjusted p-values instead.")
         significantVar <- "significantQval"
     }
-    pvalText <- switch(sigVar, significant = "P-value", significantQval = "FDR adjusted P-value", significantFWER = "FWER adjusted P-value")
-    pvalVar <- switch(sigVar, significant = "pval", significantQval = "qval", significantFWER = "fwer")
+    pvalText <- switch(sigVar,
+        significant = "P-value",
+        significantQval = "FDR adjusted P-value",
+        significantFWER = "FWER adjusted P-value"
+    )
+    pvalVar <- switch(sigVar,
+        significant = "pval",
+        significantQval = "qval",
+        significantFWER = "fwer"
+    )
     idx.sig <- as.logical(mcols(fullRegions)[[sigVar]])
     sigCut <- optionsMerge$significantCut[ifelse(sigVar == "significantQval", 2, 1)]
     hasSig <- any(idx.sig)

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.25.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       Lieber Institute for Brain Development, Johns Hopkins Medical CampusCenter for Computational Biology, Johns Hopkins University<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 class="date">2 May 2021</h4>
+            <h4 class="date">24 May 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leekgroup/regionReport/blob/master/vignettes/regionReport.Rmd"><code>vignettes/regionReport.Rmd</code></a></small>
       <div class="hidden name"><code>regionReport.Rmd</code></div>
@@ -155,7 +155,7 @@
 ## HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
 ## results_. doi: 10.18129/B9.bioc.regionReport (URL:
 ## https://doi.org/10.18129/B9.bioc.regionReport),
-## https://github.com/leekgroup/regionReport - R package version 1.25.3,
+## https://github.com/leekgroup/regionReport - R package version 1.27.0,
 ## &lt;URL: http://www.bioconductor.org/packages/regionReport&gt;.
 ## 
 ## To see these entries in BibTeX format, use 'print(&lt;citation&gt;,
@@ -325,18 +325,18 @@
     chrs <span class="op">=</span> <span class="st">"chr21"</span>, prefix <span class="op">=</span> <span class="st">"derfinderReport-example"</span>,
     genomicState <span class="op">=</span> <span class="va">genomicState</span><span class="op">$</span><span class="va">fullGenome</span>
 <span class="op">)</span></code></pre></div>
-<pre><code>## 2021-05-02 05:14:35 mergeResults: Saving options used</code></pre>
-<pre><code>## 2021-05-02 05:14:35 Loading chromosome chr21</code></pre>
+<pre><code>## 2021-05-24 15:25:12 mergeResults: Saving options used</code></pre>
+<pre><code>## 2021-05-24 15:25:12 Loading chromosome chr21</code></pre>
 <pre><code>## Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</code></pre>
-<pre><code>## 2021-05-02 05:14:35 mergeResults: Saving fullNullSummary</code></pre>
-<pre><code>## 2021-05-02 05:14:35 mergeResults: Re-calculating the p-values</code></pre>
-<pre><code>## 2021-05-02 05:14:35 mergeResults: Saving fullRegions</code></pre>
-<pre><code>## 2021-05-02 05:14:35 mergeResults: assigning genomic states</code></pre>
-<pre><code>## 2021-05-02 05:14:35 annotateRegions: counting</code></pre>
-<pre><code>## 2021-05-02 05:14:36 annotateRegions: annotating</code></pre>
-<pre><code>## 2021-05-02 05:14:36 mergeResults: Saving fullAnnotatedRegions</code></pre>
-<pre><code>## 2021-05-02 05:14:36 mergeResults: Saving fullFstats</code></pre>
-<pre><code>## 2021-05-02 05:14:36 mergeResults: Saving fullTime</code></pre>
+<pre><code>## 2021-05-24 15:25:13 mergeResults: Saving fullNullSummary</code></pre>
+<pre><code>## 2021-05-24 15:25:13 mergeResults: Re-calculating the p-values</code></pre>
+<pre><code>## 2021-05-24 15:25:13 mergeResults: Saving fullRegions</code></pre>
+<pre><code>## 2021-05-24 15:25:13 mergeResults: assigning genomic states</code></pre>
+<pre><code>## 2021-05-24 15:25:13 annotateRegions: counting</code></pre>
+<pre><code>## 2021-05-24 15:25:13 annotateRegions: annotating</code></pre>
+<pre><code>## 2021-05-24 15:25:13 mergeResults: Saving fullAnnotatedRegions</code></pre>
+<pre><code>## 2021-05-24 15:25:13 mergeResults: Saving fullFstats</code></pre>
+<pre><code>## 2021-05-24 15:25:13 mergeResults: Saving fullTime</code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Load optionsStats</span>
 <span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">"derfinderReport-example"</span>, <span class="st">"chr21"</span>, <span class="st">"optionsStats.Rdata"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -442,9 +442,9 @@
 <code class="sourceCode R"><span class="co">## Clean up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"derfinderReport-example"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code>## [1] "2021-05-02 05:14:37 UTC"</code></pre>
+<pre><code>## [1] "2021-05-24 15:25:14 UTC"</code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>## Time difference of 20.641 secs</code></pre>
+<pre><code>## Time difference of 17.057 secs</code></pre>
 <p><code>R</code> session information.</p>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
@@ -456,7 +456,7 @@
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-05-02                  
+##  date     2021-05-24                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package              * version  date       lib source                                
@@ -494,7 +494,7 @@
 ##  dbplyr                 2.1.0    2021-02-03 [1] RSPM (R 4.0.3)                        
 ##  DEFormats              1.18.0   2020-10-27 [1] Bioconductor                          
 ##  DelayedArray           0.16.3   2021-03-24 [1] Bioconductor                          
-##  derfinder            * 1.25.3   2021-05-02 [1] Github (lcolladotor/derfinder@1227442)
+##  derfinder            * 1.27.0   2021-05-24 [1] Github (lcolladotor/derfinder@cb99b18)
 ##  derfinderHelper        1.24.1   2020-12-18 [1] Bioconductor                          
 ##  desc                   1.2.0    2018-05-01 [2] RSPM (R 4.0.3)                        
 ##  DESeq2                 1.30.1   2021-02-19 [1] Bioconductor                          
@@ -513,7 +513,7 @@
 ##  geneplotter            1.68.0   2020-10-27 [1] Bioconductor                          
 ##  generics               0.1.0    2020-10-31 [1] RSPM (R 4.0.3)                        
 ##  GenomeInfoDb           1.26.7   2021-04-08 [1] Bioconductor                          
-##  GenomeInfoDbData       1.2.4    2021-05-02 [1] Bioconductor                          
+##  GenomeInfoDbData       1.2.4    2021-05-24 [1] Bioconductor                          
 ##  GenomicAlignments      1.26.0   2020-10-27 [1] Bioconductor                          
 ##  GenomicFeatures        1.42.3   2021-04-01 [1] Bioconductor                          
 ##  GenomicFiles           1.26.0   2020-10-27 [1] Bioconductor                          
@@ -565,7 +565,7 @@
 ##  Rcpp                   1.0.6    2021-01-15 [2] RSPM (R 4.0.3)                        
 ##  RCurl                  1.98-1.2 2020-04-18 [1] RSPM (R 4.0.3)                        
 ##  RefManageR           * 1.3.0    2020-11-13 [1] RSPM (R 4.0.3)                        
-##  regionReport         * 1.25.3   2021-05-02 [1] Bioconductor                          
+##  regionReport         * 1.27.0   2021-05-24 [1] Bioconductor                          
 ##  reshape2               1.4.4    2020-04-09 [1] RSPM (R 4.0.3)                        
 ##  rlang                  0.4.10   2020-12-30 [2] RSPM (R 4.0.3)                        
 ##  rmarkdown              2.6      2020-12-14 [1] RSPM (R 4.0.3)                        

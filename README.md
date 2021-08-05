@@ -54,8 +54,8 @@ Bioconductor](http://bioconductor.org/packages/regionReport) or at the
 ## Installation instructions
 
 Get the latest stable `R` release from
-[CRAN](http://cran.r-project.org/). Then install `regionReport` using
-from [Bioconductor](http://bioconductor.org/) the following code:
+[CRAN](http://cran.r-project.org/). Then install `regionReport` from
+[Bioconductor](http://bioconductor.org/) using the following code:
 
 ``` r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {

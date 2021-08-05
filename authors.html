@@ -44,6 +44,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -55,9 +57,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-citation-authors">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,19 +79,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="articles/regionReport.html">Get started</a>
 </li>
 <li>
@@ -129,7 +131,11 @@
       <small class="dont-index">Source: <a href='https://github.com/leekgroup/regionReport/blob/master/inst/CITATION'><code>inst/CITATION</code></a></small>
     </div>
 
-    <p></p>
+    <p>Collado-Torres L, Jaffe AE, Leek JT (2016).
+&ldquo;regionReport: Interactive reports for region-level and feature-level genomic analyses [version2; referees: 2 approved, 1 approved with reservations].&rdquo;
+<em>F1000Research</em>, <b>4</b>, 105.
+doi: <a href="https://doi.org/10.12688/f1000research.6379.2">10.12688/f1000research.6379.2</a>, <a href="http://f1000research.com/articles/4-105/v2">http://f1000research.com/articles/4-105/v2</a>. 
+</p>
     <pre>@Article{,
   author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
   title = {regionReport: Interactive reports for region-level and feature-level genomic analyses [version2; referees: 2 approved, 1 approved with reservations]},
@@ -140,7 +146,11 @@
   volume = {4},
   pages = {105},
 }</pre>
-    <p></p>
+    <p>Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B, Irizarry RA, Leek JT, Jaffe AE (2017).
+&ldquo;Flexible expressed region analysis for RNA-seq with derfinder.&rdquo;
+<em>Nucl. Acids Res.</em>.
+doi: <a href="https://doi.org/10.1093/nar/gkw852">10.1093/nar/gkw852</a>, <a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852">http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852</a>. 
+</p>
     <pre>@Article{,
   title = {Flexible expressed region analysis for RNA-seq with derfinder},
   author = {Leonardo Collado-Torres and Abhinav Nellore and Alyssa C. Frazee and Christopher Wilks and Michael I. Love and Ben Langmead and Rafael A. Irizarry and Jeffrey T. Leek and Andrew E. Jaffe},
@@ -149,13 +159,16 @@
   doi = {10.1093/nar/gkw852},
   url = {http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852},
 }</pre>
-    <p></p>
+    <p>Collado-Torres L, Jaffe AE, Leek JT (2017).
+<em>regionReport: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results</em>.
+doi: <a href="https://doi.org/10.18129/B9.bioc.regionReport">10.18129/B9.bioc.regionReport</a>, https://github.com/leekgroup/regionReport - R package version 1.27.1, <a href="http://www.bioconductor.org/packages/regionReport">http://www.bioconductor.org/packages/regionReport</a>. 
+</p>
     <pre>@Manual{,
   title = {regionReport: Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results},
   author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
   year = {2017},
   url = {http://www.bioconductor.org/packages/regionReport},
-  note = {https://github.com/leekgroup/regionReport - R package version 1.27.0},
+  note = {https://github.com/leekgroup/regionReport - R package version 1.27.1},
   doi = {10.18129/B9.bioc.regionReport},
 }</pre>
 
@@ -163,6 +176,7 @@
       <h1>Authors</h1>
     </div>
 
+    
     <ul class="list-unstyled">
       <li>
         <p><strong>Leonardo Collado-Torres</strong>. Author, maintainer. <a href='https://orcid.org/0000-0003-2140-308X' target='orcid.widget' aria-label='ORCID'><span class='fab fa-orcid orcid' aria-hidden='true'></span></a>
@@ -177,7 +191,7 @@
         </p>
       </li>
     </ul>
-
+    
   </div>
 
 </div>
@@ -186,11 +200,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
+  <p><p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -198,6 +212,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -50,6 +50,8 @@ template." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -61,9 +63,15 @@ template." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -77,19 +85,13 @@ template." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/regionReport.html">Get started</a>
 </li>
 <li>
@@ -145,7 +147,7 @@ customize the entire template by providing an R Markdown file to
 <code>template</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>edgeReport</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>edgeReport</span><span class='op'>(</span>
   <span class='va'>dge</span>,
   <span class='va'>object</span>,
   project <span class='op'>=</span> <span class='st'>""</span>,
@@ -169,7 +171,7 @@ customize the entire template by providing an R Markdown file to
   theme <span class='op'>=</span> <span class='cn'>NULL</span>,
   digits <span class='op'>=</span> <span class='fl'>2</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -308,7 +310,7 @@ edgeReport.</p></dd>
 <code><a href='https://rdrr.io/pkg/knitrBootstrap/man/bootstrap_document.html'>knitrBootstrap::bootstrap_document</a></code> unless you modify the YAML
 template.</p></dd>
 <dt>clean </dt><dd><p>Logical, whether to clean the results or not. Passed to
-<a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>render</a>.</p></dd>
+<a href='https://pkgs.rstudio.com/rmarkdown/reference/render.html'>render</a>.</p></dd>
 
 </dl></td>
     </tr>
@@ -337,211 +339,253 @@ achieve this goal.</p>
     <p>Leonardo Collado-Torres</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>## Create example data using DEFormats</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/aoles/DEFormats'>"DEFormats"</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>20160407</span><span class='op'>)</span>
-<span class='va'>counts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DEFormats/man/simulateRnaSeqData.html'>simulateRnaSeqData</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>group</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"B"</span><span class='op'>)</span>, each <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-
-<span class='co'>## Create DGEList object</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://bioinf.wehi.edu.au/edgeR'>"edgeR"</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: limma</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'limma'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:DESeq2':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    plotMA</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:BiocGenerics':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    plotMA</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'edgeR'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:DEFormats':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    DGEList</span></div><div class='input'><span class='va'>dge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DEFormats/man/DGEList.html'>DGEList</a></span><span class='op'>(</span><span class='va'>counts</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>
-
-<span class='co'>## Perform DE analysis with edgeR</span>
-<span class='va'>design</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>group</span><span class='op'>)</span>
-<span class='va'>dge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/edgeR/man/estimateDisp.html'>estimateDisp</a></span><span class='op'>(</span><span class='va'>dge</span>, <span class='va'>design</span><span class='op'>)</span>
-<span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/edgeR/man/glmfit.html'>glmFit</a></span><span class='op'>(</span><span class='va'>dge</span>, <span class='va'>design</span><span class='op'>)</span>
-<span class='va'>lrt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/edgeR/man/glmfit.html'>glmLRT</a></span><span class='op'>(</span><span class='va'>fit</span>, coef <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-
-<span class='co'>## The output will be saved in the 'edgeReport-example' directory</span>
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='st'>"edgeReport-example"</span>, showWarnings <span class='op'>=</span> <span class='cn'>FALSE</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='co'>## Generate the HTML report</span>
-<span class='va'>report</span> <span class='op'>&lt;-</span> <span class='fu'>edgeReport</span><span class='op'>(</span><span class='va'>dge</span>, <span class='va'>lrt</span>,
-    project <span class='op'>=</span> <span class='st'>"edgeR-example"</span>, intgroup <span class='op'>=</span> <span class='st'>"group"</span>,
-    outdir <span class='op'>=</span> <span class='st'>"edgeReport-example"</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: method is only applicable to 'bibentry' objects</span></div><div class='output co'>#&gt; <span class='message'>Writing 12 Bibtex entries ... </span></div><div class='output co'>#&gt; <span class='message'>OK</span>
-#&gt; <span class='message'>Results written to file 'edgeReport-example/edgeRexploration.bib'</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: edgeRexploration.Rmd</span></div><div class='output co'>#&gt;   |                                                                                                                      |                                                                                                              |   0%  |                                                                                                                      |..                                                                                                            |   2%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |.....                                                                                                         |   4%
-#&gt; label: docSetup (with options) 
-#&gt; List of 3
-#&gt;  $ bootstrap.show.code   : logi FALSE
-#&gt;  $ dev                   : symbol device
-#&gt;  $ bootstrap.show.message: logi FALSE
-#&gt; 
-#&gt;   |                                                                                                                      |.......                                                                                                       |   6%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |.........                                                                                                     |   9%
-#&gt; label: setup (with options) 
-#&gt; List of 1
-#&gt;  $ bootstrap.show.message: logi FALSE
-#&gt; 
-#&gt;   |                                                                                                                      |............                                                                                                  |  11%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |..............                                                                                                |  13%
-#&gt; label: PCA</div><div class='output co'>#&gt;   |                                                                                                                      |................                                                                                              |  15%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |...................                                                                                           |  17%
-#&gt; label: sampleDist</div><div class='output co'>#&gt;   |                                                                                                                      |.....................                                                                                         |  19%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |.......................                                                                                       |  21%
-#&gt; label: MAplotalpha</div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt;   |                                                                                                                      |..........................                                                                                    |  23%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |............................                                                                                  |  26%
-#&gt; label: MAplotalphaHalf</div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt;   |                                                                                                                      |..............................                                                                                |  28%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |.................................                                                                             |  30%
-#&gt; label: MAplotalpha-nBest</div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt; <span class='warning'>Warning: "alpha" is not a graphical parameter</span></div><div class='output co'>#&gt;   |                                                                                                                      |...................................                                                                           |  32%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |.....................................                                                                         |  34%
-#&gt; label: pvalueHistogram</div><div class='output co'>#&gt;   |                                                                                                                      |........................................                                                                      |  36%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |..........................................                                                                    |  38%
-#&gt; label: pvalueSumm
-#&gt;   |                                                                                                                      |............................................                                                                  |  40%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |...............................................                                                               |  43%
-#&gt; label: pvalueTable (with options) 
-#&gt; List of 1
-#&gt;  $ results: chr "asis"
-#&gt; 
-#&gt;   |                                                                                                                      |.................................................                                                             |  45%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |...................................................                                                           |  47%
-#&gt; label: padjHistogram</div><div class='output co'>#&gt;   |                                                                                                                      |......................................................                                                        |  49%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |........................................................                                                      |  51%
-#&gt; label: padjSumm
-#&gt;   |                                                                                                                      |...........................................................                                                   |  53%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |.............................................................                                                 |  55%
-#&gt; label: padjTable (with options) 
-#&gt; List of 1
-#&gt;  $ results: chr "asis"
-#&gt; 
-#&gt;   |                                                                                                                      |...............................................................                                               |  57%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |..................................................................                                            |  60%
-#&gt; label: topFeatures (with options) 
-#&gt; List of 1
-#&gt;  $ results: chr "asis"
-#&gt; 
-#&gt;   |                                                                                                                      |....................................................................                                          |  62%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |......................................................................                                        |  64%
-#&gt; label: plotCounts</div><div class='output co'>#&gt;   |                                                                                                                      |.........................................................................                                     |  66%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |...........................................................................                                   |  68%
-#&gt; label: edgeR-BCV (with options) 
-#&gt; List of 2
-#&gt;  $ eval: symbol isEdgeR
-#&gt;  $ echo: language isEdgeR &amp; outputIsHTML
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |.............................................................................                                 |  70%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |................................................................................                              |  72%
-#&gt; label: edgeR-MDS (with options) 
-#&gt; List of 2
-#&gt;  $ eval: symbol isEdgeR
-#&gt;  $ echo: language isEdgeR &amp; outputIsHTML
-#&gt; </div><div class='output co'>#&gt;   |                                                                                                                      |..................................................................................                            |  74%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |....................................................................................                          |  77%
-#&gt; label: unnamed-chunk-1 (with options) 
-#&gt; List of 2
-#&gt;  $ child: symbol customCode
-#&gt;  $ eval : symbol hasCustomCode
-#&gt; 
-#&gt;   |                                                                                                                      |.......................................................................................                       |  79%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |.........................................................................................                     |  81%
-#&gt; label: thecall (with options) 
-#&gt; List of 1
-#&gt;  $ echo: logi FALSE
-#&gt; 
-#&gt;   |                                                                                                                      |...........................................................................................                   |  83%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |..............................................................................................                |  85%
-#&gt; label: reproducibility1 (with options) 
-#&gt; List of 1
-#&gt;  $ echo: logi FALSE
-#&gt; 
-#&gt;   |                                                                                                                      |................................................................................................              |  87%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |..................................................................................................            |  89%
-#&gt; label: reproducibility2 (with options) 
-#&gt; List of 1
-#&gt;  $ echo: logi FALSE
-#&gt; 
-#&gt;   |                                                                                                                      |.....................................................................................................         |  91%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt;   |                                                                                                                      |.......................................................................................................       |  94%
-#&gt; label: reproducibility3 (with options) 
-#&gt; List of 1
-#&gt;  $ echo: logi FALSE
-#&gt; 
-#&gt;   |                                                                                                                      |.........................................................................................................     |  96%
-#&gt;    inline R code fragments
-#&gt; 
-#&gt;   |                                                                                                                      |............................................................................................................  |  98%
-#&gt; label: bibliography (with options) 
-#&gt; List of 3
-#&gt;  $ results: chr "asis"
-#&gt;  $ echo   : logi FALSE
-#&gt;  $ warning: logi FALSE
-#&gt; 
-#&gt;   |                                                                                                                      |..............................................................................................................| 100%
-#&gt;   ordinary text without R code
-#&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: edgeRexploration.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS edgeRexploration.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output edgeRexploration.html --lua-filter /__w/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /__w/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /__w/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/Rtmp5RA7uG/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --css /__w/_temp/Library/BiocStyle/resources/html/bioconductor.css --variable 'theme:bootstrap' --include-in-header /tmp/Rtmp5RA7uG/rmarkdown-str23c67cb88e68.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: edgeRexploration.html</span></div><div class='img'><img src='edgeReport-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='co'>## Browse the report</span>
-    <span class='fu'><a href='https://rdrr.io/r/utils/browseURL.html'>browseURL</a></span><span class='op'>(</span><span class='va'>report</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='co'>## See the example report at</span>
-<span class='co'>## http://leekgroup.github.io/regionReport/reference/edgeReport-example/edgeRexploration.html</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'>## Note that you can run the example using:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span><span class='op'>(</span><span class='st'>"edgeReport"</span>, <span class='st'>"regionReport"</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+<span class='r-in'><span class='co'>## Create example data using DEFormats</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/aoles/DEFormats'>"DEFormats"</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>20160407</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>counts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DEFormats/man/simulateRnaSeqData.html'>simulateRnaSeqData</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>group</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Vector-class.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/S4Vectors/man/Vector-class.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"B"</span><span class='op'>)</span>, each <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Create DGEList object</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://bioinf.wehi.edu.au/edgeR'>"edgeR"</a></span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: limma</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: 'limma'</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following object is masked from 'package:DESeq2':</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     plotMA</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following object is masked from 'package:BiocGenerics':</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     plotMA</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: 'edgeR'</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following object is masked from 'package:DEFormats':</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     DGEList</span>
+<span class='r-in'><span class='va'>dge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/edgeR/man/DGEList.html'>DGEList</a></span><span class='op'>(</span><span class='va'>counts</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Perform DE analysis with edgeR</span></span>
+<span class='r-in'><span class='va'>design</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/model.matrix.html'>model.matrix</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>group</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>dge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/edgeR/man/estimateDisp.html'>estimateDisp</a></span><span class='op'>(</span><span class='va'>dge</span>, <span class='va'>design</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/edgeR/man/glmfit.html'>glmFit</a></span><span class='op'>(</span><span class='va'>dge</span>, <span class='va'>design</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>lrt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/edgeR/man/glmfit.html'>glmLRT</a></span><span class='op'>(</span><span class='va'>fit</span>, coef <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## The output will be saved in the 'edgeReport-example' directory</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='st'>"edgeReport-example"</span>, showWarnings <span class='op'>=</span> <span class='cn'>FALSE</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Generate the HTML report</span></span>
+<span class='r-in'><span class='va'>report</span> <span class='op'>&lt;-</span> <span class='fu'>edgeReport</span><span class='op'>(</span><span class='va'>dge</span>, <span class='va'>lrt</span>,</span>
+<span class='r-in'>    project <span class='op'>=</span> <span class='st'>"edgeR-example"</span>, intgroup <span class='op'>=</span> <span class='st'>"group"</span>,</span>
+<span class='r-in'>    outdir <span class='op'>=</span> <span class='st'>"edgeReport-example"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Writing 12 Bibtex entries ... </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> OK</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Results written to file 'edgeReport-example/edgeRexploration.bib'</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> processing file: edgeRexploration.Rmd</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |                                                                                                              |   0%  |                                                                                                                      |..                                                                                                            |   2%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.....                                                                                                         |   4%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: docSetup (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ bootstrap.show.code   : logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ dev                   : chr "png"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ bootstrap.show.message: logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.......                                                                                                       |   6%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.........                                                                                                     |   9%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: setup (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ bootstrap.show.message: logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |............                                                                                                  |  11%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..............                                                                                                |  13%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: PCA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |................                                                                                              |  15%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...................                                                                                           |  17%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: sampleDist</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.....................                                                                                         |  19%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.......................                                                                                       |  21%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: MAplotalpha</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..........................                                                                                    |  23%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |............................                                                                                  |  26%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: MAplotalphaHalf</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..............................                                                                                |  28%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.................................                                                                             |  30%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: MAplotalpha-nBest</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>"alpha" is not a graphical parameter</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...................................                                                                           |  32%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.....................................                                                                         |  34%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: pvalueHistogram</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |........................................                                                                      |  36%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..........................................                                                                    |  38%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: pvalueSumm</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |............................................                                                                  |  40%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...............................................                                                               |  43%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: pvalueTable (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ results: chr "asis"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.................................................                                                             |  45%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...................................................                                                           |  47%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: padjHistogram</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |......................................................                                                        |  49%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |........................................................                                                      |  51%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: padjSumm</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...........................................................                                                   |  53%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.............................................................                                                 |  55%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: padjTable (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ results: chr "asis"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...............................................................                                               |  57%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..................................................................                                            |  60%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: topFeatures (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ results: chr "asis"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |....................................................................                                          |  62%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |......................................................................                                        |  64%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: plotCounts</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.........................................................................                                     |  66%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...........................................................................                                   |  68%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: edgeR-BCV (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ eval: logi TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ echo: logi TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.............................................................................                                 |  70%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |................................................................................                              |  72%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: edgeR-MDS (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ eval: logi TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ echo: logi TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..................................................................................                            |  74%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |....................................................................................                          |  77%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: unnamed-chunk-1 (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ child: NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ eval : logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.......................................................................................                       |  79%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.........................................................................................                     |  81%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: thecall (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ echo: logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |...........................................................................................                   |  83%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..............................................................................................                |  85%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: reproducibility1 (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ echo: logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |................................................................................................              |  87%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..................................................................................................            |  89%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: reproducibility2 (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ echo: logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.....................................................................................................         |  91%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.......................................................................................................       |  94%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: reproducibility3 (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ echo: logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |.........................................................................................................     |  96%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    inline R code fragments</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |............................................................................................................  |  98%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> label: bibliography (with options) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ results: chr "asis"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ echo   : logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ warning: logi FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                                                                      |..............................................................................................................| 100%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ordinary text without R code</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> output file: edgeRexploration.knit.md</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /usr/local/bin/pandoc +RTS -K512m -RTS edgeRexploration.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output edgeRexploration.html --lua-filter /__w/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /__w/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /__w/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --wrap preserve --variable bs3=TRUE --standalone --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpG5h6Iw/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /__w/_temp/Library/BiocStyle/resources/html/bioconductor.css --include-in-header /tmp/RtmpG5h6Iw/rmarkdown-str1219317c3e96.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable code_folding=hide --variable code_menu=1 </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Output created: edgeRexploration.html</span>
+<span class='r-plt'><img src='edgeReport-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'>    <span class='co'>## Browse the report</span></span>
+<span class='r-in'>    <span class='fu'><a href='https://rdrr.io/r/utils/browseURL.html'>browseURL</a></span><span class='op'>(</span><span class='va'>report</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## See the example report at</span></span>
+<span class='r-in'><span class='co'>## http://leekgroup.github.io/regionReport/reference/edgeReport-example/edgeRexploration.html</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'>## Note that you can run the example using:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span><span class='op'>(</span><span class='st'>"edgeReport"</span>, <span class='st'>"regionReport"</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -553,11 +597,11 @@ achieve this goal.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
+  <p><p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -565,6 +609,8 @@ achieve this goal.</p>
 
   
 
+
+  
 
   </body>
 </html>

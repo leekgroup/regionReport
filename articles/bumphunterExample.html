@@ -19,8 +19,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -33,12 +31,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.29.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../articles/regionReport.html">Get started</a>
 </li>
@@ -63,7 +67,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/leekgroup/regionReport/" class="external-link">
+  <a href="https://github.com/leekgroup/regionReport/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -78,18 +82,18 @@
 
       
 
-      </header><script src="bumphunterExample_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><script src="bumphunterExample_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example report using bumphunter results</h1>
-                        <h4 data-toc-skip class="author">Leonardo Collado-Torres</h4>
+                        <h4 class="author">Leonardo Collado-Torres</h4>
             <address class="author_afil">
       Lieber Institute for Brain Development, Johns Hopkins Medical CampusCenter for Computational Biology, Johns Hopkins University<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 data-toc-skip class="date">10 August 2021</h4>
+            <h4 class="date">23 November 2021</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/leekgroup/regionReport/blob/master/vignettes/bumphunterExample.Rmd" class="external-link"><code>vignettes/bumphunterExample.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/leekgroup/regionReport/blob/master/vignettes/bumphunterExample.Rmd"><code>vignettes/bumphunterExample.Rmd</code></a></small>
       <div class="hidden name"><code>bumphunterExample.Rmd</code></div>
 
     </div>
@@ -98,11 +102,11 @@
     
 <div id="bumphunter-example" class="section level1">
 <h1 class="hasAnchor">
-<a href="#bumphunter-example" class="anchor" aria-hidden="true"></a><em><a href="https://bioconductor.org/packages/3.14/bumphunter" class="external-link">bumphunter</a></em> example</h1>
-<p>The <em><a href="https://bioconductor.org/packages/3.14/bumphunter" class="external-link">bumphunter</a></em> package can be used for methylation analyses where you are interested in identifying differentially methylated regions. The <a href="http://bioconductor.org/packages/release/bioc/vignettes/bumphunter/inst/doc/bumphunter.pdf" class="external-link">vignette</a> explains in greater detail the data set we are using in this example.</p>
+<a href="#bumphunter-example" class="anchor"></a><em><a href="https://bioconductor.org/packages/3.14/bumphunter">bumphunter</a></em> example</h1>
+<p>The <em><a href="https://bioconductor.org/packages/3.14/bumphunter">bumphunter</a></em> package can be used for methylation analyses where you are interested in identifying differentially methylated regions. The <a href="http://bioconductor.org/packages/release/bioc/vignettes/bumphunter/inst/doc/bumphunter.pdf">vignette</a> explains in greater detail the data set we are using in this example.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Load bumphunter</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rafalab/bumphunter" class="external-link">"bumphunter"</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rafalab/bumphunter">"bumphunter"</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## Loading required package: S4Vectors</code></pre>
 <pre><code>## Loading required package: stats4</code></pre>
 <pre><code>## Loading required package: BiocGenerics</code></pre>
@@ -134,43 +138,43 @@
 <pre><code>## locfit 1.5-9.4    2020-03-24</code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Create data from the vignette</span>
-<span class="va">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-    pos1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1000</span>, <span class="fl">35</span><span class="op">)</span>,
-    pos2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2001</span>, <span class="fl">3000</span>, <span class="fl">35</span><span class="op">)</span>,
-    pos3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1000</span>, <span class="fl">50</span><span class="op">)</span>
+<span class="va">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    pos1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1000</span>, <span class="fl">35</span><span class="op">)</span>,
+    pos2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2001</span>, <span class="fl">3000</span>, <span class="fl">35</span><span class="op">)</span>,
+    pos3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1000</span>, <span class="fl">50</span><span class="op">)</span>
 <span class="op">)</span>
-<span class="va">chr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>, <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">pos</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span>
-<span class="va">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">pos</span>, use.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">chr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>, <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html">sapply</a></span><span class="op">(</span><span class="va">pos</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span>
+<span class="va">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unlist.html">unlist</a></span><span class="op">(</span><span class="va">pos</span>, use.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="co">## Find clusters</span>
-<span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bumphunter/man/clusterMaker.html" class="external-link">clusterMaker</a></span><span class="op">(</span><span class="va">chr</span>, <span class="va">pos</span>, maxGap <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>
+<span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bumphunter/man/clusterMaker.html">clusterMaker</a></span><span class="op">(</span><span class="va">chr</span>, <span class="va">pos</span>, maxGap <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>
 
 <span class="co">## Build simulated bumps</span>
-<span class="va">Indexes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/splitAsList.html" class="external-link">split</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span>, <span class="va">cl</span><span class="op">)</span>
-<span class="va">beta1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">pos</span><span class="op">)</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>along <span class="op">=</span> <span class="va">Indexes</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<span class="va">Indexes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/splitAsList.html">split</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span>, <span class="va">cl</span><span class="op">)</span>
+<span class="va">beta1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">pos</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>along <span class="op">=</span> <span class="va">Indexes</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">ind</span> <span class="op">&lt;-</span> <span class="va">Indexes</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>
     <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">pos</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>
-    <span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">/</span> <span class="fl">12</span><span class="op">)</span>
-    <span class="va">beta1</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">^</span><span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span><span class="op">^</span><span class="fl">3</span> <span class="co">## multiply by i to vary size</span>
+    <span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">/</span> <span class="fl">12</span><span class="op">)</span>
+    <span class="va">beta1</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/Extremes.html">pmax</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">^</span><span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span><span class="op">^</span><span class="fl">3</span> <span class="co">## multiply by i to vary size</span>
 <span class="op">}</span>
 
 <span class="co">## Build data</span>
-<span class="va">beta0</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">pos</span> <span class="op">/</span> <span class="fl">720</span><span class="op">)</span>
-<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23852577</span><span class="op">)</span>
-<span class="va">error</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">beta1</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/kronecker.html" class="external-link">%x%</a></span> <span class="va">beta0</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/kronecker.html" class="external-link">%x%</a></span> <span class="va">beta1</span> <span class="op">+</span> <span class="va">error</span>
+<span class="va">beta0</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">pos</span> <span class="op">/</span> <span class="fl">720</span><span class="op">)</span>
+<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">23852577</span><span class="op">)</span>
+<span class="va">error</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">beta1</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/kronecker.html">%x%</a></span> <span class="va">beta0</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/kronecker.html">%x%</a></span> <span class="va">beta1</span> <span class="op">+</span> <span class="va">error</span>
 
 <span class="co">## Perform bumphunting</span>
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bumphunter/man/bumphunter.html" class="external-link">bumphunter</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">X</span>, <span class="va">chr</span>, <span class="va">pos</span>, <span class="va">cl</span>, cutoff <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></code></pre></div>
+<span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bumphunter/man/bumphunter.html">bumphunter</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">X</span>, <span class="va">chr</span>, <span class="va">pos</span>, <span class="va">cl</span>, cutoff <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [bumphunterEngine] Using a single core (backend: doSEQ, version: 1.5.1).</code></pre>
 <pre><code>## [bumphunterEngine] Computing coefficients.</code></pre>
 <pre><code>## [bumphunterEngine] Finding regions.</code></pre>
 <pre><code>## [bumphunterEngine] Found 15 bumps.</code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Explore data</span>
-<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tab</span>, <span class="va">head</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html">lapply</a></span><span class="op">(</span><span class="va">tab</span>, <span class="va">head</span><span class="op">)</span></code></pre></div>
 <pre><code>## $table
 ##     chr start  end      value       area cluster indexStart indexEnd  L
 ## 10 chr1  2316 2631 -1.5814747 15.8147473       2         39       48 10
@@ -209,21 +213,21 @@
 ## [1] NA</code></pre>
 <p>Once we have the regions we can proceed to build the required <code>GRanges</code> object.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.org/packages/GenomicRanges" class="external-link">"GenomicRanges"</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.org/packages/GenomicRanges">"GenomicRanges"</a></span><span class="op">)</span>
 
 <span class="co">## Build GRanges with sequence lengths</span>
-<span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html" class="external-link">GRanges</a></span><span class="op">(</span>
+<span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html">GRanges</a></span><span class="op">(</span>
     seqnames <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">chr</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/IRanges-constructor.html" class="external-link">IRanges</a></span><span class="op">(</span>start <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">start</span>, end <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">end</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/IRanges-constructor.html">IRanges</a></span><span class="op">(</span>start <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">start</span>, end <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">end</span><span class="op">)</span>,
     strand <span class="op">=</span> <span class="st">"*"</span>, value <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">value</span>, area <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">area</span>,
     cluster <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">cluster</span>, L <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">L</span>, clusterL <span class="op">=</span> <span class="va">tab</span><span class="op">$</span><span class="va">table</span><span class="op">$</span><span class="va">clusterL</span>
 <span class="op">)</span>
 
 <span class="co">## Assign chr lengths</span>
-<span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/getChromInfoFromUCSC.html" class="external-link">getChromInfoFromUCSC</a></span><span class="op">(</span><span class="st">"hg19"</span>, as.Seqinfo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html">seqlengths</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/getChromInfoFromUCSC.html">getChromInfoFromUCSC</a></span><span class="op">(</span><span class="st">"hg19"</span>, as.Seqinfo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">)</span><span class="op">[</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span><span class="op">)</span>
 <span class="op">]</span>
 
 <span class="co">## Explore the regions</span>
@@ -257,203 +261,205 @@
 ##   [15]        29
 ##   -------
 ##   seqinfo: 2 sequences from an unspecified genome</code></pre>
-<p>Now that we have identified a set of differentially methylated regions we can proceed to creating the HTML report. Note that this report has less information than the <a href="http://leekgroup.github.io/regionReportSupp/DiffBind.html" class="external-link">DiffBind example</a> because we don’t have a p-value variable.</p>
+<p>Now that we have identified a set of differentially methylated regions we can proceed to creating the HTML report. Note that this report has less information than the <a href="http://leekgroup.github.io/regionReportSupp/DiffBind.html">DiffBind example</a> because we don’t have a p-value variable.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Load regionReport</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/leekgroup/regionReport" class="external-link">"regionReport"</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/leekgroup/regionReport">"regionReport"</a></span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Now create the report</span>
 <span class="va">report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/renderReport.html">renderReport</a></span><span class="op">(</span><span class="va">regions</span>, <span class="st">"Example bumphunter"</span>,
     pvalueVars <span class="op">=</span> <span class="cn">NULL</span>,
-    densityVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">c</a></span><span class="op">(</span>
+    densityVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html">c</a></span><span class="op">(</span>
         <span class="st">"Area"</span> <span class="op">=</span> <span class="st">"area"</span>, <span class="st">"Value"</span> <span class="op">=</span> <span class="st">"value"</span>,
         <span class="st">"Cluster Length"</span> <span class="op">=</span> <span class="st">"clusterL"</span>
     <span class="op">)</span>, significantVar <span class="op">=</span> <span class="cn">NULL</span>,
     output <span class="op">=</span> <span class="st">"bumphunter-example"</span>, outdir <span class="op">=</span> <span class="st">"bumphunter-example"</span>,
     device <span class="op">=</span> <span class="st">"png"</span>
 <span class="op">)</span></code></pre></div>
-<p>You can view the final report at <code>bumphunter-example/bumphunter-example.html</code> <a href="http://leekgroup.github.io/regionReport/reference/bumphunter-example/bumphunter-example.html" class="external-link">or here</a>.</p>
-<p>In case the link does not work, a <a href="http://leekgroup.github.io/regionReportSupp/bumphunterExample.html" class="external-link">pre-compiled version of this document</a> and its <a href="http://leekgroup.github.io/regionReportSupp/bumphunter-example/index.html" class="external-link">corresponding report</a> are available at <a href="http://leekgroup.github.io/regionReportSupp/index.html" class="external-link">leekgroup.github.io/regionReportSupp/</a>.</p>
+<p>You can view the final report at <code>bumphunter-example/bumphunter-example.html</code> <a href="http://leekgroup.github.io/regionReport/reference/bumphunter-example/bumphunter-example.html">or here</a>.</p>
+<p>In case the link does not work, a <a href="http://leekgroup.github.io/regionReportSupp/bumphunterExample.html">pre-compiled version of this document</a> and its <a href="http://leekgroup.github.io/regionReportSupp/bumphunter-example/index.html">corresponding report</a> are available at <a href="http://leekgroup.github.io/regionReportSupp/index.html">leekgroup.github.io/regionReportSupp/</a>.</p>
 </div>
 <div id="reproducibility" class="section level1">
 <h1 class="hasAnchor">
-<a href="#reproducibility" class="anchor" aria-hidden="true"></a>Reproducibility</h1>
+<a href="#reproducibility" class="anchor"></a>Reproducibility</h1>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Date generated:</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2021-08-10 00:42:02 UTC"</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2021-11-23 01:36:11 UTC"</code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Time spent making this page:</span>
-<span class="fu"><a href="https://rdrr.io/r/base/proc.time.html" class="external-link">proc.time</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/proc.time.html">proc.time</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##  16.061   0.776  16.946</code></pre>
+##  14.660   0.677  15.360</code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## R and packages info:</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">120</span><span class="op">)</span>
-<span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html" class="external-link">session_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
-##  setting  value                       
-##  version  R version 4.1.0 (2021-05-18)
-##  os       Ubuntu 20.04.2 LTS          
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  ctype    en_US.UTF-8                 
-##  tz       UTC                         
-##  date     2021-08-10                  
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">120</span><span class="op">)</span>
+<span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://r-lib.github.io/sessioninfo/reference/session_info.html">session_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## ─ Session info  ──────────────────────────────────────────────────────────────────────────────────────────────────────
+##  hash: man judge: dark skin tone, flag: Puerto Rico, mage: medium-dark skin tone
+## 
+##  setting  value
+##  version  R version 4.1.2 (2021-11-01)
+##  os       Ubuntu 20.04.3 LTS
+##  system   x86_64, linux-gnu
+##  ui       X11
+##  language (EN)
+##  collate  en_US.UTF-8
+##  ctype    en_US.UTF-8
+##  tz       UTC
+##  date     2021-11-23
+##  pandoc   2.14.0.3 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package              * version    date       lib source                        
-##  annotate               1.71.0     2021-05-19 [1] Bioconductor                  
-##  AnnotationDbi          1.55.1     2021-06-07 [1] Bioconductor                  
-##  assertthat             0.2.1      2019-03-21 [1] RSPM (R 4.1.0)                
-##  backports              1.2.1      2020-12-09 [1] RSPM (R 4.1.0)                
-##  base64enc              0.1-3      2015-07-28 [1] RSPM (R 4.1.0)                
-##  Biobase                2.53.0     2021-05-19 [1] Bioconductor                  
-##  BiocFileCache          2.1.1      2021-06-23 [1] Bioconductor                  
-##  BiocGenerics         * 0.39.1     2021-06-08 [1] Bioconductor                  
-##  BiocIO                 1.3.0      2021-05-19 [1] Bioconductor                  
-##  BiocManager            1.30.16    2021-06-15 [2] CRAN (R 4.1.0)                
-##  BiocParallel           1.27.2     2021-07-12 [1] Bioconductor                  
-##  BiocStyle            * 2.21.3     2021-06-16 [1] Bioconductor                  
-##  biomaRt                2.49.2     2021-06-29 [1] Bioconductor                  
-##  Biostrings             2.61.2     2021-08-04 [1] Bioconductor                  
-##  bit                    4.0.4      2020-08-04 [1] RSPM (R 4.1.0)                
-##  bit64                  4.0.5      2020-08-30 [1] RSPM (R 4.1.0)                
-##  bitops                 1.0-7      2021-04-24 [1] RSPM (R 4.1.0)                
-##  blob                   1.2.2      2021-07-23 [1] RSPM (R 4.1.0)                
-##  bookdown               0.22       2021-04-22 [1] RSPM (R 4.1.0)                
-##  BSgenome               1.61.0     2021-05-19 [1] Bioconductor                  
-##  bslib                  0.2.5.1    2021-05-18 [1] RSPM (R 4.1.0)                
-##  bumphunter           * 1.35.0     2021-05-19 [1] Bioconductor                  
-##  cachem                 1.0.5      2021-05-15 [2] RSPM (R 4.1.0)                
-##  checkmate              2.0.0      2020-02-06 [1] RSPM (R 4.1.0)                
-##  cli                    3.0.1      2021-07-17 [2] RSPM (R 4.1.0)                
-##  cluster                2.1.2      2021-04-17 [3] CRAN (R 4.1.0)                
-##  codetools              0.2-18     2020-11-04 [3] CRAN (R 4.1.0)                
-##  colorspace             2.0-2      2021-06-24 [1] RSPM (R 4.1.0)                
-##  crayon                 1.4.1      2021-02-08 [2] RSPM (R 4.1.0)                
-##  curl                   4.3.2      2021-06-23 [2] RSPM (R 4.1.0)                
-##  data.table             1.14.0     2021-02-21 [1] RSPM (R 4.1.0)                
-##  DBI                    1.1.1      2021-01-15 [1] RSPM (R 4.1.0)                
-##  dbplyr                 2.1.1      2021-04-06 [1] RSPM (R 4.1.0)                
-##  DEFormats              1.21.0     2021-05-19 [1] Bioconductor                  
-##  DelayedArray           0.19.1     2021-06-25 [1] Bioconductor                  
-##  derfinder              1.27.0     2021-05-19 [1] Bioconductor                  
-##  derfinderHelper        1.27.1     2021-08-05 [1] Bioconductor                  
-##  desc                   1.3.0      2021-03-05 [2] RSPM (R 4.1.0)                
-##  DESeq2                 1.33.4     2021-08-05 [1] Bioconductor                  
-##  digest                 0.6.27     2020-10-24 [2] RSPM (R 4.1.0)                
-##  doRNG                  1.8.2      2020-01-27 [1] RSPM (R 4.1.0)                
-##  dplyr                  1.0.7      2021-06-18 [2] RSPM (R 4.1.0)                
-##  edgeR                  3.35.0     2021-05-19 [1] Bioconductor                  
-##  ellipsis               0.3.2      2021-04-29 [2] RSPM (R 4.1.0)                
-##  evaluate               0.14       2019-05-28 [2] RSPM (R 4.1.0)                
-##  fansi                  0.5.0      2021-05-25 [2] RSPM (R 4.1.0)                
-##  fastmap                1.1.0      2021-01-25 [2] RSPM (R 4.1.0)                
-##  filelock               1.0.2      2018-10-05 [1] RSPM (R 4.1.0)                
-##  foreach              * 1.5.1      2020-10-15 [1] RSPM (R 4.1.0)                
-##  foreign                0.8-81     2020-12-22 [3] CRAN (R 4.1.0)                
-##  Formula                1.2-4      2020-10-16 [1] RSPM (R 4.1.0)                
-##  fs                     1.5.0      2020-07-31 [2] RSPM (R 4.1.0)                
-##  genefilter             1.75.0     2021-05-19 [1] Bioconductor                  
-##  geneplotter            1.71.0     2021-05-19 [1] Bioconductor                  
-##  generics               0.1.0      2020-10-31 [2] RSPM (R 4.1.0)                
-##  GenomeInfoDb         * 1.29.3     2021-07-01 [1] Bioconductor                  
-##  GenomeInfoDbData       1.2.6      2021-07-30 [1] Bioconductor                  
-##  GenomicAlignments      1.29.0     2021-05-19 [1] Bioconductor                  
-##  GenomicFeatures        1.45.0     2021-05-19 [1] Bioconductor                  
-##  GenomicFiles           1.29.0     2021-05-19 [1] Bioconductor                  
-##  GenomicRanges        * 1.45.0     2021-05-19 [1] Bioconductor                  
-##  ggplot2                3.3.5      2021-06-25 [1] RSPM (R 4.1.0)                
-##  glue                   1.4.2      2020-08-27 [2] RSPM (R 4.1.0)                
-##  gridExtra              2.3        2017-09-09 [1] RSPM (R 4.1.0)                
-##  gtable                 0.3.0      2019-03-25 [1] RSPM (R 4.1.0)                
-##  Hmisc                  4.5-0      2021-02-28 [1] RSPM (R 4.1.0)                
-##  hms                    1.1.0      2021-05-17 [1] RSPM (R 4.1.0)                
-##  htmlTable              2.2.1      2021-05-18 [1] RSPM (R 4.1.0)                
-##  htmltools              0.5.1.1    2021-01-22 [1] RSPM (R 4.1.0)                
-##  htmlwidgets            1.5.3      2020-12-10 [1] RSPM (R 4.1.0)                
-##  httr                   1.4.2      2020-07-20 [2] RSPM (R 4.1.0)                
-##  IRanges              * 2.27.0     2021-05-19 [1] Bioconductor                  
-##  iterators            * 1.0.13     2020-10-15 [1] RSPM (R 4.1.0)                
-##  jpeg                   0.1-9      2021-07-24 [1] RSPM (R 4.1.0)                
-##  jquerylib              0.1.4      2021-04-26 [1] RSPM (R 4.1.0)                
-##  jsonlite               1.7.2      2020-12-09 [2] RSPM (R 4.1.0)                
-##  KEGGREST               1.33.0     2021-05-19 [1] Bioconductor                  
-##  knitr                  1.33       2021-04-24 [2] RSPM (R 4.1.0)                
-##  knitrBootstrap         1.0.2      2018-05-24 [1] RSPM (R 4.1.0)                
-##  lattice                0.20-44    2021-05-02 [3] CRAN (R 4.1.0)                
-##  latticeExtra           0.6-29     2019-12-19 [1] RSPM (R 4.1.0)                
-##  lifecycle              1.0.0      2021-02-15 [2] RSPM (R 4.1.0)                
-##  limma                  3.49.4     2021-08-08 [1] Bioconductor                  
-##  locfit               * 1.5-9.4    2020-03-25 [1] RSPM (R 4.1.0)                
-##  lubridate              1.7.10     2021-02-26 [1] RSPM (R 4.1.0)                
-##  magrittr               2.0.1      2020-11-17 [2] RSPM (R 4.1.0)                
-##  markdown               1.1        2019-08-07 [2] RSPM (R 4.1.0)                
-##  Matrix                 1.3-4      2021-06-01 [2] RSPM (R 4.1.0)                
-##  MatrixGenerics         1.5.3      2021-08-05 [1] Bioconductor                  
-##  matrixStats            0.60.0     2021-07-26 [1] RSPM (R 4.1.0)                
-##  memoise                2.0.0      2021-01-26 [2] RSPM (R 4.1.0)                
-##  munsell                0.5.0      2018-06-12 [1] RSPM (R 4.1.0)                
-##  nnet                   7.3-16     2021-05-03 [3] CRAN (R 4.1.0)                
-##  pillar                 1.6.2      2021-07-29 [2] RSPM (R 4.1.0)                
-##  pkgconfig              2.0.3      2019-09-22 [2] RSPM (R 4.1.0)                
-##  pkgdown                1.6.1.9001 2021-08-05 [1] Github (r-lib/pkgdown@ce9781a)
-##  plyr                   1.8.6      2020-03-03 [1] RSPM (R 4.1.0)                
-##  png                    0.1-7      2013-12-03 [1] RSPM (R 4.1.0)                
-##  prettyunits            1.1.1      2020-01-24 [2] RSPM (R 4.1.0)                
-##  progress               1.2.2      2019-05-16 [1] RSPM (R 4.1.0)                
-##  purrr                  0.3.4      2020-04-17 [2] RSPM (R 4.1.0)                
-##  qvalue                 2.25.0     2021-05-19 [1] Bioconductor                  
-##  R6                     2.5.0      2020-10-28 [2] RSPM (R 4.1.0)                
-##  ragg                   1.1.3      2021-06-09 [1] RSPM (R 4.1.0)                
-##  rappdirs               0.3.3      2021-01-31 [2] RSPM (R 4.1.0)                
-##  RColorBrewer           1.1-2      2014-12-07 [1] RSPM (R 4.1.0)                
-##  Rcpp                   1.0.7      2021-07-07 [2] RSPM (R 4.1.0)                
-##  RCurl                  1.98-1.3   2021-03-16 [1] RSPM (R 4.1.0)                
-##  RefManageR             1.3.0      2020-11-13 [1] RSPM (R 4.1.0)                
-##  regionReport         * 1.27.1     2021-08-10 [1] Bioconductor                  
-##  reshape2               1.4.4      2020-04-09 [1] RSPM (R 4.1.0)                
-##  restfulr               0.0.13     2017-08-06 [1] RSPM (R 4.1.0)                
-##  rjson                  0.2.20     2018-06-08 [1] RSPM (R 4.1.0)                
-##  rlang                  0.4.11     2021-04-30 [2] RSPM (R 4.1.0)                
-##  rmarkdown              2.10       2021-08-06 [1] RSPM (R 4.1.0)                
-##  rngtools               1.5        2020-01-23 [1] RSPM (R 4.1.0)                
-##  rpart                  4.1-15     2019-04-12 [3] CRAN (R 4.1.0)                
-##  rprojroot              2.0.2      2020-11-15 [2] RSPM (R 4.1.0)                
-##  Rsamtools              2.9.1      2021-06-17 [1] Bioconductor                  
-##  RSQLite                2.2.7      2021-04-22 [1] RSPM (R 4.1.0)                
-##  rstudioapi             0.13       2020-11-12 [2] RSPM (R 4.1.0)                
-##  rtracklayer            1.53.0     2021-05-19 [1] Bioconductor                  
-##  S4Vectors            * 0.31.0     2021-05-19 [1] Bioconductor                  
-##  sass                   0.4.0      2021-05-12 [1] RSPM (R 4.1.0)                
-##  scales                 1.1.1      2020-05-11 [1] RSPM (R 4.1.0)                
-##  sessioninfo            1.1.1      2018-11-05 [2] RSPM (R 4.1.0)                
-##  stringi                1.7.3      2021-07-16 [2] RSPM (R 4.1.0)                
-##  stringr                1.4.0      2019-02-10 [2] RSPM (R 4.1.0)                
-##  SummarizedExperiment   1.23.1     2021-06-24 [1] Bioconductor                  
-##  survival               3.2-11     2021-04-26 [3] CRAN (R 4.1.0)                
-##  systemfonts            1.0.2      2021-05-11 [1] RSPM (R 4.1.0)                
-##  textshaping            0.3.5      2021-06-09 [1] RSPM (R 4.1.0)                
-##  tibble                 3.1.3      2021-07-23 [2] RSPM (R 4.1.0)                
-##  tidyselect             1.1.1      2021-04-30 [2] RSPM (R 4.1.0)                
-##  utf8                   1.2.2      2021-07-24 [2] RSPM (R 4.1.0)                
-##  VariantAnnotation      1.39.0     2021-05-19 [1] Bioconductor                  
-##  vctrs                  0.3.8      2021-04-29 [2] RSPM (R 4.1.0)                
-##  withr                  2.4.2      2021-04-18 [2] RSPM (R 4.1.0)                
-##  xfun                   0.25       2021-08-06 [2] RSPM (R 4.1.0)                
-##  XML                    3.99-0.6   2021-03-16 [1] RSPM (R 4.1.0)                
-##  xml2                   1.3.2      2020-04-23 [2] RSPM (R 4.1.0)                
-##  xtable                 1.8-4      2019-04-21 [1] RSPM (R 4.1.0)                
-##  XVector                0.33.0     2021-05-19 [1] Bioconductor                  
-##  yaml                   2.2.1      2020-02-01 [2] RSPM (R 4.1.0)                
-##  zlibbioc               1.39.0     2021-05-19 [1] Bioconductor                  
+##  package              * version  date (UTC) lib source
+##  annotate               1.72.0   2021-10-26 [1] Bioconductor
+##  AnnotationDbi          1.56.2   2021-11-09 [1] Bioconductor
+##  assertthat             0.2.1    2019-03-21 [1] RSPM (R 4.1.0)
+##  backports              1.3.0    2021-10-27 [1] RSPM (R 4.1.0)
+##  base64enc              0.1-3    2015-07-28 [1] RSPM (R 4.1.0)
+##  Biobase                2.54.0   2021-10-26 [1] Bioconductor
+##  BiocFileCache          2.2.0    2021-10-26 [1] Bioconductor
+##  BiocGenerics         * 0.40.0   2021-10-26 [1] Bioconductor
+##  BiocIO                 1.4.0    2021-10-26 [1] Bioconductor
+##  BiocManager            1.30.16  2021-06-15 [2] CRAN (R 4.1.2)
+##  BiocParallel           1.28.1   2021-11-18 [1] Bioconductor
+##  BiocStyle            * 2.22.0   2021-10-26 [1] Bioconductor
+##  biomaRt                2.50.1   2021-11-21 [1] Bioconductor
+##  Biostrings             2.62.0   2021-10-26 [1] Bioconductor
+##  bit                    4.0.4    2020-08-04 [1] RSPM (R 4.1.0)
+##  bit64                  4.0.5    2020-08-30 [1] RSPM (R 4.1.0)
+##  bitops                 1.0-7    2021-04-24 [1] RSPM (R 4.1.0)
+##  blob                   1.2.2    2021-07-23 [1] RSPM (R 4.1.0)
+##  bookdown               0.24     2021-09-02 [1] RSPM (R 4.1.0)
+##  BSgenome               1.62.0   2021-10-26 [1] Bioconductor
+##  bumphunter           * 1.36.0   2021-10-27 [1] Bioconductor
+##  cachem                 1.0.6    2021-08-19 [2] RSPM (R 4.1.0)
+##  checkmate              2.0.0    2020-02-06 [1] RSPM (R 4.1.0)
+##  cli                    3.1.0    2021-10-27 [2] RSPM (R 4.1.0)
+##  cluster                2.1.2    2021-04-17 [3] CRAN (R 4.1.2)
+##  codetools              0.2-18   2020-11-04 [3] CRAN (R 4.1.2)
+##  colorspace             2.0-2    2021-06-24 [1] RSPM (R 4.1.0)
+##  crayon                 1.4.2    2021-10-29 [2] RSPM (R 4.1.0)
+##  curl                   4.3.2    2021-06-23 [2] RSPM (R 4.1.0)
+##  data.table             1.14.2   2021-09-27 [1] RSPM (R 4.1.0)
+##  DBI                    1.1.1    2021-01-15 [1] RSPM (R 4.1.0)
+##  dbplyr                 2.1.1    2021-04-06 [1] RSPM (R 4.1.0)
+##  DEFormats              1.22.0   2021-10-26 [1] Bioconductor
+##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
+##  derfinder              1.28.0   2021-10-26 [1] Bioconductor
+##  derfinderHelper        1.28.0   2021-10-26 [1] Bioconductor
+##  desc                   1.4.0    2021-09-28 [2] RSPM (R 4.1.0)
+##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
+##  digest                 0.6.28   2021-09-23 [2] RSPM (R 4.1.0)
+##  doRNG                  1.8.2    2020-01-27 [1] RSPM (R 4.1.0)
+##  dplyr                  1.0.7    2021-06-18 [2] RSPM (R 4.1.0)
+##  edgeR                  3.36.0   2021-10-26 [1] Bioconductor
+##  ellipsis               0.3.2    2021-04-29 [2] RSPM (R 4.1.0)
+##  evaluate               0.14     2019-05-28 [2] RSPM (R 4.1.0)
+##  fansi                  0.5.0    2021-05-25 [2] RSPM (R 4.1.0)
+##  fastmap                1.1.0    2021-01-25 [2] RSPM (R 4.1.0)
+##  filelock               1.0.2    2018-10-05 [1] RSPM (R 4.1.0)
+##  foreach              * 1.5.1    2020-10-15 [1] RSPM (R 4.1.0)
+##  foreign                0.8-81   2020-12-22 [3] CRAN (R 4.1.2)
+##  Formula                1.2-4    2020-10-16 [1] RSPM (R 4.1.0)
+##  fs                     1.5.0    2020-07-31 [2] RSPM (R 4.1.0)
+##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
+##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
+##  generics               0.1.1    2021-10-25 [2] RSPM (R 4.1.0)
+##  GenomeInfoDb         * 1.30.0   2021-10-26 [1] Bioconductor
+##  GenomeInfoDbData       1.2.7    2021-11-23 [1] Bioconductor
+##  GenomicAlignments      1.30.0   2021-10-26 [1] Bioconductor
+##  GenomicFeatures        1.46.1   2021-10-27 [1] Bioconductor
+##  GenomicFiles           1.30.0   2021-10-26 [1] Bioconductor
+##  GenomicRanges        * 1.46.1   2021-11-18 [1] Bioconductor
+##  ggplot2                3.3.5    2021-06-25 [1] RSPM (R 4.1.0)
+##  glue                   1.5.0    2021-11-07 [2] RSPM (R 4.1.0)
+##  gridExtra              2.3      2017-09-09 [1] RSPM (R 4.1.0)
+##  gtable                 0.3.0    2019-03-25 [1] RSPM (R 4.1.0)
+##  Hmisc                  4.6-0    2021-10-07 [1] RSPM (R 4.1.0)
+##  hms                    1.1.1    2021-09-26 [1] RSPM (R 4.1.0)
+##  htmlTable              2.3.0    2021-10-12 [1] RSPM (R 4.1.0)
+##  htmltools              0.5.2    2021-08-25 [1] RSPM (R 4.1.0)
+##  htmlwidgets            1.5.4    2021-09-08 [1] RSPM (R 4.1.0)
+##  httr                   1.4.2    2020-07-20 [2] RSPM (R 4.1.0)
+##  IRanges              * 2.28.0   2021-10-26 [1] Bioconductor
+##  iterators            * 1.0.13   2020-10-15 [1] RSPM (R 4.1.0)
+##  jpeg                   0.1-9    2021-07-24 [1] RSPM (R 4.1.0)
+##  jquerylib              0.1.4    2021-04-26 [1] RSPM (R 4.1.0)
+##  jsonlite               1.7.2    2020-12-09 [2] RSPM (R 4.1.0)
+##  KEGGREST               1.34.0   2021-10-26 [1] Bioconductor
+##  knitr                  1.36     2021-09-29 [2] RSPM (R 4.1.0)
+##  knitrBootstrap         1.0.2    2018-05-24 [1] RSPM (R 4.1.0)
+##  lattice                0.20-45  2021-09-22 [3] CRAN (R 4.1.2)
+##  latticeExtra           0.6-29   2019-12-19 [1] RSPM (R 4.1.0)
+##  lifecycle              1.0.1    2021-09-24 [2] RSPM (R 4.1.0)
+##  limma                  3.50.0   2021-10-26 [1] Bioconductor
+##  locfit               * 1.5-9.4  2020-03-25 [1] RSPM (R 4.1.0)
+##  lubridate              1.8.0    2021-10-07 [1] RSPM (R 4.1.0)
+##  magrittr               2.0.1    2020-11-17 [2] RSPM (R 4.1.0)
+##  markdown               1.1      2019-08-07 [1] RSPM (R 4.1.0)
+##  Matrix                 1.3-4    2021-06-01 [3] CRAN (R 4.1.2)
+##  MatrixGenerics         1.6.0    2021-10-26 [1] Bioconductor
+##  matrixStats            0.61.0   2021-09-17 [1] RSPM (R 4.1.0)
+##  memoise                2.0.0    2021-01-26 [2] RSPM (R 4.1.0)
+##  munsell                0.5.0    2018-06-12 [1] RSPM (R 4.1.0)
+##  nnet                   7.3-16   2021-05-03 [3] CRAN (R 4.1.2)
+##  pillar                 1.6.4    2021-10-18 [2] RSPM (R 4.1.0)
+##  pkgconfig              2.0.3    2019-09-22 [2] RSPM (R 4.1.0)
+##  pkgdown                1.6.1    2020-09-12 [1] RSPM (R 4.1.0)
+##  plyr                   1.8.6    2020-03-03 [1] RSPM (R 4.1.0)
+##  png                    0.1-7    2013-12-03 [1] RSPM (R 4.1.0)
+##  prettyunits            1.1.1    2020-01-24 [2] RSPM (R 4.1.0)
+##  progress               1.2.2    2019-05-16 [1] RSPM (R 4.1.0)
+##  purrr                  0.3.4    2020-04-17 [2] RSPM (R 4.1.0)
+##  qvalue                 2.26.0   2021-10-26 [1] Bioconductor
+##  R6                     2.5.1    2021-08-19 [2] RSPM (R 4.1.0)
+##  ragg                   1.2.0    2021-10-30 [1] RSPM (R 4.1.0)
+##  rappdirs               0.3.3    2021-01-31 [2] RSPM (R 4.1.0)
+##  RColorBrewer           1.1-2    2014-12-07 [1] RSPM (R 4.1.0)
+##  Rcpp                   1.0.7    2021-07-07 [1] RSPM (R 4.1.0)
+##  RCurl                  1.98-1.5 2021-09-17 [1] RSPM (R 4.1.0)
+##  RefManageR             1.3.0    2020-11-13 [1] RSPM (R 4.1.0)
+##  regionReport         * 1.29.1   2021-11-23 [1] Bioconductor
+##  reshape2               1.4.4    2020-04-09 [1] RSPM (R 4.1.0)
+##  restfulr               0.0.13   2017-08-06 [1] RSPM (R 4.1.0)
+##  rjson                  0.2.20   2018-06-08 [1] RSPM (R 4.1.0)
+##  rlang                  0.4.12   2021-10-18 [2] RSPM (R 4.1.0)
+##  rmarkdown              2.11     2021-09-14 [1] RSPM (R 4.1.0)
+##  rngtools               1.5.2    2021-09-20 [1] RSPM (R 4.1.0)
+##  rpart                  4.1-15   2019-04-12 [3] CRAN (R 4.1.2)
+##  rprojroot              2.0.2    2020-11-15 [2] RSPM (R 4.1.0)
+##  Rsamtools              2.10.0   2021-10-26 [1] Bioconductor
+##  RSQLite                2.2.8    2021-08-21 [1] RSPM (R 4.1.0)
+##  rstudioapi             0.13     2020-11-12 [2] RSPM (R 4.1.0)
+##  rtracklayer            1.54.0   2021-10-26 [1] Bioconductor
+##  S4Vectors            * 0.32.3   2021-11-21 [1] Bioconductor
+##  scales                 1.1.1    2020-05-11 [1] RSPM (R 4.1.0)
+##  sessioninfo            1.2.1    2021-11-02 [2] RSPM (R 4.1.0)
+##  stringi                1.7.5    2021-10-04 [2] RSPM (R 4.1.0)
+##  stringr                1.4.0    2019-02-10 [2] RSPM (R 4.1.0)
+##  SummarizedExperiment   1.24.0   2021-10-26 [1] Bioconductor
+##  survival               3.2-13   2021-08-24 [3] CRAN (R 4.1.2)
+##  systemfonts            1.0.3    2021-10-13 [1] RSPM (R 4.1.0)
+##  textshaping            0.3.6    2021-10-13 [1] RSPM (R 4.1.0)
+##  tibble                 3.1.6    2021-11-07 [2] RSPM (R 4.1.0)
+##  tidyselect             1.1.1    2021-04-30 [2] RSPM (R 4.1.0)
+##  utf8                   1.2.2    2021-07-24 [2] RSPM (R 4.1.0)
+##  VariantAnnotation      1.40.0   2021-10-26 [1] Bioconductor
+##  vctrs                  0.3.8    2021-04-29 [2] RSPM (R 4.1.0)
+##  xfun                   0.28     2021-11-04 [2] RSPM (R 4.1.0)
+##  XML                    3.99-0.8 2021-09-17 [1] RSPM (R 4.1.0)
+##  xml2                   1.3.2    2020-04-23 [2] RSPM (R 4.1.0)
+##  xtable                 1.8-4    2019-04-21 [1] RSPM (R 4.1.0)
+##  XVector                0.34.0   2021-10-26 [1] Bioconductor
+##  yaml                   2.2.1    2020-02-01 [2] RSPM (R 4.1.0)
+##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
 ## 
-## [1] /__w/_temp/Library
-## [2] /usr/local/lib/R/site-library
-## [3] /usr/local/lib/R/library</code></pre>
+##  [1] /__w/_temp/Library
+##  [2] /usr/local/lib/R/site-library
+##  [3] /usr/local/lib/R/library
+## 
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 </div>
   </div>
 
@@ -468,13 +474,11 @@
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
+  <p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -482,8 +486,6 @@
 
   
 
-
-  
 
   </body>
 </html>

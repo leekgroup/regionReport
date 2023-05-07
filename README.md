@@ -21,8 +21,6 @@ history](https://bioconductor.org/shields/years-in-bioc/regionReport.svg)](https
 commit](https://bioconductor.org/shields/lastcommit/devel/bioc/regionReport.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport/)
 [![Bioc
 dependencies](https://bioconductor.org/shields/dependencies/release/regionReport.svg)](https://bioconductor.org/packages/release/bioc/html/regionReport.html#since)
-[![Codecov test
-coverage](https://codecov.io/gh/leekgroup/regionReport/branch/devel/graph/badge.svg)](https://codecov.io/gh/leekgroup/regionReport?branch=devel)
 [![R build
 status](https://github.com/leekgroup/regionReport/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/regionReport/actions)
 [![GitHub

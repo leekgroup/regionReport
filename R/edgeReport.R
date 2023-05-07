@@ -97,14 +97,14 @@
 #' example("edgeReport", "regionReport", ask = FALSE)
 #' }
 #'
-edgeReport <- function(dge, object, project = "", intgroup, colors = NULL,
-    pAdjustMethod = "BH", alpha = 0.1, independentFiltering = FALSE, filter,
-    theta, filterFun, nBest = 500, nBestFeatures = 20, customCode = NULL,
-    outdir = "edgeRexploration", output = "edgeRexploration",
-    browse = interactive(), device = "png", template = NULL,
-    searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
-    digits = 2, ...) {
-
+edgeReport <- function(
+        dge, object, project = "", intgroup, colors = NULL,
+        pAdjustMethod = "BH", alpha = 0.1, independentFiltering = FALSE, filter,
+        theta, filterFun, nBest = 500, nBestFeatures = 20, customCode = NULL,
+        outdir = "edgeRexploration", output = "edgeRexploration",
+        browse = interactive(), device = "png", template = NULL,
+        searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
+        digits = 2, ...) {
     ## Check inputs
     stopifnot(is(dge, "DGEList"))
     stopifnot(is(object, "DGEExact") | is(object, "DGELRT"))

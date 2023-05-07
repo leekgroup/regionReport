@@ -6,28 +6,38 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![BioC
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Bioc release
 status](http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/regionReport)
-[![BioC dev
+[![Bioc devel
 status](http://www.bioconductor.org/shields/build/devel/bioc/regionReport.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport)
+[![Bioc downloads
+rank](https://bioconductor.org/shields/downloads/release/regionReport.svg)](http://bioconductor.org/packages/stats/bioc/regionReport/)
+[![Bioc
+support](https://bioconductor.org/shields/posts/regionReport.svg)](https://support.bioconductor.org/tag/regionReport)
+[![Bioc
+history](https://bioconductor.org/shields/years-in-bioc/regionReport.svg)](https://bioconductor.org/packages/release/bioc/html/regionReport.html#since)
+[![Bioc last
+commit](https://bioconductor.org/shields/lastcommit/devel/bioc/regionReport.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport/)
+[![Bioc
+dependencies](https://bioconductor.org/shields/dependencies/release/regionReport.svg)](https://bioconductor.org/packages/release/bioc/html/regionReport.html#since)
+[![Codecov test
+coverage](https://codecov.io/gh/leekgroup/regionReport/branch/devel/graph/badge.svg)](https://codecov.io/gh/leekgroup/regionReport?branch=devel)
 [![R build
 status](https://github.com/leekgroup/regionReport/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/regionReport/actions)
-[![Support site activity, last 6 months: tagged questions/avg. answers
-per question/avg. comments per question/accepted answers, or 0 if no
-tagged
-posts.](http://www.bioconductor.org/shields/posts/regionReport.svg)](https://support.bioconductor.org/t/regionReport/)
 [![GitHub
 issues](https://img.shields.io/github/issues/leekgroup/regionReport)](https://github.com/leekgroup/regionReport/issues)
+[![GitHub
+pulls](https://img.shields.io/github/issues-pr/leekgroup/regionReport)](https://github.com/leekgroup/regionReport/pulls)
 <!-- badges: end -->
 
 Generate HTML reports for a set of regions such as those from
-*[derfinder](https://bioconductor.org/packages/3.13/derfinder)* results
+*[derfinder](https://bioconductor.org/packages/3.17/derfinder)* results
 or any other pipeline that defines a set of genomic regions.
 
 Check the documentation for `derfinderReport()` for an example on how to
 create the necessary input files and generating the HTML report for
-*[derfinder](https://bioconductor.org/packages/3.13/derfinder)* results.
+*[derfinder](https://bioconductor.org/packages/3.17/derfinder)* results.
 Or use:
 
 ``` r
@@ -41,8 +51,8 @@ use:
 example("renderReport", "regionReport", ask = FALSE)
 ```
 
-For *[DESeq2](https://bioconductor.org/packages/3.13/DESeq2)* or
-*[edgeR](https://bioconductor.org/packages/3.13/edgeR)* results check
+For *[DESeq2](https://bioconductor.org/packages/3.17/DESeq2)* or
+*[edgeR](https://bioconductor.org/packages/3.17/edgeR)* results check
 `DESeq2Report()` and `edgeReport()`.
 
 ## Documentation
@@ -73,13 +83,15 @@ Please run this yourself to check for any updates on how to cite
 
 ``` r
 print(citation("regionReport"), bibtex = TRUE)
+#> To cite package 'regionReport' in publications use:
 #> 
-#> Collado-Torres L, Jaffe AE, Leek JT (2016). "regionReport: Interactive
-#> reports for region-level and feature-level genomic analyses [version2;
-#> referees: 2 approved, 1 approved with reservations]." _F1000Research_,
-#> *4*, 105. doi: 10.12688/f1000research.6379.2 (URL:
-#> https://doi.org/10.12688/f1000research.6379.2), <URL:
-#> http://f1000research.com/articles/4-105/v2>.
+#>   Collado-Torres L, Jaffe AE, Leek JT (2016). "regionReport:
+#>   Interactive reports for region-level and feature-level genomic
+#>   analyses [version2; referees: 2 approved, 1 approved with
+#>   reservations]." _F1000Research_, *4*, 105.
+#>   doi:10.12688/f1000research.6379.2
+#>   <https://doi.org/10.12688/f1000research.6379.2>,
+#>   <http://f1000research.com/articles/4-105/v2>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -94,11 +106,11 @@ print(citation("regionReport"), bibtex = TRUE)
 #>     pages = {105},
 #>   }
 #> 
-#> Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
-#> Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region
-#> analysis for RNA-seq with derfinder." _Nucl. Acids Res._. doi:
-#> 10.1093/nar/gkw852 (URL: https://doi.org/10.1093/nar/gkw852), <URL:
-#> http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852>.
+#>   Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
+#>   Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region
+#>   analysis for RNA-seq with derfinder." _Nucl. Acids Res._.
+#>   doi:10.1093/nar/gkw852 <https://doi.org/10.1093/nar/gkw852>,
+#>   <http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -111,12 +123,12 @@ print(citation("regionReport"), bibtex = TRUE)
 #>     url = {http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852},
 #>   }
 #> 
-#> Collado-Torres L, Jaffe AE, Leek JT (2017). _regionReport: Generate
-#> HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
-#> results_. doi: 10.18129/B9.bioc.regionReport (URL:
-#> https://doi.org/10.18129/B9.bioc.regionReport),
-#> https://github.com/leekgroup/regionReport - R package version 1.25.3,
-#> <URL: http://www.bioconductor.org/packages/regionReport>.
+#>   Collado-Torres L, Jaffe AE, Leek JT (2017). _regionReport: Generate
+#>   HTML or PDF reports for a set of genomic regions or DESeq2/edgeR
+#>   results_. doi:10.18129/B9.bioc.regionReport
+#>   <https://doi.org/10.18129/B9.bioc.regionReport>,
+#>   https://github.com/leekgroup/regionReport - R package version 1.35.0,
+#>   <http://www.bioconductor.org/packages/regionReport>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -125,7 +137,7 @@ print(citation("regionReport"), bibtex = TRUE)
 #>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
 #>     year = {2017},
 #>     url = {http://www.bioconductor.org/packages/regionReport},
-#>     note = {https://github.com/leekgroup/regionReport - R package version 1.25.3},
+#>     note = {https://github.com/leekgroup/regionReport - R package version 1.35.0},
 #>     doi = {10.18129/B9.bioc.regionReport},
 #>   }
 ```
@@ -143,29 +155,28 @@ By contributing to this project, you agree to abide by its terms.
 
 ## Development tools
 
--   Continuous code testing is possible thanks to [GitHub
-    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
-    through *[usethis](https://CRAN.R-project.org/package=usethis)*,
-    *[remotes](https://CRAN.R-project.org/package=remotes)*,
-    *[sysreqs](https://github.com/r-hub/sysreqs)* and
-    *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
-    customized to use [Bioconductor’s docker
-    containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.13/BiocCheck)*.
--   Code coverage assessment is possible thanks to
-    [codecov](https://codecov.io/gh) and
-    *[covr](https://CRAN.R-project.org/package=covr)*.
--   The [documentation
-    website](http://leekgroup.github.io/derfinderPlot) is automatically
-    updated thanks to
-    *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
--   The code is styled automatically thanks to
-    *[styler](https://CRAN.R-project.org/package=styler)*.
--   The documentation is formatted thanks to
-    *[devtools](https://CRAN.R-project.org/package=devtools)* and
-    *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
+- Continuous code testing is possible thanks to [GitHub
+  actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+  through *[usethis](https://CRAN.R-project.org/package=usethis)*,
+  *[remotes](https://CRAN.R-project.org/package=remotes)*,
+  *[sysreqs](https://github.com/r-hub/sysreqs)* and
+  *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
+  to use [Bioconductor’s docker
+  containers](https://www.bioconductor.org/help/docker/) and
+  *[BiocCheck](https://bioconductor.org/packages/3.17/BiocCheck)*.
+- Code coverage assessment is possible thanks to
+  [codecov](https://codecov.io/gh) and
+  *[covr](https://CRAN.R-project.org/package=covr)*.
+- The [documentation website](http://leekgroup.github.io/derfinderPlot)
+  is automatically updated thanks to
+  *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
+- The code is styled automatically thanks to
+  *[styler](https://CRAN.R-project.org/package=styler)*.
+- The documentation is formatted thanks to
+  *[devtools](https://CRAN.R-project.org/package=devtools)* and
+  *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
 
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.13/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.17/biocthis)*.

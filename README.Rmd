@@ -16,12 +16,18 @@ knitr::opts_chunk$set(
 # regionReport
 
 <!-- badges: start -->
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![BioC status](http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/regionReport)
-[![BioC dev status](http://www.bioconductor.org/shields/build/devel/bioc/regionReport.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Bioc release status](http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/regionReport)
+[![Bioc devel status](http://www.bioconductor.org/shields/build/devel/bioc/regionReport.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport)
+[![Bioc downloads rank](https://bioconductor.org/shields/downloads/release/regionReport.svg)](http://bioconductor.org/packages/stats/bioc/regionReport/)
+[![Bioc support](https://bioconductor.org/shields/posts/regionReport.svg)](https://support.bioconductor.org/tag/regionReport)
+[![Bioc history](https://bioconductor.org/shields/years-in-bioc/regionReport.svg)](https://bioconductor.org/packages/release/bioc/html/regionReport.html#since)
+[![Bioc last commit](https://bioconductor.org/shields/lastcommit/devel/bioc/regionReport.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport/)
+[![Bioc dependencies](https://bioconductor.org/shields/dependencies/release/regionReport.svg)](https://bioconductor.org/packages/release/bioc/html/regionReport.html#since)
+[![Codecov test coverage](https://codecov.io/gh/leekgroup/regionReport/branch/devel/graph/badge.svg)](https://codecov.io/gh/leekgroup/regionReport?branch=devel)
 [![R build status](https://github.com/leekgroup/regionReport/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/regionReport/actions)
-[![Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts.](http://www.bioconductor.org/shields/posts/regionReport.svg)](https://support.bioconductor.org/t/regionReport/)
 [![GitHub issues](https://img.shields.io/github/issues/leekgroup/regionReport)](https://github.com/leekgroup/regionReport/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/leekgroup/regionReport)](https://github.com/leekgroup/regionReport/pulls)
 <!-- badges: end -->
 
 Generate HTML reports for a set of regions such as those from 
@@ -37,7 +43,7 @@ example("derfinderReport", "regionReport", ask = FALSE)
 
 Similarly, check `renderReport()` for an example of a general report, or use:
 
-````{r, eval = FALSE}
+```{r, eval = FALSE}
 example("renderReport", "regionReport", ask = FALSE)
 ```
 

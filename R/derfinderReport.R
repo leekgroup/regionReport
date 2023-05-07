@@ -192,12 +192,13 @@
 #' example("derfinderReport", "regionReport", ask = FALSE)
 #' }
 #'
-derfinderReport <- function(prefix, outdir = "basicExploration",
-    output = "basicExploration", project = prefix, browse = interactive(),
-    nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
-    fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
-    device = "png", significantVar = "qvalue", customCode = NULL,
-    template = NULL, theme = NULL, digits = 2, ...) {
+derfinderReport <- function(
+        prefix, outdir = "basicExploration",
+        output = "basicExploration", project = prefix, browse = interactive(),
+        nBestRegions = 100, makeBestClusters = TRUE, nBestClusters = 2,
+        fullCov = NULL, hg19 = TRUE, p.ideos = NULL, txdb = NULL,
+        device = "png", significantVar = "qvalue", customCode = NULL,
+        template = NULL, theme = NULL, digits = 2, ...) {
     stopifnot(length(significantVar) == 1)
     stopifnot(significantVar %in% c("pvalue", "qvalue", "fwer"))
     if (!is.null(theme)) stopifnot(is(theme, c("theme", "gg")))

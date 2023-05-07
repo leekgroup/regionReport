@@ -220,17 +220,18 @@
 #'
 #' ## See the example report at
 #' ## http://leekgroup.github.io/regionReport/reference/bumphunter-example/bumphunter-example.html
-renderReport <- function(regions, project = "",
-    pvalueVars = c("P-values" = "pval"),
-    densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
-    annotation = NULL, nBestRegions = 500, customCode = NULL,
-    outdir = "regionExploration", output = "regionExploration",
-    browse = interactive(), txdb = NULL, device = "png",
-    densityTemplates = list(
-        Pvalue = templatePvalueDensity,
-        Common = templateDensity, Manhattan = templateManhattan
-    ),
-    template = NULL, theme = NULL, digits = 2, ...) {
+renderReport <- function(
+        regions, project = "",
+        pvalueVars = c("P-values" = "pval"),
+        densityVars = NULL, significantVar = mcols(regions)$pval <= 0.05,
+        annotation = NULL, nBestRegions = 500, customCode = NULL,
+        outdir = "regionExploration", output = "regionExploration",
+        browse = interactive(), txdb = NULL, device = "png",
+        densityTemplates = list(
+            Pvalue = templatePvalueDensity,
+            Common = templateDensity, Manhattan = templateManhattan
+        ),
+        template = NULL, theme = NULL, digits = 2, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
 

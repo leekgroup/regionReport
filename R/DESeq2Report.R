@@ -145,12 +145,13 @@
 #' example("DESeq2Report", "regionReport", ask = FALSE)
 #' }
 #'
-DESeq2Report <- function(dds, project = "", intgroup, colors = NULL, res = NULL,
-    nBest = 500, nBestFeatures = 20, customCode = NULL,
-    outdir = "DESeq2Exploration", output = "DESeq2Exploration",
-    browse = interactive(), device = "png", template = NULL,
-    searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
-    digits = 2, ...) {
+DESeq2Report <- function(
+        dds, project = "", intgroup, colors = NULL, res = NULL,
+        nBest = 500, nBestFeatures = 20, customCode = NULL,
+        outdir = "DESeq2Exploration", output = "DESeq2Exploration",
+        browse = interactive(), device = "png", template = NULL,
+        searchURL = "http://www.ncbi.nlm.nih.gov/gene/?term=", theme = NULL,
+        digits = 2, ...) {
     ## Save start time for getting the total processing time
     startTime <- Sys.time()
 

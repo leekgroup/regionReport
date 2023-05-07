@@ -11,7 +11,8 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="Generate HTML or PDF reports for a set of genomic regions or DESeq2/edgeR results">
 <meta property="og:description" content="Generate HTML or PDF reports to explore a set of regions such as
     the results from annotation-agnostic expression analysis of RNA-seq data at
     base-pair resolution performed by derfinder. You can also create reports for
@@ -88,14 +89,14 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>Generate HTML reports for a set of regions such as those from <em><a href="https://bioconductor.org/packages/3.13/derfinder" class="external-link">derfinder</a></em> results or any other pipeline that defines a set of genomic regions.</p>
-<p>Check the documentation for <code><a href="reference/derfinderReport.html">derfinderReport()</a></code> for an example on how to create the necessary input files and generating the HTML report for <em><a href="https://bioconductor.org/packages/3.13/derfinder" class="external-link">derfinder</a></em> results. Or use:</p>
+<p>Generate HTML reports for a set of regions such as those from <em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em> results or any other pipeline that defines a set of genomic regions.</p>
+<p>Check the documentation for <code><a href="reference/derfinderReport.html">derfinderReport()</a></code> for an example on how to create the necessary input files and generating the HTML report for <em><a href="https://bioconductor.org/packages/3.17/derfinder" class="external-link">derfinder</a></em> results. Or use:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="st">"derfinderReport"</span>, <span class="st">"regionReport"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Similarly, check <code><a href="reference/renderReport.html">renderReport()</a></code> for an example of a general report, or use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="st">"renderReport"</span>, <span class="st">"regionReport"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p>For <em><a href="https://bioconductor.org/packages/3.13/DESeq2" class="external-link">DESeq2</a></em> or <em><a href="https://bioconductor.org/packages/3.13/edgeR" class="external-link">edgeR</a></em> results check <code><a href="reference/DESeq2Report.html">DESeq2Report()</a></code> and <code><a href="reference/edgeReport.html">edgeReport()</a></code>.</p>
+<p>For <em><a href="https://bioconductor.org/packages/3.17/DESeq2" class="external-link">DESeq2</a></em> or <em><a href="https://bioconductor.org/packages/3.17/edgeR" class="external-link">edgeR</a></em> results check <code><a href="reference/DESeq2Report.html">DESeq2Report()</a></code> and <code><a href="reference/edgeReport.html">edgeReport()</a></code>.</p>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
@@ -118,13 +119,15 @@
 <p>Below is the citation output from using <code>citation('regionReport')</code> in R. Please run this yourself to check for any updates on how to cite <strong>regionReport</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"regionReport"</span><span class="op">)</span>, bibtex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; To cite package 'regionReport' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Collado-Torres L, Jaffe AE, Leek JT (2016). "regionReport: Interactive</span></span>
-<span><span class="co">#&gt; reports for region-level and feature-level genomic analyses [version2;</span></span>
-<span><span class="co">#&gt; referees: 2 approved, 1 approved with reservations]." _F1000Research_,</span></span>
-<span><span class="co">#&gt; *4*, 105. doi: 10.12688/f1000research.6379.2 (URL:</span></span>
-<span><span class="co">#&gt; https://doi.org/10.12688/f1000research.6379.2), &lt;URL:</span></span>
-<span><span class="co">#&gt; http://f1000research.com/articles/4-105/v2&gt;.</span></span>
+<span><span class="co">#&gt;   Collado-Torres L, Jaffe AE, Leek JT (2016). "regionReport:</span></span>
+<span><span class="co">#&gt;   Interactive reports for region-level and feature-level genomic</span></span>
+<span><span class="co">#&gt;   analyses [version2; referees: 2 approved, 1 approved with</span></span>
+<span><span class="co">#&gt;   reservations]." _F1000Research_, *4*, 105.</span></span>
+<span><span class="co">#&gt;   doi:10.12688/f1000research.6379.2</span></span>
+<span><span class="co">#&gt;   &lt;https://doi.org/10.12688/f1000research.6379.2&gt;,</span></span>
+<span><span class="co">#&gt;   &lt;http://f1000research.com/articles/4-105/v2&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -139,11 +142,11 @@
 <span><span class="co">#&gt;     pages = {105},</span></span>
 <span><span class="co">#&gt;   }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,</span></span>
-<span><span class="co">#&gt; Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region</span></span>
-<span><span class="co">#&gt; analysis for RNA-seq with derfinder." _Nucl. Acids Res._. doi:</span></span>
-<span><span class="co">#&gt; 10.1093/nar/gkw852 (URL: https://doi.org/10.1093/nar/gkw852), &lt;URL:</span></span>
-<span><span class="co">#&gt; http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852&gt;.</span></span>
+<span><span class="co">#&gt;   Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,</span></span>
+<span><span class="co">#&gt;   Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region</span></span>
+<span><span class="co">#&gt;   analysis for RNA-seq with derfinder." _Nucl. Acids Res._.</span></span>
+<span><span class="co">#&gt;   doi:10.1093/nar/gkw852 &lt;https://doi.org/10.1093/nar/gkw852&gt;,</span></span>
+<span><span class="co">#&gt;   &lt;http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -156,12 +159,12 @@
 <span><span class="co">#&gt;     url = {http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852},</span></span>
 <span><span class="co">#&gt;   }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Collado-Torres L, Jaffe AE, Leek JT (2017). _regionReport: Generate</span></span>
-<span><span class="co">#&gt; HTML or PDF reports for a set of genomic regions or DESeq2/edgeR</span></span>
-<span><span class="co">#&gt; results_. doi: 10.18129/B9.bioc.regionReport (URL:</span></span>
-<span><span class="co">#&gt; https://doi.org/10.18129/B9.bioc.regionReport),</span></span>
-<span><span class="co">#&gt; https://github.com/leekgroup/regionReport - R package version 1.25.3,</span></span>
-<span><span class="co">#&gt; &lt;URL: http://www.bioconductor.org/packages/regionReport&gt;.</span></span>
+<span><span class="co">#&gt;   Collado-Torres L, Jaffe AE, Leek JT (2017). _regionReport: Generate</span></span>
+<span><span class="co">#&gt;   HTML or PDF reports for a set of genomic regions or DESeq2/edgeR</span></span>
+<span><span class="co">#&gt;   results_. doi:10.18129/B9.bioc.regionReport</span></span>
+<span><span class="co">#&gt;   &lt;https://doi.org/10.18129/B9.bioc.regionReport&gt;,</span></span>
+<span><span class="co">#&gt;   https://github.com/leekgroup/regionReport - R package version 1.35.0,</span></span>
+<span><span class="co">#&gt;   &lt;http://www.bioconductor.org/packages/regionReport&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -170,7 +173,7 @@
 <span><span class="co">#&gt;     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},</span></span>
 <span><span class="co">#&gt;     year = {2017},</span></span>
 <span><span class="co">#&gt;     url = {http://www.bioconductor.org/packages/regionReport},</span></span>
-<span><span class="co">#&gt;     note = {https://github.com/leekgroup/regionReport - R package version 1.25.3},</span></span>
+<span><span class="co">#&gt;     note = {https://github.com/leekgroup/regionReport - R package version 1.35.0},</span></span>
 <span><span class="co">#&gt;     doi = {10.18129/B9.bioc.regionReport},</span></span>
 <span><span class="co">#&gt;   }</span></span></code></pre></div>
 <p>Please note that the <code>regionReport</code> was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.</p>
@@ -184,14 +187,14 @@
 <h2 id="development-tools">Development tools<a class="anchor" aria-label="anchor" href="#development-tools"></a>
 </h2>
 <ul>
-<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs" class="external-link">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.13/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
+<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs" class="external-link">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.17/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
 <li>Code coverage assessment is possible thanks to <a href="https://codecov.io/gh" class="external-link">codecov</a> and <em><a href="https://CRAN.R-project.org/package=covr" class="external-link">covr</a></em>.</li>
 <li>The <a href="http://leekgroup.github.io/derfinderPlot" class="external-link">documentation website</a> is automatically updated thanks to <em><a href="https://CRAN.R-project.org/package=pkgdown" class="external-link">pkgdown</a></em>.</li>
 <li>The code is styled automatically thanks to <em><a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a></em>.</li>
 <li>The documentation is formatted thanks to <em><a href="https://CRAN.R-project.org/package=devtools" class="external-link">devtools</a></em> and <em><a href="https://CRAN.R-project.org/package=roxygen2" class="external-link">roxygen2</a></em>.</li>
 </ul>
 <p>For more details, check the <code>dev</code> directory.</p>
-<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.13/biocthis" class="external-link">biocthis</a></em>.</p>
+<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.17/biocthis" class="external-link">biocthis</a></em>.</p>
 </div>
 </div>
   </div>
@@ -241,12 +244,17 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/regionReport" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg" alt="BioC status"></a></li>
-<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/regionReport.svg" alt="BioC dev status"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/regionReport" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/regionReport.svg" alt="Bioc release status"></a></li>
+<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/regionReport.svg" alt="Bioc devel status"></a></li>
+<li><a href="http://bioconductor.org/packages/stats/bioc/regionReport/" class="external-link"><img src="https://bioconductor.org/shields/downloads/release/regionReport.svg" alt="Bioc downloads rank"></a></li>
+<li><a href="https://support.bioconductor.org/tag/regionReport" class="external-link"><img src="https://bioconductor.org/shields/posts/regionReport.svg" alt="Bioc support"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/regionReport.html#since" class="external-link"><img src="https://bioconductor.org/shields/years-in-bioc/regionReport.svg" alt="Bioc history"></a></li>
+<li><a href="http://bioconductor.org/checkResults/devel/bioc-LATEST/regionReport/" class="external-link"><img src="https://bioconductor.org/shields/lastcommit/devel/bioc/regionReport.svg" alt="Bioc last commit"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/regionReport.html#since" class="external-link"><img src="https://bioconductor.org/shields/dependencies/release/regionReport.svg" alt="Bioc dependencies"></a></li>
 <li><a href="https://github.com/leekgroup/regionReport/actions" class="external-link"><img src="https://github.com/leekgroup/regionReport/workflows/R-CMD-check-bioc/badge.svg" alt="R build status"></a></li>
-<li><a href="https://support.bioconductor.org/t/regionReport/" class="external-link"><img src="http://www.bioconductor.org/shields/posts/regionReport.svg" alt="Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts."></a></li>
 <li><a href="https://github.com/leekgroup/regionReport/issues" class="external-link"><img src="https://img.shields.io/github/issues/leekgroup/regionReport" alt="GitHub issues"></a></li>
+<li><a href="https://github.com/leekgroup/regionReport/pulls" class="external-link"><img src="https://img.shields.io/github/issues-pr/leekgroup/regionReport" alt="GitHub pulls"></a></li>
 </ul>
 </div>
 

@@ -92,7 +92,8 @@
 #'
 #' @importFrom derfinder extendedMapSeqlevels
 #' @importFrom RefManageR PrintBibliography Citep WriteBib as.BibEntry
-#' @importFrom GenomeInfoDb seqlevels renameSeqlevels
+#' @importFrom Seqinfo seqlevels
+#' @importFrom GenomeInfoDb renameSeqlevels
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols

@@ -77,7 +77,7 @@
 #' @export
 #'
 #' @importFrom RefManageR PrintBibliography Citep WriteBib as.BibEntry
-#' @importFrom GenomeInfoDb seqlengths
+#' @importFrom Seqinfo seqlengths
 #' @importFrom utils browseURL citation packageVersion
 #' @importFrom rmarkdown render
 #' @importFrom GenomicRanges mcols 'mcols<-'

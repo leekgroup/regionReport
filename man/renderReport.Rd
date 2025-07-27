@@ -259,6 +259,7 @@ regions <- GRanges(
 )
 
 ## Assign chr lengths
+library(GenomeInfoDb)  # for getChromInfoFromUCSC()
 seqlengths(regions) <- seqlengths(
     getChromInfoFromUCSC("hg19", as.Seqinfo = TRUE)
 )[

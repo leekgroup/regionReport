@@ -21,7 +21,7 @@ after using mergeResults."><!-- mathjax --><script src="https://cdnjs.cloudflare
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.41.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.45.0</span>
       </span>
     </div>
 
@@ -337,18 +337,18 @@ values for <code>output_format</code>.</p>
 <span class="r-in"><span>    genomicState <span class="op">=</span> <span class="va">genomicState</span><span class="op">$</span><span class="va">fullGenome</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:14.8274 mergeResults: Saving options used</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:14.828061 Loading chromosome chr21</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.21587 mergeResults: Saving options used</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.216608 Loading chromosome chr21</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Neither 'cutoffFstatUsed' nor 'optionsStats' were supplied, so the FWER calculation step will be skipped.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:14.870663 mergeResults: Saving fullNullSummary</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:14.871198 mergeResults: Re-calculating the p-values</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:14.927557 mergeResults: Saving fullRegions</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:14.928604 mergeResults: assigning genomic states</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:15.017998 annotateRegions: counting</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:15.071617 annotateRegions: annotating</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:15.090184 mergeResults: Saving fullAnnotatedRegions</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:15.091053 mergeResults: Saving fullFstats</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2025-01-14 16:27:15.091678 mergeResults: Saving fullTime</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.262439 mergeResults: Saving fullNullSummary</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.263077 mergeResults: Re-calculating the p-values</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.3239 mergeResults: Saving fullRegions</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.325033 mergeResults: assigning genomic states</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.400291 annotateRegions: counting</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.459382 annotateRegions: annotating</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.48022 mergeResults: Saving fullAnnotatedRegions</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.481161 mergeResults: Saving fullFstats</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:55:42.481867 mergeResults: Saving fullTime</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Load the options used for calculating the statistics</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"derfinderReport-example"</span>, <span class="st">"chr21"</span>, <span class="st">"optionsStats.Rdata"</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -359,9 +359,6 @@ values for <code>output_format</code>.</p>
 <span class="r-in"><span>    nBestRegions <span class="op">=</span> <span class="fl">15</span>, makeBestClusters <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    fullCov <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"21"</span> <span class="op">=</span> <span class="va">genomeDataRaw</span><span class="op">$</span><span class="va">coverage</span><span class="op">)</span>, optionsStats <span class="op">=</span> <span class="va">optionsStats</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Registered S3 method overwritten by 'GGally':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   method from   </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   +.gg   ggplot2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Writing 9 Bibtex entries ... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> OK</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Results written to file 'derfinderReport-example/basicExploration/basicExploration.bib'</span>
@@ -447,7 +444,7 @@ values for <code>output_format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 76/77 [bibliography]          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 77/77                         </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> output file: basicExploration.knit.md</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> /usr/bin/pandoc +RTS -K512m -RTS basicExploration.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output basicExploration.html --lua-filter /__w/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpNRm6dJ/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /__w/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpNRm6dJ/rmarkdown-str2d5e3e2cfadf.html --variable code_folding=hide --variable code_menu=1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /usr/bin/pandoc +RTS -K512m -RTS basicExploration.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output basicExploration.html --lua-filter /__w/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/Rtmp3VptAl/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /__w/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/Rtmp3VptAl/rmarkdown-str2dd775e901dc.html --variable code_folding=hide --variable code_menu=1 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Output created: basicExploration.html</span>
 <span class="r-in"><span></span></span>
@@ -478,7 +475,7 @@ values for <code>output_format</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

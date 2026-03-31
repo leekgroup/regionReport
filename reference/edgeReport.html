@@ -22,7 +22,7 @@ template."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">regionReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.41.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.45.0</span>
       </span>
     </div>
 
@@ -323,13 +323,15 @@ achieve this goal.</p>
 <span class="r-in"><span>    project <span class="op">=</span> <span class="st">"edgeR-example"</span>, intgroup <span class="op">=</span> <span class="st">"group"</span>,</span></span>
 <span class="r-in"><span>    outdir <span class="op">=</span> <span class="st">"edgeReport-example"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Writing 11 Bibtex entries ... </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>subscript out of bounds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Writing 10 Bibtex entries ... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> OK</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Results written to file 'edgeReport-example/edgeRexploration.bib'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> processing file: edgeRexploration.Rmd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1/47                    </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>subscript out of bounds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2/47 [docSetup]         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3/47                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4/47 [setup]            </span>
@@ -385,6 +387,7 @@ achieve this goal.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 35/47                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 36/47 [unnamed-chunk-1]  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 37/47                    </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>subscript out of bounds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 38/47 [thecall]          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 39/47                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 40/47 [reproducibility1] </span>
@@ -396,7 +399,7 @@ achieve this goal.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 46/47 [bibliography]     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 47/47                    </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> output file: edgeRexploration.knit.md</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> /usr/bin/pandoc +RTS -K512m -RTS edgeRexploration.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output edgeRexploration.html --lua-filter /__w/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/RtmpNRm6dJ/BiocStyle/template.html --no-highlight --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /__w/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpNRm6dJ/rmarkdown-str2d5e1cf69393.html --variable code_folding=hide --variable code_menu=1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /usr/bin/pandoc +RTS -K512m -RTS edgeRexploration.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output edgeRexploration.html --lua-filter /__w/_temp/Library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --wrap preserve --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 --variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 --variable toc_print=1 --template /tmp/Rtmp3VptAl/BiocStyle/template.html --syntax-highlighting none --variable highlightjs=1 --number-sections --variable theme=bootstrap --css /__w/_temp/Library/BiocStyle/resources/html/bioconductor.css --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/Rtmp3VptAl/rmarkdown-str2dd74e9424a0.html --variable code_folding=hide --variable code_menu=1 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Output created: edgeRexploration.html</span>
 <span class="r-in"><span></span></span>
@@ -426,7 +429,7 @@ achieve this goal.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>
